@@ -46,23 +46,29 @@ const Hero = ({
           className='logo'
         />
       )}
-      <Header
-        as='h1'
-        content={title}
-      />
-      <Header
-        as='h2'
-        content={subtitle}
-      />
-      <Button {...buttonProps}>
-        {buttonText}
-        <Async
-          promise={import('@fortawesome/free-solid-svg-icons/faAngleRight')}
-          then={icon => (
-            <FontAwesomeIcon icon={icon.faAngleRight} className='button-icon' />
-          )}
+      {title && (
+        <Header
+          as='h1'
+          content={title}
         />
-      </Button>
+      )}
+      {subtitle && (
+        <Header
+          as='h2'
+          content={subtitle}
+        />
+      )}
+      {buttonText && (
+        <Button {...buttonProps}>
+          {buttonText}
+          <Async
+            promise={import('@fortawesome/free-solid-svg-icons/faAngleRight')}
+            then={icon => (
+              <FontAwesomeIcon icon={icon.faAngleRight} className='button-icon' />
+            )}
+          />
+        </Button>
+      )}
     </Container>
   </Segment>
 )
@@ -91,13 +97,13 @@ Hero.propTypes = {
 }
 
 Hero.defaultProps = {
-  logo: {},
+  logo: null,
   title: '',
   subtitle: '',
-  background: {},
+  background: null,
   backgroundAlt: '',
-  buttonText: 'Click Here',
-  buttonProps: {}
+  buttonText: '',
+  buttonProps: null
 }
 
 export default Hero

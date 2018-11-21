@@ -6,22 +6,21 @@ import 'semantic-ui-css/semantic.min.css'
 import './index.scss'
 
 import { Hero } from '../components'
-
 import Template from '../templates'
 
-const RootIndex = ({ data }) => (
+const portfolio = ({ data }) => (
   <Template>
     <Hero />
-    hello world!
+    portfolio!
   </Template>
 )
 
-RootIndex.propTypes = {
+portfolio.propTypes = {
   data: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
-RootIndex.defaultProps = {
+portfolio.defaultProps = {
   data: {}
 }
 
-export default RootIndex
+export default portfolio

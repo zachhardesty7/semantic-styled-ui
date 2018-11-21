@@ -107,7 +107,7 @@ class CustomForm extends React.Component {
 
                     return (
                       <Form.Select
-                        error={state.error && state[`${name}-${process(title)}`] === ''}
+                        error={state.error ? state[`${name}-${process(title)}`] === '' : null}
                         id={`${name}-${process(title)}`}
                         key={`${name}-${process(title)}`}
                         fluid
@@ -122,7 +122,7 @@ class CustomForm extends React.Component {
                   }
                   return (
                     <Form.Input
-                      error={state.error && state[`${name}-${process(field)}`] === ''}
+                      error={state.error ? state[`${name}-${process(field)}`] === '' : null}
                       id={`${name}-${process(field)}`}
                       key={process(field)}
                       fluid
@@ -139,7 +139,7 @@ class CustomForm extends React.Component {
           {textArea && (
             <Form.TextArea
               id={`${name}-field-text-area`}
-              error={state.error && state[`${name}-field-text-area`] === ''}
+              error={state.error ? state[`${name}-field-text-area`] === '' : null}
               autoHeight
               placeholder='Message'
               label={textArea}

@@ -61,12 +61,12 @@
 
   // button hover transition
   .ui.button {
-    background-color: $secondaryColor;
+    background-color: $secondary;
     transition: ease-in-out 50ms;
 
     &:hover {
       transition: ease-in-out 100ms;
-      background-color: $primaryColor;
+      background-color: $primary;
     }
 
     .button-icon {

@@ -2,11 +2,11 @@
 
 .socialMediaIcons {
   a .button-icon {
-    color: $primaryColor;
+    color: $primary;
     margin: 0 0.5em;
   
     &:hover {
-      color: $secondaryColor;
+      color: $secondary;
     }
 
   }
@@ -14,7 +14,7 @@
   // support inverted style
   &.inverted {
     a .button-icon {
-      color: $secondaryColor;
+      color: $secondary;
       margin: 0 0.5em;
 
       &:hover {

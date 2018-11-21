@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-scroll'
+import { Link as GLink } from 'gatsby'
 import GImage from 'gatsby-image'
 import {
   Container,
@@ -17,16 +18,18 @@ const Navigation = ({
   pages,
   logo,
   logoAlt,
+  anchor,
   size,
   search,
   centered
 }) => (
-  <Container textAlign={centered && 'center'}>
+  <Container textAlign={centered ? 'center' : undefined}>
     <Menu id='nav' size={size} compact text secondary>
       {logo && (
         <Menu.Item
-          as={Link}
-          to=''
+          // TODO: method to prevent unnecessary import
+          as={!anchor ? GLink : Link}
+          to={!anchor ? '/' : ''}
           key='logo'
           spy
           smooth
@@ -40,8 +43,8 @@ const Navigation = ({
 
       {pages.map(page => (
         <Menu.Item
-          as={Link}
-          to={`${page.toLowerCase().replace(' ', '-')}`}
+          as={!anchor ? GLink : Link}
+          to={`${!anchor ? '/' : ''}${page.toLowerCase().replace(' ', '-')}`}
           key={`${page.toLowerCase().replace(' ', '-')}`}
           spy
           smooth
@@ -67,6 +70,7 @@ Navigation.propTypes = {
     PropTypes.element, PropTypes.object
   ]),
   logoAlt: PropTypes.string,
+  anchor: PropTypes.bool,
   size: PropTypes.string,
   search: PropTypes.bool,
   centered: PropTypes.bool,
@@ -74,8 +78,9 @@ Navigation.propTypes = {
 }
 
 Navigation.defaultProps = {
-  logo: {},
+  logo: null,
   logoAlt: '',
+  anchor: true,
   size: 'large',
   search: false,
   centered: false,

@@ -1,9 +1,7 @@
 $blue:   #172749;
-$red: #fe0000;
+$red:    #fe0000;
 $grey:   #5b5b5b;
 
-$primaryColor:   $blue;
-$secondaryColor: $red;
 $success:        #28a745;
 $info:           #31CCEC;
 $warning:        #ffc107;
@@ -12,6 +10,9 @@ $light:          #d2d7db;
 $dark:           #343c42;
 $black:          #070707;
 $white:          #fff;
+$primary:       $blue;
+$secondary:     $white;
+$accent:        $red;
 
 // stylelint-disable selector-pseudo-class-no-unknown, property-no-unknown
 // allow use in JS
@@ -19,8 +20,9 @@ $white:          #fff;
   blue: $blue;
   red: $red;
   grey: $grey;
-  primary: $primaryColor;
-  secondary: $secondaryColor;
+  primary: $primary;
+  secondary: $secondary;
+  accent: $accent;
   success: $success;
   info: $info;
   warning: $warning;

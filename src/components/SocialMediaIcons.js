@@ -11,7 +11,7 @@ import { toJoinedTitleCase } from '../utils'
 import './SocialMediaIcons.scss'
 
 const SocialMediaIcons = ({ icons, inverted }) => (
-  <Container className={`socialMediaIcons ${!!inverted && 'inverted'}`}>
+  <Container className={`socialMediaIcons ${inverted ? 'inverted' : undefined}`}>
     {icons && icons.map(icon => (
       <Async
         key={toJoinedTitleCase(icon.name)}

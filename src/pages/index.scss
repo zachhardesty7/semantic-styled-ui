@@ -20,7 +20,7 @@ h3 {
 }
 
 a {
-  color: $secondaryColor;
+  color: $secondary;
   &:hover {
     color: $white;
   }
@@ -62,15 +62,15 @@ a {
 
     .process-label {
       z-index: 1;
-      background-color: $secondaryColor;
+      background-color: $secondary;
       color: $white;
 
       // allow placement on right with changed color
       &.right::after {
-        border-top-color: $secondaryColor;
+        border-top-color: $secondary;
       }
       &:not(.right)::after {
-        border-right-color: $secondaryColor;
+        border-right-color: $secondary;
       }
     }
 
