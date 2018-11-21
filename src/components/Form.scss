@@ -1,0 +1,12 @@
+.customForm > .container {
+  padding-bottom: 2em;
+}
+
+.form-messages .form-message.visible.transition {
+  display: flex !important;
+  margin-bottom: 1em;
+}
+
+.icon-message {
+  margin-right: 0.6em;
+}

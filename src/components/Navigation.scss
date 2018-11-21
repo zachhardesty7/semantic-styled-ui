@@ -1,0 +1,18 @@
+#nav {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  flex-wrap: wrap;
+
+  .logo {
+    margin-right: 0.5em;
+    min-width: 155px;
+
+    // reset weird behavior
+    img {
+      display: inherit;
+      vertical-align: inherit;
+      margin: inherit;
+      width: inherit;
+    }
+  }
+}

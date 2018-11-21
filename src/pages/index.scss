@@ -1,0 +1,138 @@
+@import '../theme/variables';
+
+body {
+  font-size: 1em;
+  line-height: 1.65;
+  color: $dark;
+  margin: 0;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-size: 2em;
+  font-weight: normal;
+}
+
+a {
+  color: $secondaryColor;
+  &:hover {
+    color: $white;
+  }
+}
+
+#home {
+  h3 {
+    font-size: 3em;
+  }
+
+  h4 {
+    font-size: 2em;
+  }
+
+  padding: 3em 0em;
+
+  .gatsby-image-wrapper {
+    display: block !important;
+  }
+
+  // space each segment
+  & > .segment {
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
+
+  #process {
+    h3 {
+      margin-bottom: 1em;
+    }
+
+    .container-items {
+      margin-bottom: 3em;
+    }
+
+    .rounded img {
+      border-radius: 0.5rem;
+    }
+
+    .process-label {
+      z-index: 1;
+      background-color: $secondaryColor;
+      color: $white;
+
+      // allow placement on right with changed color
+      &.right::after {
+        border-top-color: $secondaryColor;
+      }
+      &:not(.right)::after {
+        border-right-color: $secondaryColor;
+      }
+    }
+
+    // overlay darken by 25%
+    .darken-25::before {
+      content: "";
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(0deg,rgba(0,0,0,0.25),rgba(0,0,0,0.25));
+      border-radius: inherit;
+      top: 0;
+      left: 0;
+      position: absolute;
+      z-index: 1;
+    }
+  }
+
+  #team {
+    // force cards to always center
+    .ui.doubling.stackable.three.cards {
+      justify-content: center;
+    }
+  
+    // relax spacing between cards
+    .ui.cards.relaxed > .card {
+      width: calc(33.33333333% - 2.5em);
+      margin: 1.25em 1.125em;
+    }
+
+    @media only screen and (max-width: 991px) and (min-width: 768px) {
+      .ui.three.doubling.cards>.card {
+        width: calc(50% - 2.5em);
+        margin: 1.25em 1.125em;
+      }
+    }
+
+    // force center and appropriate size for mobile
+    @media only screen and (max-width: 767px) {
+      .ui.stackable.cards {
+        display: flex !important;
+
+        & > .card {
+          width: 350px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+      }
+    }
+  }
+
+  // pad between title/content and items
+  #about > .container:not(.blurbs),
+  #team > .container:not(.cards),
+  #careers > .container:not(.blurbs) {
+    padding-bottom: 3em;
+  }
+
+  .blurbs {
+    text-align: center;
+  }
+
+  #contact .contact-icons {
+    padding-bottom: 1;
+  }
+}

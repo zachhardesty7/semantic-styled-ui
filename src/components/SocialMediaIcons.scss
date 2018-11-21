@@ -1,0 +1,25 @@
+@import '../theme/variables';
+
+.socialMediaIcons {
+  a .button-icon {
+    color: $primaryColor;
+    margin: 0 0.5em;
+  
+    &:hover {
+      color: $secondaryColor;
+    }
+
+  }
+
+  // support inverted style
+  &.inverted {
+    a .button-icon {
+      color: $secondaryColor;
+      margin: 0 0.5em;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}

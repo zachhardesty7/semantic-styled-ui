@@ -1,0 +1,79 @@
+@import '../theme/variables';
+
+#hero {
+  padding-top: 10em;
+  padding-bottom: 5em;
+
+  // background overlay to dim and saturate
+  &::before {
+    content: "";
+    height: 100%;
+    width: 100.5%;
+    background: linear-gradient(0deg,rgba(0,0,0,0.65),rgba(0,0,0,0.65));
+    filter: saturate(2) sepia(0.4);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center +45%;
+    top: 0;
+    left: -0.5%;
+    position: absolute;
+    z-index: -1;
+  }
+
+  // background image
+  .background {
+    position: absolute;
+    top: 0;
+    left: -0.5%;
+    height: 100%;
+    width: 100.5%;
+    z-index: -2;
+    & > img {
+      object-fit: cover !important;
+      object-position: 0% 0% !important;
+      // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
+      font-family: 'object-fit: cover !important; object-position: 0% 0% !important;' // needed for IE9+ polyfill
+    }
+  }
+
+  .logo {
+    margin-right: 1em;
+    vertical-align: bottom;
+  }
+
+  h1,
+  h2 {
+    color: $white;
+    font-weight: normal;
+  }
+
+  h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+    vertical-align: baseline;
+    display: inline-block;
+  }
+
+  h2 {
+    font-size: 1.7em;
+    margin-top: 1em;
+  }
+
+  // button hover transition
+  .ui.button {
+    background-color: $secondaryColor;
+    transition: ease-in-out 50ms;
+
+    &:hover {
+      transition: ease-in-out 100ms;
+      background-color: $primaryColor;
+    }
+
+    .button-icon {
+      margin-left: .75em;
+      vertical-align: bottom;
+      width: 1em;
+      height: 1em;
+    }
+  }
+}

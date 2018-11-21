@@ -1,0 +1,32 @@
+$blue:   #172749;
+$red: #fe0000;
+$grey:   #5b5b5b;
+
+$primaryColor:   $blue;
+$secondaryColor: $red;
+$success:        #28a745;
+$info:           #31CCEC;
+$warning:        #ffc107;
+$danger:         #dc3545;
+$light:          #d2d7db;
+$dark:           #343c42;
+$black:          #070707;
+$white:          #fff;
+
+// stylelint-disable selector-pseudo-class-no-unknown, property-no-unknown
+// allow use in JS
+:export {
+  blue: $blue;
+  red: $red;
+  grey: $grey;
+  primary: $primaryColor;
+  secondary: $secondaryColor;
+  success: $success;
+  info: $info;
+  warning: $warning;
+  danger: $danger;
+  light: $light;
+  dark: $dark;
+  black: $black;
+  white: $white;
+}

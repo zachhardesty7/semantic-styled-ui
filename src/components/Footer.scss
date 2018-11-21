@@ -1,0 +1,28 @@
+@import '../theme/variables.scss';
+
+#footer {
+  padding: 5em 0em;
+  background-color: $primaryColor;
+}
+
+#bottom-bar {
+  background-color: $primaryColor;
+}
+
+#bottom-bar-icons {
+  padding-top: 1.5em;
+}
+
+#attribution {
+  color: $light;
+  align-self: center;
+
+  a {
+    color: $light;
+    text-decoration: underline;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
