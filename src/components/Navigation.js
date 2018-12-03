@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-scroll'
-import { Link as GLink } from 'gatsby'
-import GImage from 'gatsby-image'
+import Async from 'react-promise'
 import {
   Container,
   Input,
@@ -13,7 +11,8 @@ import { calcDuration } from '../utils'
 
 import './Navigation.scss'
 
-// REVIEW: add sticky header?
+// TODO: add sticky header
+// TODO: consider utilizing gatsby-source-filesystem for src url
 const Navigation = ({
   pages,
   logo,
@@ -22,52 +21,75 @@ const Navigation = ({
   size,
   search,
   centered
-}) => (
-  <Container textAlign={centered ? 'center' : undefined}>
-    <Menu id='nav' size={size} compact text secondary>
-      {logo && (
-        <Menu.Item
-          // TODO: method to prevent unnecessary import
-          as={!anchor ? GLink : Link}
-          to={!anchor ? '/' : ''}
-          key='logo'
-          spy
-          smooth
-          duration={calcDuration}
-          tabIndex='0'
-          name=''
-        >
-          <GImage fixed={logo} alt={logoAlt} className='logo' />
-        </Menu.Item>
-      )}
+}) => {
+  const linkPromise = !anchor
+    ? import('gatsby')
+    : import('react-scroll')
 
-      {pages.map(page => (
-        <Menu.Item
-          as={!anchor ? GLink : Link}
-          to={`${!anchor ? '/' : ''}${page.toLowerCase().replace(' ', '-')}`}
-          key={`${page.toLowerCase().replace(' ', '-')}`}
-          spy
-          smooth
-          duration={calcDuration}
-          tabIndex='0'
-          name={page}
-        />
-      ))}
+  return (
+    <Container textAlign={centered ? 'center' : undefined}>
+      <Menu id='nav' size={size} compact text secondary>
+        {logo && (
+          <Async
+            promise={linkPromise}
+            then={({ Link }) => (
+              <Menu.Item
+                as={Link}
+                to='/'
+                key='logo'
+                tabIndex='0'
+                name=''
+              >
+                {typeof logo !== 'string'
+                  ? (
+                    <Async
+                      promise={import('gatsby-image')}
+                      then={({ GatsbyImage }) => <GatsbyImage fixed={logo} alt={logoAlt} className='logo' />}
+                    />
+                  )
+                  : <img src={logo} alt={logoAlt} className='logo' />
+                }
+              </Menu.Item>
+            )}
+          />
 
-      {search && (
-        <Menu.Menu position='right'>
-          <Menu.Item>
-            <Input icon='search' placeholder='Search Properties...' />
-          </Menu.Item>
-        </Menu.Menu>
-      )}
-    </Menu>
-  </Container>
-)
+        )}
+
+        {pages.map(page => (
+          <Async
+            promise={linkPromise}
+            then={({ Link }) => (
+              <Menu.Item
+                as={Link}
+                to={`${page.toLowerCase().replace(' ', '-')}`}
+                key={`${page.toLowerCase().replace(' ', '-')}`}
+                spy
+                smooth
+                duration={calcDuration}
+                tabIndex='0'
+                name={page}
+              />
+            )}
+          />
+        ))}
+
+        {search && (
+          <Menu.Menu position='right'>
+            <Menu.Item>
+              <Input icon='search' placeholder='Search Properties...' />
+            </Menu.Item>
+          </Menu.Menu>
+        )}
+      </Menu>
+    </Container>
+  )
+}
 
 Navigation.propTypes = {
   logo: PropTypes.oneOfType([
-    PropTypes.element, PropTypes.object
+    PropTypes.element, // REVIEW: don't think this works
+    PropTypes.object,
+    PropTypes.string
   ]),
   logoAlt: PropTypes.string,
   anchor: PropTypes.bool,
