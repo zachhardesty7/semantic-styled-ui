@@ -9,14 +9,14 @@ import {
 } from 'semantic-ui-react'
 
 // user-defined
-import './index.scss'
+// import './contact.scss'
 
 import { Form } from '../components'
 import Template from '../templates'
 
 const contact = ({ data }) => (
   <Template>
-    <Segment vertical>
+    <Segment padded vertical basic>
       <Container text>
         <Header as='h1'>Contact Us!</Header>
         <Form

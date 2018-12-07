@@ -1,6 +1,7 @@
 @import '../theme/variables';
 
 body {
+  overflow-y: overlay;
   font-size: 1em;
   line-height: 1.65;
   color: $dark;

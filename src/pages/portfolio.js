@@ -35,15 +35,15 @@ const portfolio = ({ data }) => (
     <Segment padded vertical basic>
       <Container text>
         <Header as='h1'>Our Work</Header>
-        {/* <Header.Content>ETC</Header.Content> */}
+        {/* <Header.Content>description</Header.Content> */}
       </Container>
     </Segment>
     <Segment padded vertical basic>
-      <Container text>
-        <Grid textAlign='center' columns={3}>
+      <Container>
+        <Grid textAlign='center' columns={3} stackable>
           {images.map(image => (
             <Grid.Column>
-              <Image className='portfolio-image' src={image} />
+              <Image centered className='portfolio-image' src={image} />
             </Grid.Column>
           ))}
         </Grid>
