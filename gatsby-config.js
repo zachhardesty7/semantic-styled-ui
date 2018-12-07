@@ -1,5 +1,9 @@
-// Load the Contentful config from the .contentful.json
-let contentfulConfig = require('./.contentful')
+let contentfulConfig
+
+try {
+  // Load the Contentful config from the .contentful.json
+  contentfulConfig = require('./.contentful')
+} catch (_) { console.info('using env vars') }
 
 // Overwrite the Contentful config with environment variables if they exist
 contentfulConfig = {
@@ -17,14 +21,14 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   plugins: [
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: '',
-        // Setting this parameter is also optional
-        respectDNT: true
-      }
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: '',
+    //     // Setting this parameter is also optional
+    //     respectDNT: true
+    //   }
+    // },
     // 'gatsby-plugin-webpack-bundle-analyzer',
     'gatsby-plugin-offline',
     'gatsby-transformer-remark',
