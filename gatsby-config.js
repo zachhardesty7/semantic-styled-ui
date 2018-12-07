@@ -2,7 +2,7 @@ let contentfulConfig
 
 try {
   // Load the Contentful config from the .contentful.json
-  contentfulConfig = require('./.contentful')
+  contentfulConfig = require('./.contentful') // eslint-disable-line global-require
 } catch (_) { console.info('using env vars') }
 
 // Overwrite the Contentful config with environment variables if they exist
