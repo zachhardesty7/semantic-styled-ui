@@ -28,7 +28,7 @@ const Navigation = ({
 
   return (
     <Container textAlign={centered ? 'center' : undefined}>
-      <Menu id='nav' size={size} compact text secondary>
+      <Menu id='nav' size={size} compact secondary pointing>
         {logo && (
           <Async
             promise={linkPromise}
@@ -37,8 +37,12 @@ const Navigation = ({
                 as={Link}
                 to='/'
                 key='logo'
+                spy={anchor ? true : null}
+                smooth={anchor ? true : null}
+                duration={anchor ? calcDuration : null}
                 tabIndex='0'
-                name=''
+                name='home'
+                activeClassName='active'
               >
                 {typeof logo !== 'string'
                   ? (
@@ -57,17 +61,18 @@ const Navigation = ({
 
         {pages.map(page => (
           <Async
+            key={`${page.toLowerCase().replace(' ', '-')}`}
             promise={linkPromise}
             then={({ Link }) => (
               <Menu.Item
                 as={Link}
                 to={`${page.toLowerCase().replace(' ', '-')}`}
-                key={`${page.toLowerCase().replace(' ', '-')}`}
-                spy
-                smooth
-                duration={calcDuration}
+                spy={anchor ? true : null}
+                smooth={anchor ? true : null}
+                duration={anchor ? calcDuration : null}
                 tabIndex='0'
                 name={page}
+                activeClassName='active'
               />
             )}
           />
