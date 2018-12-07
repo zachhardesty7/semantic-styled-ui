@@ -17,8 +17,8 @@ import Template from '../templates'
 const contact = ({ data }) => (
   <Template>
     <Segment vertical>
-      <Container>
-        <Header>Contact Us!</Header>
+      <Container text>
+        <Header as='h1'>Contact Us!</Header>
         <Form
           name='contact'
           fields={['Name', 'Email']}
