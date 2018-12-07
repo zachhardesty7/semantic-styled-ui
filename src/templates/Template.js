@@ -3,9 +3,15 @@ import PropTypes from 'prop-types'
 
 import { Navigation } from '../components'
 
+import './Template.scss'
+
+import logo from '../../static/gulf-corp-navy.png'
+
 const Template = ({ children }) => (
   <React.Fragment>
     <Navigation
+      logo={logo}
+      logoAlt='logo'
       anchor={false}
       centered
       pages={['About', 'Portfolio', 'Contact']}

@@ -12,6 +12,7 @@
     "fetch": true
   },
   "rules": {
+    "react/no-unescaped-entities": 0,
     "react/jsx-filename-extension": [
       1,
       {
