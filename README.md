@@ -1,6 +1,6 @@
 # Gulf Corp (Website)
 
-Progressive Web App (PWA) built with [Gatsby][gatsby], [Contentful][contentful], & [Netlify][netlify]. Allow us to connect you to your home.
+Progressive Web App (PWA) built with [Gatsby][gatsby], [Contentful][contentful], & [Netlify][netlify].
 
 ## Description
 
@@ -17,8 +17,7 @@ npm run dev
 
 ## Known Issues
 
-* hero design lacks unique character, could find more interesting way to display image
-* mobile header menu wraps somewhat inelegantly
+* none
 
 ## Contributing
 
