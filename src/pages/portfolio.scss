@@ -1,4 +1,18 @@
-.portfolio-image {
+
+// fixes bug in semantic ui that displays as block
+.dimmed.dimmable>.ui.simple.dimmer {
+  display: flex;
+}
+
+.portfolio-item {
   height: 100%;
-  object-fit: cover;
+  
+  .content .header {
+    color: rgba(0,0,0,.87) !important;
+  }
+
+  .portfolio-image {
+    height: 100%;
+    object-fit: cover;
+  }
 }
