@@ -11,6 +11,7 @@ const Template = ({ children }) => (
   <React.Fragment>
     <Navigation
       logo={logo}
+      stackedLogo
       logoAlt='logo'
       anchor={false}
       centered

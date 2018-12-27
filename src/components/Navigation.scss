@@ -2,6 +2,34 @@
   margin-top: 1em;
   margin-bottom: 1em;
   flex-wrap: wrap;
+  justify-content: center;
+
+  // apply border to individual items instead of menu con
+  border-bottom: none;
+  .item {
+    border-bottom: 2px solid rgba(34,36,38,.15);
+
+    &.active {
+      border-bottom: 2px solid #1b1c1d;
+    }
+  }
+
+  // mix primary menu w secondary menu style
+  & > .item:hover {
+    background-color: rgba(0,0,0,.05);
+  }
+
+  // set stacked logo spacing & remove underline 
+  .logo-item-stacked {
+    border-bottom: none;
+    margin-right: 50%;
+    margin-left: 50%;
+  }
+
+  // remove rounded edge that distorts underline  
+  .item:last-child {
+    border-radius: 0;
+  }
 
   .logo {
     margin-right: 0.5em;

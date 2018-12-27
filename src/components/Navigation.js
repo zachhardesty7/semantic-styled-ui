@@ -17,6 +17,7 @@ const Navigation = ({
   pages,
   logo,
   logoAlt,
+  stackedLogo,
   anchor,
   size,
   search,
@@ -42,7 +43,8 @@ const Navigation = ({
                 duration={anchor ? calcDuration : null}
                 tabIndex='0'
                 name='home'
-                activeClassName='active'
+                className={stackedLogo ? 'logo-item-stacked' : null}
+                activeClassName={stackedLogo ? null : 'active'}
               >
                 {typeof logo !== 'string'
                   ? (
@@ -78,7 +80,7 @@ const Navigation = ({
           />
         ))}
 
-        {search && (
+        {search && ( // TEST: needs testing
           <Menu.Menu position='right'>
             <Menu.Item>
               <Input icon='search' placeholder='Search Properties...' />
@@ -97,6 +99,7 @@ Navigation.propTypes = {
     PropTypes.string
   ]),
   logoAlt: PropTypes.string,
+  stackedLogo: PropTypes.bool,
   anchor: PropTypes.bool,
   size: PropTypes.string,
   search: PropTypes.bool,
@@ -107,6 +110,7 @@ Navigation.propTypes = {
 Navigation.defaultProps = {
   logo: null,
   logoAlt: '',
+  stackedLogo: false,
   anchor: true,
   size: 'large',
   search: false,
