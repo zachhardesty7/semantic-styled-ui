@@ -54,6 +54,7 @@ const about = ({ data }) => (
             )}
           >
             <Modal.Header>Austin Ames, Chief Executive Officer</Modal.Header>
+            {/* REVIEW: get feedback on scrolling */}
             <Modal.Content scrolling>
               <Grid columns={2} stackable>
                 <Grid.Column computer={7} textAlign='center'>
@@ -84,6 +85,7 @@ const about = ({ data }) => (
           </Modal>
 
           <Modal
+            closeIcon
             trigger={(
               <Card
                 image={profileWynn}

@@ -13,6 +13,7 @@ import './Navigation.scss'
 
 // TODO: add sticky header
 // TODO: consider utilizing gatsby-source-filesystem for src url
+// TEST: various interactions of props
 const Navigation = ({
   pages,
   logo,

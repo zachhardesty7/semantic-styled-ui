@@ -8,9 +8,6 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-// user-defined
-// import './contact.scss'
-
 import { Form } from '../components'
 import Template from '../templates'
 
@@ -18,7 +15,7 @@ const contact = ({ data }) => (
   <Template>
     <Segment padded vertical basic>
       <Container text>
-        <Header as='h1'>Contact Us!</Header>
+        <Header as='h1'>Contact Us</Header>
         <Form
           name='contact'
           fields={['Name', 'Email']}

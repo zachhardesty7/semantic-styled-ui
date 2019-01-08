@@ -66,6 +66,7 @@
 
     &:hover {
       transition: ease-in-out 100ms;
+      color: $secondary;
       background-color: $primary;
     }
 

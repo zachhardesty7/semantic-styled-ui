@@ -7,6 +7,7 @@ import {
   Button,
   Container,
   Header,
+  Image,
   Segment
 } from 'semantic-ui-react'
 
@@ -27,10 +28,21 @@ const Hero = ({
     vertical
     id='hero'
   >
+    {/* TODO: conditionally display based on prop */}
     {/* background image */}
-    {background && (
+    {/* {background && (
       <GImage
         fluid={background}
+        backgroundColor
+        alt={backgroundAlt}
+        style={{ position: `absolute` }}
+        className='background'
+      />
+    )} */}
+
+    {background && (
+      <Image
+        src={background}
         backgroundColor
         alt={backgroundAlt}
         style={{ position: `absolute` }}
