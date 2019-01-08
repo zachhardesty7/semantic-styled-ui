@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Navigation } from '../components'
+import { Navigation, Footer } from '../components'
 
 import './Template.scss'
 
@@ -18,6 +18,30 @@ const Template = ({ children }) => (
       pages={['About', 'Portfolio', 'Contact']}
     />
     {children}
+    <Footer
+      inverted
+      icons={[
+        {
+          name: 'Facebook',
+          link: 'https://www.facebook.com/gulfcorp/'
+        },
+        {
+          name: 'Twitter',
+          link: 'https://twitter.com/gulfcorp/'
+        },
+        {
+          name: 'Instagram',
+          link: 'https://instagram.com/gulfcorp/'
+        },
+        {
+          name: 'Linkedin',
+          link: 'https://www.linkedin.com/company/gulfcorp/'
+        }
+      ]}
+      copyright='Gulf Corp'
+      developerName='Zach Hardesty'
+      developerLink='https://zachhardesty.com'
+    />
   </React.Fragment>
 )
 
