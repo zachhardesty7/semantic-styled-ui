@@ -37,44 +37,44 @@ const portfolio = ({ data }) => {
   const [hovered, setHovered] = useState('')
 
   return (
-    <Template>
+    <Template className='portfolio'>
       <Segment padded vertical basic>
         <Container text>
           <Header as='h1'>Our Work</Header>
           {/* <Header.Content>description</Header.Content> */}
         </Container>
-      </Segment>
-      <Segment padded vertical basic>
-        <Container>
-          <Grid
-            textAlign='center'
-            columns={3}
-            stackable
-          >
-            {images.map(image => (
-              <Grid.Column>
-                <Dimmer.Dimmable
-                  className='portfolio-item'
-                  // REVIEW: use id not url
-                  dimmed={image === hovered}
-                  onMouseEnter={() => setHovered(image)}
-                  onMouseLeave={() => setHovered('')}
-                >
-                  <Dimmer inverted simple>
-                    <Header as='h2'>
+        <Segment padded vertical basic>
+          <Container>
+            <Grid
+              textAlign='center'
+              columns={3}
+              stackable
+            >
+              {images.map(image => (
+                <Grid.Column>
+                  <Dimmer.Dimmable
+                    className='portfolio-item'
+                    // REVIEW: use id not url
+                    dimmed={image === hovered}
+                    onMouseEnter={() => setHovered(image)}
+                    onMouseLeave={() => setHovered('')}
+                  >
+                    <Dimmer inverted simple>
+                      <Header as='h2'>
                       Speedway Commerce Center
-                    </Header>
-                    <Header as='h3'>
+                      </Header>
+                      <Header as='h3'>
                       Charlotte Motor Speedway, Concord, NC
-                    </Header>
-                  </Dimmer>
+                      </Header>
+                    </Dimmer>
 
-                  <Image centered className='portfolio-image' src={image} />
-                </Dimmer.Dimmable>
-              </Grid.Column>
-            ))}
-          </Grid>
-        </Container>
+                    <Image centered className='portfolio-image' src={image} />
+                  </Dimmer.Dimmable>
+                </Grid.Column>
+              ))}
+            </Grid>
+          </Container>
+        </Segment>
       </Segment>
     </Template>
   )

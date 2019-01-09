@@ -15,6 +15,8 @@ import { process, encode } from '../utils'
 
 import './Form.scss'
 
+// TODO: convert to hooks
+// TODO: split components -> raw or segment
 class CustomForm extends React.Component {
   constructor(props) {
     super(props)
