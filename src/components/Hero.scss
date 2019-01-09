@@ -4,6 +4,10 @@
   padding-top: 10em;
   padding-bottom: 5em;
 
+  & > img {
+    display: block !important;
+  }
+
   // background overlay to dim and saturate
   &::before {
     content: "";
@@ -28,12 +32,13 @@
     height: 100%;
     width: 100.5%;
     z-index: -2;
-    & > img {
+    // FIXME: temp fix when not using gatsby image
+    // & > img {
       object-fit: cover !important;
-      object-position: 0% 0% !important;
+      object-position: 50% 50% !important;
       // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
       font-family: 'object-fit: cover !important; object-position: 0% 0% !important;' // needed for IE9+ polyfill
-    }
+    // }
   }
 
   .logo {
