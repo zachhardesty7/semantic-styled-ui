@@ -1,13 +1,70 @@
 import React, { useRef, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import {
   Container, Grid
 } from 'semantic-ui-react'
 
 import SocialMediaIcons from './SocialMediaIcons'
-import './Footer.scss'
+// import './Footer.scss'
 
+// import theme from '../theme/variables.scss'
+import theme from '../theme/theme'
+
+const BottomBar = styled.div`
+  background-color: ${theme.primary};
+`
+
+const Left = styled(Grid.Column)`
+  background-color: ${theme.primary};
+  color: ${theme.light};
+  align-self: center;
+
+  a {
+    color: ${theme.light};
+    text-decoration: underline;
+
+    &:hover {
+      color: ${theme.white};
+    }
+  }
+`
+
+const Right = styled(Grid.Column)`
+  padding-top: 1.5em;
+`
+
+/*
+@import '../theme/variables.scss';
+
+#footer {
+  padding: 5em 0em;
+  background-color: $primary;
+}
+
+#bottom-bar {
+  background-color: $primary;
+}
+
+#bottom-bar-icons {
+  padding-top: 1.5em;
+}
+
+#attribution {
+  color: $light;
+  align-self: center;
+
+  a {
+    color: $light;
+    text-decoration: underline;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+*/
 
 const Footer = ({
   sticky,
@@ -41,24 +98,75 @@ const Footer = ({
     // Semantic UI does not support passing thru ref
     // param to children. using a div to simulate segment
     // <Segment inverted vertical id='bottom-bar'>
-    <div className='ui inverted vertical segment' id='bottom-bar' ref={con}>
-    <Container>
-      <Grid columns={2} verticalAlign='middle'>
-        <Grid.Column id='attribution' width={12}>
-          {`copyright© ${copyright} | designed and developed by `}
-          <a href={developerLink}>{developerName}</a>
-        </Grid.Column>
-        <Grid.Column width={4} id='bottom-bar-icons' floated='right' textAlign='right'>
-          <SocialMediaIcons
-            inverted={inverted}
-            icons={icons}
-          />
-        </Grid.Column>
-      </Grid>
-    </Container>
-    </div>
-)
+    <BottomBar className='ui inverted vertical segment' ref={con}>
+      <Container>
+        <Grid columns={2} verticalAlign='middle'>
+          <Left width={12}>
+            {`copyright© ${copyright} | designed and developed by `}
+            <a href={developerLink}>{developerName}</a>
+          </Left>
+          <Right width={4} floated='right' textAlign='right'>
+            <SocialMediaIcons
+              inverted={inverted}
+              icons={icons}
+            />
+          </Right>
+        </Grid>
+      </Container>
+    </BottomBar>
+  )
 }
+
+// const Footer = ({
+//   sticky,
+//   copyright,
+//   inverted,
+//   icons,
+//   developerName,
+//   developerLink
+// }) => {
+//   const con = useRef()
+
+//   // update higher up containers to allow dynamic sized footer
+//   // that stays at the bottom, even when there's little content
+//   useLayoutEffect(() => {
+//     if (sticky) {
+//       let el = con.current.parentNode
+
+//       el.children[el.children.length - 2].style.flex = '1 0 auto'
+//       el.style.display = 'flex'
+//       el.style.flexDirection = 'column'
+
+//       while (el.parentNode) {
+//         el.style.minHeight = '100vh'
+//         el = el.parentNode
+//       }
+//     }
+//   }, [con]) // prevents styling on re-renders
+
+//   return (
+//     // REVIEW: override semantic ui component?
+//     // Semantic UI does not support passing thru ref
+//     // param to children. using a div to simulate segment
+//     // <Segment inverted vertical id='bottom-bar'>
+//     <div className='ui inverted vertical segment' id='bottom-bar' ref={con}>
+//       <Container>
+//         <Grid columns={2} verticalAlign='middle'>
+//           <Grid.Column id='attribution' width={12}>
+//             {`copyright© ${copyright} | designed and developed by `}
+//             <a href={developerLink}>{developerName}</a>
+//           </Grid.Column>
+//           <Grid.Column width={4} id='bottom-bar-icons' floated='right' textAlign='right'>
+//             <SocialMediaIcons
+//               inverted={inverted}
+//               icons={icons}
+//             />
+//           </Grid.Column>
+//         </Grid>
+//       </Container>
+//     </div>
+//   )
+// }
 
 Footer.propTypes = {
   developerName: PropTypes.string,

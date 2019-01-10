@@ -35,6 +35,12 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     {
+      resolve: 'gatsby-plugin-styled-components',
+      options: {
+        pure: true
+      }
+    },
+    {
       resolve: 'gatsby-plugin-sass',
       options: {
         precision: 8

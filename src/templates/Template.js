@@ -8,7 +8,7 @@ import './Template.scss'
 import logo from '../../static/gulf-corp-navy.png'
 
 const Template = ({ children }) => (
-  <React.Fragment>
+  <div className='root'>
     <Navigation
       logo={logo}
       stackedLogo
@@ -42,7 +42,7 @@ const Template = ({ children }) => (
       developerName='Zach Hardesty'
       developerLink='https://zachhardesty.com'
     />
-  </React.Fragment>
+  </div>
 )
 
 Template.propTypes = {

@@ -25,6 +25,14 @@
   ],
   "plugins": [
     [
+      "@quickbaseoss/babel-plugin-styled-components-css-namespace",
+      {
+        "cssNamespace": "root.root"
+        // broken in current version lol
+        // "rawCssNamespace": "#___gatsby"
+      }
+    ],
+    [
       "@babel/plugin-proposal-class-properties",
       {
         "loose": true
