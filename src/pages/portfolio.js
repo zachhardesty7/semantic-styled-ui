@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import 'semantic-ui-css/semantic.min.css'
+import styled from 'styled-components'
 
 import {
   Dimmer,
@@ -10,10 +10,12 @@ import {
   Image,
   Grid
 } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
-import Template from '../templates'
+import Template from '../Template'
 import './portfolio.scss'
 
+// cSpell: disable
 import baylor from '../../static/baylor.jpg'
 import esab from '../../static/esab.jpg'
 import fiveGuys from '../../static/five-guys.jpg'
@@ -27,19 +29,33 @@ import springs from '../../static/springs.jpg'
 import vincent from '../../static/vincent.jpg'
 
 const images = [
-  baylor, esab, fiveGuys,
+  fiveGuys, scottWhite, speedway,
   fortiline, goodyear, lowes,
-  newHope, scottWhite, speedway,
+  newHope, baylor, esab,
   springs, vincent
 ]
+// cSpell: enable
+
+const PortfolioItem = styled(Dimmer.Dimmable)`
+  height: 100%;
+  
+  .content .header {
+    color: rgba(0,0,0,.87) !important;
+  }
+`
+
+const PortfolioImage = styled(Image)`
+  height: 100%;
+  object-fit: cover;
+`
 
 const portfolio = ({ data }) => {
   const [hovered, setHovered] = useState('')
 
   return (
-    <Template className='portfolio'>
+    <Template>
       <Segment padded vertical basic>
-        <Container text>
+        <Container>
           <Header as='h1'>Our Work</Header>
           {/* <Header.Content>description</Header.Content> */}
         </Container>
@@ -52,8 +68,7 @@ const portfolio = ({ data }) => {
             >
               {images.map(image => (
                 <Grid.Column>
-                  <Dimmer.Dimmable
-                    className='portfolio-item'
+                  <PortfolioItem
                     // REVIEW: use id not url
                     dimmed={image === hovered}
                     onMouseEnter={() => setHovered(image)}
@@ -68,8 +83,8 @@ const portfolio = ({ data }) => {
                       </Header>
                     </Dimmer>
 
-                    <Image centered className='portfolio-image' src={image} />
-                  </Dimmer.Dimmable>
+                    <PortfolioImage centered src={image} />
+                  </PortfolioItem>
                 </Grid.Column>
               ))}
             </Grid>

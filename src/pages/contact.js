@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react'
 
 import { Form } from '../components'
-import Template from '../templates'
+import Template from '../Template'
 
 const contact = ({ data }) => (
   <Template>

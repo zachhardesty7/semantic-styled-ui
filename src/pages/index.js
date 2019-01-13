@@ -1,19 +1,46 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
-import 'semantic-ui-css/semantic.min.css'
-
-// user-defined
-import './index.scss'
-import theme from '../theme/variables.scss'
-import baylor from '../../static/baylor.jpg'
+import { createGlobalStyle } from 'styled-components'
 
 import { Hero, Blurbs } from '../components'
+import 'semantic-ui-css/semantic.min.css'
+import Template from '../Template'
+import theme from '../theme'
 
-import Template from '../templates'
+import baylor from '../../static/baylor.jpg'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow-y: overlay;
+    font-size: 1em;
+    line-height: 1.65;
+    color: ${theme.dark};
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 2em;
+    font-weight: normal;
+  }
+
+  a {
+    color: ${theme.secondary};
+    &:hover {
+      color: ${theme.white};
+    }
+  }
+`
 
 const RootIndex = ({ data }) => (
   <Template>
+    <GlobalStyle />
     <Hero
       background={baylor}
       title='Gulf Corp'

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
+import styled from 'styled-components'
 import {
   Container,
   Input,
@@ -9,7 +10,59 @@ import {
 
 import { calcDuration } from '../utils'
 
-import './Navigation.scss'
+// TODO: split into to separate styled components
+const NavMenu = styled(Menu)`
+  margin-top: 1em;
+  /* margin-bottom: 1em; */ /* REVIEW: */
+  margin-bottom: 2px; /* when center aligned */
+  flex-wrap: wrap;
+  justify-content: center;
+
+  /* apply border to individual items instead of menu con */
+  border-bottom: none;
+  .item.item {
+    border-bottom: 2px solid rgba(34,36,38,.15);
+
+    &.active {
+      border-bottom: 2px solid #1b1c1d;
+    }
+
+    /* remove rounded edge that distorts underline */
+    &:last-child {
+      border-radius: 0;
+    }
+
+    /* mix primary menu w secondary menu style */
+    &:hover {
+      background-color: rgba(0,0,0,.05);
+    }
+  }
+
+  /* TODO: split out */
+  /* set stacked logo spacing & remove underline */
+  .logo-item-stacked.logo-item-stacked {
+    border-bottom: none;
+    margin-right: 50%;
+    margin-left: 50%;
+  }
+
+  .logo {
+    margin-right: 0.5em;
+    min-width: ${({ logoSize }) => {
+    if (logoSize === 'small') return '90px'
+    if (logoSize === 'large') return '215px'
+    return '155px'
+  }};
+
+    /* reset weird behavior */
+    img {
+      display: inherit;
+      vertical-align: inherit;
+      margin: inherit;
+      width: inherit;
+    }
+  }
+`
 
 // TODO: add sticky header
 // TODO: consider utilizing gatsby-source-filesystem for src url
@@ -17,6 +70,7 @@ import './Navigation.scss'
 const Navigation = ({
   pages,
   logo,
+  logoSize,
   logoAlt,
   stackedLogo,
   anchor,
@@ -30,7 +84,7 @@ const Navigation = ({
 
   return (
     <Container textAlign={centered ? 'center' : undefined}>
-      <Menu id='nav' size={size} compact secondary pointing>
+      <NavMenu logoSize={logoSize} size={size} compact secondary pointing>
         {logo && (
           <Async
             promise={linkPromise}
@@ -88,7 +142,7 @@ const Navigation = ({
             </Menu.Item>
           </Menu.Menu>
         )}
-      </Menu>
+      </NavMenu>
     </Container>
   )
 }
@@ -101,6 +155,7 @@ Navigation.propTypes = {
   ]),
   logoAlt: PropTypes.string,
   stackedLogo: PropTypes.bool,
+  logoSize: PropTypes.string,
   anchor: PropTypes.bool,
   size: PropTypes.string,
   search: PropTypes.bool,
@@ -112,6 +167,7 @@ Navigation.defaultProps = {
   logo: null,
   logoAlt: '',
   stackedLogo: false,
+  logoSize: 'medium',
   anchor: true,
   size: 'large',
   search: false,

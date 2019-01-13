@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import {
   Container,
   Form,
@@ -13,7 +14,20 @@ import { faCaretDown, faExclamation, faCheck } from '@fortawesome/free-solid-svg
 
 import { process, encode } from '../utils'
 
-import './Form.scss'
+const FormContainer = styled(Container)`
+  & > .container {
+    padding-bottom: 1.5em;
+  }
+`
+
+const MessageContainer = styled(Message)`
+  display: flex !important;
+  margin-bottom: 1em;
+`
+
+const FAIcon = styled(FontAwesomeIcon)`
+  margin-right: 0.6em;
+`
 
 // TODO: convert to hooks
 // TODO: split components -> raw or segment
@@ -77,7 +91,7 @@ class CustomForm extends React.Component {
     const { state } = this
 
     return (
-      <Container className='customForm' text>
+      <FormContainer text>
         <Container text>
           <Header as={headerAs} textAlign='center'>{header}</Header>
           <Header.Content>{children}</Header.Content>
@@ -151,30 +165,30 @@ class CustomForm extends React.Component {
             />
           )}
 
-          <Transition.Group className='form-messages' animation='fade down' duration={500}>
+          <Transition.Group animation='fade down' duration={500}>
             {state.success && (
-              <Message icon success className='form-message'>
-                <FontAwesomeIcon icon={faCheck} size='2x' className='icon-message' title='Instagram' />
+              <MessageContainer icon success>
+                <FAIcon icon={faCheck} size='2x' title='Instagram' />
                 <Message.Content>
                   <Message.Header>Form Submitted</Message.Header>
                     You&#39;ll hear back from our team shortly!
                 </Message.Content>
-              </Message>
+              </MessageContainer>
             )}
             {state.error && (
-              <Message icon error className='form-message'>
-                <FontAwesomeIcon icon={faExclamation} size='2x' className='icon-message' title='Instagram' />
+              <MessageContainer icon error>
+                <FAIcon icon={faExclamation} size='2x' title='Instagram' />
                 <Message.Content>
                   <Message.Header>Error</Message.Header>
                     Please fill out all fields!
                 </Message.Content>
-              </Message>
+              </MessageContainer>
             )}
           </Transition.Group>
 
           <Form.Button type='submit'>{button}</Form.Button>
         </Form>
-      </Container>
+      </FormContainer>
     )
   }
 }

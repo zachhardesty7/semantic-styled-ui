@@ -27,7 +27,7 @@
     [
       "@quickbaseoss/babel-plugin-styled-components-css-namespace",
       {
-        "cssNamespace": "root.root"
+        "cssNamespace": "root.root.root"
         // broken in current version lol
         // "rawCssNamespace": "#___gatsby"
       }

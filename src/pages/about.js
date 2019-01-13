@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import 'semantic-ui-css/semantic.min.css'
+import styled from 'styled-components'
 
 import {
   Image,
@@ -8,18 +8,28 @@ import {
   Container,
   Header,
   Card,
-  // Sticky,
   Grid,
   Segment
 } from 'semantic-ui-react'
-
-// user-defined
-import './about.scss'
+import 'semantic-ui-css/semantic.min.css'
 
 import profileAustin from '../../static/austin-profile.jpg'
 import profileWynn from '../../static/wynn-profile.jpg'
 
-import Template from '../templates'
+import Template from '../Template'
+
+const ProfileCard = styled(Card)`
+  img {
+    height: 300px;
+    object-fit: cover;
+    object-position: 50% 40%;
+  }
+`
+
+const ProfileImage = styled(Image)`
+  object-fit: cover;
+  object-position: 50% 10%;
+`
 
 const about = ({ data }) => (
   <Template>
@@ -45,9 +55,8 @@ const about = ({ data }) => (
             <Modal
               closeIcon
               trigger={(
-                <Card
+                <ProfileCard
                   image={profileAustin}
-                  className='profile-short'
                   header='Austin Ames'
                   meta='CEO'
                 />
@@ -58,7 +67,8 @@ const about = ({ data }) => (
               <Modal.Content scrolling>
                 <Grid columns={2} stackable>
                   <Grid.Column computer={7} textAlign='center'>
-                    <Image centered size='large' src={profileAustin} className='profile-full' />
+                    <ProfileImage centered size='large' src={profileAustin} />
+                    {/* TODO: contact info */}
                   </Grid.Column>
                   <Grid.Column computer={9} textAlign='justified'>
                     <Modal.Description>

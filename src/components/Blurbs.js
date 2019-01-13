@@ -1,7 +1,7 @@
 import React from 'react'
 import Async from 'react-promise'
 import PropTypes from 'prop-types'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -13,9 +13,26 @@ import {
 
 import { Blurb } from '.'
 
-import './Blurbs.scss'
-
 import { toJoinedTitleCase } from '../utils'
+
+const BlurbsSegment = styled(Segment)`
+  /* default relaxed spacing */
+  padding-top: 5em;
+  padding-bottom: 5em;
+
+  h3 {
+    font-size: 3em;
+  }
+
+  h4 {
+    font-size: 2em;
+  }
+`
+
+const HeaderContainer = styled(Container)`
+  /* pad between title/content and items */
+  padding-bottom: 3em;
+`
 
 const Blurbs = ({
   title,
@@ -23,14 +40,18 @@ const Blurbs = ({
   color,
   blurbs
 }) => (
-  <Segment vertical basic secondary className='blurbs'>
-    <Container className='blurbs-header' text>
-      <Header as='h3' textAlign='center'>{title}</Header>
-      {content && (
-        <Header.Content>{content}</Header.Content>
-      )}
-    </Container>
-    <Container className='blurbs-body'>
+  <BlurbsSegment vertical basic secondary>
+    {(title || content) && (
+      <HeaderContainer text>
+        {title && (
+          <Header as='h3' textAlign='center'>{title}</Header>
+        )}
+        {content && (
+          <Header.Content>{content}</Header.Content>
+        )}
+      </HeaderContainer>
+    )}
+    <Container textAlign='center'>
       <Grid relaxed stackable columns={blurbs.length} divided padded>
         {blurbs.map(blurb => (
           <Async
@@ -50,7 +71,7 @@ const Blurbs = ({
         ))}
       </Grid>
     </Container>
-  </Segment>
+  </BlurbsSegment>
 )
 
 Blurbs.propTypes = {

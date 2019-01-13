@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Navigation, Footer } from '../components'
+import { Navigation, Footer } from './components'
 
-import './Template.scss'
-
-import logo from '../../static/gulf-corp-navy.png'
+import logo from '../static/gulf-corp-navy.png'
 
 const Template = ({ children }) => (
   <div className='root'>
     <Navigation
       logo={logo}
       stackedLogo
+      largeLogo
       logoAlt='logo'
       anchor={false}
       centered
@@ -23,22 +22,22 @@ const Template = ({ children }) => (
       icons={[
         {
           name: 'Facebook',
-          link: 'https://www.facebook.com/gulfcorp/'
+          link: ''
         },
         {
           name: 'Twitter',
-          link: 'https://twitter.com/gulfcorp/'
+          link: ''
         },
         {
           name: 'Instagram',
-          link: 'https://instagram.com/gulfcorp/'
+          link: ''
         },
         {
           name: 'Linkedin',
-          link: 'https://www.linkedin.com/company/gulfcorp/'
+          link: ''
         }
       ]}
-      copyright='Gulf Corp'
+      copyright='Gulf Corp: A Mississippi Company'
       developerName='Zach Hardesty'
       developerLink='https://zachhardesty.com'
     />
