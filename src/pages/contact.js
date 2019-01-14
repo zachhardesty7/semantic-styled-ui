@@ -21,6 +21,7 @@ const contact = ({ data }) => (
           fields={['Name', 'Email']}
           textArea='Questions, comments, or concerns'
         />
+        {/* TODO: address / number */}
       </Container>
     </Segment>
   </Template>

@@ -1,12 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { createGlobalStyle } from 'styled-components'
 
 import { Navigation, Footer } from './components'
+import theme from './theme'
 
 import logo from '../static/gulf-corp-navy.png'
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow-y: overlay;
+    font-size: 1em;
+    line-height: 1.65;
+    color: ${theme.dark};
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 2em;
+    font-weight: normal;
+  }
+
+  a {
+    color: ${theme.secondary};
+    &:hover {
+      color: ${theme.white};
+    }
+  }
+`
+
 const Template = ({ children }) => (
   <div className='root'>
+    <GlobalStyle />
     <Navigation
       logo={logo}
       stackedLogo

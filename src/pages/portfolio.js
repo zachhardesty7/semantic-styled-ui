@@ -13,7 +13,6 @@ import {
 import 'semantic-ui-css/semantic.min.css'
 
 import Template from '../Template'
-import './portfolio.scss'
 
 // cSpell: disable
 import baylor from '../../static/baylor.jpg'
@@ -38,6 +37,10 @@ const images = [
 
 const PortfolioItem = styled(Dimmer.Dimmable)`
   height: 100%;
+
+  & > .ui.simple.dimmer {
+    display: flex;
+  }
   
   .content .header {
     color: rgba(0,0,0,.87) !important;
