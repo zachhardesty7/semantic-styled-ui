@@ -1,13 +1,24 @@
 import React, { useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import { Dimmer } from 'semantic-ui-react'
 import { Hero, Blurbs } from '../components'
 import Template from '../Template'
 import theme from '../theme'
 
-import baylor from '../../static/baylor.jpg'
+const AAHero = styled(Hero)`
+  @font-face {
+    font-family: 'eurostile-lt-std-bold-oblique';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../../static/eurostile-lt-std-bold-oblique.ttf') format('truetype');
+    font-display: swap;
+  }
+
+  font-family: 'eurostile-lt-std-bold-oblique', Tahoma, Arial, Helvetica, sans-serif !important;
+`
 
 const Index = ({ data }) => {
   // TODO: accomplish with loader
