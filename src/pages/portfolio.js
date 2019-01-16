@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
+import GImage from 'gatsby-image'
 import styled from 'styled-components'
 
 import {
@@ -10,7 +12,6 @@ import {
   Image,
   Grid
 } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
 
 import Template from '../Template'
 
@@ -37,7 +38,7 @@ const images = [
 
 const PortfolioItem = styled(Dimmer.Dimmable)`
   height: 100%;
-
+  
   & > .ui.simple.dimmer {
     display: flex;
   }
@@ -45,22 +46,30 @@ const PortfolioItem = styled(Dimmer.Dimmable)`
   .content .header {
     color: rgba(0,0,0,.87) !important;
   }
+
+  .profile-image {
+    height: 100%;
+    object-fit: cover;
+  }
 `
 
-const PortfolioImage = styled(Image)`
-  height: 100%;
-  object-fit: cover;
-`
+// TODO: instate for and split from above when not using gatsby
+// const PortfolioImage = styled(Image)`
+//     height: 100%;
+//     object-fit: cover;
+// `
 
 const portfolio = ({ data }) => {
+  const { title } = data.allContentfulPortfolio.edges[0].node
+  const { piece } = data.allContentfulPortfolio.edges[0].node
+
   const [hovered, setHovered] = useState('')
 
   return (
     <Template>
       <Segment padded vertical basic>
         <Container>
-          <Header as='h1'>Our Work</Header>
-          {/* <Header.Content>description</Header.Content> */}
+          <Header as='h1'>{title}</Header>
         </Container>
         <Segment padded vertical basic>
           <Container>
@@ -69,24 +78,24 @@ const portfolio = ({ data }) => {
               columns={3}
               stackable
             >
-              {images.map(image => (
+              {piece.map(p => (
                 <Grid.Column>
                   <PortfolioItem
                     // REVIEW: use id not url
-                    dimmed={image === hovered}
-                    onMouseEnter={() => setHovered(image)}
+                    dimmed={p === hovered}
+                    onMouseEnter={() => setHovered(p)}
                     onMouseLeave={() => setHovered('')}
                   >
                     <Dimmer inverted simple>
                       <Header as='h2'>
-                      Speedway Commerce Center
+                        {p.name}
                       </Header>
                       <Header as='h3'>
-                      Charlotte Motor Speedway, Concord, NC
+                        {p.location}
                       </Header>
                     </Dimmer>
 
-                    <PortfolioImage centered src={image} />
+                    <GImage as={Image} className='profile-image' centered fluid={p.image.fluid} />
                   </PortfolioItem>
                 </Grid.Column>
               ))}
@@ -99,11 +108,32 @@ const portfolio = ({ data }) => {
 }
 
 portfolio.propTypes = {
-  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  rawData: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
 portfolio.defaultProps = {
-  data: {}
+  rawData: {}
 }
 
 export default portfolio
+
+export const dataQuery = graphql`
+  query {
+    allContentfulPortfolio(sort: { fields: [contentful_id] }) {
+      edges {
+        node {
+          title
+          piece {
+            name
+            location
+            image {
+              fluid(maxWidth: 500) {
+                ...GatsbyContentfulFluid_withWebp
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
