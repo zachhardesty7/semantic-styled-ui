@@ -60,9 +60,7 @@ const PortfolioItem = styled(Dimmer.Dimmable)`
 // `
 
 const portfolio = ({ data }) => {
-  const { title } = data.allContentfulPortfolio.edges[0].node
-  const { piece } = data.allContentfulPortfolio.edges[0].node
-
+  const { title, piece } = data.allContentfulPortfolio.edges[0].node
   const [hovered, setHovered] = useState('')
 
   return (

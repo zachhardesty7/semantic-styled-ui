@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import 'semantic-ui-css/semantic.min.css'
+import { graphql } from 'gatsby'
 
 import {
   Container,
@@ -11,28 +11,50 @@ import {
 import { Form } from '../components'
 import Template from '../Template'
 
-const contact = ({ data }) => (
-  <Template>
-    <Segment padded vertical basic>
-      <Container text>
-        <Header as='h1'>Contact Us</Header>
-        <Form
-          name='contact'
-          fields={['Name', 'Email']}
-          textArea='Questions, comments, or concerns'
-        />
-        {/* TODO: address / number */}
-      </Container>
-    </Segment>
-  </Template>
-)
+const contact = ({ data }) => {
+  const { title, form } = data.allContentfulContact.edges[0].node
+
+  return (
+    <Template>
+      <Segment padded vertical basic>
+        <Container text>
+          <Header as='h1'>{title}</Header>
+          <Form
+            name={form.name}
+            fields={form.inputs}
+            textArea={form.textArea}
+            button={form.button}
+          />
+          {/* TODO: address / number */}
+        </Container>
+      </Segment>
+    </Template>
+  )
+}
 
 contact.propTypes = {
-  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  rawData: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
 contact.defaultProps = {
-  data: {}
+  rawData: {}
 }
 
 export default contact
+
+export const dataQuery = graphql`
+  query {
+    allContentfulContact(sort: { fields: [contentful_id] }) {
+      edges {
+        node {
+          title
+          form {
+            name
+            inputs
+            textArea
+          }
+        }
+      }
+    }
+  }
+`

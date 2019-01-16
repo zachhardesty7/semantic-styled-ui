@@ -39,16 +39,15 @@ const ProfileModalStyle = createGlobalStyle`
 `
 
 const about = ({ data }) => {
-  const page = data.allContentfulAbout.edges[0].node
-  const { cards } = page
+  const { title, subtitle, cards } = data.allContentfulAbout.edges[0].node
 
   return (
     <Template>
       <Segment padded vertical basic>
         <Container text textAlign='justified'>
-          <Header as='h1'>{page.title}</Header>
+          <Header as='h1'>{title}</Header>
           <Header.Content>
-            {page.subtitle.subtitle}
+            {subtitle.subtitle}
           </Header.Content>
         </Container>
 
