@@ -19,22 +19,43 @@ const HeroSegment = styled(Segment)`
   padding-top: 10em;
   padding-bottom: 5em;
 
+  @font-face {
+    font-family: 'Eurostile';
+    font-style: italic;
+    src: url('../../static/eurostile-lt-std-bold-oblique.ttf') format('truetype');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Franklin Gothic Book';
+    src: url('../../static/franklin-gothic-book-regular.ttf') format('truetype');
+    font-weight: bolder;
+    font-display: swap;
+  }
+
   h1,
   h2 {
     color: ${theme.white};
-    font-weight: normal;
   }
 
   h1 {
     font-size: 4em;
+    padding-top: 1.5em;
     margin-bottom: 0;
     vertical-align: baseline;
     display: inline-block;
+    font-weight: bolder;
+    font-style: italic;
+    font-family: 'Franklin Gothic Book', Tahoma, Arial, Helvetica, sans-serif !important;
   }
 
   h2 {
     font-size: 1.7em;
-    margin-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 0;
+    font-style: italic;
+    font-weight: normal;
+    font-family: 'Eurostile', Tahoma, Arial, Helvetica, sans-serif !important;
   }
 
   & > img {

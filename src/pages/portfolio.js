@@ -15,27 +15,6 @@ import {
 
 import Template from '../Template'
 
-// cSpell: disable
-import baylor from '../../static/baylor.jpg'
-import esab from '../../static/esab.jpg'
-import fiveGuys from '../../static/five-guys.jpg'
-import fortiline from '../../static/fortiline.jpg'
-import goodyear from '../../static/goodyear.jpg'
-import lowes from '../../static/lowes.jpg'
-import newHope from '../../static/new-hope.jpg'
-import scottWhite from '../../static/scott-white.png'
-import speedway from '../../static/speedway.jpg'
-import springs from '../../static/springs.jpg'
-import vincent from '../../static/vincent.jpg'
-
-const images = [
-  fiveGuys, scottWhite, speedway,
-  fortiline, goodyear, lowes,
-  newHope, baylor, esab,
-  springs, vincent
-]
-// cSpell: enable
-
 const PortfolioItem = styled(Dimmer.Dimmable)`
   height: 100%;
   
