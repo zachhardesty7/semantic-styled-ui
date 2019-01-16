@@ -83,7 +83,7 @@ const BackgroundImage = styled(Image)`
     object-fit: cover !important;
     object-position: 50% 50% !important;
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-    font-family: 'object-fit: cover !important; object-position: 0% 0% !important;' // needed for IE9+ polyfill
+    /* font-family: \'object-fit: cover !important; object-position: 0% 0% !important;\' // needed for IE9+ polyfill */
   /* } */
 `
 
@@ -117,7 +117,6 @@ const Hero = ({
         backgroundColor
         alt={backgroundAlt}
         style={{ position: `absolute` }}
-        className='background'
       />
     )} */}
 
