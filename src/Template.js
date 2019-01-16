@@ -70,7 +70,7 @@ const Template = ({ children }) => (
           link: ''
         }
       ]}
-      copyright='Gulf Corp: A Mississippi Company'
+      copyright='Gulf Corporation: A Mississippi Company'
       developerName='Zach Hardesty'
       developerLink='https://zachhardesty.com'
     />

@@ -71,7 +71,7 @@ const HeroSegment = styled(Segment)`
   }
 `
 
-const BackgroundImage = styled(Image)`
+const BackgroundImage = styled(GImage)`
   position: absolute;
   top: 0;
   left: -0.5%;
@@ -111,22 +111,22 @@ const Hero = ({
   <HeroSegment vertical>
     {/* TODO: conditionally display based on prop */}
     {/* background image */}
-    {/* {background && (
-      <GImage
+    {background && (
+      <BackgroundImage
         fluid={background}
         backgroundColor
         alt={backgroundAlt}
         style={{ position: `absolute` }}
       />
-    )} */}
+    )}
 
-    {background && (
+    {/* {background && (
       <BackgroundImage
         src={background}
         backgroundColor
         alt={backgroundAlt}
       />
-    )}
+    )} */}
 
     <Container>
       {logo && (

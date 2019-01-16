@@ -13,15 +13,14 @@ const Index = ({ data }) => {
   // TODO: accomplish with loader
   const overlay = false // OG true
   // useLayoutEffect(() => { overlay = false })
-  const { hero } = data.allContentfulIndex.edges[0].node
-  const { blurbs } = data.allContentfulIndex.edges[0].node
+  const { hero, blurbs } = data.allContentfulIndex.edges[0].node
 
   return (
     // <Dimmer.Dimmable dimmed={false}>
     <Template>
       <Dimmer inverted simple active={overlay} page />
       <Hero
-        background={baylor}
+        background={hero.backgrounds[0].fluid}
         title={hero.title}
         subtitle={hero.subtitle}
       />
@@ -55,7 +54,9 @@ export const dataQuery = graphql`
             subtitle
             backgrounds {
               title
-
+              fluid(maxWidth: 1920) {
+                ...GatsbyContentfulFluid_withWebp
+              }
             }
           }
           blurbs {
@@ -63,7 +64,6 @@ export const dataQuery = graphql`
             body {
               body
             }
-            icon
           }
         }
       }

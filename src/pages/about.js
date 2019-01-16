@@ -68,7 +68,7 @@ const about = ({ data }) => {
                   <ProfileModalStyle />
                   <Modal.Header>
                     {card.name}
-                    ,
+                    <br />
                     {card.title}
                   </Modal.Header>
                   <Modal.Content scrolling>
@@ -76,12 +76,16 @@ const about = ({ data }) => {
                       <Grid.Column computer={7} textAlign='left'>
                         <GImage as={Image} className='profile-image' centered size='large' fluid={card.image.fluid} />
                         <div className='profile-contact'>
-                          {card.contact}
+                          {card.contact.split(',').map(line => (
+                            <p>{line}</p>
+                          ))}
                         </div>
                       </Grid.Column>
                       <Grid.Column computer={9} textAlign='justified'>
                         <Modal.Description>
-                          {card.bio.bio}
+                          {card.bio.content.map(para => (
+                            <p>{para.content[0].value}</p>
+                          ))}
                         </Modal.Description>
                       </Grid.Column>
                     </Grid>
@@ -120,7 +124,11 @@ export const dataQuery = graphql`
             name
             title
             bio {
-              bio
+              content {
+                content {
+                  value
+                }
+              }
             }
             contact
             image {

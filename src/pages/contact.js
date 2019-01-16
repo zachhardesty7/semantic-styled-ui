@@ -12,7 +12,9 @@ import { Form } from '../components'
 import Template from '../Template'
 
 const contact = ({ data }) => {
-  const { title, form } = data.allContentfulContact.edges[0].node
+  const {
+    title, form, address, phone
+  } = data.allContentfulContact.edges[0].node
 
   return (
     <Template>
@@ -25,7 +27,15 @@ const contact = ({ data }) => {
             textArea={form.textArea}
             button={form.button}
           />
-          {/* TODO: address / number */}
+          <Header.Content
+            css='
+              padding-top: 2.25em
+            '
+          >
+            <p>{address.split('|')[0]}</p>
+            <p>{address.split('|')[1]}</p>
+            <p>{phone}</p>
+          </Header.Content>
         </Container>
       </Segment>
     </Template>
@@ -48,6 +58,8 @@ export const dataQuery = graphql`
       edges {
         node {
           title
+          address
+          phone
           form {
             name
             inputs
