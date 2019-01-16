@@ -54,7 +54,7 @@ const NavMenu = styled(Menu)`
     return '155px'
   }};
 
-    /* reset weird behavior */
+    /* reset weird behavior in gatsby */
     img {
       display: inherit;
       vertical-align: inherit;
@@ -102,6 +102,7 @@ const Navigation = ({
                 activeClassName={stackedLogo ? null : 'active'}
               >
                 {typeof logo !== 'string'
+                  // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
                   ? (
                     <Async
                       promise={import('gatsby-image')}

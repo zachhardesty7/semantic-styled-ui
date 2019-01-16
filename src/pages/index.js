@@ -1,47 +1,72 @@
-import React from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 
+import { Dimmer } from 'semantic-ui-react'
 import { Hero, Blurbs } from '../components'
-import 'semantic-ui-css/semantic.min.css'
 import Template from '../Template'
 import theme from '../theme'
 
 import baylor from '../../static/baylor.jpg'
 
-const RootIndex = ({ data }) => (
-  <Template>
-    <Hero
-      background={baylor}
-      title='Gulf Corp'
-      subtitle='A Mississippi Company'
-    />
-    <Blurbs
-      color={theme.blue}
-      blurbs={[{
-        title: 'Development',
-        content: 'PLACEHOLDER: Our mission is your mission. We work with our customers to plan out a truly unique final product that fits your individual specifications.',
-        icon: 'cog'
-      },
-      {
-        title: 'Investment',
-        content: 'PLACEHOLDER: We are there with every step of the way. We are experts at taking a plan to a completed project.',
-        icon: 'dollar-sign'
-      },
-      {
-        title: 'Construction',
-        content: 'PLACEHOLDER: We negotiate on your behalf. Our customers are our top priority and get the best rates in the industry.',
-        icon: 'city'
-      }]}
-    />
-  </Template>
-)
+const Index = ({ data }) => {
+  // TODO: accomplish with loader
+  const overlay = false // OG true
+  // useLayoutEffect(() => { overlay = false })
+  const { hero } = data.allContentfulIndex.edges[0].node
+  const { blurbs } = data.allContentfulIndex.edges[0].node
 
-RootIndex.propTypes = {
-  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  return (
+    // <Dimmer.Dimmable dimmed={false}>
+    <Template>
+      <Dimmer inverted simple active={overlay} page />
+      <Hero
+        background={baylor}
+        title={hero.title}
+        subtitle={hero.subtitle}
+      />
+      <Blurbs
+        color={theme.blue}
+        blurbs={blurbs}
+      />
+    </Template>
+    // </Dimmer.Dimmable>
+
+  )
 }
 
-RootIndex.defaultProps = {
-  data: {}
+Index.propTypes = {
+  rawData: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
-export default RootIndex
+Index.defaultProps = {
+  rawData: {}
+}
+
+export default Index
+
+export const dataQuery = graphql`
+  query {
+    allContentfulIndex(sort: {fields: [contentful_id]}) {
+      edges {
+        node {
+          hero {
+            title
+            subtitle
+            backgrounds {
+              title
+
+            }
+          }
+          blurbs {
+            title
+            body {
+              body
+            }
+            icon
+          }
+        }
+      }
+    }
+  }
+`

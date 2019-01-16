@@ -63,7 +63,7 @@ const Blurbs = ({
                   icon={<FontAwesomeIcon icon={icon[`fa${toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} />}
                   header={blurb.title}
                   headerAs='h4'
-                  content={blurb.content}
+                  content={blurb.body && blurb.body.body}
                 />
               </Grid.Column>
             )}

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createGlobalStyle } from 'styled-components'
+import 'semantic-ui-css/semantic.min.css'
 
 import { Navigation, Footer } from './components'
 import theme from './theme'
