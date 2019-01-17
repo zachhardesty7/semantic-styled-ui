@@ -38,7 +38,7 @@ const Index = ({ data }) => {
         subtitle={hero.subtitle}
       />
       <Blurbs
-        color={theme.blue}
+        color={theme.primary}
         blurbs={blurbs}
       />
     </Template>

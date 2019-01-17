@@ -17,7 +17,7 @@ const Blurb = ({
 }) => (
   <div>
     {icon}
-    <Header as={headerAs} textAlign='center'>{header}</Header>
+    <Header headerColor={headerColor} as={headerAs} textAlign='center'>{header}</Header>
     <Header.Content>{content}</Header.Content>
   </div>
 )

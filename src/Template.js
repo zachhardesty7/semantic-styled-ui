@@ -52,7 +52,7 @@ const Template = ({ children }) => (
     {children}
     <Footer
       inverted
-      copyright='Gulf Corporation, Mississippi Company'
+      copyright='Gulf Corporation, a Mississippi Company'
       stacked
       developerName='Zach Hardesty'
       developerLink='https://zachhardesty.com'
