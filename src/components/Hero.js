@@ -8,7 +8,6 @@ import {
   Button,
   Container,
   Header,
-  Image,
   Segment
 } from 'semantic-ui-react'
 
@@ -16,8 +15,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import theme from '../theme'
 
 const HeroSegment = styled(Segment)`
-  padding-top: 10em;
-  padding-bottom: 5em;
+  padding-top: ${({ baseline }) => (baseline === 'top' ? '6em' : '16em')};
+  padding-bottom: ${({ baseline }) => (baseline === 'top' ? '16em' : '6em')};
 
   @font-face {
     font-family: 'Eurostile';
@@ -39,11 +38,10 @@ const HeroSegment = styled(Segment)`
   }
 
   h1 {
-    font-size: 4em;
-    padding-top: 1.5em;
+    font-size: 4.7em;
+    line-height: 1em;
     margin-bottom: 0;
     vertical-align: baseline;
-    display: inline-block;
     font-weight: bolder;
     font-style: italic;
     font-family: 'Franklin Gothic Book', Tahoma, Arial, Helvetica, sans-serif !important;
@@ -51,7 +49,6 @@ const HeroSegment = styled(Segment)`
 
   h2 {
     font-size: 1.7em;
-    padding-bottom: 1em;
     margin-top: 0;
     font-style: italic;
     font-weight: normal;
@@ -67,7 +64,7 @@ const HeroSegment = styled(Segment)`
     content: "";
     height: 100%;
     width: 100.5%;
-    background: linear-gradient(0deg,rgba(0,0,0,0.65),rgba(0,0,0,0.65));
+    background: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5));
     filter: saturate(2) sepia(0.4);
     background-repeat: no-repeat;
     background-size: cover;
@@ -90,6 +87,11 @@ const HeroSegment = styled(Segment)`
       background-color: ${theme.primary};
     }
   }
+`
+
+const Chunk = styled.div`
+  display: inline-block;
+  border-bottom: 5px solid ${theme.accent};
 `
 
 const BackgroundImage = styled(GImage)`
@@ -124,12 +126,14 @@ const Hero = ({
   logo,
   title,
   subtitle,
+  baseline,
+  underline,
   background,
   backgroundAlt,
   buttonText,
   buttonProps
 }) => (
-  <HeroSegment vertical>
+  <HeroSegment vertical baseline={baseline}>
     {/* TODO: conditionally display based on prop */}
     {/* background image */}
     {background && (
@@ -150,26 +154,32 @@ const Hero = ({
     )} */}
 
     <Container>
-      {logo && (
-        <Logo fixed={logo} alt='logo' />
-      )}
-      {title && (
-        <Header as='h1' content={title} />
-      )}
-      {subtitle && (
-        <Header as='h2' content={subtitle} />
-      )}
-      {buttonText && (
-        <Button {...buttonProps} className='hero-button'>
-          {buttonText}
-          <Async
-            promise={import('@fortawesome/free-solid-svg-icons/faAngleRight')}
-            then={icon => (
-              <FAIcon icon={icon.faAngleRight} />
-            )}
-          />
-        </Button>
-      )}
+
+      {/* nested inline chunk to facilitate underline */}
+      <Chunk underline={underline}>
+
+        {logo && (
+          <Logo fixed={logo} alt='logo' />
+        )}
+        {title && (
+          <Header as='h1' content={title} />
+        )}
+        {subtitle && (
+          <Header as='h2' content={subtitle} />
+        )}
+        {buttonText && (
+          <Button {...buttonProps} className='hero-button'>
+            {buttonText}
+            <Async
+              promise={import('@fortawesome/free-solid-svg-icons/faAngleRight')}
+              then={icon => (
+                <FAIcon icon={icon.faAngleRight} />
+              )}
+            />
+          </Button>
+        )}
+
+      </Chunk>
     </Container>
   </HeroSegment>
 )

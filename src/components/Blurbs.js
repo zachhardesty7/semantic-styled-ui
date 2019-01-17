@@ -14,6 +14,7 @@ import {
 import { Blurb } from '.'
 
 import { toJoinedTitleCase } from '../utils'
+import theme from '../theme'
 
 const BlurbsSegment = styled(Segment)`
   /* default relaxed spacing */
@@ -63,6 +64,7 @@ const Blurbs = ({
                   icon={blurb.icon && <FontAwesomeIcon icon={icon[`fa${toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} />}
                   header={blurb.title}
                   headerAs='h4'
+                  headerColor={theme.primary}
                   content={blurb.body && blurb.body.body}
                 />
               </Grid.Column>

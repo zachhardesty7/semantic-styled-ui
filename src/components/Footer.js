@@ -35,6 +35,7 @@ const Right = styled(Grid.Column)`
 const Footer = ({
   sticky,
   copyright,
+  stacked,
   inverted,
   icons,
   developerName,
@@ -68,8 +69,12 @@ const Footer = ({
       <Container>
         <Grid columns={2} verticalAlign='middle'>
           <Left width={12}>
-            {`copyright© ${copyright} | designed and developed by `}
-            <a href={developerLink}>{developerName}</a>
+            <div>
+              {`copyright© ${copyright}`}
+              {stacked ? <br /> : ' | '}
+              {'designed and developed by '}
+              <a href={developerLink}>{developerName}</a>
+            </div>
           </Left>
           <Right width={4} floated='right' textAlign='right'>
             <SocialMediaIcons

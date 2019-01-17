@@ -52,26 +52,8 @@ const Template = ({ children }) => (
     {children}
     <Footer
       inverted
-      icons={[
-        {
-          name: 'Facebook',
-          link: ''
-        },
-        {
-          name: 'Twitter',
-          link: ''
-        },
-        {
-          name: 'Instagram',
-          link: ''
-        },
-        {
-          name: 'Linkedin',
-          link: ''
-        }
-      ]}
       copyright='Gulf Corporation, Mississippi Company'
-      break
+      stacked
       developerName='Zach Hardesty'
       developerLink='https://zachhardesty.com'
     />
