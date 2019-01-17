@@ -52,8 +52,8 @@ const Template = ({ children }) => (
     {children}
     <Footer
       inverted
-      copyright='Gulf Corporation, a Mississippi Company'
-      stacked
+      copyright='Gulf Corporation, a Mississippi company'
+      separated
       developerName='Zach Hardesty'
       developerLink='https://zachhardesty.com'
     />

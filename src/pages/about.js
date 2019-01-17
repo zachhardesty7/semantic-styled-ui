@@ -15,6 +15,7 @@ import {
 } from 'semantic-ui-react'
 
 import Template from '../Template'
+import theme from '../theme'
 
 // TODO: conditional swap to "img" when not using gatsby
 const ProfileCard = styled(Card)`
@@ -26,7 +27,7 @@ const ProfileCard = styled(Card)`
 `
 
 // impossible to style a modal portalled in
-// y due to .root.root.root overwrites
+// due to .root.root.root overwrites
 // must use global styles
 const ProfileModalStyle = createGlobalStyle`
   .profile-image {
@@ -35,6 +36,17 @@ const ProfileModalStyle = createGlobalStyle`
   }
   .profile-contact {
     padding-top: 1.5em;
+  }
+
+  a {
+    color: ${theme.primary};
+    text-decoration: underline;
+
+    &:hover {
+      color: ${theme.primary};
+      filter: brightness(225%);
+      text-decoration: underline;
+    }
   }
 `
 
@@ -76,9 +88,8 @@ const about = ({ data }) => {
                       <Grid.Column computer={7} textAlign='left'>
                         <GImage as={Image} className='profile-image' centered size='large' fluid={card.image.fluid} />
                         <div className='profile-contact'>
-                          {card.contact.split(',').map(line => (
-                            <p>{line}</p>
-                          ))}
+                          <p>{card.phone}</p>
+                          <a href={`mailto:${card.email}`}>{card.email}</a>
                         </div>
                       </Grid.Column>
                       <Grid.Column computer={9} textAlign='justified'>
@@ -130,7 +141,8 @@ export const dataQuery = graphql`
                 }
               }
             }
-            contact
+            email
+            phone
             image {
               title
               fluid(maxWidth: 500) {

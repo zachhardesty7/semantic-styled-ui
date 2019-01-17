@@ -29,13 +29,23 @@ const Left = styled(Grid.Column)`
 `
 
 const Right = styled(Grid.Column)`
-  padding-top: 1.5em;
+  padding-top: ${({ separated }) => !separated && '1.5em'};
+
+  a {
+    color: ${theme.light};
+    text-decoration: underline;
+
+    &:hover {
+      color: ${theme.white};
+    }
+  }
 `
 
 const Footer = ({
   sticky,
   copyright,
   stacked,
+  separated,
   inverted,
   icons,
   developerName,
@@ -68,20 +78,38 @@ const Footer = ({
     <BottomBar className='ui inverted vertical segment' ref={con}>
       <Container>
         <Grid columns={2} verticalAlign='middle'>
-          <Left width={12}>
-            <div>
-              {`copyright© ${copyright}`}
-              {stacked ? <br /> : ' | '}
-              {'designed and developed by '}
-              <a href={developerLink}>{developerName}</a>
-            </div>
-          </Left>
-          <Right width={4} floated='right' textAlign='right'>
-            <SocialMediaIcons
-              inverted={inverted}
-              icons={icons}
-            />
-          </Right>
+          {separated
+            ? (
+            <>
+              <Left width={8}>
+                {`copyright © ${copyright}`}
+              </Left>
+              <Right separated={separated} width={8} floated='right' textAlign='right'>
+                {'designed and developed by '}
+                <a href={developerLink}>{developerName}</a>
+              </Right>
+            </>
+            )
+            : (
+            <>
+              <Left width={12}>
+                <div>
+                  {`copyright © ${copyright}`}
+                  {stacked ? <br /> : ' | '}
+                  {'designed and developed by '}
+                  <a href={developerLink}>{developerName}</a>
+                </div>
+              </Left>
+              <Right separated={separated} width={4} floated='right' textAlign='right'>
+                <SocialMediaIcons
+                  inverted={inverted}
+                  icons={icons}
+                />
+              </Right>
+            </>
+            )
+          }
+
         </Grid>
       </Container>
     </BottomBar>
