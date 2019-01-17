@@ -32,6 +32,7 @@ const Index = ({ data }) => {
       <Dimmer inverted simple active={overlay} page />
       <Hero
         baseline='top'
+        size='relaxed'
         underline={theme.accent}
         background={hero.backgrounds[0].fluid}
         title={hero.title}

@@ -14,9 +14,22 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import theme from '../theme'
 
+const sizes = {
+  small: {
+    relaxed: 8,
+    base: 6,
+    compact: 4
+  },
+  large: {
+    relaxed: 24,
+    base: 16,
+    compact: 8
+  }
+}
+
 const HeroSegment = styled(Segment)`
-  padding-top: ${({ baseline }) => (baseline === 'top' ? '6em' : '16em')};
-  padding-bottom: ${({ baseline }) => (baseline === 'top' ? '16em' : '6em')};
+  padding-top: ${({ baseline, size }) => (baseline === 'top' ? sizes.small[size] : sizes.large[size])}em;
+  padding-bottom: ${({ baseline, size }) => (baseline === 'top' ? sizes.large[size] : sizes.small[size])}em;
 
   @font-face {
     font-family: 'Eurostile';
@@ -104,7 +117,7 @@ const BackgroundImage = styled(GImage)`
   /* FIXME: temp fix when not using gatsby image */
   /* & > img { */
     object-fit: cover !important;
-    object-position: 50% 50% !important;
+    object-position: 45% 55% !important;
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     /* font-family: \'object-fit: cover !important; object-position: 0% 0% !important;\' // needed for IE9+ polyfill */
   /* } */
@@ -128,12 +141,13 @@ const Hero = ({
   subtitle,
   baseline,
   underline,
+  size,
   background,
   backgroundAlt,
   buttonText,
   buttonProps
 }) => (
-  <HeroSegment vertical baseline={baseline}>
+  <HeroSegment vertical baseline={baseline} size={size}>
     {/* TODO: conditionally display based on prop */}
     {/* background image */}
     {background && (
