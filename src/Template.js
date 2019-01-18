@@ -61,7 +61,10 @@ const Template = ({ children }) => (
 )
 
 Template.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ])
 }
 
 Template.defaultProps = {

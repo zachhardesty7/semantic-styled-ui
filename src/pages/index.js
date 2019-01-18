@@ -34,7 +34,7 @@ const Index = ({ data }) => {
         baseline='top'
         size='relaxed'
         underline={theme.accent}
-        background={hero.backgrounds[0].fluid}
+        background={hero.backgrounds}
         title={hero.title}
         subtitle={hero.subtitle}
       />
@@ -49,11 +49,11 @@ const Index = ({ data }) => {
 }
 
 Index.propTypes = {
-  rawData: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
 Index.defaultProps = {
-  rawData: {}
+  data: {}
 }
 
 export default Index

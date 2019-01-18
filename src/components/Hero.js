@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
 import GImage from 'gatsby-image'
@@ -108,19 +108,28 @@ const Chunk = styled.div`
 `
 
 const BackgroundImage = styled(GImage)`
-  position: absolute;
+  position: absolute !important;
   top: 0;
   left: -0.5%;
   height: 100%;
   width: 100.5%;
   z-index: -2;
   /* FIXME: temp fix when not using gatsby image */
-  /* & > img { */
+  & > img {
     object-fit: cover !important;
     object-position: 45% 55% !important;
     /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     /* font-family: \'object-fit: cover !important; object-position: 0% 0% !important;\' // needed for IE9+ polyfill */
-  /* } */
+  }
+`
+
+// TODO: figure out bug preventing regular image from
+// overriding the blurred loading image
+// https://github.com/gatsbyjs/gatsby/issues/10895
+const BackgroundImageVisible = styled(BackgroundImage)`
+  picture img { 
+    opacity: 1 !important;
+  }
 `
 
 const Logo = styled(GImage)`
@@ -146,20 +155,21 @@ const Hero = ({
   backgroundAlt,
   buttonText,
   buttonProps
-}) => (
-  <HeroSegment vertical baseline={baseline} size={size}>
-    {/* TODO: conditionally display based on prop */}
-    {/* background image */}
-    {background && (
-      <BackgroundImage
-        fluid={background}
-        backgroundColor
-        alt={backgroundAlt}
-        style={{ position: `absolute` }}
-      />
-    )}
+}) => {
+  const [curBackground, setCurBackground] = useState(0)
 
-    {/* {background && (
+  setTimeout(() => {
+    setCurBackground((curBackground + 1) % (background.length))
+  }, 5000)
+
+  return (
+    <HeroSegment vertical baseline={baseline} size={size}>
+      <BackgroundImageVisible
+        fluid={background[curBackground].fluid}
+        alt={backgroundAlt}
+      />
+
+      {/* {background && (
       <BackgroundImage
         src={background}
         backgroundColor
@@ -167,36 +177,37 @@ const Hero = ({
       />
     )} */}
 
-    <Container>
+      <Container>
 
-      {/* nested inline chunk to facilitate underline */}
-      <Chunk underline={underline}>
+        {/* nested inline chunk to facilitate underline */}
+        <Chunk underline={underline}>
 
-        {logo && (
-          <Logo fixed={logo} alt='logo' />
-        )}
-        {title && (
-          <Header as='h1' content={title} />
-        )}
-        {subtitle && (
-          <Header as='h2' content={subtitle} />
-        )}
-        {buttonText && (
-          <Button {...buttonProps} className='hero-button'>
-            {buttonText}
-            <Async
-              promise={import('@fortawesome/free-solid-svg-icons/faAngleRight')}
-              then={icon => (
-                <FAIcon icon={icon.faAngleRight} />
-              )}
-            />
-          </Button>
-        )}
+          {logo && (
+            <Logo fixed={logo} alt='logo' />
+          )}
+          {title && (
+            <Header as='h1' content={title} />
+          )}
+          {subtitle && (
+            <Header as='h2' content={subtitle} />
+          )}
+          {buttonText && (
+            <Button {...buttonProps} className='hero-button'>
+              {buttonText}
+              <Async
+                promise={import('@fortawesome/free-solid-svg-icons/faAngleRight')}
+                then={icon => (
+                  <FAIcon icon={icon.faAngleRight} />
+                )}
+              />
+            </Button>
+          )}
 
-      </Chunk>
-    </Container>
-  </HeroSegment>
-)
+        </Chunk>
+      </Container>
+    </HeroSegment>
+  )
+}
 
 Hero.propTypes = {
   logo: PropTypes.oneOfType([
