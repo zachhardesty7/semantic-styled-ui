@@ -10,20 +10,20 @@ import SocialMediaIcons from './SocialMediaIcons'
 import theme from '../theme'
 
 const BottomBar = styled.div`
-  background-color: ${theme.primary};
+  background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
 `
 
 const Left = styled(Grid.Column)`
-  background-color: ${theme.primary};
-  color: ${theme.light};
+  background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
+  color: ${({ color }) => color || theme.light};
   align-self: center;
 
   a {
-    color: ${theme.light};
+    color: ${({ color }) => color || theme.light};
     text-decoration: underline;
 
     &:hover {
-      color: ${theme.white};
+      color: ${({ hoverColor }) => hoverColor || theme.white};
     }
   }
 `
@@ -32,16 +32,19 @@ const Right = styled(Grid.Column)`
   padding-top: ${({ separated }) => !separated && '1.5em'};
 
   a {
-    color: ${theme.light};
+    color: ${({ color }) => color || theme.light};
     text-decoration: underline;
 
     &:hover {
-      color: ${theme.white};
+      color: ${({ hoverColor }) => hoverColor || theme.white};
     }
   }
 `
 
 const Footer = ({
+  color,
+  backgroundColor,
+  hoverColor,
   sticky,
   copyright,
   stacked,
@@ -117,6 +120,11 @@ const Footer = ({
 }
 
 Footer.propTypes = {
+  color: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  hoverColor: PropTypes.string,
+  stacked: PropTypes.bool,
+  separated: PropTypes.bool,
   developerName: PropTypes.string,
   developerLink: PropTypes.string,
   icons: PropTypes.arrayOf(
@@ -131,6 +139,11 @@ Footer.propTypes = {
 }
 
 Footer.defaultProps = {
+  color: '',
+  backgroundColor: '',
+  hoverColor: '',
+  stacked: false,
+  separated: false,
   developerName: '',
   developerLink: '',
   icons: [],

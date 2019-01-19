@@ -12,15 +12,15 @@ import theme from '../theme'
 import { toJoinedTitleCase } from '../utils'
 
 const FAIcon = styled(FontAwesomeIcon)`
-  color: ${({ inverted }) => (inverted ? theme.secondary : theme.primary)};
+  color: ${({ inverted, color }) => (color || inverted ? theme.secondary : theme.primary)};
   margin: 0 0.5em;
 
   &:hover {
-    color: ${({ inverted }) => (inverted ? theme.white : theme.secondary)};
+    color: ${({ inverted, color }) => (color || inverted ? theme.white : theme.secondary)};
   }
 `
 
-const SocialMediaIcons = ({ icons, inverted }) => (
+const SocialMediaIcons = ({ icons, inverted, color }) => (
   <Container>
     {icons.map(icon => (
       <Async
@@ -41,6 +41,7 @@ const SocialMediaIcons = ({ icons, inverted }) => (
 )
 
 SocialMediaIcons.propTypes = {
+  color: PropTypes.string,
   icons: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -51,6 +52,7 @@ SocialMediaIcons.propTypes = {
 }
 
 SocialMediaIcons.defaultProps = {
+  color: '',
   icons: [],
   inverted: false
 }

@@ -10,6 +10,12 @@ import {
 
 import { calcDuration } from '../utils'
 
+const logoSizes = {
+  small: '90px',
+  base: '155px',
+  big: '215px'
+}
+
 // TODO: split into to separate styled components
 const NavMenu = styled(Menu)`
   margin-top: 1em;
@@ -48,11 +54,7 @@ const NavMenu = styled(Menu)`
 
   .logo {
     margin-right: 0.5em;
-    min-width: ${({ logoSize }) => {
-    if (logoSize === 'small') return '90px'
-    if (logoSize === 'large') return '215px'
-    return '155px'
-  }};
+    min-width: ${({ logoSize }) => logoSizes[logoSize]};
 
     /* reset weird behavior in gatsby */
     img {
@@ -168,7 +170,7 @@ Navigation.defaultProps = {
   logo: null,
   logoAlt: '',
   stackedLogo: false,
-  logoSize: 'medium',
+  logoSize: 'base',
   anchor: true,
   size: 'large',
   search: false,

@@ -54,7 +54,6 @@ const Form = ({
 
   const removeSuccessMessage = () => {
     setTimeout(() => {
-      console.log(fieldsObj)
       setSuccess(false)
     }, 6000)
   }
@@ -63,7 +62,6 @@ const Form = ({
     if (Object.values(fieldsObj).some(val => val === '')) {
       setSuccess(false)
       setError(true)
-      console.log(fieldsObj)
     } else {
       fetch('/', {
         method: 'POST',
@@ -74,11 +72,7 @@ const Form = ({
 
       const newFieldsObj = {}
 
-      Object.keys(fieldsObj).forEach((key) => { console.log(key); newFieldsObj[key] = '' })
-
-      console.log(newFieldsObj)
-
-      console.log(fieldsObj)
+      Object.keys(fieldsObj).forEach((key) => { newFieldsObj[key] = '' })
 
       setSuccess(true)
       setError(false)

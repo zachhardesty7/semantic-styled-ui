@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Header as SUIHeader } from 'semantic-ui-react'
 
 const Header = styled(SUIHeader)`
-  color: ${({ headerColor }) => headerColor || 'black'};
+  color: ${({ headerColor }) => headerColor};
 `
 
 const Blurb = ({
@@ -25,6 +25,7 @@ const Blurb = ({
 Blurb.propTypes = {
   icon: PropTypes.element,
   header: PropTypes.string,
+  headerColor: PropTypes.string,
   headerAs: PropTypes.string,
   content: PropTypes.node
 }
@@ -32,6 +33,7 @@ Blurb.propTypes = {
 Blurb.defaultProps = {
   icon: '',
   header: '',
+  headerColor: 'black',
   headerAs: 'h4',
   content: ''
 }
