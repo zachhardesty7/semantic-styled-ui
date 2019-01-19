@@ -11,10 +11,10 @@ import {
   Header
 } from 'semantic-ui-react'
 
-import { Blurb } from '.'
+import { Blurb } from '..'
 
-import { toJoinedTitleCase } from '../utils'
-import theme from '../theme'
+import { toJoinedTitleCase } from '../../utils'
+// import theme from '../../theme'
 
 const BlurbsSegment = styled(Segment)`
   /* default relaxed spacing */

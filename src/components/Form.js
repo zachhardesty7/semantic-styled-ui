@@ -49,18 +49,21 @@ const Form = ({
     if (!field.includes(';')) { fieldsInit[`${name}-${process(field)}`] = '' } else { fieldsInit[`${name}-${process(field.slice(0, field.indexOf('(')))}`] = '' }
   })
   if (textArea) fieldsInit[`${name}-field-text-area`] = ''
+
   const [fieldsObj, setFieldsObj] = useState(fieldsInit)
 
   const removeSuccessMessage = () => {
     setTimeout(() => {
+      console.log(fieldsObj)
       setSuccess(false)
     }, 6000)
   }
 
   const handleSubmit = (evt) => {
-    if (Object.keys(fieldsObj).some(key => fieldsObj[key] === '')) {
+    if (Object.values(fieldsObj).some(val => val === '')) {
       setSuccess(false)
       setError(true)
+      console.log(fieldsObj)
     } else {
       fetch('/', {
         method: 'POST',
@@ -71,11 +74,15 @@ const Form = ({
 
       const newFieldsObj = {}
 
-      Object.keys(fieldsObj).forEach((key) => { newFieldsObj[key] = '' })
+      Object.keys(fieldsObj).forEach((key) => { console.log(key); newFieldsObj[key] = '' })
 
-      setFieldsObj(newFieldsObj)
+      console.log(newFieldsObj)
+
+      console.log(fieldsObj)
+
       setSuccess(true)
       setError(false)
+      setFieldsObj(newFieldsObj)
 
       removeSuccessMessage()
     }
@@ -83,7 +90,9 @@ const Form = ({
     evt.preventDefault()
   }
 
-  const handleChange = (e, { id, value }) => { setFieldsObj({ ...fieldsObj, [id]: value }) }
+  const handleChange = (e, { id, value }) => {
+    setFieldsObj({ ...fieldsObj, [id]: value })
+  }
 
   return (
     <FormContainer text>
@@ -118,7 +127,7 @@ const Form = ({
 
                   return (
                     <UIForm.Select
-                      error={error ? setFieldsObj({ ...fieldsObj, [`${name}-field-text-area`]: '' }) : null}
+                      error={error && fieldsObj[`${name}-${process(title)}`] === ''}
                       id={`${name}-${process(title)}`}
                       key={`${name}-${process(title)}`}
                       fluid
@@ -133,14 +142,14 @@ const Form = ({
                 }
                 return (
                   <UIForm.Input
-                    error={error ? setFieldsObj({ ...fieldsObj, [`${name}-field-text-area`]: '' }) : null}
+                    error={error && fieldsObj[`${name}-${process(field)}`] === ''}
                     id={`${name}-${process(field)}`}
-                    key={process(field)}
+                    key={`${name}-${process(field)}`}
                     fluid
                     placeholder={field}
                     label={field}
                     onChange={handleChange}
-                    value={fields[`${name}-${process(field)}`]}
+                    value={fieldsObj[`${name}-${process(field)}`]}
                   />
                 )
               })}
@@ -150,7 +159,7 @@ const Form = ({
         {textArea && (
           <UIForm.TextArea
             id={`${name}-field-text-area`}
-            error={error ? setFieldsObj({ ...fieldsObj, [`${name}-field-text-area`]: '' }) : null}
+            error={error && fieldsObj[`${name}-field-text-area`] === ''}
             autoHeight
             placeholder='Message'
             label={textArea}
@@ -163,7 +172,7 @@ const Form = ({
         <Transition.Group animation='fade down' duration={500}>
           {success && (
             <MessageContainer icon success>
-              <FAIcon icon={faCheck} size='2x' title='Instagram' />
+              <FAIcon icon={faCheck} size='2x' title='check' />
               <Message.Content>
                 <Message.Header>Form Submitted</Message.Header>
                   You&#39;ll hear back from our team shortly!
@@ -172,7 +181,7 @@ const Form = ({
           )}
           {error && (
             <MessageContainer icon error>
-              <FAIcon icon={faExclamation} size='2x' title='Instagram' />
+              <FAIcon icon={faExclamation} size='2x' title='exclamation' />
               <Message.Content>
                 <Message.Header>Error</Message.Header>
                   Please fill out all fields!

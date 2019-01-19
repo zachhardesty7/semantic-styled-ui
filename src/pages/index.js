@@ -4,7 +4,8 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import { Dimmer } from 'semantic-ui-react'
-import { Hero, Blurbs } from '../components'
+import { Hero } from '../components'
+import { Blurbs } from '../components/sections'
 import Template from '../Template'
 import theme from '../theme'
 
