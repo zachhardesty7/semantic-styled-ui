@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
-import { Dimmer } from 'semantic-ui-react'
+import { Dimmer, Transition, Header } from 'semantic-ui-react'
 import { Hero } from '../components'
 import { Blurbs } from '../components/sections'
 import Template from '../Template'
 import theme from '../theme'
 
-const AAHero = styled(Hero)`
+const Slider = styled(Hero)`
   @font-face {
     font-family: 'eurostile-lt-std-bold-oblique';
     font-weight: normal;
@@ -22,15 +22,17 @@ const AAHero = styled(Hero)`
 `
 
 const Index = ({ data }) => {
-  // TODO: accomplish with loader
-  const overlay = false // OG true
-  // useLayoutEffect(() => { overlay = false })
+  const [overlay, setOverlay] = useState(true)
+  useLayoutEffect(() => { setTimeout(() => setOverlay(false), 200) }, [])
   const { hero, blurbs } = data.allContentfulIndex.edges[0].node
 
   return (
-    // <Dimmer.Dimmable dimmed={false}>
     <Template>
-      <Dimmer inverted simple active={overlay} page />
+      <Transition visible={overlay} animation='fade' duration={3000} unmountOnHide>
+        <Dimmer simple active page>
+          <Header>GULF CORPORATION</Header>
+        </Dimmer>
+      </Transition>
       <Hero
         baseline='top'
         size='relaxed'
@@ -44,8 +46,6 @@ const Index = ({ data }) => {
         blurbs={blurbs}
       />
     </Template>
-    // </Dimmer.Dimmable>
-
   )
 }
 

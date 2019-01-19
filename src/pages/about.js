@@ -113,11 +113,11 @@ const about = ({ data }) => {
 }
 
 about.propTypes = {
-  rawData: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
 about.defaultProps = {
-  rawData: {}
+  data: {}
 }
 
 export default about

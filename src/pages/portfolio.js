@@ -39,7 +39,8 @@ const PortfolioItem = styled(Dimmer.Dimmable)`
 // `
 
 const portfolio = ({ data }) => {
-  const { title, piece } = data.allContentfulPortfolio.edges[0].node
+  // FIXME: bad naming
+  const { title, piece: pieces } = data.allContentfulPortfolio.edges[0].node
   const [hovered, setHovered] = useState('')
 
   return (
@@ -55,24 +56,24 @@ const portfolio = ({ data }) => {
               columns={3}
               stackable
             >
-              {piece.map(p => (
+              {pieces.map(piece => (
                 <Grid.Column>
                   <PortfolioItem
                     // REVIEW: use id not url
-                    dimmed={p === hovered}
-                    onMouseEnter={() => setHovered(p)}
+                    dimmed={piece === hovered}
+                    onMouseEnter={() => setHovered(piece)}
                     onMouseLeave={() => setHovered('')}
                   >
                     <Dimmer inverted simple>
                       <Header as='h2'>
-                        {p.name}
+                        {piece.name}
                       </Header>
                       <Header as='h3'>
-                        {p.location}
+                        {piece.location}
                       </Header>
                     </Dimmer>
 
-                    <GImage as={Image} className='profile-image' centered fluid={p.image.fluid} />
+                    <GImage as={Image} className='profile-image' centered fluid={piece.image.fluid} />
                   </PortfolioItem>
                 </Grid.Column>
               ))}
@@ -85,11 +86,11 @@ const portfolio = ({ data }) => {
 }
 
 portfolio.propTypes = {
-  rawData: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
 portfolio.defaultProps = {
-  rawData: {}
+  data: {}
 }
 
 export default portfolio

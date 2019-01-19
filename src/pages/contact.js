@@ -43,11 +43,11 @@ const contact = ({ data }) => {
 }
 
 contact.propTypes = {
-  rawData: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
 contact.defaultProps = {
-  rawData: {}
+  data: {}
 }
 
 export default contact

@@ -42,7 +42,7 @@ const Template = ({ children }) => (
     <GlobalStyle />
     <Navigation
       logo={logo}
-      stackedLogo
+      stacked
       largeLogo
       logoAlt='logo'
       anchor={false}

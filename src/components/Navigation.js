@@ -74,13 +74,13 @@ const Navigation = ({
   logo,
   logoSize,
   logoAlt,
-  stackedLogo,
+  stacked,
   anchor,
   size,
   search,
   centered
 }) => {
-  const linkPromise = !anchor
+  const linkType = !anchor
     ? import('gatsby')
     : import('react-scroll')
 
@@ -89,7 +89,7 @@ const Navigation = ({
       <NavMenu logoSize={logoSize} size={size} compact secondary pointing>
         {logo && (
           <Async
-            promise={linkPromise}
+            promise={linkType}
             then={({ Link }) => (
               <Menu.Item
                 as={Link}
@@ -100,8 +100,8 @@ const Navigation = ({
                 duration={anchor ? calcDuration : null}
                 tabIndex='0'
                 name='home'
-                className={stackedLogo ? 'logo-item-stacked' : null}
-                activeClassName={stackedLogo ? null : 'active'}
+                className={stacked ? 'logo-item-stacked' : null}
+                activeClassName={stacked ? null : 'active'}
               >
                 {typeof logo !== 'string'
                   // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
@@ -122,7 +122,7 @@ const Navigation = ({
         {pages.map(page => (
           <Async
             key={`${page.toLowerCase().replace(' ', '-')}`}
-            promise={linkPromise}
+            promise={linkType}
             then={({ Link }) => (
               <Menu.Item
                 as={Link}
@@ -157,7 +157,7 @@ Navigation.propTypes = {
     PropTypes.string
   ]),
   logoAlt: PropTypes.string,
-  stackedLogo: PropTypes.bool,
+  stacked: PropTypes.bool,
   logoSize: PropTypes.string,
   anchor: PropTypes.bool,
   size: PropTypes.string,
@@ -169,7 +169,7 @@ Navigation.propTypes = {
 Navigation.defaultProps = {
   logo: null,
   logoAlt: '',
-  stackedLogo: false,
+  stacked: false,
   logoSize: 'base',
   anchor: true,
   size: 'large',
