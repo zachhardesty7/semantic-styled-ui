@@ -61,7 +61,7 @@ const Blurbs = ({
             then={icon => (
               <Grid.Column>
                 <Blurb
-                  icon={blurb.icon && <FontAwesomeIcon icon={icon[`fa${toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} />}
+                  icon={blurb.icon ? <FontAwesomeIcon icon={icon[`fa${toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} /> : null}
                   header={blurb.title}
                   headerAs='h4'
                   headerColor={color}

@@ -16,6 +16,7 @@ import {
 
 import Template from '../Template'
 import theme from '../theme'
+import { process } from '../utils'
 
 // TODO: conditional swap to "img" when not using gatsby
 const ProfileCard = styled(Card)`
@@ -36,16 +37,16 @@ const ProfileModalStyle = createGlobalStyle`
   }
   .profile-contact {
     padding-top: 1.5em;
-  }
 
-  a {
-    color: ${theme.primary};
-    text-decoration: underline;
-
-    &:hover {
+    a {
       color: ${theme.primary};
-      filter: brightness(225%);
       text-decoration: underline;
+
+      &:hover {
+        color: ${theme.primary};
+        filter: brightness(225%);
+        text-decoration: underline;
+      }
     }
   }
 `
@@ -68,6 +69,7 @@ const about = ({ data }) => {
             <Card.Group doubling centered itemsPerRow={4}>
               {cards.map(card => (
                 <Modal
+                  key={process(card.name)}
                   closeIcon
                   trigger={(
                     <ProfileCard
@@ -95,7 +97,9 @@ const about = ({ data }) => {
                       <Grid.Column computer={9} textAlign='justified'>
                         <Modal.Description>
                           {card.bio.content.map(para => (
-                            <p>{para.content[0].value}</p>
+                            <p key={process(para.content[0].value.slice(0, 8))}>
+                              {para.content[0].value}
+                            </p>
                           ))}
                         </Modal.Description>
                       </Grid.Column>

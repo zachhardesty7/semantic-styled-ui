@@ -1,9 +1,11 @@
 import React, { useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
-import { Dimmer, Transition, Header } from 'semantic-ui-react'
+import {
+  Dimmer, Transition, Header, Container
+} from 'semantic-ui-react'
 import { Hero } from '../components'
 import { Blurbs } from '../components/sections'
 import Template from '../Template'
@@ -21,16 +23,25 @@ const Slider = styled(Hero)`
   font-family: 'eurostile-lt-std-bold-oblique', Tahoma, Arial, Helvetica, sans-serif !important;
 `
 
+const Overlay = createGlobalStyle`
+  .dimmer.dimmer h1 {
+    color: white;
+  }
+`
+
 const Index = ({ data }) => {
   const [overlay, setOverlay] = useState(true)
-  useLayoutEffect(() => { setTimeout(() => setOverlay(false), 200) }, [])
+  useLayoutEffect(() => { setTimeout(() => setOverlay(false), 300) }, [])
   const { hero, blurbs } = data.allContentfulIndex.edges[0].node
 
   return (
     <Template>
+      <Overlay />
       <Transition visible={overlay} animation='fade' duration={3000} unmountOnHide>
         <Dimmer simple active page>
-          <Header>GULF CORPORATION</Header>
+          <Container>
+            <Header as='h1'>GULF CORPORATION</Header>
+          </Container>
         </Dimmer>
       </Transition>
       <Hero

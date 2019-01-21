@@ -27,7 +27,8 @@ const sizes = {
   }
 }
 
-const HeroSegment = styled(Segment)`
+const FilteredHeroSegment = ({ size, children, ...rest }) => <Segment {...rest}>{children}</Segment>
+const HeroSegment = styled(FilteredHeroSegment)`
   padding-top: ${({ baseline, size }) => (baseline === 'top' ? sizes.small[size] : sizes.large[size])}em;
   padding-bottom: ${({ baseline, size }) => (baseline === 'top' ? sizes.large[size] : sizes.small[size])}em;
 
@@ -216,7 +217,10 @@ Hero.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   background: PropTypes.oneOfType([
+    PropTypes.element, PropTypes.object,
+    PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.element, PropTypes.object
+    ]))
   ]),
   backgroundAlt: PropTypes.string,
   buttonText: PropTypes.string,

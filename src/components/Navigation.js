@@ -16,8 +16,9 @@ const logoSizes = {
   big: '215px'
 }
 
+const FilteredNavMenu = ({ logoSize, children, ...rest }) => <Menu {...rest}>{children}</Menu>
 // TODO: split into to separate styled components
-const NavMenu = styled(Menu)`
+const NavMenu = styled(FilteredNavMenu)`
   margin-top: 1em;
   /* margin-bottom: 1em; */ /* REVIEW: */
   margin-bottom: 2px; /* when center aligned */

@@ -14,6 +14,7 @@ import {
 } from 'semantic-ui-react'
 
 import Template from '../Template'
+import { process } from '../utils'
 
 const PortfolioItem = styled(Dimmer.Dimmable)`
   height: 100%;
@@ -57,7 +58,7 @@ const portfolio = ({ data }) => {
               stackable
             >
               {pieces.map(piece => (
-                <Grid.Column>
+                <Grid.Column key={process(`${piece.name} ${piece.location}`)}>
                   <PortfolioItem
                     // REVIEW: use id not url
                     dimmed={piece === hovered}

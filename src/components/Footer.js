@@ -28,7 +28,10 @@ const Left = styled(Grid.Column)`
   }
 `
 
-const Right = styled(Grid.Column)`
+const FilteredRight = ({ separated, children, ...rest }) => (
+  <Grid.Column {...rest}>{children}</Grid.Column>
+)
+const Right = styled(FilteredRight)`
   padding-top: ${({ separated }) => !separated && '1.5em'};
 
   a {
