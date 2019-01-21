@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
+import GImage from 'gatsby-image' // TODO: conditionally import
 import styled from 'styled-components'
 import {
   Container,
@@ -54,15 +55,15 @@ const NavMenu = styled(FilteredNavMenu)`
   }
 
   .logo {
-    margin-right: 0.5em;
-    min-width: ${({ logoSize }) => logoSizes[logoSize]};
+    margin: 0 0.5em;
+    height: 100% !important;
+    width: 100% !important;
 
     /* reset weird behavior in gatsby */
-    img {
-      display: inherit;
-      vertical-align: inherit;
-      margin: inherit;
-      width: inherit;
+    & > img {
+      position: relative !important;
+      width: ${({ logoSize }) => logoSizes[logoSize]} !important;
+      /* height: 100% !important; */
     }
   }
 `
@@ -106,12 +107,7 @@ const Navigation = ({
               >
                 {typeof logo !== 'string'
                   // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
-                  ? (
-                    <Async
-                      promise={import('gatsby-image')}
-                      then={({ GatsbyImage }) => <GatsbyImage fixed={logo} alt={logoAlt} className='logo' />}
-                    />
-                  )
+                  ? <GImage fixed={logo} alt={logoAlt} className='logo' />
                   : <img src={logo} alt={logoAlt} className='logo' />
                 }
               </Menu.Item>

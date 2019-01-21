@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
+
 import { createGlobalStyle } from 'styled-components'
 import 'semantic-ui-css/semantic.min.css'
 
 import { Navigation, Footer } from './components'
 import theme from './theme'
-
-import logo from '../static/gulf-corp-navy.png'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -37,30 +37,36 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Template = ({ children }) => (
-  <div className='root'>
-    <GlobalStyle />
-    <Navigation
-      logo={logo}
-      stacked
-      largeLogo
-      logoAlt='logo'
-      anchor={false}
-      centered
-      pages={['About', 'Portfolio', 'Contact']}
-    />
-    {children}
-    <Footer
-      inverted
-      copyright='Gulf Corporation, a Mississippi company'
-      separated
-      developerName='Zach Hardesty'
-      developerLink='https://zachhardesty.com'
-    />
-  </div>
-)
+const Template = ({ data, children }) => {
+  const nav = data.allContentfulNavigation.edges[0].node
+  const footer = data.allContentfulFooter.edges[0].node
+
+  return (
+    <div className='root'>
+      <GlobalStyle />
+      <Navigation
+        logo={nav.image.fixed}
+        stacked
+        largeLogo
+        logoAlt='logo'
+        anchor={false}
+        centered
+        pages={['About', 'Portfolio', 'Contact']}
+      />
+      {children}
+      <Footer
+        inverted
+        copyright={footer.company}
+        separated
+        developerName='Zach Hardesty'
+        developerLink='https://zachhardesty.com'
+      />
+    </div>
+  )
+}
 
 Template.propTypes = {
+  data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element)
@@ -68,7 +74,41 @@ Template.propTypes = {
 }
 
 Template.defaultProps = {
+  data: {},
   children: null
 }
 
-export default Template
+// export default Template
+
+export default props => (
+  <StaticQuery
+    query={
+      graphql`
+  query {
+    allContentfulNavigation(sort: {fields: [contentful_id]}) {
+      edges {
+        node {
+          image {
+            title
+            fixed(width: 215) {
+              ...GatsbyContentfulFixed_withWebp
+            }
+          }
+          pages
+        }
+      }
+    }
+
+    allContentfulFooter(sort: {fields: [contentful_id]}) {
+      edges {
+        node {
+          company
+        }
+      }
+    }
+  }
+`
+    }
+    render={data => <Template data={data} {...props} />}
+  />
+)
