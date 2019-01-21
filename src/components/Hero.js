@@ -8,6 +8,7 @@ import {
   Button,
   Container,
   Header,
+  Transition,
   Segment
 } from 'semantic-ui-react'
 
@@ -86,7 +87,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
     top: 0;
     left: -0.5%;
     position: absolute;
-    z-index: -1;
+    z-index: 2 !important;
   }
 
   /* REVIEW: button can't be separate styled component due to "as" passing error */
@@ -106,6 +107,8 @@ const HeroSegment = styled(FilteredHeroSegment)`
 const Chunk = styled.div`
   display: inline-block;
   border-bottom: 5px solid ${theme.accent};
+  z-index: 3;
+  position: relative;
 `
 
 const BackgroundImage = styled(GImage)`
@@ -114,22 +117,11 @@ const BackgroundImage = styled(GImage)`
   left: -0.5%;
   height: 100%;
   width: 100.5%;
-  z-index: -2;
+  z-index: 1;
   /* FIXME: temp fix when not using gatsby image */
   & > img {
     object-fit: cover !important;
     object-position: 45% 55% !important;
-    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-    /* font-family: \'object-fit: cover !important; object-position: 0% 0% !important;\' // needed for IE9+ polyfill */
-  }
-`
-
-// TODO: figure out bug preventing regular image from
-// overriding the blurred loading image
-// https://github.com/gatsbyjs/gatsby/issues/10895
-const BackgroundImageVisible = styled(BackgroundImage)`
-  picture img { 
-    opacity: 1 !important;
   }
 `
 
@@ -158,18 +150,28 @@ const Hero = ({
   buttonProps
 }) => {
   const [curBackground, setCurBackground] = useState(0)
-
-  setTimeout(() => {
-    setCurBackground((curBackground + 1) % (background.length))
-  }, 5000)
+  setTimeout(() => { setCurBackground((curBackground + 1) % (background.length)) }, 6000)
 
   return (
     <HeroSegment vertical baseline={baseline} size={size}>
-      <BackgroundImageVisible
-        fluid={background[curBackground].fluid}
-        alt={backgroundAlt}
-      />
-
+      {/* TODO: conditionally render as GImage or not based on prop */}
+      {/* background image */}
+      {background.map((image, i) => (
+        <Transition
+          visible={i === curBackground}
+          key={image.fluid.src}
+          animation='fade'
+          duration={3000}
+          unmountOnHide // REVIEW: necessary? beneficial?
+        >
+          <div>
+            <BackgroundImage
+              fluid={image.fluid}
+              alt={backgroundAlt}
+            />
+          </div>
+        </Transition>
+      ))}
       {/* {background && (
       <BackgroundImage
         src={background}
@@ -219,7 +221,7 @@ Hero.propTypes = {
   background: PropTypes.oneOfType([
     PropTypes.element, PropTypes.object,
     PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.element, PropTypes.object
+      PropTypes.element, PropTypes.object
     ]))
   ]),
   backgroundAlt: PropTypes.string,
