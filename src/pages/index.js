@@ -1,50 +1,52 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 
-import {
-  Dimmer, Transition, Header, Container
-} from 'semantic-ui-react'
 import { Hero } from '../components'
 import { Blurbs } from '../components/sections'
-import Template from '../Template'
 import theme from '../theme'
 
 const Slider = styled(Hero)`
   @font-face {
-    font-family: 'eurostile-lt-std-bold-oblique';
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'Eurostile';
+    font-style: italic;
     src: url('../../static/eurostile-lt-std-bold-oblique.ttf') format('truetype');
     font-display: swap;
   }
 
-  font-family: 'eurostile-lt-std-bold-oblique', Tahoma, Arial, Helvetica, sans-serif !important;
-`
+  @font-face {
+    font-family: 'Franklin Gothic Book';
+    src: url('../../static/franklin-gothic-book-regular.ttf') format('truetype');
+    font-weight: bolder;
+    font-display: swap;
+  }
 
-const Overlay = createGlobalStyle`
-  .dimmer.dimmer h1 {
-    color: white;
+  h1 {
+    font-size: 4.7em;
+    line-height: 1em;
+    margin-bottom: 0;
+    vertical-align: baseline;
+    font-weight: bolder;
+    font-style: italic;
+    font-family: 'Franklin Gothic Book', Tahoma, Arial, Helvetica, sans-serif !important;
+  }
+
+  h2 {
+    font-size: 1.7em;
+    margin-top: 0;
+    font-style: italic;
+    font-weight: normal;
+    font-family: 'Eurostile', Tahoma, Arial, Helvetica, sans-serif !important;
   }
 `
 
 const Index = ({ data }) => {
-  const [overlay, setOverlay] = useState(true)
-  useLayoutEffect(() => { setTimeout(() => setOverlay(false), 300) }, [])
   const { hero, blurbs } = data.allContentfulIndex.edges[0].node
 
   return (
-    <Template>
-      <Overlay />
-      <Transition visible={overlay} animation='fade' duration={3000} unmountOnHide>
-        <Dimmer simple active page>
-          <Container>
-            <Header as='h1'>GULF CORPORATION</Header>
-          </Container>
-        </Dimmer>
-      </Transition>
-      <Hero
+    <>
+      <Slider
         baseline='top'
         size='relaxed'
         underline={theme.accent}
@@ -56,7 +58,7 @@ const Index = ({ data }) => {
         color={theme.primary}
         blurbs={blurbs}
       />
-    </Template>
+    </>
   )
 }
 

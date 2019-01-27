@@ -9,8 +9,6 @@ import {
   Grid
 } from 'semantic-ui-react'
 
-import { process } from '../utils'
-
 const Item = styled(Dimmer.Dimmable)`
   height: 100%;
   
@@ -38,7 +36,7 @@ const PortfolioItem = ({ piece }) => {
   const [hovered, setHovered] = useState(false)
 
   return (
-    <Grid.Column key={process(`${piece.name} ${piece.location}`)}>
+    <Grid.Column>
       <Item
         // REVIEW: use id not url
         dimmed={hovered}
@@ -61,11 +59,11 @@ const PortfolioItem = ({ piece }) => {
 }
 
 PortfolioItem.propTypes = {
-  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  piece: PropTypes.object // eslint-disable-line react/forbid-prop-types
 }
 
 PortfolioItem.defaultProps = {
-  data: {}
+  piece: {}
 }
 
 export default PortfolioItem

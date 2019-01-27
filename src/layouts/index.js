@@ -5,8 +5,8 @@ import { StaticQuery, graphql } from 'gatsby'
 import { createGlobalStyle } from 'styled-components'
 import 'semantic-ui-css/semantic.min.css'
 
-import { Navigation, Footer } from './components'
-import theme from './theme'
+import { Navigation, Footer } from '../components'
+import theme from '../theme'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -37,9 +37,9 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Template = ({ data, children }) => {
-  const nav = data.allContentfulNavigation.edges[0].node
-  const footer = data.allContentfulFooter.edges[0].node
+const Template = ({ result, children }) => {
+  const nav = result.allContentfulNavigation.edges[0].node
+  const footer = result.allContentfulFooter.edges[0].node
 
   return (
     <div className='root'>
@@ -55,6 +55,8 @@ const Template = ({ data, children }) => {
       />
       {children}
       <Footer
+        // force updates on page change to enforce stickiness
+        key={`${children.key}-footer`}
         inverted
         copyright={footer.company}
         separated
@@ -66,7 +68,7 @@ const Template = ({ data, children }) => {
 }
 
 Template.propTypes = {
-  data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  result: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element)
@@ -74,37 +76,39 @@ Template.propTypes = {
 }
 
 Template.defaultProps = {
-  data: {},
+  result: {},
   children: null
 }
 
 export default props => (
   <StaticQuery
     query={graphql`
-  query {
-    allContentfulNavigation(sort: {fields: [contentful_id]}) {
-      edges {
-        node {
-          image {
-            title
-            fixed(width: 215) {
-              ...GatsbyContentfulFixed_withWebp
+      query {
+        allContentfulNavigation(sort: {fields: [contentful_id]}) {
+          edges {
+            node {
+              image {
+                title
+                fixed(width: 215) {
+                  ...GatsbyContentfulFixed_withWebp
+                }
+              }
+              pages
             }
           }
-          pages
         }
-      }
-    }
 
-    allContentfulFooter(sort: {fields: [contentful_id]}) {
-      edges {
-        node {
-          company
+        allContentfulFooter(sort: {fields: [contentful_id]}) {
+          edges {
+            node {
+              company
+            }
+          }
         }
       }
-    }
-  }
     `}
-    render={data => <Template data={data} {...props} />}
+    // IMPORTANT: queried data cannot be passed through the "data" prop
+    // as it will be overrode by the wrapped page's query data
+    render={data => <Template result={data} {...props} />}
   />
 )

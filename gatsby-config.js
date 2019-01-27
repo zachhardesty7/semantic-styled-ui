@@ -22,6 +22,12 @@ if (!spaceId || !accessToken) {
 module.exports = {
   plugins: [
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/`)
+      }
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: 'UA-133288229-1',

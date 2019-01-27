@@ -74,7 +74,7 @@ const Footer = ({
         el = el.parentNode
       }
     }
-  }, [con]) // prevents styling on re-renders
+  }, [con]) // REVIEW: prevents styling on re-renders
 
   return (
     // REVIEW: override semantic ui component?
@@ -155,4 +155,4 @@ Footer.defaultProps = {
   copyright: ''
 }
 
-export default Footer
+export default React.memo(Footer)
