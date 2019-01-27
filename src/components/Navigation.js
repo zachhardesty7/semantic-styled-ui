@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
-import GImage from 'gatsby-image' // TODO: conditionally import
+
+import GImage from 'gatsby-image'
 import styled from 'styled-components'
 import {
   Container,
@@ -18,7 +19,6 @@ const logoSizes = {
 }
 
 const FilteredNavMenu = ({ logoSize, children, ...rest }) => <Menu {...rest}>{children}</Menu>
-// TODO: split into to separate styled components
 const NavMenu = styled(FilteredNavMenu)`
   margin-top: 1em;
   /* margin-bottom: 1em; */ /* REVIEW: */
@@ -46,30 +46,28 @@ const NavMenu = styled(FilteredNavMenu)`
     }
   }
 
-  /* TODO: split out */
   /* set stacked logo spacing & remove underline */
   .logo-item-stacked.logo-item-stacked {
     border-bottom: none;
     margin-right: 50%;
     margin-left: 50%;
   }
+`
 
-  .logo {
-    margin: 0 0.5em;
-    height: 100% !important;
-    width: 100% !important;
+const Logo = styled(GImage)`
+  margin: 0 0.5em;
+  height: 100% !important;
+  width: 100% !important;
 
-    /* reset weird behavior in gatsby */
-    & > img {
-      position: relative !important;
-      width: ${({ logoSize }) => logoSizes[logoSize]} !important;
-      /* height: 100% !important; */
-    }
+  /* reset weird behavior in gatsby */
+  & > img {
+    position: relative !important;
+    width: ${({ logoSize }) => logoSizes[logoSize]} !important;
   }
 `
 
 // TODO: add sticky header
-// TODO: consider utilizing gatsby-source-filesystem for src url
+// REVIEW: consider utilizing gatsby-source-filesystem for src url
 // TEST: various interactions of props
 const Navigation = ({
   pages,
@@ -91,7 +89,7 @@ const Navigation = ({
       promise={linkType}
       then={({ Link }) => (
         <Container textAlign={centered ? 'center' : undefined}>
-          <NavMenu logoSize={logoSize} size={size} compact secondary pointing>
+          <NavMenu size={size} compact secondary pointing>
             {logo && (
               <Menu.Item
                 as={Link}
@@ -107,8 +105,8 @@ const Navigation = ({
               >
                 {typeof logo !== 'string'
                   // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
-                  ? <GImage fixed={logo} alt={logoAlt} className='logo' />
-                  : <img src={logo} alt={logoAlt} className='logo' />
+                  ? <Logo logoSize={logoSize} fixed={logo} alt={logoAlt} />
+                  : <img src={logo} alt={logoAlt} /> // won't work
                 }
               </Menu.Item>
             )}

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import styled from 'styled-components'
 
+import styled from 'styled-components'
 import { Hero } from '../components'
 import { Blurbs } from '../components/sections'
 import theme from '../theme'

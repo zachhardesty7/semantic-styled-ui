@@ -1,31 +1,20 @@
 import React, { useRef, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
+import styled from 'styled-components'
 import {
   Container, Grid
 } from 'semantic-ui-react'
-
 import SocialMediaIcons from './SocialMediaIcons'
 import theme from '../theme'
 
 const BottomBar = styled.div`
+  color: ${({ color }) => color || theme.light};
   background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
 `
 
 const Left = styled(Grid.Column)`
-  background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
-  color: ${({ color }) => color || theme.light};
   align-self: center;
-
-  a {
-    color: ${({ color }) => color || theme.light};
-    text-decoration: underline;
-
-    &:hover {
-      color: ${({ hoverColor }) => hoverColor || theme.white};
-    }
-  }
 `
 
 const FilteredRight = ({ separated, children, ...rest }) => (
@@ -33,14 +22,13 @@ const FilteredRight = ({ separated, children, ...rest }) => (
 )
 const Right = styled(FilteredRight)`
   padding-top: ${({ separated }) => !separated && '1.5em'};
+`
 
-  a {
-    color: ${({ color }) => color || theme.light};
-    text-decoration: underline;
-
-    &:hover {
-      color: ${({ hoverColor }) => hoverColor || theme.white};
-    }
+const Link = styled.a`
+  color: ${({ color }) => color || theme.light};
+  text-decoration: underline;
+  &:hover {
+    color: ${({ hoverColor }) => hoverColor || theme.white};
   }
 `
 
@@ -74,13 +62,13 @@ const Footer = ({
         el = el.parentNode
       }
     }
-  }, [con]) // REVIEW: prevents styling on re-renders
+  }, [con])
 
   return (
     // REVIEW: override semantic ui component?
     // Semantic UI does not support passing thru ref
     // param to children. using a div to simulate segment
-    // <Segment inverted vertical id='bottom-bar'>
+    // <Segment inverted vertical>
     <BottomBar className='ui inverted vertical segment' ref={con}>
       <Container>
         <Grid columns={2} verticalAlign='middle'>
@@ -92,11 +80,10 @@ const Footer = ({
               </Left>
               <Right separated={separated} width={8} floated='right' textAlign='right'>
                 {'designed and developed by '}
-                <a href={developerLink}>{developerName}</a>
+                <Link href={developerLink}>{developerName}</Link>
               </Right>
             </>
-            )
-            : (
+            ) : (
             <>
               <Left width={12}>
                 <div>
@@ -115,7 +102,6 @@ const Footer = ({
             </>
             )
           }
-
         </Grid>
       </Container>
     </BottomBar>

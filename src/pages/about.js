@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import GImage from 'gatsby-image'
-import styled, { createGlobalStyle } from 'styled-components'
 
+import styled, { createGlobalStyle } from 'styled-components'
 import {
   Image,
   Modal,
@@ -13,21 +13,19 @@ import {
   Grid,
   Segment
 } from 'semantic-ui-react'
-
 import theme from '../theme'
+
 import { process } from '../utils'
 
-// TODO: conditional swap to "img" when not using gatsby
-const ProfileCard = styled(Card)`
-  .gatsby-image-wrapper {
-    height: 300px;
-    object-fit: cover;
-    object-position: 50% 40%;
-  }
+// TODO: conditional swap to "img" when not using gatsby?
+const ProfileImage = styled(GImage)`
+  height: 300px;
+  object-fit: cover;
+  object-position: 50% 40%;
 `
 
 // impossible to style a modal portalled in
-// due to .root.root.root overwrites
+// due to .root.root.root overrides
 // must use global styles
 const ProfileModalStyle = createGlobalStyle`
   .profile-image {
@@ -70,8 +68,8 @@ const about = ({ data }) => {
                 key={process(card.name)}
                 closeIcon
                 trigger={(
-                  <ProfileCard
-                    image={<GImage as={Image} fluid={card.image.fluid} />}
+                  <Card
+                    image={<ProfileImage fluid={card.image.fluid} />}
                     header={card.name}
                     meta={card.title}
                   />
@@ -94,9 +92,9 @@ const about = ({ data }) => {
                     </Grid.Column>
                     <Grid.Column computer={9} textAlign='justified'>
                       <Modal.Description>
-                        {card.bio.content.map(para => (
-                          <p key={process(para.content[0].value.slice(0, 8))}>
-                            {para.content[0].value}
+                        {card.bio.content.map(paragraph => (
+                          <p key={process(paragraph.content[0].value.slice(0, 8))}>
+                            {paragraph.content[0].value}
                           </p>
                         ))}
                       </Modal.Description>

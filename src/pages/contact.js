@@ -7,8 +7,7 @@ import {
   Header,
   Segment
 } from 'semantic-ui-react'
-
-import { Form } from '../components'
+import { Form } from '../components/sections'
 
 const contact = ({ data }) => {
   const {
@@ -25,11 +24,7 @@ const contact = ({ data }) => {
           textArea={form.textArea}
           button={form.button}
         />
-        <Header.Content
-          css='
-              padding-top: 2.25em
-            '
-        >
+        <Header.Content css='padding-top: 2.25em'>
           <p>{address.split('|')[0]}</p>
           <p>{address.split('|')[1]}</p>
           <p>{phone}</p>

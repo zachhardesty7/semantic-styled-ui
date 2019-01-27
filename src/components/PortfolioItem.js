@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import GImage from 'gatsby-image'
-import styled from 'styled-components'
 
+import styled from 'styled-components'
 import {
   Dimmer,
   Header,
@@ -11,26 +11,20 @@ import {
 
 const Item = styled(Dimmer.Dimmable)`
   height: 100%;
-  
-  & > .ui.simple.dimmer {
-    display: flex;
-  }
+`
+
+const DimmerContent = styled(Dimmer)`
+  display: flex;
   
   .content .header {
     color: rgba(0,0,0,.87) !important;
   }
-
-  .profile-image {
-    height: 100%;
-    object-fit: cover;
-  }
 `
 
-// TODO: instate for and split from above when not using gatsby
-// const PortfolioImage = styled(Image)`
-//     height: 100%;
-//     object-fit: cover;
-// `
+const PortfolioImage = styled(GImage)`
+    height: 100%;
+    object-fit: cover;
+`
 
 const PortfolioItem = ({ piece }) => {
   const [hovered, setHovered] = useState(false)
@@ -38,21 +32,20 @@ const PortfolioItem = ({ piece }) => {
   return (
     <Grid.Column>
       <Item
-        // REVIEW: use id not url
         dimmed={hovered}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <Dimmer inverted simple>
+        <DimmerContent inverted simple>
           <Header as='h2'>
             {piece.name}
           </Header>
           <Header as='h3'>
             {piece.location}
           </Header>
-        </Dimmer>
+        </DimmerContent>
 
-        <GImage className='profile-image' centered fluid={piece.image.fluid} />
+        <PortfolioImage className='profile-image' centered fluid={piece.image.fluid} />
       </Item>
     </Grid.Column>
   )

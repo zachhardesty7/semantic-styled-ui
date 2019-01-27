@@ -1,8 +1,8 @@
 import React from 'react'
-import Async from 'react-promise'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import Async from 'react-promise'
 
+import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   Grid,
@@ -10,20 +10,14 @@ import {
   Segment,
   Header
 } from 'semantic-ui-react'
-
 import { Blurb } from '..'
 
 import { toJoinedTitleCase } from '../../utils'
-// import theme from '../../theme'
 
 const BlurbsSegment = styled(Segment)`
   /* default relaxed spacing */
   padding-top: 5em;
   padding-bottom: 5em;
-
-  h3 {
-    font-size: 3em;
-  }
 
   h4 {
     font-size: 2em;
@@ -33,6 +27,10 @@ const BlurbsSegment = styled(Segment)`
 const HeaderContainer = styled(Container)`
   /* pad between title/content and items */
   padding-bottom: 3em;
+
+  h3 {
+    font-size: 3em;
+  }
 `
 
 const Blurbs = ({

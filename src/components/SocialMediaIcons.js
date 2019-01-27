@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
+
 import styled from 'styled-components'
-
 import { Container } from 'semantic-ui-react'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import theme from '../theme'
 
 import { toJoinedTitleCase } from '../utils'

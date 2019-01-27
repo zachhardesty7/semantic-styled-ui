@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
 import GImage from 'gatsby-image'
-import styled from 'styled-components'
 
+import styled from 'styled-components'
 import {
   Button,
   Container,
@@ -11,7 +11,6 @@ import {
   Transition,
   Segment
 } from 'semantic-ui-react'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import theme from '../theme'
 
@@ -38,10 +37,6 @@ const HeroSegment = styled(FilteredHeroSegment)`
     color: ${theme.white};
   }
 
-  & > img {
-    display: block !important;
-  }
-
   /* background overlay to dim and saturate */
   &::before {
     content: "";
@@ -58,7 +53,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
     z-index: 2 !important;
   }
 
-  /* REVIEW: button can't be separate styled component due to "as" passing error */
+  /* button can't be separate styled component due to "as" passing error */
   /* https://github.com/styled-components/styled-components/issues/2129 */
   .hero-button {
     background-color: ${theme.secondary};
@@ -129,7 +124,6 @@ const Hero = ({
 
   return (
     <HeroSegment className={className} vertical baseline={baseline} size={size}>
-      {/* TODO: conditionally render as GImage or not based on prop */}
       {/* background image */}
       {background.map((image, i) => (
         <Transition
@@ -147,19 +141,10 @@ const Hero = ({
           </div>
         </Transition>
       ))}
-      {/* {background && (
-      <BackgroundImage
-        src={background}
-        backgroundColor
-        alt={backgroundAlt}
-      />
-    )} */}
 
       <Container>
-
         {/* nested inline chunk to facilitate underline */}
         <Chunk underline={underline}>
-
           {logo && (
             <Logo fixed={logo} alt='logo' />
           )}
@@ -180,7 +165,6 @@ const Hero = ({
               />
             </Button>
           )}
-
         </Chunk>
       </Container>
     </HeroSegment>

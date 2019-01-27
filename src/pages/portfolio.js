@@ -8,13 +8,12 @@ import {
   Header,
   Grid
 } from 'semantic-ui-react'
-
 import { PortfolioItem } from '../components'
+
 import { process } from '../utils'
 
 const portfolio = ({ data }) => {
-  // FIXME: bad naming
-  const { title, piece: pieces } = data.allContentfulPortfolio.edges[0].node
+  const { title, pieces } = data.allContentfulPortfolio.edges[0].node
 
   return (
     <Segment padded vertical basic>
