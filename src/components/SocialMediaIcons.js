@@ -57,4 +57,4 @@ SocialMediaIcons.defaultProps = {
   inverted: false
 }
 
-export default SocialMediaIcons
+export default React.memo(SocialMediaIcons)

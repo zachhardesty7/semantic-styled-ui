@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
 import GImage from 'gatsby-image'
@@ -33,41 +33,9 @@ const HeroSegment = styled(FilteredHeroSegment)`
   padding-top: ${({ baseline, size }) => (baseline === 'top' ? sizes.small[size] : sizes.large[size])}em;
   padding-bottom: ${({ baseline, size }) => (baseline === 'top' ? sizes.large[size] : sizes.small[size])}em;
 
-  @font-face {
-    font-family: 'Eurostile';
-    font-style: italic;
-    src: url('../../static/eurostile-lt-std-bold-oblique.ttf') format('truetype');
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Franklin Gothic Book';
-    src: url('../../static/franklin-gothic-book-regular.ttf') format('truetype');
-    font-weight: bolder;
-    font-display: swap;
-  }
-
   h1,
   h2 {
     color: ${theme.white};
-  }
-
-  h1 {
-    font-size: 4.7em;
-    line-height: 1em;
-    margin-bottom: 0;
-    vertical-align: baseline;
-    font-weight: bolder;
-    font-style: italic;
-    font-family: 'Franklin Gothic Book', Tahoma, Arial, Helvetica, sans-serif !important;
-  }
-
-  h2 {
-    font-size: 1.7em;
-    margin-top: 0;
-    font-style: italic;
-    font-weight: normal;
-    font-family: 'Eurostile', Tahoma, Arial, Helvetica, sans-serif !important;
   }
 
   & > img {
@@ -138,6 +106,7 @@ const FAIcon = styled(FontAwesomeIcon)`
 `
 
 const Hero = ({
+  className,
   logo,
   title,
   subtitle,
@@ -150,10 +119,16 @@ const Hero = ({
   buttonProps
 }) => {
   const [curBackground, setCurBackground] = useState(0)
-  setTimeout(() => { setCurBackground((curBackground + 1) % (background.length)) }, 6000)
+  useEffect(() => {
+    const cycle = setTimeout(() => {
+      setCurBackground((curBackground + 1) % (background.length))
+    }, 6000)
+
+    return () => clearTimeout(cycle)
+  })
 
   return (
-    <HeroSegment vertical baseline={baseline} size={size}>
+    <HeroSegment className={className} vertical baseline={baseline} size={size}>
       {/* TODO: conditionally render as GImage or not based on prop */}
       {/* background image */}
       {background.map((image, i) => (
@@ -248,4 +223,4 @@ Hero.defaultProps = {
   buttonProps: null
 }
 
-export default Hero
+export default React.memo(Hero)

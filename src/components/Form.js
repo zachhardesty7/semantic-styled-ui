@@ -212,4 +212,4 @@ Form.defaultProps = {
   button: 'Submit'
 }
 
-export default Form
+export default React.memo(Form)

@@ -38,4 +38,4 @@ Blurb.defaultProps = {
   content: ''
 }
 
-export default Blurb
+export default React.memo(Blurb)

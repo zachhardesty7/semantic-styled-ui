@@ -78,12 +78,9 @@ Template.defaultProps = {
   children: null
 }
 
-// export default Template
-
 export default props => (
   <StaticQuery
-    query={
-      graphql`
+    query={graphql`
   query {
     allContentfulNavigation(sort: {fields: [contentful_id]}) {
       edges {
@@ -107,8 +104,7 @@ export default props => (
       }
     }
   }
-`
-    }
+    `}
     render={data => <Template data={data} {...props} />}
   />
 )

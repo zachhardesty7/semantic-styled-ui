@@ -94,4 +94,4 @@ Blurbs.defaultProps = {
   blurbs: []
 }
 
-export default Blurbs
+export default React.memo(Blurbs)

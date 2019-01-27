@@ -21,14 +21,14 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   plugins: [
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: '',
-    //     // Setting this parameter is also optional
-    //     respectDNT: true
-    //   }
-    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-133288229-1',
+        // Setting this parameter is also optional
+        respectDNT: true
+      }
+    },
     // 'gatsby-plugin-webpack-bundle-analyzer',
     'gatsby-plugin-offline',
     'gatsby-transformer-remark',

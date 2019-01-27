@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
 import GImage from 'gatsby-image' // TODO: conditionally import
@@ -82,28 +82,28 @@ const Navigation = ({
   search,
   centered
 }) => {
-  const linkType = !anchor
+  const linkType = useMemo(() => (!anchor
     ? import('gatsby')
-    : import('react-scroll')
+    : import('react-scroll')), [anchor])
 
   return (
-    <Container textAlign={centered ? 'center' : undefined}>
-      <NavMenu logoSize={logoSize} size={size} compact secondary pointing>
-        {logo && (
-          <Async
-            promise={linkType}
-            then={({ Link }) => (
+    <Async
+      promise={linkType}
+      then={({ Link }) => (
+        <Container textAlign={centered ? 'center' : undefined}>
+          <NavMenu logoSize={logoSize} size={size} compact secondary pointing>
+            {logo && (
               <Menu.Item
                 as={Link}
                 to='/'
                 key='logo'
-                spy={anchor ? true : null}
-                smooth={anchor ? true : null}
-                duration={anchor ? calcDuration : null}
+                spy={anchor ? true : undefined}
+                smooth={anchor ? true : undefined}
+                duration={anchor ? calcDuration : undefined}
                 tabIndex='0'
                 name='home'
-                className={stacked ? 'logo-item-stacked' : null}
-                activeClassName={stacked ? null : 'active'}
+                className={stacked ? 'logo-item-stacked' : undefined}
+                activeClassName={stacked ? undefined : 'active'}
               >
                 {typeof logo !== 'string'
                   // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
@@ -112,38 +112,33 @@ const Navigation = ({
                 }
               </Menu.Item>
             )}
-          />
 
-        )}
-
-        {pages.map(page => (
-          <Async
-            key={`${page.toLowerCase().replace(' ', '-')}`}
-            promise={linkType}
-            then={({ Link }) => (
+            {pages.map(page => (
               <Menu.Item
+                key={`${page.toLowerCase().replace(' ', '-')}`}
                 as={Link}
                 to={`${page.toLowerCase().replace(' ', '-')}`}
-                spy={anchor ? true : null}
-                smooth={anchor ? true : null}
-                duration={anchor ? calcDuration : null}
+                spy={anchor ? true : undefined}
+                smooth={anchor ? true : undefined}
+                duration={anchor ? calcDuration : undefined}
                 tabIndex='0'
                 name={page}
                 activeClassName='active'
               />
-            )}
-          />
-        ))}
+            ))}
 
-        {search && ( // TEST: needs testing
-          <Menu.Menu position='right'>
-            <Menu.Item>
-              <Input icon='search' placeholder='Search Properties...' />
-            </Menu.Item>
-          </Menu.Menu>
-        )}
-      </NavMenu>
-    </Container>
+            {search && ( // TEST: needs testing
+              <Menu.Menu position='right'>
+                <Menu.Item>
+                  <Input icon='search' placeholder='Search Properties...' />
+                </Menu.Item>
+              </Menu.Menu>
+            )}
+
+          </NavMenu>
+        </Container>
+      )}
+    />
   )
 }
 
@@ -175,4 +170,4 @@ Navigation.defaultProps = {
   pages: []
 }
 
-export default Navigation
+export default React.memo(Navigation)
