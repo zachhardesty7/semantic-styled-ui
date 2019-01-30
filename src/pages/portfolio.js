@@ -51,7 +51,7 @@ export const dataQuery = graphql`
       edges {
         node {
           title
-          piece {
+          pieces {
             name
             location
             image {

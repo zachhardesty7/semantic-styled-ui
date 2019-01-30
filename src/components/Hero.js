@@ -70,6 +70,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
 const Chunk = styled.div`
   display: inline-block;
   border-bottom: 5px solid ${theme.accent};
+  margin-right: 5px;
   z-index: 3;
   position: relative;
 `
