@@ -21,7 +21,7 @@ const FAIcon = styled(FontAwesomeIcon)`
   margin-right: 0.6em;
 `
 
-const Form = ({x
+const Form = ({
   name,
   fields,
   textArea,
