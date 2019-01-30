@@ -42,7 +42,7 @@ contact.defaultProps = {
   data: {}
 }
 
-export default React.memo(contact)
+export default contact
 
 export const dataQuery = graphql`
   query {

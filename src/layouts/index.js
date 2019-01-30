@@ -37,7 +37,11 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Template = ({ result, children }) => {
+const Template = (props) => {
+  const { result, children } = props
+
+  console.log(props)
+
   const nav = result.allContentfulNavigation.edges[0].node
   const footer = result.allContentfulFooter.edges[0].node
 
@@ -56,7 +60,7 @@ const Template = ({ result, children }) => {
       {children}
       <Footer
         // force updates on page change to enforce stickiness
-        key={`${children.key}-footer`}
+        key={`${children.key}footer`}
         inverted
         copyright={footer.company}
         separated

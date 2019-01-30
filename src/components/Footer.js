@@ -141,4 +141,4 @@ Footer.defaultProps = {
   copyright: ''
 }
 
-export default React.memo(Footer)
+export default Footer
