@@ -30,6 +30,7 @@ const Slider = styled(Hero)`
     font-weight: bolder;
     font-style: italic;
     font-family: 'Franklin Gothic Book', Tahoma, Arial, Helvetica, sans-serif !important;
+    font-display: fallback;
   }
 
   h2 {
@@ -38,6 +39,7 @@ const Slider = styled(Hero)`
     font-style: italic;
     font-weight: normal;
     font-family: 'Eurostile', Tahoma, Arial, Helvetica, sans-serif !important;
+    font-display: fallback;
   }
 `
 
