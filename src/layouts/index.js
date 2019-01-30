@@ -37,11 +37,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Template = (props) => {
-  const { result, children } = props
-
-  console.log(props)
-
+const Template = ({ result, children }) => {
   const nav = result.allContentfulNavigation.edges[0].node
   const footer = result.allContentfulFooter.edges[0].node
 
@@ -84,7 +80,7 @@ Template.defaultProps = {
   children: null
 }
 
-export default props => (
+export default React.memo(props => (
   <StaticQuery
     query={graphql`
       query {
@@ -115,4 +111,4 @@ export default props => (
     // as it will be overrode by the wrapped page's query data
     render={data => <Template result={data} {...props} />}
   />
-)
+))

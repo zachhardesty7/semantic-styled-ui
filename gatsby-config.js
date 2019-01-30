@@ -36,7 +36,11 @@ module.exports = {
       }
     },
     // 'gatsby-plugin-webpack-bundle-analyzer',
-    'gatsby-plugin-offline',
+    // TODO: investigate and fix styling issues
+    // likely hydration related: https://reactjs.org/docs/react-dom.html#hydrate
+    // optionally try babel-plugin-styled-components
+    // 'gatsby-plugin-offline',
+    'gatsby-plugin-remove-serviceworker',
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',

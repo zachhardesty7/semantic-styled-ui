@@ -43,7 +43,7 @@ portfolio.defaultProps = {
   data: {}
 }
 
-export default portfolio
+export default React.memo(portfolio)
 
 export const dataQuery = graphql`
   query {

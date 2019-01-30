@@ -119,7 +119,7 @@ about.defaultProps = {
   data: {}
 }
 
-export default about
+export default React.memo(about)
 
 export const dataQuery = graphql`
   query {

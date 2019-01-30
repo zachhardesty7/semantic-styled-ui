@@ -115,7 +115,7 @@ const Navigation = ({
               <Menu.Item
                 key={`${page.toLowerCase().replace(' ', '-')}`}
                 as={Link}
-                to={`${page.toLowerCase().replace(' ', '-')}`}
+                to={`${page.toLowerCase().replace(' ', '-')}/`}
                 spy={anchor ? true : undefined}
                 smooth={anchor ? true : undefined}
                 duration={anchor ? calcDuration : undefined}

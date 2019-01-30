@@ -72,7 +72,7 @@ Index.defaultProps = {
   data: {}
 }
 
-export default Index
+export default React.memo(Index)
 
 export const dataQuery = graphql`
   query {

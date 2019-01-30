@@ -8,11 +8,7 @@ import {
 import SocialMediaIcons from './SocialMediaIcons'
 import theme from '../theme'
 
-// const BottomBarUnstyled = ({ className, children, ...rest }) => <div className={`ui inverted vertical segment${className}`} {...rest}>{children}</div>
-
-const BottomBar = styled('div').attrs({
-  className: props => `ui inverted vertical segment`
-})`
+const BottomBar = styled.div`
   color: ${({ color }) => color || theme.light};
   background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
 `
@@ -73,8 +69,7 @@ const Footer = ({
     // Semantic UI does not support passing thru ref
     // param to children. using a div to simulate segment
     // <Segment inverted vertical>
-    // <BottomBar className='ui inverted vertical segment' ref={con}>
-    <BottomBar ref={con}>
+    <BottomBar className='ui inverted vertical segment' ref={con}>
       <Container>
         <Grid columns={2} verticalAlign='middle'>
           {separated
@@ -146,4 +141,4 @@ Footer.defaultProps = {
   copyright: ''
 }
 
-export default Footer
+export default React.memo(Footer)
