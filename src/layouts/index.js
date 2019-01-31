@@ -56,7 +56,7 @@ const Template = ({ result, children }) => {
       {children}
       <Footer
         // force updates on page change to enforce stickiness
-        key={`${children.key}footer`}
+        key={`${children.key}footer`} // REVIEW: necessary?
         inverted
         copyright={footer.company}
         separated

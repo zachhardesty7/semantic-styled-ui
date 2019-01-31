@@ -5,6 +5,7 @@ import Async from 'react-promise'
 import GImage from 'gatsby-image'
 import styled from 'styled-components'
 import {
+  Segment,
   Container,
   Input,
   Menu
@@ -13,14 +14,17 @@ import {
 import { calcDuration } from '../utils'
 
 const logoSizes = {
-  small: '90px',
-  base: '155px',
-  big: '215px'
+  small: 90,
+  base: 155,
+  big: 215
 }
+
+const NavSegment = styled(Segment)`
+  padding-bottom: 0px;
+`
 
 const FilteredNavMenu = ({ logoSize, children, ...rest }) => <Menu {...rest}>{children}</Menu>
 const NavMenu = styled(FilteredNavMenu)`
-  margin-top: 1em;
   /* margin-bottom: 1em; */ /* REVIEW: */
   margin-bottom: 2px; /* when center aligned */
   flex-wrap: wrap;
@@ -62,7 +66,7 @@ const Logo = styled(GImage)`
   /* reset weird behavior in gatsby */
   & > img {
     position: relative !important;
-    width: ${({ logoSize }) => logoSizes[logoSize]} !important;
+    width: ${({ logoSize }) => `${logoSizes[logoSize]}px`} !important;
   }
 `
 
@@ -85,58 +89,59 @@ const Navigation = ({
     : import('react-scroll')), [anchor])
 
   return (
-    <Async
-      promise={linkType}
-      then={({ Link }) => (
-        <Container textAlign={centered ? 'center' : undefined}>
-          <NavMenu size={size} compact secondary pointing>
-            {logo && (
-              <Menu.Item
-                as={Link}
-                to='/'
-                key='logo'
-                spy={anchor ? true : undefined}
-                smooth={anchor ? true : undefined}
-                duration={anchor ? calcDuration : undefined}
-                tabIndex='0'
-                name='home'
-                className={stacked ? 'logo-item-stacked' : undefined}
-                activeClassName={stacked ? undefined : 'active'}
-              >
-                {typeof logo !== 'string'
-                  // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
-                  ? <Logo logoSize={logoSize} fixed={logo} alt={logoAlt} />
-                  : <img src={logo} alt={logoAlt} /> // won't work
-                }
-              </Menu.Item>
-            )}
-
-            {pages.map(page => (
-              <Menu.Item
-                key={`${page.toLowerCase().replace(' ', '-')}`}
-                as={Link}
-                to={`${page.toLowerCase().replace(' ', '-')}/`}
-                spy={anchor ? true : undefined}
-                smooth={anchor ? true : undefined}
-                duration={anchor ? calcDuration : undefined}
-                tabIndex='0'
-                name={page}
-                activeClassName='active'
-              />
-            ))}
-
-            {search && ( // TEST: needs testing
-              <Menu.Menu position='right'>
-                <Menu.Item>
-                  <Input icon='search' placeholder='Search Properties...' />
+    <NavSegment basic vertical>
+      <Container textAlign={centered ? 'center' : undefined}>
+        <Async
+          promise={linkType}
+          then={({ Link }) => (
+            <NavMenu size={size} compact secondary pointing>
+              {logo && (
+                <Menu.Item
+                  as={Link}
+                  to='/'
+                  key='logo'
+                  spy={anchor ? true : undefined}
+                  smooth={anchor ? true : undefined}
+                  duration={anchor ? calcDuration : undefined}
+                  tabIndex='0'
+                  name='home'
+                  className={stacked ? 'logo-item-stacked' : undefined}
+                  activeClassName={stacked ? undefined : 'active'}
+                >
+                  {typeof logo !== 'string'
+                    // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
+                    ? <Logo logoSize={logoSize} fixed={logo} alt={logoAlt} />
+                    : <img src={logo} alt={logoAlt} /> // won't work
+                  }
                 </Menu.Item>
-              </Menu.Menu>
-            )}
+              )}
 
-          </NavMenu>
-        </Container>
-      )}
-    />
+              {pages.map(page => (
+                <Menu.Item
+                  key={`${page.toLowerCase().replace(' ', '-')}`}
+                  as={Link}
+                  to={`${page.toLowerCase().replace(' ', '-')}/`}
+                  spy={anchor ? true : undefined}
+                  smooth={anchor ? true : undefined}
+                  duration={anchor ? calcDuration : undefined}
+                  tabIndex='0'
+                  name={page}
+                  activeClassName='active'
+                />
+              ))}
+
+              {search && ( // TEST: needs testing
+                <Menu.Menu position='right'>
+                  <Menu.Item>
+                    <Input icon='search' placeholder='Search Properties...' />
+                  </Menu.Item>
+                </Menu.Menu>
+              )}
+            </NavMenu>
+          )}
+        />
+      </Container>
+    </NavSegment>
   )
 }
 

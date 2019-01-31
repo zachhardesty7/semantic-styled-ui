@@ -3,12 +3,15 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 import {
-  Container, Grid
+  Container,
+  Grid,
+  Ref,
+  Segment
 } from 'semantic-ui-react'
 import SocialMediaIcons from './SocialMediaIcons'
 import theme from '../theme'
 
-const BottomBar = styled.div`
+const BottomBar = styled(Segment)`
   color: ${({ color }) => color || theme.light};
   background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
 `
@@ -65,46 +68,44 @@ const Footer = ({
   }, [con])
 
   return (
-    // REVIEW: override semantic ui component?
-    // Semantic UI does not support passing thru ref
-    // param to children. using a div to simulate segment
-    // <Segment inverted vertical>
-    <BottomBar className='ui inverted vertical segment' ref={con}>
-      <Container>
-        <Grid columns={2} verticalAlign='middle'>
-          {separated
-            ? (
-            <>
-              <Left width={8}>
-                {`copyright © ${copyright}`}
-              </Left>
-              <Right separated={separated} width={8} floated='right' textAlign='right'>
-                {'designed and developed by '}
-                <Link href={developerLink}>{developerName}</Link>
-              </Right>
-            </>
-            ) : (
-            <>
-              <Left width={12}>
-                <div>
-                  {`copyright © ${copyright}`}
-                  {stacked ? <br /> : ' | '}
-                  {'designed and developed by '}
-                  <a href={developerLink}>{developerName}</a>
-                </div>
-              </Left>
-              <Right separated={separated} width={4} floated='right' textAlign='right'>
-                <SocialMediaIcons
-                  inverted={inverted}
-                  icons={icons}
-                />
-              </Right>
-            </>
-            )
-          }
-        </Grid>
-      </Container>
-    </BottomBar>
+    <Ref innerRef={con}>
+      <BottomBar>
+        <Container>
+          <Grid columns={2} verticalAlign='middle'>
+            {separated
+              ? (
+                <>
+                  <Left width={8}>
+                    {`copyright © ${copyright}`}
+                  </Left>
+                  <Right separated={separated} width={8} floated='right' textAlign='right'>
+                    {'designed and developed by '}
+                    <Link href={developerLink}>{developerName}</Link>
+                  </Right>
+                </>
+              ) : (
+                <>
+                  <Left width={12}>
+                    <div>
+                      {`copyright © ${copyright}`}
+                      {stacked ? <br /> : ' | '}
+                      {'designed and developed by '}
+                      <a href={developerLink}>{developerName}</a>
+                    </div>
+                  </Left>
+                  <Right separated={separated} width={4} floated='right' textAlign='right'>
+                    <SocialMediaIcons
+                      inverted={inverted}
+                      icons={icons}
+                    />
+                  </Right>
+                </>
+              )
+            }
+          </Grid>
+        </Container>
+      </BottomBar>
+    </Ref>
   )
 }
 
