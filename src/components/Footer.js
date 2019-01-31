@@ -9,9 +9,10 @@ import {
   Segment
 } from 'semantic-ui-react'
 import SocialMediaIcons from './SocialMediaIcons'
-import theme from '../theme'
+import { theme } from '../theme'
 
 const BottomBar = styled(Segment)`
+  margin-top: 0px;
   color: ${({ color }) => color || theme.light};
   background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
 `

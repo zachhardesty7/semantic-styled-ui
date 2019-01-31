@@ -12,7 +12,7 @@ import {
   Segment
 } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import theme from '../theme'
+import { theme, media } from '../theme'
 
 const sizes = {
   small: {
@@ -35,7 +35,49 @@ const HeroSegment = styled(FilteredHeroSegment)`
   h1,
   h2 {
     color: ${theme.white};
+    font-display: fallback;
   }
+
+  h1 {
+    font-size: 4.7em;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  ${media.laptop`
+    h1 {
+      font-size: 4em;
+    }
+
+    h2 {
+      font-size: 1.45em;
+    }
+  `}
+
+  ${media.tablet`
+    h1 {
+      font-size: 3.8em;
+    }
+
+    h2 {
+      font-size: 1.4em;
+    }
+  `}
+
+  ${media.phone`
+    h1 {
+      font-size: 14vw;
+      width: fit-content;
+    }
+
+    h2 {
+      width: min-content;
+      min-width: 11em;
+      font-size: 1.4em;
+    }
+  `}
 
   /* background overlay to dim and saturate */
   &::before {

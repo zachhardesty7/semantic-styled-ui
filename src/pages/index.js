@@ -5,7 +5,7 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import { Hero } from '../components'
 import { Blurbs } from '../components/sections'
-import theme from '../theme'
+import { theme } from '../theme'
 
 const Slider = styled(Hero)`
   @font-face {
@@ -23,23 +23,19 @@ const Slider = styled(Hero)`
   }
 
   h1 {
-    font-size: 4.7em;
     line-height: 1em;
     margin-bottom: 0;
     vertical-align: baseline;
     font-weight: bolder;
     font-style: italic;
     font-family: 'Franklin Gothic Book', Tahoma, Arial, Helvetica, sans-serif !important;
-    font-display: fallback;
   }
 
   h2 {
-    font-size: 1.7em;
     margin-top: 0;
     font-style: italic;
     font-weight: normal;
     font-family: 'Eurostile', Tahoma, Arial, Helvetica, sans-serif !important;
-    font-display: fallback;
   }
 `
 

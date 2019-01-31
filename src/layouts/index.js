@@ -6,7 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 import 'semantic-ui-css/semantic.min.css'
 
 import { Navigation, Footer } from '../components'
-import theme from '../theme'
+import { theme, media } from '../theme'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,19 +22,50 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
-  h1,
-  h2,
-  h3 {
-    font-size: 2em;
-    font-weight: normal;
-  }
-
   a {
     color: ${theme.secondary};
     &:hover {
       color: ${theme.white};
     }
   }
+
+  ${media.desktop`
+    .ui.four.doubling.cards>.card {
+      width: calc(30% - 1.5em) !important;
+    }
+  `}
+
+  ${media.laptop`
+    .ui.four.doubling.cards>.card {
+      width: calc(40% - 1.5em) !important;
+    }
+  `}
+
+  ${media.mobile`
+    /* REVIEW: */
+    .ui.container {
+      font-size: 1.1rem !important;
+      padding: 0 1.5em !important;
+      margin: 0 auto !important;
+    }
+
+    .ui.four.doubling.cards>.card {
+      max-width: 20em;
+      margin: 0 auto !important;
+    }
+  `}
+    
+  ${media.mobile`
+    .ui.stackable.grid>.column, .ui.container>.ui.stackable.grid>.row>.column {
+      max-width: 375px;
+    }
+  `}
+
+  ${media.phone`
+    .ui.container.text.justified{
+      text-align: left !important;
+    }
+  `}
 `
 
 const Template = ({ result, children }) => {

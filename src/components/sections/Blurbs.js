@@ -11,6 +11,7 @@ import {
   Header
 } from 'semantic-ui-react'
 import { Blurb } from '..'
+import { media } from '../../theme'
 
 import { toJoinedTitleCase } from '../../utils'
 
@@ -22,6 +23,21 @@ const BlurbsSegment = styled(Segment)`
   h4 {
     font-size: 2em;
   }
+
+  /* fix absurdly wide blurb segments */
+  ${media.tablet`
+    .container {
+      max-width: 397px !important;
+      padding: 0 1.5em;
+      margin: 0 auto !important;
+    }
+  `}
+
+  ${media.phone`
+    .container {
+      margin: 0 2em !important;
+    }
+  `}
 `
 
 const HeaderContainer = styled(Container)`

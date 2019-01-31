@@ -13,7 +13,7 @@ import {
   Grid,
   Segment
 } from 'semantic-ui-react'
-import theme from '../theme'
+import { theme } from '../theme'
 
 import { process } from '../utils'
 
@@ -62,7 +62,7 @@ const about = ({ data }) => {
 
       <Segment vertical padded basic>
         <Container>
-          <Card.Group doubling centered itemsPerRow={4}>
+          <Card.Group doubling stackable centered itemsPerRow={4}>
             {cards.map(card => (
               <Modal
                 key={process(card.name)}

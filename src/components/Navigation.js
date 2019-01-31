@@ -12,6 +12,7 @@ import {
 } from 'semantic-ui-react'
 
 import { calcDuration } from '../utils'
+import { media } from '../theme'
 
 const logoSizes = {
   small: 90,
@@ -50,6 +51,12 @@ const NavMenu = styled(FilteredNavMenu)`
     }
   }
 
+  ${media.phone`
+    a {
+      font-size: 0.97rem;
+    }
+  `}
+
   /* set stacked logo spacing & remove underline */
   .logo-item-stacked.logo-item-stacked {
     border-bottom: none;
@@ -67,6 +74,10 @@ const Logo = styled(GImage)`
   & > img {
     position: relative !important;
     width: ${({ logoSize }) => `${logoSizes[logoSize]}px`} !important;
+
+    ${media.phone`
+      width: ${({ logoSize }) => `${logoSizes[logoSize] * 0.8}px`} !important;
+    `}
   }
 `
 

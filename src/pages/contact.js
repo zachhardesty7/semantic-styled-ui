@@ -7,7 +7,7 @@ import {
   Header,
   Segment
 } from 'semantic-ui-react'
-import { Form } from '../components/sections'
+import { Form } from '../components'
 
 const contact = ({ data }) => {
   const {

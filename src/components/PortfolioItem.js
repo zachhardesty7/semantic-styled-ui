@@ -26,11 +26,11 @@ const PortfolioImage = styled(GImage)`
     object-fit: cover;
 `
 
-const PortfolioItem = ({ piece }) => {
+const PortfolioItem = ({ piece, ...rest }) => {
   const [hovered, setHovered] = useState(false)
 
   return (
-    <Grid.Column>
+    <Grid.Column {...rest}>
       <Item
         dimmed={hovered}
         onMouseEnter={() => setHovered(true)}
