@@ -14,7 +14,7 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-import { process } from '../utils/utils'
+import { colors, utils } from '../utils'
 
 // TODO: conditional swap to "img" when not using gatsby?
 const ProfileImage = styled(GImage)`
@@ -35,11 +35,11 @@ const ProfileModalStyle = createGlobalStyle`
     padding-top: 1.5em;
 
     a {
-      color: ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme?.primary || colors.primary};
       text-decoration: underline;
 
       &:hover {
-        color: ${({ theme }) => theme.primary};
+        color: ${({ theme }) => theme?.primary || colors.primary};
         filter: brightness(225%);
         text-decoration: underline;
       }
@@ -64,7 +64,7 @@ const about = ({ data }) => {
           <Card.Group doubling stackable centered itemsPerRow={4}>
             {cards.map(card => (
               <Modal
-                key={process(card.name)}
+                key={utils.process(card.name)}
                 closeIcon
                 trigger={(
                   <Card
@@ -92,7 +92,7 @@ const about = ({ data }) => {
                     <Grid.Column computer={9} textAlign='justified'>
                       <Modal.Description>
                         {card.bio.content.map(paragraph => (
-                          <p key={process(paragraph.content[0].value.slice(0, 8))}>
+                          <p key={utils.process(paragraph.content[0].value.slice(0, 8))}>
                             {paragraph.content[0].value}
                           </p>
                         ))}

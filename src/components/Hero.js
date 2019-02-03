@@ -12,7 +12,8 @@ import {
   Segment
 } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { media } from '../utils'
+
+import { colors, media } from '../utils'
 
 const sizes = {
   small: {
@@ -34,7 +35,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
 
   h1,
   h2 {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.white || colors.white};
     font-display: fallback;
   }
 
@@ -98,20 +99,20 @@ const HeroSegment = styled(FilteredHeroSegment)`
   /* button can't be separate styled component due to "as" passing error */
   /* https://github.com/styled-components/styled-components/issues/2129 */
   .hero-button {
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme }) => theme.secondary || colors.secondary};
     transition: ease-in-out 50ms;
 
     &:hover {
       transition: ease-in-out 100ms;
-      color: ${({ theme }) => theme.secondary};
-      background-color: ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.secondary || colors.secondary};
+      background-color: ${({ theme }) => theme.primary || colors.primary};
     }
   }
 `
 
 const Chunk = styled.div`
   display: inline-block;
-  border-bottom: 5px solid ${({ theme }) => theme.accent};
+  border-bottom: 5px solid ${({ theme }) => theme.accent || colors.accent};
   margin-right: 5px;
   z-index: 3;
   position: relative;

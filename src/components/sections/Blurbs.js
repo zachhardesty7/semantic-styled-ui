@@ -11,6 +11,7 @@ import {
   Header
 } from 'semantic-ui-react'
 import { Blurb } from '..'
+
 import { media, utils } from '../../utils'
 
 const BlurbsSegment = styled(Segment)`

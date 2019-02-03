@@ -6,14 +6,14 @@ import styled from 'styled-components'
 import { Container } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { utils } from '../utils'
+import { colors, utils } from '../utils'
 
 const FAIcon = styled(FontAwesomeIcon)`
-  color: ${({ theme, inverted, color }) => (color || inverted ? theme.secondary : theme.primary)};
+  color: ${({ theme, inverted, color }) => (color || inverted ? theme.secondary || colors.secondary : theme.primary || colors.primary)};
   margin: 0 0.5em;
 
   &:hover {
-    color: ${({ theme, inverted, color }) => (color || inverted ? theme.white : theme.secondary)};
+    color: ${({ theme, inverted, color }) => (color || inverted ? theme.white || colors.white : theme.secondary || colors.secondary)};
   }
 `
 

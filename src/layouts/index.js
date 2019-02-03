@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-y: overlay;
     font-size: 1em;
     line-height: 1.65;
-    color: ${({ theme }) => theme.dark};
+    color: ${({ theme }) => theme?.dark || colors.dark};
     margin: 0;
   }
 
@@ -23,9 +23,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme?.secondary || colors.secondary};
     &:hover {
-      color: ${({ theme }) => theme.white};
+      color: ${({ theme }) => theme?.white || colors.white};
     }
   }
 
@@ -77,8 +77,20 @@ const Template = ({ result, children }) => {
   const nav = result.allContentfulNavigation.edges[0].node
   const footer = result.allContentfulFooter.edges[0].node
 
+  const gulfColors = {
+    blue: '#172749',
+    red: '#fe0000',
+    grey: '#5b5b5b'
+  }
+
   return (
-    <ThemeProvider theme={colors}>
+    <ThemeProvider theme={{
+      ...gulfColors,
+      primary: gulfColors.blue,
+      secondary: colors.white,
+      accent: gulfColors.red
+    }}
+    >
       <div className='root'>
         <GlobalStyle />
         <Navigation
@@ -92,8 +104,8 @@ const Template = ({ result, children }) => {
         />
         {children}
         <Footer
-        // force updates on page change to enforce stickiness
-          key={`${children.key}footer`} // REVIEW: necessary?
+          // force-update on page change to enforce stickiness
+          key={`${children.key}footer`}
           inverted
           copyright={footer.company}
           separated

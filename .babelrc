@@ -24,6 +24,7 @@
     ]
   ],
   "plugins": [
+    "@babel/plugin-proposal-optional-chaining",
     [
       "@quickbaseoss/babel-plugin-styled-components-css-namespace",
       {
