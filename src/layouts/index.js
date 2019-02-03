@@ -45,17 +45,22 @@ const GlobalStyle = createGlobalStyle`
     /* REVIEW: */
     .ui.container {
       font-size: 1.1rem !important;
-      padding: 0 1.5em !important;
-      margin: 0 auto !important;
+      padding-left: 1.5em !important;
+      padding-right: 1.5em !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
     }
 
-    .ui.four.doubling.cards>.card {
-      max-width: 20em;
-      margin: 0 auto !important;
+    .ui.four.doubling.cards {
+      padding-top: 0.75em !important;
+
+      & > .card {
+        max-width: 20em;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
     }
-  `}
-    
-  ${media.mobile`
+
     .ui.stackable.grid>.column, .ui.container>.ui.stackable.grid>.row>.column {
       max-width: 375px;
     }
