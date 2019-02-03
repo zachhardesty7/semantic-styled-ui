@@ -68,7 +68,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
 
   ${media.phone`
     h1 {
-      font-size: 13.5vw !important;
+      font-size: 12vw !important;
       width: fit-content !important;
     }
 
