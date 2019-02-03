@@ -11,8 +11,7 @@ import {
   Menu
 } from 'semantic-ui-react'
 
-import { calcDuration } from '../utils'
-import { media } from '../theme'
+import { media, utils } from '../utils'
 
 const logoSizes = {
   small: 90,
@@ -113,7 +112,7 @@ const Navigation = ({
                   key='logo'
                   spy={anchor ? true : undefined}
                   smooth={anchor ? true : undefined}
-                  duration={anchor ? calcDuration : undefined}
+                  duration={anchor ? utils.calcDuration : undefined}
                   tabIndex='0'
                   name='home'
                   className={stacked ? 'logo-item-stacked' : undefined}
@@ -134,7 +133,7 @@ const Navigation = ({
                   to={`${page.toLowerCase().replace(' ', '-')}/`}
                   spy={anchor ? true : undefined}
                   smooth={anchor ? true : undefined}
-                  duration={anchor ? calcDuration : undefined}
+                  duration={anchor ? utils.calcDuration : undefined}
                   tabIndex='0'
                   name={page}
                   activeClassName='active'

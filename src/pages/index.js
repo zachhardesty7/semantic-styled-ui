@@ -5,7 +5,6 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import { Hero } from '../components'
 import { Blurbs } from '../components/sections'
-import { theme } from '../theme'
 
 const Slider = styled(Hero)`
   @font-face {
@@ -47,13 +46,13 @@ const Index = ({ data }) => {
       <Slider
         baseline='top'
         size='relaxed'
-        underline={theme.accent}
+        underline={({ theme }) => theme.accent}
         background={hero.backgrounds}
         title={hero.title}
         subtitle={hero.subtitle}
       />
       <Blurbs
-        color={theme.primary}
+        color={({ theme }) => theme.primary}
         blurbs={blurbs}
       />
     </>

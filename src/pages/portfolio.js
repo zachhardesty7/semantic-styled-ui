@@ -10,8 +10,7 @@ import {
 } from 'semantic-ui-react'
 import { PortfolioItem } from '../components'
 
-import { media } from '../theme'
-import { process } from '../utils'
+import { media, utils } from '../utils'
 
 const portfolio = ({ data }) => {
   const { title, pieces } = data.allContentfulPortfolio.edges[0].node
@@ -34,7 +33,9 @@ const portfolio = ({ data }) => {
             stackable
             doubling
           >
-            {pieces.map(piece => <PortfolioItem key={process(`${piece.name} ${piece.location}`)} piece={piece} />)}
+            {pieces.map(piece => (
+              <PortfolioItem key={utils.process(`${piece.name} ${piece.location}`)} piece={piece} />
+            ))}
           </Grid>
         </Container>
       </Segment>

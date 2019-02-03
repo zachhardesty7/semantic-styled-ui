@@ -13,9 +13,8 @@ import {
   Grid,
   Segment
 } from 'semantic-ui-react'
-import { theme } from '../theme'
 
-import { process } from '../utils'
+import { process } from '../utils/utils'
 
 // TODO: conditional swap to "img" when not using gatsby?
 const ProfileImage = styled(GImage)`
@@ -36,11 +35,11 @@ const ProfileModalStyle = createGlobalStyle`
     padding-top: 1.5em;
 
     a {
-      color: ${theme.primary};
+      color: ${({ theme }) => theme.primary};
       text-decoration: underline;
 
       &:hover {
-        color: ${theme.primary};
+        color: ${({ theme }) => theme.primary};
         filter: brightness(225%);
         text-decoration: underline;
       }

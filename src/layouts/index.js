@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import 'semantic-ui-css/semantic.min.css'
 
 import { Navigation, Footer } from '../components'
-import { theme, media } from '../theme'
+import { colors, media } from '../utils'
 
 const GlobalStyle = createGlobalStyle`
   body {
     overflow-y: overlay;
     font-size: 1em;
     line-height: 1.65;
-    color: ${theme.dark};
+    color: ${({ theme }) => theme.dark};
     margin: 0;
   }
 
@@ -23,9 +23,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${theme.secondary};
+    color: ${({ theme }) => theme.secondary};
     &:hover {
-      color: ${theme.white};
+      color: ${({ theme }) => theme.white};
     }
   }
 
@@ -78,28 +78,30 @@ const Template = ({ result, children }) => {
   const footer = result.allContentfulFooter.edges[0].node
 
   return (
-    <div className='root'>
-      <GlobalStyle />
-      <Navigation
-        logo={nav.image.fixed}
-        stacked
-        largeLogo
-        logoAlt='logo'
-        anchor={false}
-        centered
-        pages={['About', 'Portfolio', 'Contact']}
-      />
-      {children}
-      <Footer
+    <ThemeProvider theme={colors}>
+      <div className='root'>
+        <GlobalStyle />
+        <Navigation
+          logo={nav.image.fixed}
+          stacked
+          largeLogo
+          logoAlt='logo'
+          anchor={false}
+          centered
+          pages={['About', 'Portfolio', 'Contact']}
+        />
+        {children}
+        <Footer
         // force updates on page change to enforce stickiness
-        key={`${children.key}footer`} // REVIEW: necessary?
-        inverted
-        copyright={footer.company}
-        separated
-        developerName='Zach Hardesty'
-        developerLink='https://zachhardesty.com'
-      />
-    </div>
+          key={`${children.key}footer`} // REVIEW: necessary?
+          inverted
+          copyright={footer.company}
+          separated
+          developerName='Zach Hardesty'
+          developerLink='https://zachhardesty.com'
+        />
+      </div>
+    </ThemeProvider>
   )
 }
 

@@ -9,12 +9,11 @@ import {
   Segment
 } from 'semantic-ui-react'
 import SocialMediaIcons from './SocialMediaIcons'
-import { theme } from '../theme'
 
 const BottomBar = styled(Segment)`
   margin-top: 0px;
-  color: ${({ color }) => color || theme.light};
-  background-color: ${({ backgroundColor }) => backgroundColor || theme.primary};
+  color: ${({ theme, color }) => color || theme.light};
+  background-color: ${({ theme, backgroundColor }) => backgroundColor || theme.primary};
 `
 
 const Left = styled(Grid.Column)`
@@ -29,10 +28,10 @@ const Right = styled(FilteredRight)`
 `
 
 const Link = styled.a`
-  color: ${({ color }) => color || theme.light};
+  color: ${({ theme, color }) => color || theme.light};
   text-decoration: underline;
   &:hover {
-    color: ${({ hoverColor }) => hoverColor || theme.white};
+    color: ${({ theme, hoverColor }) => hoverColor || theme.white};
   }
 `
 

@@ -10,7 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faExclamation, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-import { process, encode } from '../utils'
+import { utils } from '../utils'
 
 const MessageContainer = styled(Message)`
   display: flex !important;
@@ -33,7 +33,7 @@ const Form = ({
   // process and push raw fields into state
   const fieldsInit = {}
   fields.forEach((field) => {
-    if (!field.includes(';')) { fieldsInit[`${name}-${process(field)}`] = '' } else { fieldsInit[`${name}-${process(field.slice(0, field.indexOf('(')))}`] = '' }
+    if (!field.includes(';')) { fieldsInit[`${name}-${utils.process(field)}`] = '' } else { fieldsInit[`${name}-${utils.process(field.slice(0, field.indexOf('(')))}`] = '' }
   })
   if (textArea) fieldsInit[`${name}-field-text-area`] = ''
 
@@ -53,7 +53,7 @@ const Form = ({
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact', ...fieldsObj })
+        body: utils.encode({ 'form-name': 'contact', ...fieldsObj })
       })
         .catch(err => console.log(err))
 
@@ -103,14 +103,14 @@ const Form = ({
 
                 return (
                   <SUIForm.Select
-                    error={error && fieldsObj[`${name}-${process(title)}`] === ''}
-                    id={`${name}-${process(title)}`}
-                    key={`${name}-${process(title)}`}
+                    error={error && fieldsObj[`${name}-${utils.process(title)}`] === ''}
+                    id={`${name}-${utils.process(title)}`}
+                    key={`${name}-${utils.process(title)}`}
                     fluid
                     placeholder={title}
                     label={title}
                     onChange={handleChange}
-                    value={fieldsObj[`${name}-${process(title)}`]}
+                    value={fieldsObj[`${name}-${utils.process(title)}`]}
                     options={options}
                     icon={<FontAwesomeIcon icon={faCaretDown} pull='right' title='Instagram' />}
                   />
@@ -118,14 +118,14 @@ const Form = ({
               }
               return (
                 <SUIForm.Input
-                  error={error && fieldsObj[`${name}-${process(field)}`] === ''}
-                  id={`${name}-${process(field)}`}
-                  key={`${name}-${process(field)}`}
+                  error={error && fieldsObj[`${name}-${utils.process(field)}`] === ''}
+                  id={`${name}-${utils.process(field)}`}
+                  key={`${name}-${utils.process(field)}`}
                   fluid
                   placeholder={field}
                   label={field}
                   onChange={handleChange}
-                  value={fieldsObj[`${name}-${process(field)}`]}
+                  value={fieldsObj[`${name}-${utils.process(field)}`]}
                 />
               )
             })}

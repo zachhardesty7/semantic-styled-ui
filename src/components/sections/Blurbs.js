@@ -11,9 +11,7 @@ import {
   Header
 } from 'semantic-ui-react'
 import { Blurb } from '..'
-import { media } from '../../theme'
-
-import { toJoinedTitleCase } from '../../utils'
+import { media, utils } from '../../utils'
 
 const BlurbsSegment = styled(Segment)`
   /* default relaxed spacing */
@@ -70,12 +68,12 @@ const Blurbs = ({
       <Grid relaxed stackable columns={blurbs.length} divided padded>
         {blurbs.map(blurb => (
           <Async
-            key={toJoinedTitleCase(blurb.title)}
+            key={utils.toJoinedTitleCase(blurb.title)}
             promise={import('@fortawesome/free-solid-svg-icons')}
             then={icon => (
               <Grid.Column>
                 <Blurb
-                  icon={blurb.icon ? <FontAwesomeIcon icon={icon[`fa${toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} /> : null}
+                  icon={blurb.icon ? <FontAwesomeIcon icon={icon[`fa${utils.toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} /> : null}
                   header={blurb.title}
                   headerAs='h4'
                   headerColor={color}
