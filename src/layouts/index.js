@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
@@ -92,6 +93,15 @@ const Template = ({ result, children }) => {
     }}
     >
       <div className='root'>
+        <Helmet
+          defaultTitle='Gulf Corp'
+          titleTemplate='Gulf Corp – %s'
+        >
+          <meta charSet='utf-8' />
+          <meta name='description' content='Real Estate Development & Construction' />
+          <meta name='keywords' content='Real Estate, Development, Construction, Property' />
+          <meta name='author' content='Austin Ames' />
+        </Helmet>
         <GlobalStyle />
         <Navigation
           logo={nav.image.fixed}

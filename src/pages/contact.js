@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
@@ -16,6 +17,10 @@ const contact = ({ data }) => {
 
   return (
     <Segment padded vertical basic>
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
+
       <Container text>
         <Header as='h1'>{title}</Header>
         <Form

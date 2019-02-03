@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
@@ -17,6 +18,10 @@ const portfolio = ({ data }) => {
 
   return (
     <Segment padded vertical basic>
+      <Helmet>
+        <title>Portfolio</title>
+      </Helmet>
+
       <Container css={`
         ${media.mobile`
           max-width: calc(375px + 3em) !important;

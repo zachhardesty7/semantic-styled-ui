@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import GImage from 'gatsby-image'
@@ -52,6 +53,10 @@ const about = ({ data }) => {
 
   return (
     <Segment padded vertical basic>
+      <Helmet>
+        <title>About</title>
+      </Helmet>
+
       <Container text textAlign='justified'>
         <Header as='h1'>{title}</Header>
         <Header.Content>
