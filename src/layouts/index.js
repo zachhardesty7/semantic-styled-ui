@@ -101,6 +101,10 @@ const Template = ({ result, children }) => {
           <meta name='description' content='Real Estate Development & Construction' />
           <meta name='keywords' content='Real Estate, Development, Construction, Property' />
           <meta name='author' content='Austin Ames' />
+          <meta itemProp='name' content='Gulf Corp' />
+          <meta itemProp='url' content='https://gulfcorpusa.com/' />
+          <meta itemProp='telephone' content='469.560.3010' />
+          <meta itemProp='email' content='info@gulfcorpusa.com' />
         </Helmet>
         <GlobalStyle />
         <Navigation
