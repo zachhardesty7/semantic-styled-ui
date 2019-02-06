@@ -4,9 +4,8 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import GImage from 'gatsby-image'
 
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 import {
-  Image,
   Modal,
   Container,
   Header,
@@ -24,26 +23,22 @@ const ProfileImage = styled(GImage)`
   object-position: 50% 40%;
 `
 
-// impossible to style a modal portalled in
-// due to .root.root.root overrides
-// must use global styles
-const ProfileModalStyle = createGlobalStyle`
-  .profile-image {
-    object-fit: cover;
-    object-position: 50% 10%;
-  }
-  .profile-contact {
-    padding-top: 1.5em;
+const ModalImage = styled(GImage)`
+  object-fit: cover;
+  object-position: 50% 10%;
+`
 
-    a {
-      color: ${({ theme }) => theme?.primary || colors.primary};
+const ModalContact = styled.div`
+  padding-top: 1.5em;
+
+  a {
+    color: ${({ theme }) => theme ?.primary || colors.primary};
+    text-decoration: underline;
+
+    &:hover {
+      color: ${({ theme }) => theme ?.primary || colors.primary};
+      filter: brightness(225%);
       text-decoration: underline;
-
-      &:hover {
-        color: ${({ theme }) => theme?.primary || colors.primary};
-        filter: brightness(225%);
-        text-decoration: underline;
-      }
     }
   }
 `
@@ -69,6 +64,12 @@ const about = ({ data }) => {
           <Card.Group doubling stackable centered itemsPerRow={4}>
             {cards.map(card => (
               <Modal
+                // impossible to style a modal portalled in
+                // due to .root.root.root overrides
+                // must use semi-hacky extra root class
+                // REVIEW: use "mountNode" prop with passed ref? how to get ref?
+                // would allow mounting underneath ".root" div instead of document.body
+                className='root'
                 key={utils.process(card.name)}
                 closeIcon
                 trigger={(
@@ -79,7 +80,6 @@ const about = ({ data }) => {
                   />
                 )}
               >
-                <ProfileModalStyle />
                 <Modal.Header>
                   {card.name}
                   <br />
@@ -88,11 +88,11 @@ const about = ({ data }) => {
                 <Modal.Content scrolling>
                   <Grid columns={2} stackable>
                     <Grid.Column computer={7} textAlign='left'>
-                      <GImage as={Image} className='profile-image' centered size='large' fluid={card.image.fluid} />
-                      <div className='profile-contact'>
+                      <ModalImage centered size='large' fluid={card.image.fluid} />
+                      <ModalContact>
                         <p>{card.phone}</p>
                         <a href={`mailto:${card.email}`}>{card.email}</a>
-                      </div>
+                      </ModalContact>
                     </Grid.Column>
                     <Grid.Column computer={9} textAlign='justified'>
                       <Modal.Description>
