@@ -106,6 +106,7 @@ const Template = ({ result, children }) => {
           <meta itemProp='telephone' content='469.560.3010' />
           <meta itemProp='email' content='info@gulfcorpusa.com' />
         </Helmet>
+
         <GlobalStyle />
         <Navigation
           logo={nav.image.fixed}
@@ -118,7 +119,7 @@ const Template = ({ result, children }) => {
         />
         {children}
         <Footer
-          // force-update on page change to enforce stickiness
+          // force update on page change to enforce stickiness
           key={`${children.key}footer`}
           inverted
           copyright={footer.company}

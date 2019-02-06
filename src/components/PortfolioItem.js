@@ -22,8 +22,8 @@ const DimmerContent = styled(Dimmer)`
 `
 
 const PortfolioImage = styled(GImage)`
-    height: 100%;
-    object-fit: cover;
+  height: 100%;
+  object-fit: cover;
 `
 
 const PortfolioItem = ({ piece, ...rest }) => {
