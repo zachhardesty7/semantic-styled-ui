@@ -6,12 +6,20 @@
     "standard"
   ],
   "plugins": [
+    "react-hooks",
     "jsx-a11y"
   ],
   "globals": {
     "fetch": true
   },
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react/prop-types": [
+      1,
+      {
+        "skipUndeclared": true
+      }
+    ],
     "react/no-unescaped-entities": 0,
     "react/jsx-filename-extension": [
       1,
