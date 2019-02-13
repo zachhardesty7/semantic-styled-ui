@@ -37,15 +37,11 @@ const PortfolioItem = ({ piece, ...rest }) => {
         onMouseLeave={() => setHovered(false)}
       >
         <DimmerContent inverted simple>
-          <Header as='h2'>
-            {piece.name}
-          </Header>
-          <Header as='h3'>
-            {piece.location}
-          </Header>
+          <Header as='h2'>{piece.name}</Header>
+          <Header as='h3'>{piece.location}</Header>
         </DimmerContent>
 
-        <PortfolioImage className='profile-image' centered fluid={piece.image.fluid} />
+        <PortfolioImage centered fluid={piece.image.fluid} />
       </Item>
     </Grid.Column>
   )

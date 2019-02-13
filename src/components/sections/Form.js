@@ -18,8 +18,12 @@ const FormSegment = ({
 }) => (
   <Container text>
     <Container text>
-      {header && <Header as={headerAs} textAlign='center'>{header}</Header>}
-      {content && <Header.Content>{content}</Header.Content>}
+      {header && (
+        <Header as={headerAs} textAlign='center'>{header}</Header>
+      )}
+      {content && (
+        <Header.Content>{content}</Header.Content>
+      )}
     </Container>
     <Form
       name={name}

@@ -175,14 +175,11 @@ const Hero = ({
           key={image.fluid.src}
           animation='fade'
           duration={3000}
-          unmountOnHide // REVIEW: necessary? beneficial?
         >
-          <div>
             <BackgroundImage
               fluid={image.fluid}
               alt={backgroundAlt}
             />
-          </div>
         </Transition>
       ))}
 
@@ -216,6 +213,10 @@ const Hero = ({
 }
 
 Hero.propTypes = {
+  className: PropTypes.string,
+  baseline: PropTypes.bool,
+  underline: PropTypes.bool,
+  size: PropTypes.oneOf(['relaxed', 'base', 'compact']),
   logo: PropTypes.oneOfType([
     PropTypes.element, PropTypes.object
   ]),
@@ -242,6 +243,10 @@ Hero.propTypes = {
 }
 
 Hero.defaultProps = {
+  className: '',
+  baseline: false,
+  underline: null,
+  size: 'base',
   logo: null,
   title: '',
   subtitle: '',

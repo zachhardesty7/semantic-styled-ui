@@ -54,9 +54,7 @@ const about = ({ data }) => {
 
       <Container text textAlign='justified'>
         <Header as='h1'>{title}</Header>
-        <Header.Content>
-          {subtitle.subtitle}
-        </Header.Content>
+        <Header.Content>{subtitle.subtitle}</Header.Content>
       </Container>
 
       <Segment vertical padded basic>

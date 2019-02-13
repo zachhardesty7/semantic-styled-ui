@@ -13,12 +13,12 @@ const Blurb = ({
   header,
   headerAs,
   headerColor,
-  content
+  children
 }) => (
   <div>
     {icon}
     <Header headerColor={headerColor} as={headerAs} textAlign='center'>{header}</Header>
-    <Header.Content>{content}</Header.Content>
+    <Header.Content>{children}</Header.Content>
   </div>
 )
 
@@ -27,7 +27,7 @@ Blurb.propTypes = {
   header: PropTypes.string,
   headerColor: PropTypes.string,
   headerAs: PropTypes.string,
-  content: PropTypes.node
+  children: PropTypes.node
 }
 
 Blurb.defaultProps = {
@@ -35,7 +35,7 @@ Blurb.defaultProps = {
   header: '',
   headerColor: 'black',
   headerAs: 'h4',
-  content: ''
+  children: ''
 }
 
 export default React.memo(Blurb)

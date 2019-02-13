@@ -7,7 +7,6 @@ import styled from 'styled-components'
 import {
   Segment,
   Container,
-  Input,
   Menu
 } from 'semantic-ui-react'
 
@@ -16,7 +15,7 @@ import { media, utils } from '../utils'
 const logoSizes = {
   small: 90,
   base: 155,
-  big: 215
+  large: 215
 }
 
 const NavSegment = styled(Segment)`
@@ -139,14 +138,6 @@ const Navigation = ({
                   activeClassName='active'
                 />
               ))}
-
-              {search && ( // TEST: needs testing
-                <Menu.Menu position='right'>
-                  <Menu.Item>
-                    <Input icon='search' placeholder='Search Properties...' />
-                  </Menu.Item>
-                </Menu.Menu>
-              )}
             </NavMenu>
           )}
         />
