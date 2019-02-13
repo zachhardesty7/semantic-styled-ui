@@ -1,3 +1,7 @@
+/**
+ * @param {string} str input
+ * @returns {string} parsed into title-case with spaces removed
+ */
 export const toJoinedTitleCase = str => (
   str.replace(
     /\w*/g,
@@ -5,7 +9,12 @@ export const toJoinedTitleCase = str => (
   ).replace(/\W/g, '')
 )
 
-// used for smooth scrolling when clicking anchor link
+/**
+ * used for smooth scrolling when clicking anchor link
+ *
+ * @param {number} scrollDistanceInPx
+ * @returns {number} ms equal to scroll distance capped at upper and lower bounds of 800 & 2000
+ */
 export const calcDuration = (scrollDistanceInPx) => {
   const min = 800
   const max = 2000
@@ -13,8 +22,16 @@ export const calcDuration = (scrollDistanceInPx) => {
   return Math.min(Math.max(Math.abs(scrollDistanceInPx), min), max)
 }
 
-export const process = str => `field-${str.toLowerCase().replace(/\W/g, '-')}`
+/**
+ * @param {string} str arbitrary string
+ * @returns {string} parsed string without spaces and lowercase
+ */
+export const process = str => `${str.toLowerCase().replace(/\W/g, '-')}`
 
+/**
+ * @param {object} data key-value pairs of strings from form submission
+ * @returns {string} URL encoded data
+ */
 export const encode = data => Object.keys(data)
   .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
   .join('&')

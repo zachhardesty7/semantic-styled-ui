@@ -33,9 +33,13 @@ const Form = ({
   // process and push raw fields into state
   const fieldsInit = {}
   fields.forEach((field) => {
-    if (!field.includes(';')) { fieldsInit[`${name}-${utils.process(field)}`] = '' } else { fieldsInit[`${name}-${utils.process(field.slice(0, field.indexOf('(')))}`] = '' }
+    if (!field.includes(';')) {
+      fieldsInit[`${utils.process(field)}`] = ''
+    } else {
+      fieldsInit[`${utils.process(field.slice(0, field.indexOf('(')))}`] = ''
+    }
   })
-  if (textArea) fieldsInit[`${name}-field-text-area`] = ''
+  if (textArea) fieldsInit[`text-area`] = ''
 
   const [fieldsObj, setFieldsObj] = useState(fieldsInit)
 
@@ -90,7 +94,7 @@ const Form = ({
         .map((item, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
         .filter(item => item) // remove false (null) entries
         .map(fieldGroup => (
-          <SUIForm.Group key={`group-${fieldGroup.join('-').toLowerCase().replace(/\W/g, '-')}`} widths='equal'>
+          <SUIForm.Group key={`group-${utils.process(fieldGroup.toString())}`} widths='equal'>
             {fieldGroup.map((field) => {
               if (field.includes(';')) { // custom syntax due to Contentful limitations
                 const title = field.slice(0, field.indexOf('(')) // get title
@@ -103,14 +107,14 @@ const Form = ({
 
                 return (
                   <SUIForm.Select
-                    error={error && fieldsObj[`${name}-${utils.process(title)}`] === ''}
-                    id={`${name}-${utils.process(title)}`}
-                    key={`${name}-${utils.process(title)}`}
+                    error={error && fieldsObj[`${utils.process(title)}`] === ''}
+                    id={`${utils.process(title)}`}
+                    key={`${utils.process(title)}`}
                     fluid
                     placeholder={title}
                     label={title}
                     onChange={handleChange}
-                    value={fieldsObj[`${name}-${utils.process(title)}`]}
+                    value={fieldsObj[`${utils.process(title)}`]}
                     options={options}
                     icon={<FontAwesomeIcon icon={faCaretDown} pull='right' title='Instagram' />}
                   />
@@ -118,14 +122,14 @@ const Form = ({
               }
               return (
                 <SUIForm.Input
-                  error={error && fieldsObj[`${name}-${utils.process(field)}`] === ''}
-                  id={`${name}-${utils.process(field)}`}
-                  key={`${name}-${utils.process(field)}`}
+                  error={error && fieldsObj[`${utils.process(field)}`] === ''}
+                  id={`${utils.process(field)}`}
+                  key={`${utils.process(field)}`}
                   fluid
                   placeholder={field}
                   label={field}
                   onChange={handleChange}
-                  value={fieldsObj[`${name}-${utils.process(field)}`]}
+                  value={fieldsObj[`${utils.process(field)}`]}
                 />
               )
             })}
@@ -134,14 +138,14 @@ const Form = ({
       }
       {textArea && (
         <SUIForm.TextArea
-          id={`${name}-field-text-area`}
-          error={error && fieldsObj[`${name}-field-text-area`] === ''}
+          id='text-area'
+          error={error && fieldsObj[`text-area`] === ''}
           autoHeight
           placeholder='Message'
           label={textArea}
           style={{ minHeight: 125 }}
           onChange={handleChange}
-          value={fieldsObj[`${name}-field-text-area`]}
+          value={fieldsObj[`text-area`]}
         />
       )}
 
@@ -151,7 +155,7 @@ const Form = ({
             <FAIcon icon={faCheck} size='2x' title='check' />
             <Message.Content>
               <Message.Header>Form Submitted</Message.Header>
-                  You&#39;ll hear back from our team shortly!
+              You&#39;ll hear back from our team shortly!
             </Message.Content>
           </MessageContainer>
         )}
@@ -160,7 +164,7 @@ const Form = ({
             <FAIcon icon={faExclamation} size='2x' title='exclamation' />
             <Message.Content>
               <Message.Header>Error</Message.Header>
-                  Please fill out all fields!
+              Please fill out all fields!
             </Message.Content>
           </MessageContainer>
         )}
