@@ -14,7 +14,7 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-import { colors, utils } from '../utils'
+import { defaultColors, utils } from '../utils'
 
 // TODO: conditional swap to "img" when not using gatsby?
 const ProfileImage = styled(GImage)`
@@ -32,11 +32,11 @@ const ModalContact = styled.div`
   padding-top: 1.5em;
 
   a {
-    color: ${({ theme }) => theme ?.primary || colors.primary};
+    color: ${({ theme }) => theme?.primary || defaultColors.primary};
     text-decoration: underline;
 
     &:hover {
-      color: ${({ theme }) => theme ?.primary || colors.primary};
+      color: ${({ theme }) => theme?.primary || defaultColors.primary};
       filter: brightness(225%);
       text-decoration: underline;
     }

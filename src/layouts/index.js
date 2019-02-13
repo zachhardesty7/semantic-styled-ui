@@ -7,14 +7,14 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import 'semantic-ui-css/semantic.min.css'
 
 import { Navigation, Footer } from '../components'
-import { colors, media } from '../utils'
+import { defaultColors, media } from '../utils'
 
 const GlobalStyle = createGlobalStyle`
   body {
     overflow-y: overlay;
     font-size: 1em;
     line-height: 1.65;
-    color: ${({ theme }) => theme?.dark || colors.dark};
+    color: ${({ theme }) => theme?.dark || defaultColors.dark};
     margin: 0;
   }
 
@@ -24,9 +24,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme?.secondary || colors.secondary};
+    color: ${({ theme }) => theme?.secondary || defaultColors.secondary};
     &:hover {
-      color: ${({ theme }) => theme?.white || colors.white};
+      color: ${({ theme }) => theme?.white || defaultColors.white};
     }
   }
 
@@ -68,7 +68,7 @@ const GlobalStyle = createGlobalStyle`
   `}
 
   ${media.phone`
-    .ui.container.text.justified{
+    .ui.container.text.justified {
       text-align: left !important;
     }
   `}
@@ -88,7 +88,7 @@ const Template = ({ result, children }) => {
     <ThemeProvider theme={{
       ...gulfColors,
       primary: gulfColors.blue,
-      secondary: colors.white,
+      secondary: defaultColors.white,
       accent: gulfColors.red
     }}
     >
@@ -110,9 +110,8 @@ const Template = ({ result, children }) => {
         <GlobalStyle />
         <Navigation
           logo={nav.image.fixed}
-          stacked
-          largeLogo
           logoAlt='logo'
+          stacked
           anchor={false}
           centered
           pages={['About', 'Portfolio', 'Contact']}

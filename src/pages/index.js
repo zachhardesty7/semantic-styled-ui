@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { Hero } from '../components'
 import { Blurbs } from '../components/sections'
 
-import { colors } from '../utils'
+import { defaultColors } from '../utils'
 
 const Slider = styled(Hero)`
   @font-face {
@@ -48,13 +48,13 @@ const Index = ({ data }) => {
       <Slider
         baseline='top'
         size='relaxed'
-        underline={({ theme }) => theme.accent || colors.accent}
+        underline={defaultColors.accent}
         background={hero.backgrounds}
         title={hero.title}
         subtitle={hero.subtitle}
       />
       <Blurbs
-        color={({ theme }) => theme.primary || colors.primary}
+        color={defaultColors.primary}
         blurbs={blurbs}
       />
     </>

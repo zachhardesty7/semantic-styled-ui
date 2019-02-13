@@ -6,15 +6,28 @@ import styled from 'styled-components'
 import { Container } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { colors, utils } from '../utils'
+import { defaultColors, utils } from '../utils'
 
 const FAIcon = styled(FontAwesomeIcon)`
-  color: ${({ theme, inverted, color }) => (color || inverted ? theme.secondary || colors.secondary : theme.primary || colors.primary)};
-  margin: 0 0.5em;
+  color: ${({ color, inverted, theme }) => (
+    color || (
+      inverted
+        ? theme.secondary || defaultColors.secondary
+        : theme.primary || defaultColors.primary
+    )
+  )};
 
   &:hover {
-    color: ${({ theme, inverted, color }) => (color || inverted ? theme.white || colors.white : theme.secondary || colors.secondary)};
+    color: ${({ color, inverted, theme }) => (
+    color || (
+      inverted
+        ? theme.white || defaultColors.white
+        : theme.secondary || defaultColors.secondary
+    )
+  )};
   }
+
+  margin: 0 0.5em;
 `
 
 const SocialMediaIcons = ({ icons, inverted, color }) => (

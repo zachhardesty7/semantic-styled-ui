@@ -10,12 +10,12 @@ import {
 } from 'semantic-ui-react'
 import SocialMediaIcons from './SocialMediaIcons'
 
-import { colors } from '../utils'
+import { defaultColors } from '../utils'
 
 const BottomBar = styled(Segment)`
   margin-top: 0px;
-  color: ${({ theme, color }) => color || theme.light || colors.light};
-  background-color: ${({ theme, backgroundColor }) => backgroundColor || theme.primary || colors.primary};
+  color: ${({ theme, color }) => color || theme.light || defaultColors.light};
+  background-color: ${({ theme, backgroundColor }) => backgroundColor || theme.primary || defaultColors.primary};
 `
 
 const Left = styled(Grid.Column)`
@@ -30,10 +30,10 @@ const Right = styled(FilteredRight)`
 `
 
 const Link = styled.a`
-  color: ${({ theme, color }) => color || theme.light || colors.light};
+  color: ${({ theme, color }) => color || theme.light || defaultColors.light};
   text-decoration: underline;
   &:hover {
-    color: ${({ theme, hoverColor }) => hoverColor || theme.white || colors.white};
+    color: ${({ theme, hoverColor }) => hoverColor || theme.white || defaultColors.white};
   }
 `
 
@@ -52,7 +52,7 @@ const Footer = ({
 }) => {
   const con = useRef()
 
-  // update higher up containers to allow dynamic sized footer
+  // update parent containers to allow dynamic sized footer
   // that stays at the bottom, even when there's little content
   useLayoutEffect(() => {
     if (sticky) {
@@ -97,6 +97,7 @@ const Footer = ({
                   </Left>
                   <Right separated={separated} width={4} floated='right' textAlign='right'>
                     <SocialMediaIcons
+                      // REVIEW: convert to children
                       inverted={inverted}
                       icons={icons}
                     />

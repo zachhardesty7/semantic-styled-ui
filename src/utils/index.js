@@ -3,7 +3,7 @@ import media from './media'
 import * as utils from './utils'
 
 export {
-  colors,
+  colors as defaultColors,
   media,
   utils
 }

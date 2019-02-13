@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { colors, media } from '../utils'
+import { defaultColors, media } from '../utils'
 
 const sizes = {
   small: {
@@ -99,13 +99,13 @@ const HeroSegment = styled(FilteredHeroSegment)`
   /* button can't be separate styled component due to "as" passing error */
   /* https://github.com/styled-components/styled-components/issues/2129 */
   .hero-button {
-    background-color: ${({ theme }) => theme.secondary || colors.secondary};
+    background-color: ${({ theme }) => theme.secondary || defaultColors.secondary};
     transition: ease-in-out 50ms;
 
     &:hover {
       transition: ease-in-out 100ms;
-      color: ${({ theme }) => theme.secondary || colors.secondary};
-      background-color: ${({ theme }) => theme.primary || colors.primary};
+      color: ${({ theme }) => theme.secondary || defaultColors.secondary};
+      background-color: ${({ theme }) => theme.primary || defaultColors.primary};
     }
   }
 `
