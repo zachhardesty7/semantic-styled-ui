@@ -114,8 +114,10 @@ const Template = ({ result, children }) => {
           stacked
           anchor={false}
           centered
-          pages={['About', 'Portfolio', 'Contact']}
-        />
+        >
+          {/* REVIEW: is this actually better than a "pages" prop? */}
+          {['About', 'Portfolio', 'Contact']}
+        </Navigation>
         {children}
         <Footer
           // force update on page change to enforce stickiness

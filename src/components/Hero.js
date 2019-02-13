@@ -33,53 +33,6 @@ const HeroSegment = styled(FilteredHeroSegment)`
   padding-top: ${({ baseline, size }) => (baseline === 'top' ? sizes.small[size] : sizes.large[size])}em;
   padding-bottom: ${({ baseline, size }) => (baseline === 'top' ? sizes.large[size] : sizes.small[size])}em;
 
-  h1,
-  h2 {
-    color: ${({ theme }) => theme.white || colors.white};
-    font-display: fallback;
-  }
-
-  h1 {
-    font-size: 4.7em;
-  }
-
-  h2 {
-    font-size: 1.7rem;
-  }
-
-  ${media.laptop`
-    h1 {
-      font-size: 4em;
-    }
-
-    h2 {
-      font-size: 1.45em;
-    }
-  `}
-
-  ${media.tablet`
-    h1 {
-      font-size: 3.8em;
-    }
-
-    h2 {
-      font-size: 1.4em;
-    }
-  `}
-
-  ${media.phone`
-    h1 {
-      font-size: 12vw !important;
-      width: fit-content !important;
-    }
-
-    h2 {
-      width: min-content;
-      min-width: 11em;
-      font-size: 1.4em;
-    }
-  `}
-
   /* background overlay to dim and saturate */
   &::before {
     content: "";
@@ -110,9 +63,53 @@ const HeroSegment = styled(FilteredHeroSegment)`
   }
 `
 
+const HeroHeader = styled.div`
+  color: ${({ theme }) => theme.white || defaultColors.white};
+  font-display: fallback;
+`
+
+/* REVIEW: workaround for "as" issue
+
+const handleAs = Comp => ({ innerAs, ...rest }) => <Comp as={innerAs} {...rest} />;
+
+const CustomLinkTab = styled(handleAs(NavBarTab))`
+  ...
+`;
+*/
+const HeroTitle = styled(HeroHeader).attrs({ as: 'h1' })`
+  font-size: 4.7em;
+
+  ${media.laptop`
+    font-size: 4em;
+  `}
+  ${media.tablet`
+    font-size: 3.8em;
+  `}
+  ${media.phone`
+    font-size: 12vw !important;
+    width: fit-content !important;
+  `}
+`
+
+const HeroSubtitle = styled(HeroHeader).attrs({ as: 'h2' })`
+  font-size: 1.7rem;
+
+  ${media.laptop`
+    font-size: 1.45em;
+  `}
+  ${media.tablet`
+    font-size: 1.4em;
+  `}
+  ${media.phone`
+    width: min-content;
+    min-width: 11em;
+    font-size: 1.4em;
+  `}
+`
+
 const Chunk = styled.div`
   display: inline-block;
-  border-bottom: 5px solid ${({ theme }) => theme.accent || colors.accent};
+  border-bottom: 5px solid ${({ underline, theme }) => underline || theme.accent || defaultColors.accent};
   margin-right: 5px;
   z-index: 3;
   position: relative;
@@ -176,10 +173,10 @@ const Hero = ({
           animation='fade'
           duration={3000}
         >
-            <BackgroundImage
-              fluid={image.fluid}
-              alt={backgroundAlt}
-            />
+          <BackgroundImage
+            fluid={image.fluid}
+            alt={backgroundAlt}
+          />
         </Transition>
       ))}
 
@@ -190,12 +187,13 @@ const Hero = ({
             <Logo fixed={logo} alt='logo' />
           )}
           {title && (
-            <Header as='h1' content={title} />
+            <Header as={HeroTitle}>{title}</Header>
           )}
           {subtitle && (
-            <Header as='h2' content={subtitle} />
+            <Header as={HeroSubtitle}>{subtitle}</Header>
           )}
           {buttonText && (
+            // TODO: convert to single prop and composed button
             <Button {...buttonProps} className='hero-button'>
               {buttonText}
               <Async

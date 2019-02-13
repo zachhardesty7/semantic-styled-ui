@@ -83,7 +83,7 @@ const Logo = styled(GImage)`
 // REVIEW: consider utilizing gatsby-source-filesystem for src url
 // TEST: various interactions of props
 const Navigation = ({
-  pages,
+  children,
   logo,
   logoSize,
   logoAlt,
@@ -125,7 +125,7 @@ const Navigation = ({
                 </Menu.Item>
               )}
 
-              {pages.map(page => (
+              {children.map(page => (
                 <Menu.Item
                   key={`${page.toLowerCase().replace(' ', '-')}`}
                   as={Link}
@@ -136,7 +136,9 @@ const Navigation = ({
                   tabIndex='0'
                   name={page}
                   activeClassName='active'
-                />
+                >
+                  {page}
+                </Menu.Item>
               ))}
             </NavMenu>
           )}
@@ -159,7 +161,7 @@ Navigation.propTypes = {
   size: PropTypes.string,
   search: PropTypes.bool,
   centered: PropTypes.bool,
-  pages: PropTypes.arrayOf(PropTypes.string)
+  children: PropTypes.arrayOf(PropTypes.string)
 }
 
 Navigation.defaultProps = {
@@ -171,7 +173,7 @@ Navigation.defaultProps = {
   size: 'large',
   search: false,
   centered: false,
-  pages: []
+  children: []
 }
 
 export default React.memo(Navigation)

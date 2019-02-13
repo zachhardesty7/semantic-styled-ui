@@ -71,11 +71,13 @@ const about = ({ data }) => {
                 key={utils.process(card.name)}
                 closeIcon
                 trigger={(
-                  <Card
-                    image={<ProfileImage fluid={card.image.fluid} />}
-                    header={card.name}
-                    meta={card.title}
-                  />
+                  <Card>
+                    <ProfileImage fluid={card.image.fluid} />
+                    <Card.Content>
+                      <Card.Header>{card.name}</Card.Header>
+                      <Card.Meta>{card.title}</Card.Meta>
+                    </Card.Content>
+                  </Card>
                 )}
               >
                 <Modal.Header>

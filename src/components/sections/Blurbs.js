@@ -73,13 +73,15 @@ const Blurbs = ({
             promise={import('@fortawesome/free-solid-svg-icons')}
             then={icon => (
               <Grid.Column>
+                {/* TODO: convert to children */}
                 <Blurb
                   icon={blurb.icon ? <FontAwesomeIcon icon={icon[`fa${utils.toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} /> : null}
                   header={blurb.title}
                   headerAs='h4'
                   headerColor={color}
-                  content={blurb.body && blurb.body.body}
-                />
+                >
+                  {blurb.body && blurb.body.body}
+                </Blurb>
               </Grid.Column>
             )}
           />
