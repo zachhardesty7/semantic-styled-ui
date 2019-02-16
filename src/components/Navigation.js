@@ -109,13 +109,13 @@ const Navigation = ({
                   as={Link}
                   to='/'
                   key='logo'
-                  spy={anchor ? true : undefined}
-                  smooth={anchor ? true : undefined}
+                  spy={anchor || undefined}
+                  smooth={anchor || undefined}
                   duration={anchor ? utils.calcDuration : undefined}
                   tabIndex='0'
                   name='home'
                   className={stacked ? 'logo-item-stacked' : undefined}
-                  activeClassName={stacked ? undefined : 'active'}
+                  activeClassName={!stacked ? 'active' : undefined}
                 >
                   {typeof logo !== 'string'
                     // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
@@ -127,14 +127,14 @@ const Navigation = ({
 
               {children.map(page => (
                 <Menu.Item
-                  key={`${page.toLowerCase().replace(' ', '-')}`}
+                  key={utils.process(page.toString())}
                   as={Link}
-                  to={`${page.toLowerCase().replace(' ', '-')}/`}
-                  spy={anchor ? true : undefined}
-                  smooth={anchor ? true : undefined}
+                  to={`${utils.process(page.toString())}/`}
+                  spy={anchor || undefined}
+                  smooth={anchor || undefined}
                   duration={anchor ? utils.calcDuration : undefined}
                   tabIndex='0'
-                  name={page}
+                  name={page.toString()}
                   activeClassName='active'
                 >
                   {page}
@@ -149,11 +149,7 @@ const Navigation = ({
 }
 
 Navigation.propTypes = {
-  logo: PropTypes.oneOfType([
-    PropTypes.element, // REVIEW: don't think this works
-    PropTypes.object,
-    PropTypes.string
-  ]),
+  logo: PropTypes.node,
   logoAlt: PropTypes.string,
   stacked: PropTypes.bool,
   logoSize: PropTypes.string,
@@ -161,7 +157,7 @@ Navigation.propTypes = {
   size: PropTypes.string,
   search: PropTypes.bool,
   centered: PropTypes.bool,
-  children: PropTypes.arrayOf(PropTypes.string)
+  children: PropTypes.node
 }
 
 Navigation.defaultProps = {

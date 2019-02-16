@@ -74,37 +74,35 @@ const Footer = ({
       <BottomBar>
         <Container>
           <Grid columns={2} verticalAlign='middle'>
-            {separated
-              ? (
-                <>
-                  <Left width={8}>
+            {separated ? (
+              <>
+                <Left width={8}>
+                  {`copyright © ${copyright}`}
+                </Left>
+                <Right separated={separated} width={8} floated='right' textAlign='right'>
+                  {'designed and developed by '}
+                  <Link href={developerLink}>{developerName}</Link>
+                </Right>
+              </>
+            ) : (
+              <>
+                <Left width={12}>
+                  <div>
                     {`copyright © ${copyright}`}
-                  </Left>
-                  <Right separated={separated} width={8} floated='right' textAlign='right'>
+                    {stacked ? <br /> : ' | '}
                     {'designed and developed by '}
-                    <Link href={developerLink}>{developerName}</Link>
-                  </Right>
-                </>
-              ) : (
-                <>
-                  <Left width={12}>
-                    <div>
-                      {`copyright © ${copyright}`}
-                      {stacked ? <br /> : ' | '}
-                      {'designed and developed by '}
-                      <a href={developerLink}>{developerName}</a>
-                    </div>
-                  </Left>
-                  <Right separated={separated} width={4} floated='right' textAlign='right'>
-                    <SocialMediaIcons
-                      // REVIEW: convert to children
-                      inverted={inverted}
-                      icons={icons}
-                    />
-                  </Right>
-                </>
-              )
-            }
+                    <a href={developerLink}>{developerName}</a>
+                  </div>
+                </Left>
+                <Right separated={separated} width={4} floated='right' textAlign='right'>
+                  <SocialMediaIcons
+                    // REVIEW: convert to children
+                    inverted={inverted}
+                    icons={icons}
+                  />
+                </Right>
+              </>
+            )}
           </Grid>
         </Container>
       </BottomBar>

@@ -75,7 +75,10 @@ const Blurbs = ({
               <Grid.Column>
                 {/* TODO: convert to children */}
                 <Blurb
-                  icon={blurb.icon ? <FontAwesomeIcon icon={icon[`fa${utils.toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} /> : null}
+                  icon={blurb.icon
+                    ? <FontAwesomeIcon icon={icon[`fa${utils.toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} />
+                    : null
+                  }
                   header={blurb.title}
                   headerAs='h4'
                   headerColor={color}

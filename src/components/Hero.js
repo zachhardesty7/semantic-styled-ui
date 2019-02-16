@@ -30,8 +30,16 @@ const sizes = {
 
 const FilteredHeroSegment = ({ size, children, ...rest }) => <Segment {...rest}>{children}</Segment>
 const HeroSegment = styled(FilteredHeroSegment)`
-  padding-top: ${({ baseline, size }) => (baseline === 'top' ? sizes.small[size] : sizes.large[size])}em;
-  padding-bottom: ${({ baseline, size }) => (baseline === 'top' ? sizes.large[size] : sizes.small[size])}em;
+  padding-top: ${({ baseline, size }) => (
+    baseline === 'top'
+      ? sizes.small[size]
+      : sizes.large[size]
+  )}em;
+  padding-bottom: ${({ baseline, size }) => (
+    baseline === 'top'
+      ? sizes.large[size]
+      : sizes.small[size]
+  )}em;
 
   /* background overlay to dim and saturate */
   &::before {
