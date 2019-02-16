@@ -85,6 +85,7 @@ const CustomLinkTab = styled(handleAs(NavBarTab))`
 `;
 */
 const HeroTitle = styled(HeroHeader).attrs({ as: 'h1' })`
+  padding-right: 0.15em;
   font-size: 4.7em;
 
   ${media.laptop`
@@ -118,7 +119,6 @@ const HeroSubtitle = styled(HeroHeader).attrs({ as: 'h2' })`
 const Chunk = styled.div`
   display: inline-block;
   border-bottom: 5px solid ${({ underline, theme }) => underline || theme.accent || defaultColors.accent};
-  margin-right: 5px;
   z-index: 3;
   position: relative;
 `
