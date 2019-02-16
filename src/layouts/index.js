@@ -112,16 +112,19 @@ const Template = ({ result, children }) => {
           logo={nav.image.fixed}
           logoAlt='logo'
           stacked
-          anchor={false}
           centered
         >
           {/* REVIEW: is this actually better than a "pages" prop? */}
-          {['About', 'Portfolio', 'Contact']}
+          <Navigation.Item>About</Navigation.Item>
+          <Navigation.Item>Portfolio</Navigation.Item>
+          <Navigation.Item>Contact</Navigation.Item>
         </Navigation>
+
         {children}
+
         <Footer
           // force update on page change to enforce stickiness
-          key={`${children.key}footer`}
+          key={`${children.key}-footer`}
           inverted
           copyright={footer.company}
           separated

@@ -10,6 +10,7 @@ import {
   Menu
 } from 'semantic-ui-react'
 
+import NavigationItem from './NavigationItem'
 import { media, utils } from '../utils'
 
 const logoSizes = {
@@ -31,7 +32,7 @@ const NavMenu = styled(FilteredNavMenu)`
 
   /* apply border to individual items instead of menu con */
   border-bottom: none;
-  .item.item {
+  & > .item.item {
     border-bottom: 2px solid rgba(34,36,38,.15);
 
     &.active {
@@ -90,7 +91,6 @@ const Navigation = ({
   stacked,
   anchor,
   size,
-  search,
   centered
 }) => {
   const linkType = useMemo(() => (!anchor
@@ -125,21 +125,7 @@ const Navigation = ({
                 </Menu.Item>
               )}
 
-              {children.map(page => (
-                <Menu.Item
-                  key={utils.process(page.toString())}
-                  as={Link}
-                  to={`${utils.process(page.toString())}/`}
-                  spy={anchor || undefined}
-                  smooth={anchor || undefined}
-                  duration={anchor ? utils.calcDuration : undefined}
-                  tabIndex='0'
-                  name={page.toString()}
-                  activeClassName='active'
-                >
-                  {page}
-                </Menu.Item>
-              ))}
+              {children}
             </NavMenu>
           )}
         />
@@ -155,7 +141,6 @@ Navigation.propTypes = {
   logoSize: PropTypes.string,
   anchor: PropTypes.bool,
   size: PropTypes.string,
-  search: PropTypes.bool,
   centered: PropTypes.bool,
   children: PropTypes.node
 }
@@ -165,11 +150,13 @@ Navigation.defaultProps = {
   logoAlt: '',
   stacked: false,
   logoSize: 'base',
-  anchor: true,
+  anchor: false,
   size: 'large',
-  search: false,
   centered: false,
   children: []
 }
 
-export default React.memo(Navigation)
+const NavigationMemo = React.memo(Navigation)
+NavigationMemo.Item = NavigationItem
+
+export default NavigationMemo

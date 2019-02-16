@@ -11,6 +11,8 @@ contentfulConfig = {
   accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken
 }
 
+// process.env.GATSBY_CONTENTFUL_OFFLINE = true
+
 const { spaceId, accessToken } = contentfulConfig
 
 if (!spaceId || !accessToken) {
