@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-promise'
-import GImage from 'gatsby-image'
 
 import styled from 'styled-components'
 import {
@@ -123,7 +122,7 @@ const Chunk = styled.div`
   position: relative;
 `
 
-const BackgroundImage = styled(GImage)`
+const BackgroundImage = styled.img`
   position: absolute !important;
   top: 0;
   left: -0.5%;
@@ -137,7 +136,7 @@ const BackgroundImage = styled(GImage)`
   }
 `
 
-const Logo = styled(GImage)`
+const Logo = styled.img`
   margin-right: 1em;
   vertical-align: bottom;
 `
@@ -157,15 +156,14 @@ const Hero = ({
   baseline,
   underline,
   size,
-  background,
-  backgroundAlt,
+  children,
   buttonText,
   buttonProps
 }) => {
   const [curBackground, setCurBackground] = useState(0)
   useEffect(() => {
     const cycle = setTimeout(() => {
-      setCurBackground((curBackground + 1) % (background.length))
+      setCurBackground((curBackground + 1) % (children.length))
     }, 6000)
 
     return () => clearTimeout(cycle)
@@ -173,18 +171,15 @@ const Hero = ({
 
   return (
     <HeroSegment className={className} vertical baseline={baseline} size={size}>
-      {/* background image */}
-      {background.map((image, i) => (
+      {/* REVIEW: is the only benefit to React.Children to handle single child? */}
+      {React.Children.map(children, (Background, i) => (
         <Transition
+          key={Background.props.alt}
           visible={i === curBackground}
-          key={image.fluid.src}
           animation='fade'
           duration={3000}
         >
-          <BackgroundImage
-            fluid={image.fluid}
-            alt={backgroundAlt}
-          />
+          <BackgroundImage as={Background.type} {...Background.props} />
         </Transition>
       ))}
 
@@ -192,8 +187,10 @@ const Hero = ({
         {/* nested inline chunk to facilitate underline */}
         <Chunk underline={underline}>
           {logo && (
-            <Logo fixed={logo} alt='logo' />
+            <Logo as={logo.type} alt='logo' />
           )}
+
+          {/* use "Header" as tag to allow passing classes through to base component */}
           {title && (
             <Header as={HeroTitle}>{title}</Header>
           )}
@@ -220,21 +217,15 @@ const Hero = ({
 
 Hero.propTypes = {
   className: PropTypes.string,
-  baseline: PropTypes.bool,
-  underline: PropTypes.bool,
-  size: PropTypes.oneOf(['relaxed', 'base', 'compact']),
+  baseline: PropTypes.oneOf(['top', 'bottom']),
+  underline: PropTypes.string,
+  size: PropTypes.oneOf(['compact', 'base', 'relaxed']),
   logo: PropTypes.oneOfType([
     PropTypes.element, PropTypes.object
   ]),
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  background: PropTypes.oneOfType([
-    PropTypes.element, PropTypes.object,
-    PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.element, PropTypes.object
-    ]))
-  ]),
-  backgroundAlt: PropTypes.string,
+  children: PropTypes.node,
   buttonText: PropTypes.string,
   buttonProps: PropTypes.shape({
     basic: PropTypes.bool,
@@ -256,8 +247,7 @@ Hero.defaultProps = {
   logo: null,
   title: '',
   subtitle: '',
-  background: null,
-  backgroundAlt: '',
+  children: null,
   buttonText: '',
   buttonProps: null
 }

@@ -10,9 +10,9 @@ import {
   Segment,
   Header
 } from 'semantic-ui-react'
-import { Blurb } from '..'
+import { Blurb } from '../components'
 
-import { media, utils } from '../../utils'
+import { media, utils } from '../utils'
 
 const BlurbsSegment = styled(Segment)`
   /* default relaxed spacing */

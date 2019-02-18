@@ -1,8 +1,6 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import Async from 'react-promise'
 
-import GImage from 'gatsby-image'
 import styled from 'styled-components'
 import {
   Segment,
@@ -64,7 +62,7 @@ const NavMenu = styled(FilteredNavMenu)`
   }
 `
 
-const Logo = styled(GImage)`
+const Logo = styled.div`
   margin: 0 0.5em;
   height: 100% !important;
   width: 100% !important;
@@ -85,6 +83,7 @@ const Logo = styled(GImage)`
 // TEST: various interactions of props
 const Navigation = ({
   children,
+  as,
   logo,
   logoSize,
   logoAlt,
@@ -92,49 +91,34 @@ const Navigation = ({
   anchor,
   size,
   centered
-}) => {
-  const linkType = useMemo(() => (!anchor
-    ? import('gatsby')
-    : import('react-scroll')), [anchor])
+}) => (
+  <NavSegment basic vertical>
+    <Container textAlign={centered ? 'center' : undefined}>
+      <NavMenu size={size} compact secondary pointing>
+        {logo && (
+          <Menu.Item
+            as={as}
+            to='/'
+            spy={anchor || undefined}
+            smooth={anchor || undefined}
+            duration={anchor ? utils.calcDuration : undefined}
+            tabIndex='0'
+            name='home'
+            className={stacked ? 'logo-item-stacked' : undefined}
+            activeClassName={!stacked ? 'active' : undefined}
+          >
+            <Logo as={logo.type} {...logo.props} logoSize={logoSize} />
+          </Menu.Item>
+        )}
 
-  return (
-    <NavSegment basic vertical>
-      <Container textAlign={centered ? 'center' : undefined}>
-        <Async
-          promise={linkType}
-          then={({ Link }) => (
-            <NavMenu size={size} compact secondary pointing>
-              {logo && (
-                <Menu.Item
-                  as={Link}
-                  to='/'
-                  key='logo'
-                  spy={anchor || undefined}
-                  smooth={anchor || undefined}
-                  duration={anchor ? utils.calcDuration : undefined}
-                  tabIndex='0'
-                  name='home'
-                  className={stacked ? 'logo-item-stacked' : undefined}
-                  activeClassName={!stacked ? 'active' : undefined}
-                >
-                  {typeof logo !== 'string'
-                    // REVIEW: ahead of its time, assumes UI can be decoupled from Gatsby
-                    ? <Logo logoSize={logoSize} fixed={logo} alt={logoAlt} />
-                    : <img src={logo} alt={logoAlt} /> // won't work
-                  }
-                </Menu.Item>
-              )}
-
-              {children}
-            </NavMenu>
-          )}
-        />
-      </Container>
-    </NavSegment>
-  )
-}
+        {children}
+      </NavMenu>
+    </Container>
+  </NavSegment>
+)
 
 Navigation.propTypes = {
+  as: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string]),
   logo: PropTypes.node,
   logoAlt: PropTypes.string,
   stacked: PropTypes.bool,
@@ -146,6 +130,7 @@ Navigation.propTypes = {
 }
 
 Navigation.defaultProps = {
+  as: 'img',
   logo: null,
   logoAlt: '',
   stacked: false,

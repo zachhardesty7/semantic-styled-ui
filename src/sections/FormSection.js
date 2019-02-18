@@ -5,9 +5,9 @@ import {
   Container,
   Header
 } from 'semantic-ui-react'
-import { Form } from '..'
+import { Form } from '../components'
 
-const FormSegment = ({
+const FormSection = ({
   name,
   header,
   headerAs,
@@ -35,7 +35,7 @@ const FormSegment = ({
   </Container>
 )
 
-FormSegment.propTypes = {
+FormSection.propTypes = {
   name: PropTypes.string,
   header: PropTypes.string,
   headerAs: PropTypes.string,
@@ -47,7 +47,7 @@ FormSegment.propTypes = {
   button: PropTypes.string
 }
 
-FormSegment.defaultProps = {
+FormSection.defaultProps = {
   name: '',
   header: '',
   headerAs: 'h3',
@@ -57,4 +57,4 @@ FormSegment.defaultProps = {
   button: 'Submit'
 }
 
-export default React.memo(FormSegment)
+export default React.memo(FormSection)

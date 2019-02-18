@@ -1,27 +1,36 @@
-# Gulf Corp (Website)
+# Semantic Styled UI
 
-Progressive Web App (PWA) built with [Gatsby][gatsby], [Contentful][contentful], & [Netlify][netlify].
+Leveraging the power and style of Semantic UI and Styled Components to deploy custom components that
+abstract away complex library interactions.
 
 ## Description
 
-This repo hosts a SSR app hosted with Netlify that renders data from Contentful. Uses a [Standard JS & Airbnb hybrid style formatting][style].
+This repo hosts a UI component library for React that styles content based of Semantic UI but
+improves the default styles with Styled Components. It allows for easy plug and play in projects
+looking to take advantage of Styled Components without dealing with the hassle of integrating
+Semantic UI styles manually. It also includes some useful components and prebuilt components for
+rapid web app development.
+
+Library originally built for [connect-door] and then copied into
+[gulf-corp] for further development. Commits here only go back to
+the beginning of the second repo so visit the first for more commit history.
 
 ## Dependencies & Installation
 
-Clone this repo and then run the following commands to start the hot module reloading local server:
+Clone this repo and then run the following command to download dependencies and build:
 
 ``` bash
 npm install
-npm run dev
+npm run build
 ```
 
 ## Known Issues
 
-* none
+* pending
 
 ## Contributing
 
-1. Fork it (<https://github.com/zachhardesty7/gulf-corp/fork>)
+1. Fork it (<https://github.com/zachhardesty7/semantic-styled-ui/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
@@ -45,20 +54,20 @@ limitations under the License.
 
 ## Special Acknowledgements
 
-* [Javascript Standard JS & Airbnb Hybrid Style][style] - Airbnb's JS ESLint config + JS Standard Style
-* [Gatsby v2][gatsbyGH] - Build blazing fast, modern apps and websites with React
-* [React][reactGH] - A declarative, efficient, and flexible JavaScript library for building user interfaces
 * [Semantic UI React][semanticGH] - The official Semantic-UI-React integration
+* [Styled Components][styledGH] - Promote declarative rendering of component styles based
+  on props
+* [React][reactGH] - A declarative, efficient, and flexible JavaScript library for building user interfaces
 * [Font Awesome React][faGH] - Font Awesome 5 React component using SVG with JS
 * [React Scroll][scrollGH] - Component for animating vertical scrolling
+* [Javascript Standard JS & Airbnb Hybrid Style][standard] - Airbnb's JS ESLint config + JS Standard Style
 
 <!-- Markdown link & img definitions -->
-[gatsby]: https://www.gatsbyjs.org/
-[gatsbyGH]: https://github.com/gatsbyjs/gatsby/
-[contentful]: https://www.contentful.com/
-[netlify]: https://www.netlify.com/
-[style]: https://github.com/doasync/eslint-config-airbnb-standard
+[connect-door]: https://github.com/zachhardesty7/connect-door/
+[gulf-corp]: https://github.com/zachhardesty7/gulf-corp/
+[standard]: https://github.com/doasync/eslint-config-airbnb-standard
 [reactGH]: https://github.com/facebook/react
 [semanticGH]: https://github.com/Semantic-Org/Semantic-UI-React
+[styledGH]: https://github.com/styled-components
 [faGH]: https://github.com/FortAwesome/react-fontawesome
 [scrollGH]: https://github.com/fisshy/react-scroll
