@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import GImage from 'gatsby-image'
 
 import styled from 'styled-components'
 import {
@@ -21,38 +20,45 @@ const DimmerContent = styled(Dimmer)`
   }
 `
 
-const PortfolioImage = styled(GImage)`
+const PortfolioImage = styled.img`
   height: 100%;
   object-fit: cover;
 `
 
-const PortfolioItem = ({ piece, ...rest }) => {
+const PortfolioItem = ({
+  title, subtitle, children, ...rest
+}) => {
   const [hovered, setHovered] = useState(false)
 
   return (
     <Grid.Column {...rest}>
-      <Item
-        dimmed={hovered}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <DimmerContent inverted simple>
-          <Header as='h2'>{piece.name}</Header>
-          <Header as='h3'>{piece.location}</Header>
-        </DimmerContent>
-
-        <PortfolioImage centered fluid={piece.image.fluid} />
-      </Item>
+      {children && (
+        <Item
+          dimmed={hovered}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          <PortfolioImage centered as={children.type} {...children.props} />
+          <DimmerContent inverted simple>
+            {title && <Header as='h2'>{title}</Header>}
+            {subtitle && <Header as='h3'>{subtitle}</Header>}
+          </DimmerContent>
+        </Item>
+      )}
     </Grid.Column>
   )
 }
 
 PortfolioItem.propTypes = {
-  piece: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  children: PropTypes.element
 }
 
 PortfolioItem.defaultProps = {
-  piece: {}
+  title: '',
+  subtitle: '',
+  children: null
 }
 
 export default React.memo(PortfolioItem)
