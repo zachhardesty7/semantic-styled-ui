@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Async from 'react-promise'
 
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   Grid,
   Container,
@@ -12,7 +10,7 @@ import {
 } from 'semantic-ui-react'
 import { Blurb } from '../components'
 
-import { media, utils } from '../utils'
+import { media } from '../utils'
 
 const BlurbsSegment = styled(Segment)`
   /* default relaxed spacing */
@@ -52,7 +50,7 @@ const Blurbs = ({
   title,
   content,
   color,
-  blurbs
+  children
 }) => (
   <BlurbsSegment vertical basic secondary>
     {(title || content) && (
@@ -66,28 +64,11 @@ const Blurbs = ({
       </HeaderContainer>
     )}
     <Container textAlign='center'>
-      <Grid relaxed stackable columns={blurbs.length} divided padded>
-        {blurbs.map(blurb => (
-          <Async
-            key={utils.toJoinedTitleCase(blurb.title)}
-            promise={import('@fortawesome/free-solid-svg-icons')}
-            then={icon => (
-              <Grid.Column>
-                {/* TODO: convert to children */}
-                <Blurb
-                  icon={blurb.icon
-                    ? <FontAwesomeIcon icon={icon[`fa${utils.toJoinedTitleCase(blurb.icon)}`]} size='3x' color={color} />
-                    : null
-                  }
-                  header={blurb.title}
-                  headerAs='h4'
-                  headerColor={color}
-                >
-                  {blurb.body && blurb.body.body}
-                </Blurb>
-              </Grid.Column>
-            )}
-          />
+      <Grid relaxed stackable columns={children.length} divided padded>
+        {React.Children.map(children, child => (
+          <Grid.Column>
+            {child}
+          </Grid.Column>
         ))}
       </Grid>
     </Container>
@@ -98,18 +79,16 @@ Blurbs.propTypes = {
   title: PropTypes.string,
   color: PropTypes.string,
   content: PropTypes.node,
-  blurbs: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    icon: PropTypes.string,
-    content: PropTypes.string
-  }))
+  children: PropTypes.node
 }
 
 Blurbs.defaultProps = {
   title: '',
   color: '',
   content: '',
-  blurbs: []
+  children: []
 }
+
+Blurbs.Item = Blurb
 
 export default React.memo(Blurbs)
