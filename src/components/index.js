@@ -1,3 +1,4 @@
+import FAIcon from './FAIcon'
 import Blurb from './Blurb'
 import Navigation from './Navigation'
 import Hero from './Hero'
@@ -7,6 +8,7 @@ import SocialMediaIcons from './SocialMediaIcons'
 import PortfolioItem from './PortfolioItem'
 
 export {
+  FAIcon,
   Blurb,
   Navigation,
   Hero,

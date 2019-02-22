@@ -64,10 +64,10 @@ const Blurbs = ({
       </HeaderContainer>
     )}
     <Container textAlign='center'>
-      <Grid relaxed stackable columns={children.length} divided padded>
-        {React.Children.map(children, child => (
+      <Grid relaxed stackable columns={React.Children.count(children)} divided padded>
+        {React.Children.map(children, blurb => (
           <Grid.Column>
-            {child}
+            {blurb}
           </Grid.Column>
         ))}
       </Grid>
@@ -89,6 +89,8 @@ Blurbs.defaultProps = {
   children: []
 }
 
-Blurbs.Item = Blurb
+// prevent double-memoizing components
+const BlurbsMemo = React.memo(Blurbs)
+BlurbsMemo.Item = Blurb
 
-export default React.memo(Blurbs)
+export default BlurbsMemo

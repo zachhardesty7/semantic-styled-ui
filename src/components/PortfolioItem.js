@@ -26,7 +26,10 @@ const PortfolioImage = styled.img`
 `
 
 const PortfolioItem = ({
-  title, subtitle, children, ...rest
+  title,
+  subtitle,
+  children,
+  ...rest
 }) => {
   const [hovered, setHovered] = useState(false)
 

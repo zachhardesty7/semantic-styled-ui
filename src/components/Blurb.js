@@ -31,11 +31,11 @@ Blurb.propTypes = {
 }
 
 Blurb.defaultProps = {
-  icon: '',
+  icon: null,
   header: '',
   headerColor: 'black',
   headerAs: 'h4',
-  children: ''
+  children: null
 }
 
 export default React.memo(Blurb)

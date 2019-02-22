@@ -57,10 +57,10 @@ module.exports = {
             }
           ],
           ['babel-plugin-styled-components', {
+            pure: true,
             ssr: true
           }],
           '@babel/plugin-proposal-optional-chaining',
-
           [
             '@babel/plugin-proposal-class-properties',
             {
