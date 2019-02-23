@@ -3,7 +3,7 @@ import Navigation from './Navigation'
 import Hero from './Hero'
 import Footer from './Footer'
 import Form from './Form'
-import SocialMediaIcons from './SocialMediaIcons'
+import SocialMediaIcon from './SocialMediaIcon'
 import PortfolioItem from './PortfolioItem'
 
 export {
@@ -13,5 +13,5 @@ export {
   Footer,
   Form,
   PortfolioItem,
-  SocialMediaIcons
+  SocialMediaIcon
 }

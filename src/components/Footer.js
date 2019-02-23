@@ -8,7 +8,6 @@ import {
   Ref,
   Segment
 } from 'semantic-ui-react'
-import SocialMediaIcons from './SocialMediaIcons'
 
 import { defaultColors } from '../utils'
 
@@ -16,17 +15,6 @@ const BottomBar = styled(Segment)`
   margin-top: 0px;
   color: ${({ theme, color }) => color || theme.light || defaultColors.light};
   background-color: ${({ theme, backgroundColor }) => backgroundColor || theme.primary || defaultColors.primary};
-`
-
-const Left = styled(Grid.Column)`
-  align-self: center;
-`
-
-const FilteredRight = ({ separated, children, ...rest }) => (
-  <Grid.Column {...rest}>{children}</Grid.Column>
-)
-const Right = styled(FilteredRight)`
-  padding-top: ${({ separated }) => !separated && '1.5em'};
 `
 
 const Link = styled.a`
@@ -67,7 +55,7 @@ const Footer = ({
         el = el.parentNode
       }
     }
-  }, [sticky])
+  })
 
   return (
     // NOTE: unsure why this was changed in "semantic-ui-react": "0.85.0"
@@ -80,31 +68,29 @@ const Footer = ({
           <Grid columns={2} verticalAlign='middle'>
             {separated ? (
               <>
-                <Left width={8}>
+                <Grid.Column width={8}>
                   {`copyright © ${copyright}`}
-                </Left>
-                <Right separated={separated} width={8} floated='right' textAlign='right'>
+                </Grid.Column>
+                <Grid.Column width={8} textAlign='right'>
                   {'designed and developed by '}
                   <Link href={developerLink}>{developerName}</Link>
-                </Right>
+                </Grid.Column>
               </>
             ) : (
               <>
-                <Left width={12}>
+                <Grid.Column width={12}>
                   <div>
                     {`copyright © ${copyright}`}
                     {stacked ? <br /> : ' | '}
                     {'designed and developed by '}
-                    <a href={developerLink}>{developerName}</a>
+                    <Link href={developerLink}>{developerName}</Link>
                   </div>
-                </Left>
-                <Right separated={separated} width={4} floated='right' textAlign='right'>
-                  <SocialMediaIcons
-                    // REVIEW: convert to children
-                    inverted={inverted}
-                    icons={icons}
-                  />
-                </Right>
+                </Grid.Column>
+                <Grid.Column width={4} textAlign='right'>
+                  <Container>
+                    {icons}
+                  </Container>
+                </Grid.Column>
               </>
             )}
           </Grid>
@@ -122,12 +108,7 @@ Footer.propTypes = {
   separated: PropTypes.bool,
   developerName: PropTypes.string,
   developerLink: PropTypes.string,
-  icons: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      link: PropTypes.string
-    })
-  ),
+  icons: PropTypes.node,
   inverted: PropTypes.bool,
   sticky: PropTypes.bool,
   copyright: PropTypes.string
@@ -147,4 +128,4 @@ Footer.defaultProps = {
   copyright: ''
 }
 
-export default React.memo(Footer)
+export default Footer
