@@ -16,10 +16,6 @@ const MessageContainer = styled(Message)`
   margin-bottom: 1em;
 `
 
-const IconMargin = styled(Icon)`
-  margin-right: 0.6em;
-`
-
 const Form = ({
   name,
   fields,
@@ -115,7 +111,7 @@ const Form = ({
                     onChange={handleChange}
                     value={fieldsObj[`${utils.process(title)}`]}
                     options={options}
-                    icon={<Icon name='caret down' pull='right' title='caret down' />}
+                    icon={<Icon name='caret down' aria-label='open dropdown selector' />}
                   />
                 )
               }
@@ -151,7 +147,7 @@ const Form = ({
       <Transition.Group animation='fade down' duration={500}>
         {success && (
           <MessageContainer icon success>
-            <IconMargin icon='check' size='2x' title='check' />
+            <Icon name='check' aria-label='success' />
             <Message.Content>
               <Message.Header>Form Submitted</Message.Header>
               You&#39;ll hear back from our team shortly!
@@ -160,7 +156,7 @@ const Form = ({
         )}
         {error && (
           <MessageContainer icon error>
-            <IconMargin icon='exclamation' size='2x' title='exclamation' />
+            <Icon name='exclamation' aria-label='fail' />
             <Message.Content>
               <Message.Header>Error</Message.Header>
               Please fill out all fields!

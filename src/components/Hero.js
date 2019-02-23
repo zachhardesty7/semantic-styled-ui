@@ -200,7 +200,7 @@ const Hero = ({
             // TODO: convert to single prop and composed button
             <Button {...buttonProps} className='hero-button'>
               {buttonText}
-              <HeaderIcon icon='angle right' />
+              <HeaderIcon icon='angle right' aria-hidden />
             </Button>
           )}
         </Chunk>
