@@ -67,10 +67,14 @@ const Footer = ({
         el = el.parentNode
       }
     }
-  }, [con])
+  }, [sticky])
 
   return (
-    <Ref innerRef={con}>
+    // NOTE: unsure why this was changed in "semantic-ui-react": "0.85.0"
+    // source code seems to indicate it should evaluate to .FindNode regardless
+    // but compiler indicates that it's attempting to ref a func component
+    // https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
+    <Ref.FindNode innerRef={con}>
       <BottomBar>
         <Container>
           <Grid columns={2} verticalAlign='middle'>
@@ -106,7 +110,7 @@ const Footer = ({
           </Grid>
         </Container>
       </BottomBar>
-    </Ref>
+    </Ref.FindNode>
   )
 }
 

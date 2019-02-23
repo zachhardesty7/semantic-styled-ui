@@ -3,12 +3,11 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 import {
+  Icon,
   Form as SUIForm,
   Message,
   Transition
 } from 'semantic-ui-react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown, faExclamation, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import { utils } from '../utils'
 
@@ -17,7 +16,7 @@ const MessageContainer = styled(Message)`
   margin-bottom: 1em;
 `
 
-const FAIcon = styled(FontAwesomeIcon)`
+const IconMargin = styled(Icon)`
   margin-right: 0.6em;
 `
 
@@ -116,7 +115,7 @@ const Form = ({
                     onChange={handleChange}
                     value={fieldsObj[`${utils.process(title)}`]}
                     options={options}
-                    icon={<FontAwesomeIcon icon={faCaretDown} pull='right' title='Instagram' />}
+                    icon={<Icon name='caret down' pull='right' title='caret down' />}
                   />
                 )
               }
@@ -152,7 +151,7 @@ const Form = ({
       <Transition.Group animation='fade down' duration={500}>
         {success && (
           <MessageContainer icon success>
-            <FAIcon icon={faCheck} size='2x' title='check' />
+            <IconMargin icon='check' size='2x' title='check' />
             <Message.Content>
               <Message.Header>Form Submitted</Message.Header>
               You&#39;ll hear back from our team shortly!
@@ -161,7 +160,7 @@ const Form = ({
         )}
         {error && (
           <MessageContainer icon error>
-            <FAIcon icon={faExclamation} size='2x' title='exclamation' />
+            <IconMargin icon='exclamation' size='2x' title='exclamation' />
             <Message.Content>
               <Message.Header>Error</Message.Header>
               Please fill out all fields!

@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Async from 'react-promise'
 
 import styled from 'styled-components'
 import {
+  Icon,
   Button,
   Container,
   Header,
   Transition,
   Segment
 } from 'semantic-ui-react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { defaultColors, media } from '../utils'
 
@@ -141,7 +140,7 @@ const Logo = styled.img`
   vertical-align: bottom;
 `
 
-const FAIcon = styled(FontAwesomeIcon)`
+const HeaderIcon = styled(Icon)`
   margin-left: .75em;
   vertical-align: bottom;
   width: 1em;
@@ -201,12 +200,7 @@ const Hero = ({
             // TODO: convert to single prop and composed button
             <Button {...buttonProps} className='hero-button'>
               {buttonText}
-              <Async
-                promise={import('@fortawesome/free-solid-svg-icons/faAngleRight')}
-                then={icon => (
-                  <FAIcon icon={icon.faAngleRight} />
-                )}
-              />
+              <HeaderIcon icon='angle right' />
             </Button>
           )}
         </Chunk>

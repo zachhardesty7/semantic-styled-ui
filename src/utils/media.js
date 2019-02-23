@@ -1,5 +1,22 @@
 import { css } from 'styled-components'
 
+// FIXME: not transpiling with styled-components babel plugin instead
+// of default babel transpilation
+// https://github.com/styled-components/babel-plugin-styled-components/issues/78
+// https://www.styled-components.com/docs/tooling#babel-plugin
+
+/*
+function _templateObject6() {
+  var data = _taggedTemplateLiteralLoose(["\n    width: min-content;\n    min-width: 11em;\n    font-size: 1.4em;\n  "]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+*/
+
 /**
  * allow quick implementation of standardized media query sizes
  */

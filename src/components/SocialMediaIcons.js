@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Async from 'react-promise'
 
 import styled from 'styled-components'
-import { Container } from 'semantic-ui-react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Icon, Container } from 'semantic-ui-react'
 
 import { defaultColors, utils } from '../utils'
 
-const FAIcon = styled(FontAwesomeIcon)`
+const ColoredIcon = styled(Icon)`
   color: ${({ color, inverted, theme }) => (
     color || (
       inverted
@@ -33,19 +31,14 @@ const FAIcon = styled(FontAwesomeIcon)`
 const SocialMediaIcons = ({ icons, inverted, color }) => (
   <Container>
     {icons.map(icon => (
-      <Async
-        key={utils.toJoinedTitleCase(icon.name)}
-        promise={import('@fortawesome/free-brands-svg-icons')}
-        then={iconModule => (
-          <a href={icon.link || '#'} rel='noopener noreferrer' target={icon.link ? '_blank' : null}>
-            <FAIcon
-              inverted={inverted}
-              icon={iconModule[`fa${utils.toJoinedTitleCase(icon.name)}`]}
-              size='lg'
-            />
-          </a>
-        )}
-      />
+      // REVIEW: use Icon 'link' prop
+      <a href={icon.link || '#'} rel='noopener noreferrer' target={icon.link ? '_blank' : null}>
+        <ColoredIcon
+          inverted={inverted}
+          icon={utils.toJoinedTitleCase(icon.name)}
+          size='large'
+        />
+      </a>
     ))}
   </Container>
 )

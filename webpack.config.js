@@ -25,8 +25,7 @@ module.exports = {
       options: {
         presets: [
           [
-            '@babel/preset-env',
-            {
+            '@babel/preset-env', {
               loose: true,
               modules: false,
               useBuiltIns: 'usage',
@@ -40,8 +39,7 @@ module.exports = {
             }
           ],
           [
-            '@babel/preset-react',
-            {
+            '@babel/preset-react', {
               useBuiltIns: true,
               pragma: 'React.createElement'
             }
@@ -49,27 +47,25 @@ module.exports = {
         ],
         plugins: [
           [
-            '@quickbaseoss/babel-plugin-styled-components-css-namespace',
-            {
+            '@quickbaseoss/babel-plugin-styled-components-css-namespace', {
               cssNamespace: 'root.root.root'
               // broken in current version lol
               // "rawCssNamespace": "#___gatsby"
             }
           ],
-          ['babel-plugin-styled-components', {
-            pure: true,
-            ssr: true
-          }],
+          [
+            'babel-plugin-styled-components', {
+              pure: true
+            }
+          ],
           '@babel/plugin-proposal-optional-chaining',
           [
-            '@babel/plugin-proposal-class-properties',
-            {
+            '@babel/plugin-proposal-class-properties', {
               loose: true
             }
           ],
           '@babel/plugin-syntax-dynamic-import'
         ]
-
       }
     }]
   }
