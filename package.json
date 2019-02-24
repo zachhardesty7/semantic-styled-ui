@@ -25,7 +25,7 @@
     "link:local": "npm run link:react && npm run link:react-dom && npm run link:styled-components",
     "dev": "npm run build && npm link",
     "release": "npm run build && npm publish",
-    "build": "webpack --mode production && babel ./src --out-dir ./dist --copy-files",
+    "build": "webpack --mode=production && babel ./src --out-dir ./dist --copy-files",
     "clean": "rm -rf dist"
   },
   "sideEffects": false,
