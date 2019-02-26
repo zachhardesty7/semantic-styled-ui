@@ -7,7 +7,9 @@ import { css } from 'styled-components'
 
 /*
 function _templateObject6() {
-  var data = _taggedTemplateLiteralLoose(["\n    width: min-content;\n    min-width: 11em;\n    font-size: 1.4em;\n  "]);
+  var data =_taggedTemplateLiteralLoose(
+    ["\n    width: min-content;\n    min-width: 11em;\n    font-size: 1.4em;\n  "]
+  );
 
   _templateObject6 = function _templateObject6() {
     return data;

@@ -11,7 +11,12 @@ import {
   Segment
 } from 'semantic-ui-react'
 
-import { defaultColors, media } from '../utils'
+import {
+  defaultColors,
+  media,
+  getBackgroundColor,
+  getColor
+} from '../utils'
 
 const sizes = {
   small: {
@@ -58,19 +63,19 @@ const HeroSegment = styled(FilteredHeroSegment)`
   /* button can't be separate styled component due to "as" passing error */
   /* https://github.com/styled-components/styled-components/issues/2129 */
   .hero-button {
-    background-color: ${({ theme }) => theme.secondary || defaultColors.secondary};
+    ${getBackgroundColor('secondary')}
     transition: ease-in-out 50ms;
 
     &:hover {
       transition: ease-in-out 100ms;
-      color: ${({ theme }) => theme.secondary || defaultColors.secondary};
-      background-color: ${({ theme }) => theme.primary || defaultColors.primary};
+      ${getColor('secondary')}
+      ${getBackgroundColor('primary')}
     }
   }
 `
 
 const HeroHeader = styled.div`
-  color: ${({ theme }) => theme.white || defaultColors.white};
+  ${getColor('white')}
   font-display: fallback;
 `
 
@@ -128,8 +133,7 @@ const BackgroundImage = styled.img`
   height: 100%;
   width: 100.5%;
   z-index: 1;
-  /* FIXME: temp fix when not using gatsby image */
-  & > img {
+  img:last-child {
     object-fit: cover !important;
     object-position: 45% 55% !important;
   }
@@ -170,7 +174,6 @@ const Hero = ({
 
   return (
     <HeroSegment className={className} vertical baseline={baseline} size={size}>
-      {/* REVIEW: is the only benefit to React.Children to handle single child? */}
       {React.Children.map(children, (Background, i) => (
         <Transition
           key={Background.props.alt}

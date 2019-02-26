@@ -8,20 +8,19 @@ import {
   Ref,
   Segment
 } from 'semantic-ui-react'
-
-import { defaultColors } from '../utils'
+import { getBackgroundColor, getColor } from '../utils'
 
 const BottomBar = styled(Segment)`
   margin-top: 0px;
-  color: ${({ theme, color }) => color || theme.light || defaultColors.light};
-  background-color: ${({ theme, backgroundColor }) => backgroundColor || theme.primary || defaultColors.primary};
+  ${getColor('light')}
+  ${getBackgroundColor('primary')}
 `
 
 const Link = styled.a`
-  color: ${({ theme, color }) => color || theme.light || defaultColors.light};
   text-decoration: underline;
+  ${getColor('light')}
   &:hover {
-    color: ${({ theme, hoverColor }) => hoverColor || theme.white || defaultColors.white};
+    ${getColor('white')}
   }
 `
 

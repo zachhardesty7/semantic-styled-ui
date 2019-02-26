@@ -1,9 +1,8 @@
-import colors from './colors'
+import defaultColors from './colors'
 import media from './media'
-import * as utils from './utils'
 
 export {
-  colors as defaultColors,
-  media,
-  utils
+  defaultColors, media
 }
+export * from './helpers'
+export * from './styled'

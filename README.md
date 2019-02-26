@@ -58,7 +58,6 @@ limitations under the License.
 * [Styled Components][styledGH] - Promote declarative rendering of component styles based
   on props
 * [React][reactGH] - A declarative, efficient, and flexible JavaScript library for building user interfaces
-* [Font Awesome React][faGH] - Font Awesome 5 React component using SVG with JS
 * [React Scroll][scrollGH] - Component for animating vertical scrolling
 * [Javascript Standard JS & Airbnb Hybrid Style][standard] - Airbnb's JS ESLint config + JS Standard Style
 
@@ -69,5 +68,4 @@ limitations under the License.
 [reactGH]: https://github.com/facebook/react
 [semanticGH]: https://github.com/Semantic-Org/Semantic-UI-React
 [styledGH]: https://github.com/styled-components
-[faGH]: https://github.com/FortAwesome/react-fontawesome
 [scrollGH]: https://github.com/fisshy/react-scroll

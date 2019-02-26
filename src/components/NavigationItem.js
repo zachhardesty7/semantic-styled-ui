@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import { Menu } from 'semantic-ui-react'
 
-import { utils } from '../utils'
+import { calcDuration, process } from '../utils'
 
-// TODO: inherit as prop from parent
+// TODO: inherit 'as' prop from parent
 const NavigationItem = ({
   as,
   anchor,
@@ -13,10 +13,10 @@ const NavigationItem = ({
 }) => (
   <Menu.Item
     as={as}
-    to={`/${utils.process(children.toString())}/`}
+    to={`/${process(children.toString())}/`}
     spy={anchor || undefined}
     smooth={anchor || undefined}
-    duration={anchor ? utils.calcDuration : undefined}
+    duration={anchor ? calcDuration : undefined}
     tabIndex='0'
     name={children.toString()}
     activeClassName='active'

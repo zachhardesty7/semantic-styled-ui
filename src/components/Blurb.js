@@ -2,10 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
-import { Header as SUIHeader } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 
-const Header = styled(SUIHeader)`
-  color: ${({ headerColor }) => headerColor};
+import { getColor } from '../utils'
+
+const StyledHeader = styled(Header).attrs(({ textColor, headerAs }) => ({ color: textColor, as: headerAs }))`
+  ${getColor('primary')}
 `
 
 const Blurb = ({
@@ -17,7 +19,15 @@ const Blurb = ({
 }) => (
   <div>
     {icon}
-    <Header headerColor={headerColor} as={headerAs} textAlign='center'>{header}</Header>
+    {/* NOTE: 'color' prop is already used by SUI, avoid collision with 'textColor' */}
+    <Header
+      as={StyledHeader}
+      headerAs={headerAs}
+      textColor={headerColor}
+      textAlign='center'
+    >
+      {header}
+    </Header>
     <Header.Content>{children}</Header.Content>
   </div>
 )

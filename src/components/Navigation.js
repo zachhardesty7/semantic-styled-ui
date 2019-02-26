@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react'
 
 import NavigationItem from './NavigationItem'
-import { media, utils } from '../utils'
+import { media, calcDuration } from '../utils'
 
 const logoSizes = {
   small: 90,
@@ -68,7 +68,8 @@ const Logo = styled.div`
   width: 100% !important;
 
   /* reset weird behavior in gatsby */
-  & > img {
+  /* will work with regular img child or gatsby-image picture element */
+  img:last-child {
     position: relative !important;
     width: ${({ logoSize }) => `${logoSizes[logoSize]}px`} !important;
 
@@ -79,7 +80,6 @@ const Logo = styled.div`
 `
 
 // TODO: add sticky header
-// REVIEW: consider utilizing gatsby-source-filesystem for src url
 // TEST: various interactions of props
 const Navigation = ({
   children,
@@ -101,7 +101,7 @@ const Navigation = ({
             to='/'
             spy={anchor || undefined}
             smooth={anchor || undefined}
-            duration={anchor ? utils.calcDuration : undefined}
+            duration={anchor ? calcDuration : undefined}
             tabIndex='0'
             name='home'
             className={stacked ? 'logo-item-stacked' : undefined}

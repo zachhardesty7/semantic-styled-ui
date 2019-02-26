@@ -9,7 +9,7 @@ import {
   Transition
 } from 'semantic-ui-react'
 
-import { utils } from '../utils'
+import { process, encode } from '../utils'
 
 const MessageContainer = styled(Message)`
   display: flex !important;
@@ -29,9 +29,9 @@ const Form = ({
   const fieldsInit = {}
   fields.forEach((field) => {
     if (!field.includes(';')) {
-      fieldsInit[`${utils.process(field)}`] = ''
+      fieldsInit[`${process(field)}`] = ''
     } else {
-      fieldsInit[`${utils.process(field.slice(0, field.indexOf('(')))}`] = ''
+      fieldsInit[`${process(field.slice(0, field.indexOf('(')))}`] = ''
     }
   })
   if (textArea) fieldsInit[`text-area`] = ''
@@ -52,7 +52,7 @@ const Form = ({
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: utils.encode({ 'form-name': 'contact', ...fieldsObj })
+        body: encode({ 'form-name': 'contact', ...fieldsObj })
       })
         .catch(err => console.log(err))
 
@@ -89,7 +89,7 @@ const Form = ({
         .map((item, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
         .filter(item => item) // remove false (null) entries
         .map(fieldGroup => (
-          <SUIForm.Group key={`group-${utils.process(fieldGroup.toString())}`} widths='equal'>
+          <SUIForm.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
             {fieldGroup.map((field) => {
               if (field.includes(';')) { // custom syntax due to Contentful limitations
                 const title = field.slice(0, field.indexOf('(')) // get title
@@ -102,14 +102,14 @@ const Form = ({
 
                 return (
                   <SUIForm.Select
-                    error={error && fieldsObj[`${utils.process(title)}`] === ''}
-                    id={`${utils.process(title)}`}
-                    key={`${utils.process(title)}`}
+                    error={error && fieldsObj[`${process(title)}`] === ''}
+                    id={`${process(title)}`}
+                    key={`${process(title)}`}
                     fluid
                     placeholder={title}
                     label={title}
                     onChange={handleChange}
-                    value={fieldsObj[`${utils.process(title)}`]}
+                    value={fieldsObj[`${process(title)}`]}
                     options={options}
                     icon={<Icon name='caret down' aria-label='open dropdown selector' />}
                   />
@@ -117,14 +117,14 @@ const Form = ({
               }
               return (
                 <SUIForm.Input
-                  error={error && fieldsObj[`${utils.process(field)}`] === ''}
-                  id={`${utils.process(field)}`}
-                  key={`${utils.process(field)}`}
+                  error={error && fieldsObj[`${process(field)}`] === ''}
+                  id={`${process(field)}`}
+                  key={`${process(field)}`}
                   fluid
                   placeholder={field}
                   label={field}
                   onChange={handleChange}
-                  value={fieldsObj[`${utils.process(field)}`]}
+                  value={fieldsObj[`${process(field)}`]}
                 />
               )
             })}
