@@ -29,7 +29,7 @@ const NavMenu = styled(FilteredNavMenu)`
   justify-content: center;
 
   /* apply border to individual items instead of menu con */
-  border-bottom: none;
+  border-bottom: none !important;
   & > .item.item {
     border-bottom: 2px solid rgba(34,36,38,.15);
 

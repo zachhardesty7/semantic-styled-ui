@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   Icon,
-  Form as SUIForm,
+  Form,
   Message,
   Transition
 } from 'semantic-ui-react'
@@ -16,7 +16,7 @@ const MessageContainer = styled(Message)`
   margin-bottom: 1em;
 `
 
-const Form = ({
+const SSUIForm = ({
   name,
   fields,
   textArea,
@@ -75,7 +75,7 @@ const Form = ({
   }
 
   return (
-    <SUIForm
+    <Form
       name={name}
       onSubmit={handleSubmit}
       data-netlify='true'
@@ -89,7 +89,7 @@ const Form = ({
         .map((item, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
         .filter(item => item) // remove false (null) entries
         .map(fieldGroup => (
-          <SUIForm.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
+          <Form.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
             {fieldGroup.map((field) => {
               if (field.includes(';')) { // custom syntax due to Contentful limitations
                 const title = field.slice(0, field.indexOf('(')) // get title
@@ -101,7 +101,7 @@ const Form = ({
                 }))
 
                 return (
-                  <SUIForm.Select
+                  <Form.Select
                     error={error && fieldsObj[`${process(title)}`] === ''}
                     id={`${process(title)}`}
                     key={`${process(title)}`}
@@ -116,7 +116,7 @@ const Form = ({
                 )
               }
               return (
-                <SUIForm.Input
+                <Form.Input
                   error={error && fieldsObj[`${process(field)}`] === ''}
                   id={`${process(field)}`}
                   key={`${process(field)}`}
@@ -128,11 +128,11 @@ const Form = ({
                 />
               )
             })}
-          </SUIForm.Group>
+          </Form.Group>
         ))
       }
       {textArea && (
-        <SUIForm.TextArea
+        <Form.TextArea
           id='text-area'
           error={error && fieldsObj[`text-area`] === ''}
           autoHeight
@@ -165,12 +165,12 @@ const Form = ({
         )}
       </Transition.Group>
 
-      <SUIForm.Button type='submit'>{button}</SUIForm.Button>
-    </SUIForm>
+      <Form.Button type='submit'>{button}</Form.Button>
+    </Form>
   )
 }
 
-Form.propTypes = {
+SSUIForm.propTypes = {
   name: PropTypes.string,
   fields: PropTypes.arrayOf(PropTypes.string),
   textArea: PropTypes.oneOfType([
@@ -179,11 +179,11 @@ Form.propTypes = {
   button: PropTypes.string
 }
 
-Form.defaultProps = {
+SSUIForm.defaultProps = {
   name: '',
   fields: [],
   textArea: true,
   button: 'Submit'
 }
 
-export default React.memo(Form)
+export default React.memo(SSUIForm)
