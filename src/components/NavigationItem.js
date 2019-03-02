@@ -5,35 +5,42 @@ import { Menu } from 'semantic-ui-react'
 
 import { calcDuration, process } from '../utils'
 
-// TODO: inherit 'as' prop from parent
 const NavigationItem = ({
-  as,
+  name,
+  tag,
+  to,
   anchor,
+  stacked,
   children
 }) => (
   <Menu.Item
-    as={as}
-    to={`/${process(children.toString())}/`}
+    name={name || children.toString()}
+    as={tag}
+    to={to ? `${to}` : `/${process(children.toString())}/`}
     spy={anchor || undefined}
     smooth={anchor || undefined}
     duration={anchor ? calcDuration : undefined}
-    tabIndex='0'
-    name={children.toString()}
-    activeClassName='active'
+    activeClassName={!stacked ? 'active' : undefined}
   >
     {children}
   </Menu.Item>
 )
 
 NavigationItem.propTypes = {
-  as: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string]),
+  name: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string]),
+  to: PropTypes.string,
   anchor: PropTypes.bool,
+  stacked: PropTypes.bool,
   children: PropTypes.node
 }
 
 NavigationItem.defaultProps = {
-  as: 'div',
+  name: '',
+  tag: 'a',
+  to: '',
   anchor: false,
+  stacked: false,
   children: null
 }
 

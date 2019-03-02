@@ -6,14 +6,14 @@ import { Header } from 'semantic-ui-react'
 
 import { getColor } from '../utils'
 
-const StyledHeader = styled(Header).attrs(({ textColor, headerAs }) => ({ color: textColor, as: headerAs }))`
+const StyledHeader = styled(Header).attrs(({ textColor, tag }) => ({ color: textColor, as: tag }))`
   ${getColor('primary')}
 `
 
 const Blurb = ({
   icon,
   header,
-  headerAs,
+  tag,
   headerColor,
   children
 }) => (
@@ -22,7 +22,7 @@ const Blurb = ({
     {/* NOTE: 'color' prop is already used by SUI, avoid collision with 'textColor' */}
     <Header
       as={StyledHeader}
-      headerAs={headerAs}
+      tag={tag}
       textColor={headerColor}
       textAlign='center'
     >
@@ -36,7 +36,7 @@ Blurb.propTypes = {
   icon: PropTypes.element,
   header: PropTypes.string,
   headerColor: PropTypes.string,
-  headerAs: PropTypes.string,
+  tag: PropTypes.string,
   children: PropTypes.node
 }
 
@@ -44,7 +44,7 @@ Blurb.defaultProps = {
   icon: null,
   header: '',
   headerColor: 'black',
-  headerAs: 'h4',
+  tag: 'h4',
   children: null
 }
 

@@ -9,13 +9,8 @@ import {
 } from 'semantic-ui-react'
 
 import NavigationItem from './NavigationItem'
-import { media, calcDuration } from '../utils'
-
-const logoSizes = {
-  small: 90,
-  base: 155,
-  large: 215
-}
+import NavigationLogo from './NavigationLogo'
+import { media } from '../utils'
 
 const NavSegment = styled.header`
   padding-bottom: 0px;
@@ -29,6 +24,8 @@ const NavMenu = styled.nav`
 
   /* apply border to individual items instead of menu con */
   border-bottom: none !important;
+
+  /* TODO: move to navitem */
   & > .item.item {
     border-bottom: 2px solid rgba(34,36,38,.15);
 
@@ -47,100 +44,69 @@ const NavMenu = styled.nav`
     }
   }
 
+  & > div {
+    /* mix primary menu w secondary menu style */
+    &:hover {
+      background-color: rgba(0,0,0,.05);
+    }
+  }
+
   ${media.phone`
     a {
       font-size: 0.97rem;
     }
   `}
-
-  /* set stacked logo spacing & remove underline */
-  .logo-item-stacked.logo-item-stacked {
-    border-bottom: none;
-    margin-right: 50%;
-    margin-left: 50%;
-  }
-`
-
-const Logo = styled.div`
-  margin: 0 0.5em;
-  height: 100% !important;
-  width: 100% !important;
-
-  /* reset weird behavior in gatsby */
-  /* will work with regular img child or gatsby-image picture element */
-  img:last-child {
-    position: relative !important;
-    width: ${({ logoSize }) => `${logoSizes[logoSize]}px`} !important;
-
-    ${media.phone`
-      width: ${({ logoSize }) => `${logoSizes[logoSize] * 0.8}px`} !important;
-    `}
-  }
 `
 
 // TODO: add sticky header
 // TEST: various interactions of props
 const Navigation = ({
-  children,
-  as,
-  logo,
-  logoSize,
-  logoAlt,
-  stacked,
-  anchor,
+  tag,
   size,
-  centered
+  compact,
+  secondary,
+  pointing,
+  centered,
+  children
 }) => (
   <Segment as={NavSegment} basic vertical>
     <Container textAlign={centered ? 'center' : undefined}>
-      <Menu as={NavMenu} size={size} compact secondary pointing>
-        {logo && (
-          <Menu.Item
-            as={as}
-            to='/'
-            spy={anchor || undefined}
-            smooth={anchor || undefined}
-            duration={anchor ? calcDuration : undefined}
-            tabIndex='0'
-            name='home'
-            className={stacked ? 'logo-item-stacked' : undefined}
-            activeClassName={!stacked ? 'active' : undefined}
-          >
-            <Logo as={logo.type} {...logo.props} logoSize={logoSize} />
-          </Menu.Item>
-        )}
-
-        {children}
+      <Menu
+        as={NavMenu}
+        size={size}
+        compact={compact}
+        secondary={secondary}
+        pointing={pointing}
+      >
+        {/* update tag of all children */}
+        {React.Children.map(children, child => React.cloneElement(child, { tag }))}
       </Menu>
     </Container>
   </Segment>
 )
 
 Navigation.propTypes = {
-  as: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string]),
-  logo: PropTypes.node,
-  logoAlt: PropTypes.string,
-  stacked: PropTypes.bool,
-  logoSize: PropTypes.string,
-  anchor: PropTypes.bool,
-  size: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string]),
+  size: PropTypes.oneOf(['small', 'tiny', 'mini', 'large', 'huge', 'massive']),
+  compact: PropTypes.bool,
+  secondary: PropTypes.bool,
+  pointing: PropTypes.bool,
   centered: PropTypes.bool,
   children: PropTypes.node
 }
 
 Navigation.defaultProps = {
-  as: 'img',
-  logo: null,
-  logoAlt: '',
-  stacked: false,
-  logoSize: 'base',
-  anchor: false,
+  tag: 'a',
   size: 'large',
-  centered: false,
-  children: []
+  compact: true,
+  secondary: true,
+  pointing: true,
+  centered: true,
+  children: null
 }
 
 const NavigationMemo = React.memo(Navigation)
 NavigationMemo.Item = NavigationItem
+NavigationMemo.Logo = NavigationLogo
 
 export default NavigationMemo
