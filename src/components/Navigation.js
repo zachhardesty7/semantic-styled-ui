@@ -17,12 +17,11 @@ const logoSizes = {
   large: 215
 }
 
-const NavSegment = styled(Segment)`
+const NavSegment = styled.header`
   padding-bottom: 0px;
 `
 
-const FilteredNavMenu = ({ logoSize, children, ...rest }) => <Menu {...rest}>{children}</Menu>
-const NavMenu = styled(FilteredNavMenu)`
+const NavMenu = styled.nav`
   /* margin-bottom: 1em; */ /* REVIEW: */
   margin-bottom: 2px; /* when center aligned */
   flex-wrap: wrap;
@@ -92,9 +91,9 @@ const Navigation = ({
   size,
   centered
 }) => (
-  <NavSegment basic vertical>
+  <Segment as={NavSegment} basic vertical>
     <Container textAlign={centered ? 'center' : undefined}>
-      <NavMenu size={size} compact secondary pointing>
+      <Menu as={NavMenu} size={size} compact secondary pointing>
         {logo && (
           <Menu.Item
             as={as}
@@ -112,9 +111,9 @@ const Navigation = ({
         )}
 
         {children}
-      </NavMenu>
+      </Menu>
     </Container>
-  </NavSegment>
+  </Segment>
 )
 
 Navigation.propTypes = {

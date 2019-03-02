@@ -119,7 +119,7 @@ const HeroSubtitle = styled(HeroHeader).attrs({ as: 'h2' })`
   `}
 `
 
-const Chunk = styled.div`
+const Chunk = styled.header`
   display: inline-block;
   border-bottom: 5px solid ${({ underline, theme }) => underline || theme.accent || defaultColors.accent};
   z-index: 3;

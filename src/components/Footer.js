@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react'
 import { getBackgroundColor, getColor } from '../utils'
 
-const BottomBar = styled(Segment)`
+const BottomBar = styled.footer`
   margin-top: 0px;
   ${getColor('light')}
   ${getBackgroundColor('primary')}
@@ -62,7 +62,7 @@ const Footer = ({
     // but compiler indicates that it's attempting to ref a func component
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
     <Ref.FindNode innerRef={con}>
-      <BottomBar>
+      <Segment as={BottomBar}>
         <Container>
           <Grid columns={2} verticalAlign='middle'>
             {separated ? (
@@ -94,7 +94,7 @@ const Footer = ({
             )}
           </Grid>
         </Container>
-      </BottomBar>
+      </Segment>
     </Ref.FindNode>
   )
 }

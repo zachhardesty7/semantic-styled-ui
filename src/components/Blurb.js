@@ -17,7 +17,7 @@ const Blurb = ({
   headerColor,
   children
 }) => (
-  <div>
+  <section>
     {icon}
     {/* NOTE: 'color' prop is already used by SUI, avoid collision with 'textColor' */}
     <Header
@@ -28,8 +28,8 @@ const Blurb = ({
     >
       {header}
     </Header>
-    <Header.Content>{children}</Header.Content>
-  </div>
+    <Header.Content as='p'>{children}</Header.Content>
+  </section>
 )
 
 Blurb.propTypes = {

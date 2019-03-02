@@ -12,7 +12,7 @@ import { Blurb } from '../components'
 
 import { media } from '../utils'
 
-const BlurbsSegment = styled(Segment)`
+const BlurbsSegment = styled.section`
   /* default relaxed spacing */
   padding-top: 5em;
   padding-bottom: 5em;
@@ -52,7 +52,7 @@ const Blurbs = ({
   color,
   children
 }) => (
-  <BlurbsSegment vertical basic secondary>
+  <Segment as={BlurbsSegment} vertical basic secondary>
     {(title || content) && (
       <HeaderContainer text>
         {title && (
@@ -72,7 +72,7 @@ const Blurbs = ({
         ))}
       </Grid>
     </Container>
-  </BlurbsSegment>
+  </Segment>
 )
 
 Blurbs.propTypes = {
