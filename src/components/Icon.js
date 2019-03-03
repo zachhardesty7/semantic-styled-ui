@@ -29,7 +29,7 @@ const ColoredIcon = styled(Icon)`
   }
 `
 
-const SocialMediaIcon = ({
+const SSUIIcon = ({
   name,
   link,
   inverted,
@@ -46,18 +46,18 @@ const SocialMediaIcon = ({
   </a>
 )
 
-SocialMediaIcon.propTypes = {
+SSUIIcon.propTypes = {
   name: PropTypes.string,
   link: PropTypes.string,
   color: PropTypes.string,
   inverted: PropTypes.bool
 }
 
-SocialMediaIcon.defaultProps = {
+SSUIIcon.defaultProps = {
   name: '',
   link: '',
   color: '',
   inverted: false
 }
 
-export default React.memo(SocialMediaIcon)
+export default React.memo(SSUIIcon)

@@ -5,7 +5,7 @@ import {
   Container,
   Header
 } from 'semantic-ui-react'
-import { Form } from '../components'
+import Form from '../components/Form'
 
 const FormSection = ({
   name,

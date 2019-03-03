@@ -8,7 +8,7 @@ import {
   Segment,
   Header
 } from 'semantic-ui-react'
-import { Blurb } from '../components'
+import Blurb from '../components/Blurb'
 
 import { media } from '../utils'
 
