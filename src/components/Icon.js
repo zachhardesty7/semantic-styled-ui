@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 
 import { defaultColors } from '../utils'
@@ -23,16 +23,18 @@ const ColoredIcon = styled(FilteredIcon)`
     )
   )};
 
-  &:hover {
-    color: ${({ hoverColor, inverted, theme }) => (
+  ${({ link }) => link && css`
+    &:hover {
+      color: ${({ hoverColor, inverted, theme }) => (
     /* eslint-disable indent */
-      hoverColor || (
-        inverted
-          ? theme.white || defaultColors.white
-          : theme.secondary || defaultColors.secondary
-      )
-    )};
-  }
+        hoverColor || (
+          inverted
+            ? theme.white || defaultColors.white
+            : theme.secondary || defaultColors.secondary
+        )
+      )};
+    }
+  `}
 `
 /* eslint-enable indent */
 

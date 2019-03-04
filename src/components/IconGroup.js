@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { withNewProps } from '../utils'
 
 const Groups = styled.div`
+  ${({ compact }) => !compact && 'padding: 1em 0'};
   display: flex;
   justify-content: ${({ justify }) => (justify)};
 `
@@ -27,9 +28,10 @@ const Group = styled.div`
 const IconGroup = ({
   children,
   justify,
+  compact,
   ...rest
 }) => (
-  <Groups justify={justify}>
+  <Groups justify={justify} compact={compact}>
     {React.Children.map(children, Child => (
       <Group>
         {withNewProps(Child, rest)}
@@ -42,6 +44,7 @@ IconGroup.propTypes = {
   children: PropTypes.node.isRequired,
   justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end']),
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
+  compact: PropTypes.bool,
   hoverColor: PropTypes.string,
   color: PropTypes.string,
   inverted: PropTypes.bool
@@ -50,6 +53,7 @@ IconGroup.propTypes = {
 IconGroup.defaultProps = {
   justify: 'initial',
   size: 'large',
+  compact: false,
   color: '',
   hoverColor: '',
   inverted: false

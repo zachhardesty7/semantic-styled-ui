@@ -62,7 +62,7 @@ const Footer = ({
     // but compiler indicates that it's attempting to ref a func component
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
     <Ref.FindNode innerRef={con}>
-      <Segment as={BottomBar}>
+      <Segment color={color} backgroundColor={backgroundColor} as={BottomBar}>
         <Container>
           <Grid columns={2} verticalAlign='middle'>
             {separated ? (

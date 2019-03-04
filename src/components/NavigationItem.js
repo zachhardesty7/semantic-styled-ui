@@ -16,7 +16,7 @@ const NavigationItem = ({
   <Menu.Item
     name={name || children.toString()}
     as={tag}
-    to={to ? `${to}` : `/${process(children.toString())}/`}
+    to={to || `/${process(children.toString())}/`}
     spy={anchor || undefined}
     smooth={anchor || undefined}
     duration={anchor ? calcDuration : undefined}

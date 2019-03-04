@@ -14,6 +14,8 @@ const logoSizes = {
 }
 
 const LogoCon = styled.div`
+  align-self: center;
+  
   /* set stacked logo spacing & remove underline */
   ${({ stacked }) => stacked && css`
     margin-right: 50%;

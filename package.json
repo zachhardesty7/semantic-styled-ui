@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -25,7 +25,7 @@
     "link:semantic-ui-css": "npm link ../../../work/connectdoor/website/node_modules/semantic-ui-css",
     "link:local": "npm run link:react && npm run link:react-dom && npm run link:styled-components && npm run link:semantic-ui-css",
     "dev": "npm run build && npm link",
-    "publish": "npm run build && npm publish",
+    "pub": "npm run build && npm publish",
     "build": "rimraf dist/* && babel ./src --out-dir ./dist --copy-files"
   },
   "dependencies": {
