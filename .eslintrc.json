@@ -1,17 +1,12 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "airbnb",
     "plugin:promise/recommended",
-    "plugin:import/warnings",
-    "plugin:jsx-a11y/recommended",
-    "plugin:react/recommended",
-    "standard",
-    "standard-react"
+    "airbnb",
+    "standard"
   ],
   "plugins": [
-    "react-hooks",
-    "jsx-a11y"
+    "react-hooks"
   ],
   "globals": {
     "fetch": true
@@ -20,14 +15,14 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": [
-      1,
+      "warn",
       {
         "skipUndeclared": true
       }
     ],
-    "react/no-unescaped-entities": 0,
+    "react/no-unescaped-entities": "off",
     "react/jsx-filename-extension": [
-      1,
+      "warn",
       {
         "extensions": [
           ".js",
@@ -35,7 +30,10 @@
         ]
       }
     ],
-    "no-console": 0,
+    "standard/array-bracket-even-spacing": "off",
+    "standard/computed-property-even-spacing": "off",
+    "standard/object-curly-even-spacing": "off",
+    "no-console": "off",
     "jsx-quotes": [
       "error",
       "prefer-single"

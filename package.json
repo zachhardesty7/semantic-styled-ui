@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -15,17 +15,17 @@
   "homepage": "https://github.com/zachhardesty7/semantic-styled-ui",
   "bugs": "https://github.com/zachhardesty7/semantic-styled-ui/issues",
   "main": "dist/index.js",
-  "license": "Apache",
+  "license": "MIT",
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
   "repository": "github:zachhardesty7/semantic-styled-ui",
   "scripts": {
-    "link:react": "npm link ../../../work/gulfcorp/website/node_modules/react",
-    "link:react-dom": "npm link ../../../work/gulfcorp/website/node_modules/react-dom",
-    "link:styled-components": "npm link ../../../work/gulfcorp/website/node_modules/styled-components",
-    "link:semantic-ui-css": "npm link ../../../work/gulfcorp/website/node_modules/semantic-ui-css",
+    "link:react": "npm link ../../../work/connectdoor/website/node_modules/react",
+    "link:react-dom": "npm link ../../../work/connectdoor/website/node_modules/react-dom",
+    "link:styled-components": "npm link ../../../work/connectdoor/website/node_modules/styled-components",
+    "link:semantic-ui-css": "npm link ../../../work/connectdoor/website/node_modules/semantic-ui-css",
     "link:local": "npm run link:react && npm run link:react-dom && npm run link:styled-components && npm run link:semantic-ui-css",
     "dev": "npm run build && npm link",
-    "release": "npm run build && npm publish",
+    "publish": "npm run build && npm publish",
     "build": "rimraf dist/* && babel ./src --out-dir ./dist --copy-files"
   },
   "dependencies": {
@@ -48,9 +48,9 @@
     "eslint": "^5.15.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.4.0",

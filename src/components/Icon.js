@@ -6,8 +6,13 @@ import { Icon } from 'semantic-ui-react'
 
 import { defaultColors } from '../utils'
 
-const ColoredIcon = styled(Icon)`
-  padding: 0 0.5em;
+const FilteredIcon = ({
+  color, hoverColor, children, ...rest
+}) => <Icon {...rest}>{children}</Icon>
+
+const ColoredIcon = styled(FilteredIcon)`
+  padding: ${({ group }) => (group ? '0 0.5em' : '0')};
+
   margin: 0;
 
   color: ${({ color, inverted, theme }) => (
@@ -19,44 +24,63 @@ const ColoredIcon = styled(Icon)`
   )};
 
   &:hover {
-    color: ${({ color, inverted, theme }) => (
-    color || (
-      inverted
-        ? theme.white || defaultColors.white
-        : theme.secondary || defaultColors.secondary
-    )
-  )};
+    color: ${({ hoverColor, inverted, theme }) => (
+    /* eslint-disable indent */
+      hoverColor || (
+        inverted
+          ? theme.white || defaultColors.white
+          : theme.secondary || defaultColors.secondary
+      )
+    )};
   }
 `
+/* eslint-enable indent */
 
 const SSUIIcon = ({
   name,
   link,
+  size,
   inverted,
+  hoverColor,
   color
 }) => (
-  <a href={link || '#'} rel='noopener noreferrer' target={link ? '_blank' : null}>
+  link ? (
+    <a href={link === true ? '#' : link} rel='noopener noreferrer' target={link === true ? null : '_blank'}>
+      <ColoredIcon
+        name={name}
+        link
+        size={size}
+        inverted={inverted}
+        hoverColor={hoverColor}
+        color={color}
+      />
+    </a>
+  ) : (
     <ColoredIcon
-      link
-      color={color}
-      inverted={inverted}
       name={name}
-      size='large'
+      size={size}
+      inverted={inverted}
+      hoverColor={hoverColor}
+      color={color}
     />
-  </a>
-)
+  ))
 
 SSUIIcon.propTypes = {
-  name: PropTypes.string,
-  link: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  link: PropTypes.oneOfType([
+    PropTypes.string, PropTypes.bool
+  ]),
+  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
   color: PropTypes.string,
+  hoverColor: PropTypes.string,
   inverted: PropTypes.bool
 }
 
 SSUIIcon.defaultProps = {
-  name: '',
-  link: '',
+  link: false,
+  size: 'large',
   color: '',
+  hoverColor: '',
   inverted: false
 }
 

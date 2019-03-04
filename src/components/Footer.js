@@ -8,7 +8,7 @@ import {
   Ref,
   Segment
 } from 'semantic-ui-react'
-import { getBackgroundColor, getColor } from '../utils'
+import { getBackgroundColor, getColor, withNewProps } from '../utils'
 
 const BottomBar = styled.footer`
   margin-top: 0px;
@@ -87,7 +87,9 @@ const Footer = ({
                 </Grid.Column>
                 <Grid.Column width={4} textAlign='right'>
                   <Container>
-                    {icons}
+                    {React.Children.map(icons, Child => (
+                      withNewProps(Child, { color, hoverColor, inverted })
+                    ))}
                   </Container>
                 </Grid.Column>
               </>

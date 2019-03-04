@@ -5,6 +5,7 @@ import NavigationLogo from './components/NavigationLogo'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
 import Form from './components/Form'
+import IconGroup from './components/IconGroup'
 import Icon from './components/Icon'
 import PortfolioItem from './components/PortfolioItem'
 
@@ -20,6 +21,7 @@ export {
   Footer,
   Form,
   PortfolioItem,
+  IconGroup,
   Icon
 }
 

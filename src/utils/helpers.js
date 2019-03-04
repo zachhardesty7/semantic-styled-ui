@@ -1,3 +1,5 @@
+import { cloneElement } from 'react'
+
 /**
  * @param {string} str input
  * @returns {string} parsed into title-case with spaces removed
@@ -35,3 +37,16 @@ export const process = str => `${str.toLowerCase().replace(/\W/g, '-')}`
 export const encode = data => Object.keys(data)
   .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
   .join('&')
+
+/**
+ * soft merge new props into a React Component without
+ * overwriting the original props (preserves immutability)
+ *
+ * @param {React.ComponentType} Component target to receive new props
+ * @param {React.ComponentProps} props object of new props
+ * @returns {React.ComponentType} new cloned React Component with shallow merged props
+ */
+export const withNewProps = (Component, props) => {
+  const newProps = { ...props, ...Component.props }
+  return cloneElement(Component, { ...newProps })
+}
