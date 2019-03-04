@@ -11,6 +11,7 @@ const NavigationItem = ({
   to,
   anchor,
   stacked,
+  className,
   children
 }) => (
   <Menu.Item
@@ -21,6 +22,7 @@ const NavigationItem = ({
     smooth={anchor || undefined}
     duration={anchor ? calcDuration : undefined}
     activeClassName={!stacked ? 'active' : undefined}
+    className={className}
   >
     {children}
   </Menu.Item>
@@ -32,6 +34,7 @@ NavigationItem.propTypes = {
   to: PropTypes.string,
   anchor: PropTypes.bool,
   stacked: PropTypes.bool,
+  className: PropTypes.string,
   children: PropTypes.node
 }
 
@@ -41,6 +44,7 @@ NavigationItem.defaultProps = {
   to: '',
   anchor: false,
   stacked: false,
+  className: '',
   children: null
 }
 

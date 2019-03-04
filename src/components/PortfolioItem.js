@@ -28,13 +28,14 @@ const PortfolioImage = styled.img`
 const PortfolioItem = ({
   title,
   subtitle,
+  className,
   children,
   ...rest
 }) => {
   const [hovered, setHovered] = useState(false)
 
   return (
-    <Grid.Column {...rest}>
+    <Grid.Column className={className} {...rest}>
       {children && (
         <Item
           dimmed={hovered}
@@ -55,12 +56,14 @@ const PortfolioItem = ({
 PortfolioItem.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.element
 }
 
 PortfolioItem.defaultProps = {
   title: '',
   subtitle: '',
+  className: '',
   children: null
 }
 

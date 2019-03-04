@@ -35,7 +35,8 @@ const Footer = ({
   inverted,
   icons,
   developerName,
-  developerLink
+  developerLink,
+  className
 }) => {
   const con = useRef()
 
@@ -62,7 +63,12 @@ const Footer = ({
     // but compiler indicates that it's attempting to ref a func component
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
     <Ref.FindNode innerRef={con}>
-      <Segment color={color} backgroundColor={backgroundColor} as={BottomBar}>
+      <Segment
+        color={color}
+        backgroundColor={backgroundColor}
+        as={BottomBar}
+        className={className}
+      >
         <Container>
           <Grid columns={2} verticalAlign='middle'>
             {separated ? (
@@ -112,7 +118,8 @@ Footer.propTypes = {
   icons: PropTypes.node,
   inverted: PropTypes.bool,
   sticky: PropTypes.bool,
-  copyright: PropTypes.string
+  copyright: PropTypes.string,
+  className: PropTypes.string
 }
 
 Footer.defaultProps = {
@@ -126,7 +133,8 @@ Footer.defaultProps = {
   icons: [],
   inverted: false,
   sticky: true,
-  copyright: ''
+  copyright: '',
+  className: ''
 }
 
 export default React.memo(Footer)

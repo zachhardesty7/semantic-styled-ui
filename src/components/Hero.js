@@ -152,16 +152,16 @@ const HeaderIcon = styled(Icon)`
 `
 
 const Hero = ({
-  className,
   logo,
   title,
   subtitle,
   baseline,
   underline,
   size,
-  children,
   buttonText,
-  buttonProps
+  buttonProps,
+  className,
+  children
 }) => {
   const [curBackground, setCurBackground] = useState(0)
   useEffect(() => {
@@ -173,7 +173,12 @@ const Hero = ({
   })
 
   return (
-    <HeroSegment className={className} vertical baseline={baseline} size={size}>
+    <HeroSegment
+      vertical
+      baseline={baseline}
+      size={size}
+      className={className}
+    >
       {React.Children.map(children, (Background, i) => (
         <Transition
           key={Background.props.alt}
@@ -213,7 +218,6 @@ const Hero = ({
 }
 
 Hero.propTypes = {
-  className: PropTypes.string,
   baseline: PropTypes.oneOf(['top', 'bottom']),
   underline: PropTypes.string,
   size: PropTypes.oneOf(['compact', 'base', 'relaxed']),
@@ -222,7 +226,6 @@ Hero.propTypes = {
   ]),
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  children: PropTypes.node,
   buttonText: PropTypes.string,
   buttonProps: PropTypes.shape({
     basic: PropTypes.bool,
@@ -233,20 +236,22 @@ Hero.propTypes = {
     to: PropTypes.string,
     smooth: PropTypes.bool,
     duration: PropTypes.func
-  })
+  }),
+  className: PropTypes.string,
+  children: PropTypes.node
 }
 
 Hero.defaultProps = {
-  className: '',
   baseline: false,
   underline: null,
   size: 'base',
   logo: null,
   title: '',
   subtitle: '',
-  children: null,
   buttonText: '',
-  buttonProps: null
+  buttonProps: null,
+  className: '',
+  children: null
 }
 
 export default React.memo(Hero)

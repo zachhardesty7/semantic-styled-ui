@@ -50,9 +50,16 @@ const Blurbs = ({
   title,
   content,
   color,
+  className,
   children
 }) => (
-  <Segment as={BlurbsSegment} vertical basic secondary>
+  <Segment
+    as={BlurbsSegment}
+    vertical
+    basic
+    secondary
+    className={className}
+  >
     {(title || content) && (
       <HeaderContainer text>
         {title && (
@@ -79,6 +86,7 @@ Blurbs.propTypes = {
   title: PropTypes.string,
   color: PropTypes.string,
   content: PropTypes.node,
+  className: PropTypes.string,
   children: PropTypes.node
 }
 
@@ -86,6 +94,7 @@ Blurbs.defaultProps = {
   title: '',
   color: '',
   content: '',
+  className: '',
   children: []
 }
 

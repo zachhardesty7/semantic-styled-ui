@@ -44,10 +44,16 @@ const SSUIIcon = ({
   size,
   inverted,
   hoverColor,
-  color
+  color,
+  className
 }) => (
   link ? (
-    <a href={link === true ? '#' : link} rel='noopener noreferrer' target={link === true ? null : '_blank'}>
+    <a
+      href={link === true ? '#' : link}
+      rel='noopener noreferrer'
+      target={link === true ? null : '_blank'}
+      className={className}
+    >
       <ColoredIcon
         name={name}
         link
@@ -64,6 +70,7 @@ const SSUIIcon = ({
       inverted={inverted}
       hoverColor={hoverColor}
       color={color}
+      className={className}
     />
   ))
 
@@ -75,7 +82,8 @@ SSUIIcon.propTypes = {
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
   color: PropTypes.string,
   hoverColor: PropTypes.string,
-  inverted: PropTypes.bool
+  inverted: PropTypes.bool,
+  className: PropTypes.string
 }
 
 SSUIIcon.defaultProps = {
@@ -83,7 +91,8 @@ SSUIIcon.defaultProps = {
   size: 'large',
   color: '',
   hoverColor: '',
-  inverted: false
+  inverted: false,
+  className: ''
 }
 
 export default React.memo(SSUIIcon)

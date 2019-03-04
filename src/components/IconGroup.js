@@ -29,9 +29,14 @@ const IconGroup = ({
   children,
   justify,
   compact,
+  className,
   ...rest
 }) => (
-  <Groups justify={justify} compact={compact}>
+  <Groups
+    justify={justify}
+    compact={compact}
+    className={className}
+  >
     {React.Children.map(children, Child => (
       <Group>
         {withNewProps(Child, rest)}
@@ -47,7 +52,8 @@ IconGroup.propTypes = {
   compact: PropTypes.bool,
   hoverColor: PropTypes.string,
   color: PropTypes.string,
-  inverted: PropTypes.bool
+  inverted: PropTypes.bool,
+  className: PropTypes.string
 }
 
 IconGroup.defaultProps = {
@@ -56,7 +62,8 @@ IconGroup.defaultProps = {
   compact: false,
   color: '',
   hoverColor: '',
-  inverted: false
+  inverted: false,
+  className: ''
 }
 
 export default React.memo(IconGroup)

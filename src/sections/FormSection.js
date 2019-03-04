@@ -14,9 +14,10 @@ const FormSection = ({
   content,
   fields,
   textArea,
-  button
+  button,
+  className
 }) => (
-  <Container text>
+  <Container text className={className}>
     <Container text>
       {header && (
         <Header as={headerAs} textAlign='center'>{header}</Header>
@@ -44,7 +45,8 @@ FormSection.propTypes = {
   textArea: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
-  button: PropTypes.string
+  button: PropTypes.string,
+  className: PropTypes.string
 }
 
 FormSection.defaultProps = {
@@ -54,7 +56,8 @@ FormSection.defaultProps = {
   content: [],
   fields: [],
   textArea: true,
-  button: 'Submit'
+  button: 'Submit',
+  className: ''
 }
 
 export default React.memo(FormSection)

@@ -20,7 +20,8 @@ const SSUIForm = ({
   name,
   fields,
   textArea,
-  button
+  button,
+  className
 }) => {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
@@ -82,6 +83,7 @@ const SSUIForm = ({
       data-netlify-honeypot='bot-field'
       success={success}
       error={error}
+      className={className}
     >
       {/* limit bot responses */}
       <input type='hidden' name='bot-field' />
@@ -111,7 +113,6 @@ const SSUIForm = ({
                     onChange={handleChange}
                     value={fieldsObj[`${process(title)}`]}
                     options={options}
-                    icon={<Icon name='caret down' aria-label='open dropdown selector' />}
                   />
                 )
               }
@@ -176,14 +177,16 @@ SSUIForm.propTypes = {
   textArea: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
-  button: PropTypes.string
+  button: PropTypes.string,
+  className: PropTypes.string
 }
 
 SSUIForm.defaultProps = {
   name: '',
   fields: [],
   textArea: true,
-  button: 'Submit'
+  button: 'Submit',
+  className: ''
 }
 
 export default React.memo(SSUIForm)

@@ -52,9 +52,10 @@ const NavigationLogo = ({
   anchor,
   stacked,
   logoSize,
+  className,
   children
 }) => (
-  <LogoCon stacked={stacked}>
+  <LogoCon stacked={stacked} className={className}>
     <NavigationItem
       name={name}
       tag={tag}
@@ -74,6 +75,7 @@ NavigationLogo.propTypes = {
   anchor: PropTypes.bool,
   stacked: PropTypes.bool,
   logoSize: PropTypes.oneOf(['small', 'base', 'large']),
+  className: PropTypes.string,
   children: PropTypes.element.isRequired
 }
 
@@ -83,7 +85,8 @@ NavigationLogo.defaultProps = {
   to: '/',
   anchor: false,
   stacked: false,
-  logoSize: 'base'
+  logoSize: 'base',
+  className: ''
 }
 
 export default React.memo(NavigationLogo)

@@ -71,9 +71,16 @@ const Navigation = ({
   secondary,
   pointing,
   centered,
+  className,
   children
 }) => (
-  <Segment as={NavSegment} pointing={pointing} basic vertical>
+  <Segment
+    as={NavSegment}
+    pointing={pointing}
+    basic
+    vertical
+    className={className}
+  >
     <Container textAlign={centered ? 'center' : undefined}>
       <Menu
         as={NavMenu}
@@ -98,6 +105,7 @@ Navigation.propTypes = {
   secondary: PropTypes.bool,
   pointing: PropTypes.bool,
   centered: PropTypes.bool,
+  className: PropTypes.string,
   children: PropTypes.node
 }
 
@@ -109,6 +117,7 @@ Navigation.defaultProps = {
   secondary: true,
   pointing: true,
   centered: true,
+  className: '',
   children: null
 }
 
