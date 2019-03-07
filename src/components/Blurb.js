@@ -4,9 +4,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Header } from 'semantic-ui-react'
 
-import { getColor } from '../utils'
+import { getColor, applyTag, withoutProps } from '../utils'
 
-const StyledHeader = styled(Header).attrs(({ textColor, tag }) => ({ color: textColor, as: tag }))`
+const FilteredStyledHeader = applyTag(withoutProps(Header, ['color', 'backgroundColor']))
+const StyledHeader = styled(FilteredStyledHeader)`
   ${getColor('primary')}
 `
 
@@ -14,17 +15,16 @@ const Blurb = ({
   icon,
   header,
   tag,
-  headerColor,
+  color,
   className,
   children
 }) => (
   <section className={className}>
     {icon}
-    {/* NOTE: 'color' prop is already used by SUI, avoid collision with 'textColor' */}
     <Header
       as={StyledHeader}
       tag={tag}
-      textColor={headerColor}
+      color={color}
       textAlign='center'
     >
       {header}
@@ -36,7 +36,7 @@ const Blurb = ({
 Blurb.propTypes = {
   icon: PropTypes.element,
   header: PropTypes.string,
-  headerColor: PropTypes.string,
+  color: PropTypes.string,
   tag: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node
@@ -45,7 +45,7 @@ Blurb.propTypes = {
 Blurb.defaultProps = {
   icon: null,
   header: '',
-  headerColor: 'black',
+  color: 'black',
   tag: 'h4',
   className: '',
   children: null

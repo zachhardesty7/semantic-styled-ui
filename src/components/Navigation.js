@@ -8,9 +8,10 @@ import {
   Menu
 } from 'semantic-ui-react'
 
+import { media } from '../utils'
+
 import NavigationItem from './NavigationItem'
 import NavigationLogo from './NavigationLogo'
-import { media } from '../utils'
 
 const NavSegment = styled.header`
   ${({ pointing }) => pointing && 'padding-bottom: 0px'};

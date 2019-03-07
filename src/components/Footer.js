@@ -8,9 +8,15 @@ import {
   Ref,
   Segment
 } from 'semantic-ui-react'
-import { getBackgroundColor, getColor, withNewProps } from '../utils'
+import {
+  getBackgroundColor,
+  getColor,
+  withNewProps,
+  withoutProps
+} from '../utils'
 
-const BottomBar = styled.footer`
+const FilteredBottomBar = withoutProps('footer', ['color', 'backgroundColor'])
+const BottomBar = styled(FilteredBottomBar)`
   margin-top: 0px;
   ${getColor('light')}
   ${getBackgroundColor('primary')}
@@ -64,9 +70,9 @@ const Footer = ({
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
     <Ref.FindNode innerRef={con}>
       <Segment
+        as={BottomBar}
         color={color}
         backgroundColor={backgroundColor}
-        as={BottomBar}
         className={className}
       >
         <Container>

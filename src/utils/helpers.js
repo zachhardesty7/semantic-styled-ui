@@ -1,4 +1,5 @@
-import { cloneElement } from 'react'
+/* eslint-disable react/no-multi-comp */
+import React from 'react'
 
 /**
  * @param {string} str input
@@ -48,5 +49,35 @@ export const encode = data => Object.keys(data)
  */
 export const withNewProps = (Component, props) => {
   const newProps = { ...props, ...Component.props }
-  return cloneElement(Component, { ...newProps })
+  return React.cloneElement(Component, { ...newProps })
 }
+
+/**
+ * facilitate preventing props from reaching DOM elements
+ * by providing styled-components a prop filter function
+ *
+ * @param {React.ComponentType} Component target to control prop flow of
+ * @param {string[]} propKeys array of prop keys to control
+ * @returns {Function} filter function to screen for passed props
+ */
+export const withoutProps = (Component, propKeys = []) => (
+  React.forwardRef(({ children, ...rest }, ref) => {
+    const filtered = Object.fromEntries(Object.entries(rest)
+      .filter(([key, val]) => !propKeys.includes(key)))
+
+    return <Component ref={ref} {...filtered}>{children}</Component>
+  })
+)
+
+/**
+ * apply the "tag" prop to the "as" prop without overwriting
+ * styled-components behavior and pass Ref
+ *
+ * @param {React.ComponentType} Component target to control prop flow of
+ * @returns {Function} function to apply "tag" to "as"
+ */
+export const applyTag = Component => (
+  React.forwardRef(({ tag, children, ...rest }, ref) => (
+    <Component ref={ref} as={tag} {...rest}>{children}</Component>
+  ))
+)

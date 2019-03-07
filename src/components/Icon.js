@@ -4,12 +4,9 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 
-import { defaultColors } from '../utils'
+import { defaultColors, withoutProps } from '../utils'
 
-const FilteredIcon = ({
-  color, hoverColor, children, ...rest
-}) => <Icon {...rest}>{children}</Icon>
-
+const FilteredIcon = withoutProps(Icon, ['color', 'hoverColor'])
 const ColoredIcon = styled(FilteredIcon)`
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
 
@@ -43,8 +40,8 @@ const SSUIIcon = ({
   link,
   size,
   inverted,
-  hoverColor,
   color,
+  hoverColor,
   className
 }) => (
   link ? (
@@ -59,8 +56,8 @@ const SSUIIcon = ({
         link
         size={size}
         inverted={inverted}
-        hoverColor={hoverColor}
         color={color}
+        hoverColor={hoverColor}
       />
     </a>
   ) : (
@@ -68,8 +65,8 @@ const SSUIIcon = ({
       name={name}
       size={size}
       inverted={inverted}
-      hoverColor={hoverColor}
       color={color}
+      hoverColor={hoverColor}
       className={className}
     />
   ))

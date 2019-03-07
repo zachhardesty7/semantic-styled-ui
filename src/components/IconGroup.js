@@ -8,7 +8,7 @@ import { withNewProps } from '../utils'
 const Groups = styled.div`
   ${({ compact }) => !compact && 'padding: 1em 0'};
   display: flex;
-  justify-content: ${({ justify }) => (justify)};
+  justify-content: ${({ justify }) => justify};
 `
 
 const Group = styled.div`
