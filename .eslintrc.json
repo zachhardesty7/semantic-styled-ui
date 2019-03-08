@@ -38,6 +38,12 @@
       "error",
       "prefer-single"
     ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
     "space-before-function-paren": [
       "error",
       "never"

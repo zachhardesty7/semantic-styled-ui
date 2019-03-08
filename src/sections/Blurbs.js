@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
+
 import {
-  Grid,
   Container,
-  Segment,
-  Header
+  Grid,
+  Header,
+  Segment
 } from 'semantic-ui-react'
 import Blurb from '../components/Blurb'
 

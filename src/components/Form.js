@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
+
 import {
-  Icon,
   Form,
+  Icon,
   Message,
   Transition
 } from 'semantic-ui-react'
 
-import { process, encode } from '../utils'
+import { encode, process } from '../utils'
 
 const MessageContainer = styled(Message)`
   display: flex !important;

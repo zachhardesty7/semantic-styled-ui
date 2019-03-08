@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
+
 import {
-  Icon,
-  Button,
   Container,
   Header,
-  Transition,
-  Segment
+  Segment,
+  Transition
 } from 'semantic-ui-react'
+import HeroButton from './HeroButton'
 
 import {
   defaultColors,
-  media,
   getBackgroundColor,
-  getColor
+  getColor,
+  media,
+  withoutProps
 } from '../utils'
 
 const sizes = {

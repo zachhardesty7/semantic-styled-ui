@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
+
 import { Header } from 'semantic-ui-react'
 
-import { getColor, applyTag, withoutProps } from '../utils'
+import { applyTag, getColor, withoutProps } from '../utils'
 
 const FilteredStyledHeader = applyTag(withoutProps(Header, ['color', 'backgroundColor']))
 const StyledHeader = styled(FilteredStyledHeader)`

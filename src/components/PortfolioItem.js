@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
-import {
-  Dimmer,
-  Header,
-  Grid
-} from 'semantic-ui-react'
+
+import { Dimmer, Grid, Header } from 'semantic-ui-react'
 
 const Item = styled(Dimmer.Dimmable)`
   height: 100%;

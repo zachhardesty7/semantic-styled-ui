@@ -1,17 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import styled, { css } from 'styled-components'
-import {
-  Segment,
-  Container,
-  Menu
-} from 'semantic-ui-react'
 
-import { media } from '../utils'
-
+import { Container, Menu, Segment } from 'semantic-ui-react'
 import NavigationItem from './NavigationItem'
 import NavigationLogo from './NavigationLogo'
+
+import { media } from '../utils'
 
 const NavSegment = styled.header`
   ${({ pointing }) => pointing && 'padding-bottom: 0px'};

@@ -1,16 +1,19 @@
-import React, { useRef, useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
+
 import {
   Container,
   Grid,
   Ref,
   Segment
 } from 'semantic-ui-react'
+
 import {
+  applyTag,
   getBackgroundColor,
   getColor,
+  getHoverColor,
   withNewProps,
   withoutProps
 } from '../utils'
