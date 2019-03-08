@@ -32,6 +32,13 @@ export const calcDuration = (scrollDistanceInPx) => {
 export const process = str => `${str.toLowerCase().replace(/\W/g, '-')}`
 
 /**
+ * camelCaseToDash('userId') => "user-id"
+ * camelCaseToDash('waitAMoment') => "wait-a-moment"
+ * camelCaseToDash('TurboPascal') => "turbo-pascal"
+ */
+export const camelToKebab = str => str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
+
+/**
  * @param {object} data key-value pairs of strings from form submission
  * @returns {string} URL encoded data
  */

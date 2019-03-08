@@ -22,13 +22,7 @@ module.exports = {
     ]
   ],
   plugins: [
-    [
-      '@quickbaseoss/babel-plugin-styled-components-css-namespace', {
-        cssNamespace: 'root.root.root'
-        // broken in current version lol
-        // "rawCssNamespace": "#___gatsby"
-      }
-    ],
+    '@quickbaseoss/babel-plugin-styled-components-css-namespace',
     [
       'babel-plugin-styled-components', {
         pure: true,
@@ -42,11 +36,6 @@ module.exports = {
       }
     ],
     '@babel/plugin-proposal-optional-chaining',
-    [
-      '@babel/plugin-proposal-class-properties', {
-        loose: true
-      }
-    ],
     '@babel/plugin-syntax-dynamic-import'
   ]
 }

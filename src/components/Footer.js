@@ -18,7 +18,7 @@ import {
   withoutProps
 } from '../utils'
 
-const FilteredBottomBar = withoutProps('footer', ['color', 'backgroundColor'])
+const FilteredBottomBar = applyTag(withoutProps(Segment, ['color', 'backgroundColor']))
 const BottomBar = styled(FilteredBottomBar)`
   margin-top: 0px;
   ${getColor('light')}
@@ -28,9 +28,7 @@ const BottomBar = styled(FilteredBottomBar)`
 const Link = styled.a`
   text-decoration: underline;
   ${getColor('light')}
-  &:hover {
-    ${getColor('white')}
-  }
+  ${getHoverColor('white')}
 `
 
 const Footer = ({
@@ -72,8 +70,8 @@ const Footer = ({
     // but compiler indicates that it's attempting to ref a func component
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
     <Ref.FindNode innerRef={con}>
-      <Segment
-        as={BottomBar}
+      <BottomBar
+        tag='footer'
         color={color}
         backgroundColor={backgroundColor}
         className={className}
@@ -111,7 +109,7 @@ const Footer = ({
             )}
           </Grid>
         </Container>
-      </Segment>
+      </BottomBar>
     </Ref.FindNode>
   )
 }
