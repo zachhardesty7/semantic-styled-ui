@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { Container, Menu, Segment } from 'semantic-ui-react'
 import NavigationItem from '../components/NavigationItem'
 import NavigationLogo from '../components/NavigationLogo'
 
-import { applyTag, media } from '../utils'
+import { applyTag, withNewProps } from '../utils'
 
 const NavSegmentTagged = applyTag(Segment)
 const NavSegment = styled(NavSegmentTagged)`
@@ -18,49 +18,9 @@ const NavMenu = styled(NavMenuTagged)`
   /* margin-bottom: 1em; */ /* REVIEW: */
   flex-wrap: wrap;
   justify-content: center;
-
-  ${({ pointing }) => pointing && css`
-    margin-bottom: 2px; /* for bottom border */
-
-    /* apply border to individual items instead of menu con */
-    border-bottom: none !important;
-
-    /* TODO: move to NavItem */
-    & > .item.item {
-      border-bottom: 2px solid rgba(34,36,38,.15);
-
-      &.active {
-        border-bottom: 2px solid #1b1c1d;
-      }
-
-      /* remove rounded edge that distorts underline */
-      &:last-child {
-        border-radius: 0;
-      }
-
-      /* mix primary menu w secondary menu style */
-      &:hover {
-        background-color: rgba(0,0,0,.05);
-      }
-    }
-
-    & > div {
-      /* mix primary menu w secondary menu style */
-      &:hover {
-        background-color: rgba(0,0,0,.05);
-      }
-    }
-  `}
-
-  ${media.phone`
-    a {
-      font-size: 0.97rem;
-    }
-  `}
 `
 
 // TODO: add sticky header
-// TEST: various interactions of props
 const Navigation = ({
   tag,
   size,
@@ -88,15 +48,18 @@ const Navigation = ({
         secondary={secondary}
         pointing={pointing}
       >
-        {/* update tag of all children */}
-        {React.Children.map(children, Child => React.cloneElement(Child, { tag }))}
+        {/* apply tag && pointing to all children */}
+        {React.Children.map(children, Child => withNewProps(Child, { tag, pointing }))}
       </NavMenu>
     </Container>
   </NavSegment>
 )
 
 Navigation.propTypes = {
-  tag: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string]),
+  tag: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.elementType
+  ]),
   size: PropTypes.oneOf(['small', 'tiny', 'mini', 'large', 'huge', 'massive']),
   text: PropTypes.bool,
   compact: PropTypes.bool,

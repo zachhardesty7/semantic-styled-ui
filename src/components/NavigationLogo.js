@@ -69,7 +69,10 @@ const NavigationLogo = ({
 
 NavigationLogo.propTypes = {
   name: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.elementType, PropTypes.string]),
+  tag: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.elementType
+  ]),
   to: PropTypes.string,
   anchor: PropTypes.bool,
   stacked: PropTypes.bool,

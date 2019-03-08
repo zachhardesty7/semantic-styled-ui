@@ -26,8 +26,7 @@ const getHoverProperty = property => preset => ({ [property]: val, theme }) => (
   }
 `)
 
-// TODO: incorrectly applies color to as html property tag
-// https://github.com/jxnblk/styled-system/tree/master/packages/clean-tag
+// NOTE: use withoutProps helper to remove DOM tags
 
 /**
  * applies css property 'color' to styled-component with backup preset from theme

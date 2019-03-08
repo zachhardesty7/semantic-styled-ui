@@ -85,7 +85,7 @@ const SSUIForm = ({
       error={error}
       className={className}
     >
-      {/* limit bot responses */}
+      {/* limit bot responses with Netlify */}
       <input type='hidden' name='bot-field' />
       {fields
         .map((item, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
@@ -94,10 +94,10 @@ const SSUIForm = ({
           <Form.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
             {fieldGroup.map((field) => {
               if (field.includes(';')) { // custom syntax due to Contentful limitations
-                const title = field.slice(0, field.indexOf('(')) // get title
+                const title = field.slice(0, field.indexOf('('))
                 let options = field.slice(field.indexOf('(') + 1, field.indexOf(')')) // remove title
-                options = options.split('; ') // -> arr
-                options = options.map(op => ({ // --> arr of obj
+                options = options.split('; ')
+                options = options.map(op => ({
                   text: op,
                   value: op
                 }))

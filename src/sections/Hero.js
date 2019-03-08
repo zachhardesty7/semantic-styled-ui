@@ -13,7 +13,6 @@ import HeroButton from '../components/HeroButton'
 import {
   applyTag,
   defaultColors,
-  getBackgroundColor,
   getColor,
   media,
   withoutProps
@@ -63,19 +62,6 @@ const HeroSegment = styled(FilteredHeroSegment)`
     position: absolute;
     z-index: 2 !important;
   }
-
-  /* button can't be separate styled component due to "as" passing error */
-  /* https://github.com/styled-components/styled-components/issues/2129 */
-  .hero-button {
-    ${getBackgroundColor('secondary')}
-    transition: ease-in-out 50ms;
-
-    &:hover {
-      transition: ease-in-out 100ms;
-      ${getColor('secondary')}
-      ${getBackgroundColor('primary')}
-    }
-  }
 `
 
 const HeroHeaderTagged = applyTag(Header)
@@ -85,14 +71,6 @@ const HeroHeader = styled(HeroHeaderTagged)`
   font-weight: normal !important;
 `
 
-/* REVIEW: workaround for "as" issue
-
-const handleAs = Comp => ({ innerAs, ...rest }) => <Comp as={innerAs} {...rest} />;
-
-const CustomLinkTab = styled(handleAs(NavBarTab))`
-  ...
-`;
-*/
 const HeroTitle = styled(HeroHeader)`
   && {
     ${({ inlineLogo }) => inlineLogo && 'display: inline-block'};
@@ -159,7 +137,6 @@ const Logo = styled.img`
   margin-right: 1em;
 `
 
-// TODO: update default props
 const Hero = ({
   overlay,
   logo,

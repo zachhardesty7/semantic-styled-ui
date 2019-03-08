@@ -99,7 +99,7 @@ Blurbs.defaultProps = {
   children: null
 }
 
-// prevent double-memoizing components
+// NOTE: prevent error when attempting to double memoize components
 const BlurbsMemo = React.memo(Blurbs)
 BlurbsMemo.Item = Blurb
 
