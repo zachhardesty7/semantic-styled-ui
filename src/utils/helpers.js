@@ -2,7 +2,34 @@
 import React from 'react'
 
 /**
- * @param {string} str input
+ * shim for Object.fromEntries()
+ *
+ * @param {[[string, any]]} arr array of arrays of key, value pairs
+ * @returns obj with key, value pairs assigned
+ */
+function ObjectFromEntries(arr) {
+  const obj = {}
+
+  arr.forEach((pair) => {
+    if (Object(pair) !== pair) {
+      throw new TypeError('iterable for fromEntries should yield objects')
+    }
+
+    const { 0: key, 1: val } = pair
+
+    Object.defineProperty(obj, key, {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: val
+    })
+  })
+
+  return obj
+}
+
+/**
+ * @param {string} str arbitrary input
  * @returns {string} parsed into title-case with spaces removed
  */
 export const toJoinedTitleCase = str => (
@@ -26,7 +53,7 @@ export const calcDuration = (scrollDistanceInPx) => {
 }
 
 /**
- * @param {string} str arbitrary string
+ * @param {string} str arbitrary input
  * @returns {string} parsed string without spaces and lowercase
  */
 export const process = str => `${str.toLowerCase().replace(/\W/g, '-')}`
@@ -69,7 +96,7 @@ export const withNewProps = (Component, props) => {
  */
 export const withoutProps = (Component, propKeys = []) => (
   React.forwardRef(({ children, ...rest }, ref) => {
-    const filtered = Object.fromEntries(Object.entries(rest)
+    const filtered = ObjectFromEntries(Object.entries(rest)
       .filter(([key, val]) => !propKeys.includes(key)))
 
     return <Component ref={ref} {...filtered}>{children}</Component>

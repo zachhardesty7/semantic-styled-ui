@@ -30,7 +30,6 @@ module.exports = {
         displayName: false
       }
     ],
-    'transform-object-from-entries',
     [
       '@babel/plugin-transform-template-literals', {
         loose: true
