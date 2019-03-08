@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Container, Menu, Segment } from 'semantic-ui-react'
-import NavigationItem from './NavigationItem'
-import NavigationLogo from './NavigationLogo'
+import NavigationItem from '../components/NavigationItem'
+import NavigationLogo from '../components/NavigationLogo'
 
 import { media } from '../utils'
 
@@ -107,7 +107,7 @@ Navigation.propTypes = {
 
 Navigation.defaultProps = {
   tag: 'a',
-  size: 'large',
+  size: undefined,
   text: false,
   compact: true,
   secondary: true,

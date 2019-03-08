@@ -83,19 +83,19 @@ const Blurbs = ({
 )
 
 Blurbs.propTypes = {
-  title: PropTypes.string,
-  color: PropTypes.string,
+  title: PropTypes.node,
   content: PropTypes.node,
+  color: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node
 }
 
 Blurbs.defaultProps = {
-  title: '',
+  title: null,
+  content: null,
   color: '',
-  content: '',
   className: '',
-  children: []
+  children: null
 }
 
 // prevent double-memoizing components

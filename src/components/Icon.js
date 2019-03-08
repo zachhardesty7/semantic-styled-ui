@@ -18,7 +18,7 @@ const iconMap = {
   massive: '8em'
 }
 
-const FilteredIcon = withoutProps(Icon, ['color', 'hoverColor', 'size'])
+const FilteredIcon = withoutProps(Icon, ['color', 'colorHover', 'size'])
 const ColoredIcon = styled(FilteredIcon)`
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
@@ -34,9 +34,9 @@ const ColoredIcon = styled(FilteredIcon)`
 
   ${({ link }) => link && css`
     &:hover {
-      color: ${({ hoverColor, inverted, theme }) => (
+      color: ${({ colorHover, inverted, theme }) => (
     /* eslint-disable indent */
-        hoverColor || (
+        colorHover || (
           inverted
             ? theme.white || defaultColors.white
             : theme.secondary || defaultColors.secondary
@@ -53,7 +53,7 @@ const SSUIIcon = ({
   size,
   inverted,
   color,
-  hoverColor,
+  colorHover,
   className
 }) => (
   link ? (
@@ -69,7 +69,7 @@ const SSUIIcon = ({
         size={size}
         inverted={inverted}
         color={color}
-        hoverColor={hoverColor}
+        colorHover={colorHover}
       />
     </a>
   ) : (
@@ -78,7 +78,7 @@ const SSUIIcon = ({
       size={size}
       inverted={inverted}
       color={color}
-      hoverColor={hoverColor}
+      colorHover={colorHover}
       className={className}
     />
   ))
@@ -88,18 +88,18 @@ SSUIIcon.propTypes = {
   link: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
-  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'bigger', 'huge', 'massive']),
+  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'medium', 'large', 'big', 'bigger', 'huge', 'massive']),
   color: PropTypes.string,
-  hoverColor: PropTypes.string,
+  colorHover: PropTypes.string,
   inverted: PropTypes.bool,
   className: PropTypes.string
 }
 
 SSUIIcon.defaultProps = {
   link: false,
-  size: undefined,
+  size: 'medium',
   color: '',
-  hoverColor: '',
+  colorHover: '',
   inverted: false,
   className: ''
 }

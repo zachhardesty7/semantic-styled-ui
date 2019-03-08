@@ -86,6 +86,9 @@ HeroButton.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(['left', 'right'])
   ]),
+  compact: PropTypes.bool,
+  color: PropTypes.string,
+  colorHover: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node
 }
@@ -95,6 +98,9 @@ HeroButton.defaultProps = {
   tag: 'a',
   anchor: false,
   pointing: 'right',
+  compact: false,
+  color: '',
+  colorHover: '',
   className: '',
   children: null
 }

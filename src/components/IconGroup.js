@@ -25,10 +25,10 @@ const Group = styled.div`
 `
 
 const IconGroup = ({
-  children,
   justify,
   compact,
   className,
+  children,
   ...rest
 }) => (
   <Groups
@@ -45,23 +45,15 @@ const IconGroup = ({
 )
 
 IconGroup.propTypes = {
-  children: PropTypes.node.isRequired,
   justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end']),
-  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
   compact: PropTypes.bool,
-  hoverColor: PropTypes.string,
-  color: PropTypes.string,
-  inverted: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
 }
 
 IconGroup.defaultProps = {
   justify: 'initial',
-  size: 'large',
   compact: false,
-  color: '',
-  hoverColor: '',
-  inverted: false,
   className: ''
 }
 

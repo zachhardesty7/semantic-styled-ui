@@ -137,7 +137,7 @@ Footer.defaultProps = {
   separated: false,
   developerName: '',
   developerLink: '',
-  icons: [],
+  icons: null,
   inverted: false,
   sticky: true,
   copyright: '',

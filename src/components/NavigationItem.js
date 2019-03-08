@@ -37,7 +37,7 @@ NavigationItem.propTypes = {
   anchor: PropTypes.bool,
   stacked: PropTypes.bool,
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node.isRequired
 }
 
 NavigationItem.defaultProps = {
@@ -46,8 +46,7 @@ NavigationItem.defaultProps = {
   to: '',
   anchor: false,
   stacked: false,
-  className: '',
-  children: null
+  className: ''
 }
 
 export default React.memo(NavigationItem)

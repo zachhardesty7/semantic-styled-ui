@@ -50,15 +50,15 @@ const PortfolioItem = ({
 }
 
 PortfolioItem.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  title: PropTypes.node,
+  subtitle: PropTypes.node,
   className: PropTypes.string,
   children: PropTypes.element
 }
 
 PortfolioItem.defaultProps = {
-  title: '',
-  subtitle: '',
+  title: null,
+  subtitle: null,
   className: '',
   children: null
 }

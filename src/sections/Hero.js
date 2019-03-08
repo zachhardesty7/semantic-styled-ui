@@ -8,7 +8,7 @@ import {
   Segment,
   Transition
 } from 'semantic-ui-react'
-import HeroButton from './HeroButton'
+import HeroButton from '../components/HeroButton'
 
 import {
   defaultColors,
@@ -131,8 +131,9 @@ const HeroSubtitle = styled(HeroHeader).attrs({ as: 'h2' })`
 const Chunk = styled.header`
   display: inline-block;
   border-bottom: ${({ underline, theme }) => (
-    underline !== false
-      ? `5px solid${underline || theme.accent || defaultColors.accent}`
+    (underline === true && (theme.accent || defaultColors.accent)) ||
+    underline
+      ? `5px solid ${underline || theme.accent || defaultColors.accent}`
       : 'none'
   )};
   z-index: 3;
@@ -222,26 +223,32 @@ const Hero = ({
 }
 
 Hero.propTypes = {
+  overlay: PropTypes.oneOf(['dark', 'darker']),
   baseline: PropTypes.oneOf(['top', 'bottom']),
-  underline: PropTypes.string,
+  underline: PropTypes.oneOfType([
+    PropTypes.string, PropTypes.bool
+  ]),
   size: PropTypes.oneOf(['compact', 'base', 'relaxed']),
   logo: PropTypes.oneOfType([
     PropTypes.element, PropTypes.object
   ]),
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  inlineLogo: PropTypes.bool,
+  title: PropTypes.node,
+  subtitle: PropTypes.node,
   button: PropTypes.node,
   className: PropTypes.string,
   children: PropTypes.node
 }
 
 Hero.defaultProps = {
+  overlay: 'dark',
   baseline: false,
   underline: false,
   size: 'base',
   logo: null,
-  title: '',
-  subtitle: '',
+  inlineLogo: false,
+  title: null,
+  subtitle: null,
   button: null,
   className: '',
   children: null

@@ -138,7 +138,7 @@ const SSUIForm = ({
           error={error && fieldsObj[`text-area`] === ''}
           autoHeight
           placeholder='Message'
-          label={textArea}
+          label={textArea === true ? 'Enter Message Below:' : textArea}
           style={{ minHeight: 125 }}
           onChange={handleChange}
           value={fieldsObj[`text-area`]}
