@@ -18,29 +18,37 @@ const iconMap = {
   massive: '8em'
 }
 
-const FilteredIcon = withoutProps(Icon, ['color', 'colorHover', 'size'])
+const FilteredIcon = withoutProps(Icon, ['color', 'colorHover', 'size', 'inverted'])
 const ColoredIcon = styled(FilteredIcon)`
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
   margin: 0;
 
-  color: ${({ color, inverted, theme }) => (
-    color || (
-      inverted
-        ? theme.secondary || defaultColors.secondary
-        : theme.primary || defaultColors.primary
-    )
+  color: ${({
+    color,
+    light,
+    inverted,
+    theme
+  }) => (
+    color ||
+    (light && (theme.light || defaultColors.light)) ||
+    (inverted && (theme.secondary || defaultColors.secondary)) ||
+    (theme.primary || defaultColors.primary)
   )};
 
   ${({ link }) => link && css`
     &:hover {
-      color: ${({ colorHover, inverted, theme }) => (
+      color: ${({
     /* eslint-disable indent */
-        colorHover || (
-          inverted
-            ? theme.white || defaultColors.white
-            : theme.secondary || defaultColors.secondary
-        )
+        colorHover,
+        light,
+        inverted,
+        theme
+      }) => (
+        colorHover ||
+        (light && (theme.white || defaultColors.white)) ||
+        (inverted && (theme.primary || defaultColors.primary)) ||
+        (theme.secondary || defaultColors.secondary)
       )};
     }
   `}
@@ -51,6 +59,7 @@ const SSUIIcon = ({
   name,
   link,
   size,
+  light,
   inverted,
   color,
   colorHover,
@@ -68,6 +77,7 @@ const SSUIIcon = ({
         link
         size={size}
         inverted={inverted}
+        light={light}
         color={color}
         colorHover={colorHover}
       />
@@ -77,6 +87,7 @@ const SSUIIcon = ({
       name={name}
       size={size}
       inverted={inverted}
+      light={light}
       color={color}
       colorHover={colorHover}
       className={className}
@@ -91,6 +102,7 @@ SSUIIcon.propTypes = {
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'medium', 'large', 'big', 'bigger', 'huge', 'massive']),
   color: PropTypes.string,
   colorHover: PropTypes.string,
+  light: PropTypes.bool,
   inverted: PropTypes.bool,
   className: PropTypes.string
 }
@@ -100,6 +112,7 @@ SSUIIcon.defaultProps = {
   size: 'medium',
   color: '',
   colorHover: '',
+  light: false,
   inverted: false,
   className: ''
 }
