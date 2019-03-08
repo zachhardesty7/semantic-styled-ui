@@ -10,9 +10,10 @@ import {
 } from 'semantic-ui-react'
 import Blurb from '../components/Blurb'
 
-import { media } from '../utils'
+import { applyTag, media } from '../utils'
 
-const BlurbsSegment = styled.section`
+const BlurbsSegmentTagged = applyTag(Segment)
+const BlurbsSegment = styled(BlurbsSegmentTagged)`
   /* default relaxed spacing */
   padding-top: 5em;
   padding-bottom: 5em;
@@ -53,8 +54,8 @@ const Blurbs = ({
   className,
   children
 }) => (
-  <Segment
-    as={BlurbsSegment}
+  <BlurbsSegment
+    tag='section'
     vertical
     basic
     secondary
@@ -79,7 +80,7 @@ const Blurbs = ({
         ))}
       </Grid>
     </Container>
-  </Segment>
+  </BlurbsSegment>
 )
 
 Blurbs.propTypes = {

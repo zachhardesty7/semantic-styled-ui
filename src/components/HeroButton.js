@@ -51,8 +51,7 @@ const HeroButton = ({
   className,
   children
 }) => (
-  <Button
-    as={StyledButton}
+  <StyledButton
     tag={tag}
     to={to || `/${process(children.toString())}/`}
     size='huge'
@@ -73,7 +72,7 @@ const HeroButton = ({
     {pointing && pointing !== 'left' && (
       <HeroIcon pointing={pointing} name='angle right' />
     )}
-  </Button>
+  </StyledButton>
 )
 
 HeroButton.propTypes = {

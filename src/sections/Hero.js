@@ -11,6 +11,7 @@ import {
 import HeroButton from '../components/HeroButton'
 
 import {
+  applyTag,
   defaultColors,
   getBackgroundColor,
   getColor,
@@ -77,7 +78,8 @@ const HeroSegment = styled(FilteredHeroSegment)`
   }
 `
 
-const HeroHeader = styled.div`
+const HeroHeaderTagged = applyTag(Header)
+const HeroHeader = styled(HeroHeaderTagged)`
   ${getColor('white')}
   font-display: fallback;
   font-weight: normal !important;
@@ -91,7 +93,7 @@ const CustomLinkTab = styled(handleAs(NavBarTab))`
   ...
 `;
 */
-const HeroTitle = styled(HeroHeader).attrs({ as: 'h1' })`
+const HeroTitle = styled(HeroHeader)`
   && {
     ${({ inlineLogo }) => inlineLogo && 'display: inline-block'};
     ${({ inlineLogo }) => inlineLogo && 'margin-bottom: 0'};
@@ -111,7 +113,7 @@ const HeroTitle = styled(HeroHeader).attrs({ as: 'h1' })`
   }
 `
 
-const HeroSubtitle = styled(HeroHeader).attrs({ as: 'h2' })`
+const HeroSubtitle = styled(HeroHeader)`
   ${({ inlineLogo }) => inlineLogo && 'margin-top: 0.75em'};
   font-size: 1.7rem;
 
@@ -206,13 +208,12 @@ const Hero = ({
             <Logo as={logo.type} {...logo.props} alt='logo' />
           )}
 
-          {/* use "Header" as tag to allow passing classes through to base component */}
           {title && (
-            <Header inlineLogo={inlineLogo} as={HeroTitle}>{title}</Header>
+            <HeroTitle tag='h1' inlineLogo={inlineLogo}>{title}</HeroTitle>
           )}
 
           {subtitle && (
-            <Header inlineLogo={inlineLogo} as={HeroSubtitle}>{subtitle}</Header>
+            <HeroSubtitle tag='h2' inlineLogo={inlineLogo}>{subtitle}</HeroSubtitle>
           )}
 
           {button}

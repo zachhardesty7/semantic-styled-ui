@@ -6,13 +6,15 @@ import { Container, Menu, Segment } from 'semantic-ui-react'
 import NavigationItem from '../components/NavigationItem'
 import NavigationLogo from '../components/NavigationLogo'
 
-import { media } from '../utils'
+import { applyTag, media } from '../utils'
 
-const NavSegment = styled.header`
+const NavSegmentTagged = applyTag(Segment)
+const NavSegment = styled(NavSegmentTagged)`
   ${({ pointing }) => pointing && 'padding-bottom: 0px'};
 `
 
-const NavMenu = styled.nav`
+const NavMenuTagged = applyTag(Menu)
+const NavMenu = styled(NavMenuTagged)`
   /* margin-bottom: 1em; */ /* REVIEW: */
   flex-wrap: wrap;
   justify-content: center;
@@ -70,16 +72,16 @@ const Navigation = ({
   className,
   children
 }) => (
-  <Segment
-    as={NavSegment}
+  <NavSegment
+    tag='header'
     pointing={pointing}
     basic
     vertical
     className={className}
   >
     <Container textAlign={centered ? 'center' : undefined}>
-      <Menu
-        as={NavMenu}
+      <NavMenu
+        tag='nav'
         size={size}
         text={text}
         compact={compact}
@@ -88,9 +90,9 @@ const Navigation = ({
       >
         {/* update tag of all children */}
         {React.Children.map(children, Child => React.cloneElement(Child, { tag }))}
-      </Menu>
+      </NavMenu>
     </Container>
-  </Segment>
+  </NavSegment>
 )
 
 Navigation.propTypes = {

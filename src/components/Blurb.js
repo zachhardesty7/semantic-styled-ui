@@ -21,14 +21,13 @@ const Blurb = ({
 }) => (
   <section className={className}>
     {icon}
-    <Header
-      as={StyledHeader}
+    <StyledHeader
       tag={tag}
       color={color}
       textAlign='center'
     >
       {header}
-    </Header>
+    </StyledHeader>
     <Header.Content as='p'>{children}</Header.Content>
   </section>
 )
