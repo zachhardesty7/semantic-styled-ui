@@ -18,7 +18,7 @@ const iconMap = {
   massive: '8em'
 }
 
-const FilteredIcon = withoutProps(Icon, ['color', 'colorHover', 'size', 'inverted'])
+const FilteredIcon = withoutProps(Icon, ['color', 'colorHover', 'size', 'light', 'inverted'])
 const ColoredIcon = styled(FilteredIcon)`
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};

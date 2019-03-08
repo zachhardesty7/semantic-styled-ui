@@ -6,9 +6,9 @@ import { Container, Menu, Segment } from 'semantic-ui-react'
 import NavigationItem from '../components/NavigationItem'
 import NavigationLogo from '../components/NavigationLogo'
 
-import { applyTag, withNewProps } from '../utils'
+import { applyTag, withNewProps, withoutProps } from '../utils'
 
-const NavSegmentTagged = applyTag(Segment)
+const NavSegmentTagged = applyTag(withoutProps(Segment, ['pointing']))
 const NavSegment = styled(NavSegmentTagged)`
   ${({ pointing }) => pointing && 'padding-bottom: 0px'};
 `

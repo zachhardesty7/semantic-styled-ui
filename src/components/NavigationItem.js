@@ -8,10 +8,11 @@ import {
   applyTag,
   calcDuration,
   media,
-  process
+  process,
+  withoutProps
 } from '../utils'
 
-const MenuItemTagged = applyTag(Menu.Item)
+const MenuItemTagged = applyTag(withoutProps(Menu.Item, ['pointing']))
 const MenuItem = styled(MenuItemTagged)`
   ${media.phone`
     a {
