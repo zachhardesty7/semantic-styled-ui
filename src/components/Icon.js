@@ -6,10 +6,22 @@ import { Icon } from 'semantic-ui-react'
 
 import { defaultColors, withoutProps } from '../utils'
 
-const FilteredIcon = withoutProps(Icon, ['color', 'hoverColor'])
-const ColoredIcon = styled(FilteredIcon)`
-  padding: ${({ group }) => (group ? '0 0.5em' : '0')};
+const iconMap = {
+  mini: '0.4em',
+  tiny: '0.5em',
+  small: '0.75em',
+  medium: '1em',
+  large: '1.5em',
+  big: '2em',
+  bigger: '3em',
+  huge: '4em',
+  massive: '8em'
+}
 
+const FilteredIcon = withoutProps(Icon, ['color', 'hoverColor', 'size'])
+const ColoredIcon = styled(FilteredIcon)`
+  font-size: ${({ size }) => iconMap[size]};
+  padding: ${({ group }) => (group ? '0 0.5em' : '0')};
   margin: 0;
 
   color: ${({ color, inverted, theme }) => (
@@ -76,7 +88,7 @@ SSUIIcon.propTypes = {
   link: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
-  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
+  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'bigger', 'huge', 'massive']),
   color: PropTypes.string,
   hoverColor: PropTypes.string,
   inverted: PropTypes.bool,
@@ -85,7 +97,7 @@ SSUIIcon.propTypes = {
 
 SSUIIcon.defaultProps = {
   link: false,
-  size: 'large',
+  size: undefined,
   color: '',
   hoverColor: '',
   inverted: false,

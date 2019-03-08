@@ -21,7 +21,9 @@ const NavigationItem = ({
     spy={anchor || undefined}
     smooth={anchor || undefined}
     duration={anchor ? calcDuration : undefined}
-    activeClassName={(!anchor && !stacked) ? 'active' : undefined}
+    {...(!anchor && !stacked && { activeClassName: 'active' })}
+    // REVIEW: if correctness of more verbose option matters
+    // {...(!anchor && !stacked ? { activeClassName: 'active' } : {})}
     className={className}
   >
     {children}

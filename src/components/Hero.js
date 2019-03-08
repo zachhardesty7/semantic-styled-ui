@@ -31,7 +31,7 @@ const sizes = {
   }
 }
 
-const FilteredHeroSegment = ({ size, children, ...rest }) => <Segment {...rest}>{children}</Segment>
+const FilteredHeroSegment = withoutProps(Segment, ['size'])
 const HeroSegment = styled(FilteredHeroSegment)`
   padding-top: ${({ baseline, size }) => (
     baseline === 'top'
@@ -49,7 +49,10 @@ const HeroSegment = styled(FilteredHeroSegment)`
     content: "";
     height: 100%;
     width: 100.5%;
-    background: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+    background: ${({ overlay }) => (
+    (overlay === 'dark' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))') ||
+      (overlay === 'darker' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))')
+  )};
     filter: saturate(2) sepia(0.4);
     background-repeat: no-repeat;
     background-size: cover;
@@ -77,6 +80,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
 const HeroHeader = styled.div`
   ${getColor('white')}
   font-display: fallback;
+  font-weight: normal !important;
 `
 
 /* REVIEW: workaround for "as" issue
@@ -88,22 +92,27 @@ const CustomLinkTab = styled(handleAs(NavBarTab))`
 `;
 */
 const HeroTitle = styled(HeroHeader).attrs({ as: 'h1' })`
-  padding-right: 0.15em;
-  font-size: 4.7em;
+  && {
+    ${({ inlineLogo }) => inlineLogo && 'display: inline-block'};
+    ${({ inlineLogo }) => inlineLogo && 'margin-bottom: 0'};
+    padding-right: 0.15em;
+    font-size: 4.7em;
 
-  ${media.laptop`
-    font-size: 4em;
-  `}
-  ${media.tablet`
-    font-size: 3.8em;
-  `}
-  ${media.phone`
-    font-size: 12vw !important;
-    width: fit-content !important;
-  `}
+    ${media.laptop`
+      font-size: 4em;
+    `}
+    ${media.tablet`
+      font-size: 3.8em;
+    `}
+    ${media.phone`
+      font-size: 12vw !important;
+      width: fit-content !important;
+    `}
+  }
 `
 
 const HeroSubtitle = styled(HeroHeader).attrs({ as: 'h2' })`
+  ${({ inlineLogo }) => inlineLogo && 'margin-top: 0.75em'};
   font-size: 1.7rem;
 
   ${media.laptop`
@@ -121,7 +130,11 @@ const HeroSubtitle = styled(HeroHeader).attrs({ as: 'h2' })`
 
 const Chunk = styled.header`
   display: inline-block;
-  border-bottom: 5px solid ${({ underline, theme }) => underline || theme.accent || defaultColors.accent};
+  border-bottom: ${({ underline, theme }) => (
+    underline !== false
+      ? `5px solid${underline || theme.accent || defaultColors.accent}`
+      : 'none'
+  )};
   z-index: 3;
   position: relative;
 `
@@ -141,32 +154,26 @@ const BackgroundImage = styled.img`
 
 const Logo = styled.img`
   margin-right: 1em;
-  vertical-align: bottom;
 `
 
-const HeaderIcon = styled(Icon)`
-  margin-left: .75em;
-  vertical-align: bottom;
-  width: 1em;
-  height: 1em;
-`
-
+// TODO: update default props
 const Hero = ({
+  overlay,
   logo,
+  inlineLogo,
   title,
   subtitle,
   baseline,
   underline,
   size,
-  buttonText,
-  buttonProps,
+  button,
   className,
   children
 }) => {
   const [curBackground, setCurBackground] = useState(0)
   useEffect(() => {
     const cycle = setTimeout(() => {
-      setCurBackground((curBackground + 1) % (children.length))
+      setCurBackground((curBackground + 1) % (React.Children.count(children)))
     }, 6000)
 
     return () => clearTimeout(cycle)
@@ -177,6 +184,7 @@ const Hero = ({
       vertical
       baseline={baseline}
       size={size}
+      overlay={overlay}
       className={className}
     >
       {React.Children.map(children, (Background, i) => (
@@ -194,23 +202,19 @@ const Hero = ({
         {/* nested inline chunk to facilitate underline */}
         <Chunk underline={underline}>
           {logo && (
-            <Logo as={logo.type} alt='logo' />
+            <Logo as={logo.type} {...logo.props} alt='logo' />
           )}
 
           {/* use "Header" as tag to allow passing classes through to base component */}
           {title && (
-            <Header as={HeroTitle}>{title}</Header>
+            <Header inlineLogo={inlineLogo} as={HeroTitle}>{title}</Header>
           )}
+
           {subtitle && (
-            <Header as={HeroSubtitle}>{subtitle}</Header>
+            <Header inlineLogo={inlineLogo} as={HeroSubtitle}>{subtitle}</Header>
           )}
-          {buttonText && (
-            // TODO: convert to single prop and composed button
-            <Button {...buttonProps} className='hero-button'>
-              {buttonText}
-              <HeaderIcon icon='angle right' aria-hidden />
-            </Button>
-          )}
+
+          {button}
         </Chunk>
       </Container>
     </HeroSegment>
@@ -226,32 +230,23 @@ Hero.propTypes = {
   ]),
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  buttonText: PropTypes.string,
-  buttonProps: PropTypes.shape({
-    basic: PropTypes.bool,
-    inverted: PropTypes.bool,
-    primary: PropTypes.bool,
-    size: PropTypes.string,
-    as: PropTypes.func,
-    to: PropTypes.string,
-    smooth: PropTypes.bool,
-    duration: PropTypes.func
-  }),
+  button: PropTypes.node,
   className: PropTypes.string,
   children: PropTypes.node
 }
 
 Hero.defaultProps = {
   baseline: false,
-  underline: null,
+  underline: false,
   size: 'base',
   logo: null,
   title: '',
   subtitle: '',
-  buttonText: '',
-  buttonProps: null,
+  button: null,
   className: '',
   children: null
 }
 
-export default React.memo(Hero)
+const HeroMemo = React.memo(Hero)
+HeroMemo.Button = HeroButton
+export default HeroMemo
