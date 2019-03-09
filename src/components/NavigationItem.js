@@ -34,9 +34,8 @@ const MenuItem = styled(MenuItemTagged)`
       }
 
       /* mix primary menu w secondary menu style */
-      &&&:hover {
+      &:hover {
         background-color: rgba(0,0,0,.05);
-        border-bottom: 2px solid #1b1c1d;
       }
     }
   `}
