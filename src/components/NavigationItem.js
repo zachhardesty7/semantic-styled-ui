@@ -21,26 +21,22 @@ const MenuItem = styled(MenuItemTagged)`
   `}
 
   ${({ pointing }) => pointing && css`
-    border-bottom: 2px solid rgba(34,36,38,.15);
+    &&& {
+      border-bottom: 2px solid rgba(34,36,38,.15);
 
-    &.active {
-      border-bottom: 2px solid #1b1c1d;
-    }
+      &.active {
+        border-bottom: 2px solid #1b1c1d;
+      }
 
-    /* remove rounded edge that distorts underline */
-    &:last-child {
-      border-radius: 0;
-    }
+      /* remove rounded edge that distorts underline */
+      &:last-child {
+        border-radius: 0;
+      }
 
-    /* mix primary menu w secondary menu style */
-    &&&:hover {
-      background-color: rgba(0,0,0,.05);
-    }
-
-    & > div {
       /* mix primary menu w secondary menu style */
-      &:hover {
+      &&&:hover {
         background-color: rgba(0,0,0,.05);
+        border-bottom: 2px solid #1b1c1d;
       }
     }
   `}
