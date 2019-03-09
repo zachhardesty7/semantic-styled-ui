@@ -78,7 +78,8 @@ const HeroButton = ({
 HeroButton.propTypes = {
   to: PropTypes.string,
   tag: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.element
+    PropTypes.string,
+    PropTypes.elementType
   ]),
   anchor: PropTypes.bool,
   pointing: PropTypes.oneOfType([

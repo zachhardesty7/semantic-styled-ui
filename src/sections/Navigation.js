@@ -18,6 +18,8 @@ const NavMenu = styled(NavMenuTagged)`
   /* margin-bottom: 1em; */ /* REVIEW: */
   flex-wrap: wrap;
   justify-content: center;
+
+  ${({ pointing }) => pointing && 'border-bottom: none !important;'};
 `
 
 // TODO: add sticky header

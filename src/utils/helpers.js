@@ -4,11 +4,12 @@ import React from 'react'
 /**
  * shim for Object.fromEntries()
  *
- * @param {[[string, any]]} arr array of arrays of key, value pairs
+ * @param {[[string, any]]} iter array of arrays of key, value pairs
  * @returns obj with key, value pairs assigned
  */
-function ObjectFromEntries(arr) {
+function ObjectFromEntries(iter) {
   const obj = {}
+  const arr = [...iter]
 
   arr.forEach((pair) => {
     if (Object(pair) !== pair) {

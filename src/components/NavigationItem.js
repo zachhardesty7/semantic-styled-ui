@@ -33,7 +33,7 @@ const MenuItem = styled(MenuItemTagged)`
     }
 
     /* mix primary menu w secondary menu style */
-    &:hover {
+    &&&:hover {
       background-color: rgba(0,0,0,.05);
     }
 

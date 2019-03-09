@@ -9,10 +9,12 @@ const Item = styled(Dimmer.Dimmable)`
 `
 
 const DimmerContent = styled(Dimmer)`
-  display: flex;
-  
-  .content .header {
-    color: rgba(0,0,0,.87) !important;
+  && {
+    display: flex;
+    
+    .content .header {
+      color: rgba(0,0,0,.87) !important;
+    }
   }
 `
 
