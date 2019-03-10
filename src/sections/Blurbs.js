@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react'
 import Blurb from '../components/Blurb'
 
-import { asTag, media } from '../utils'
+import { asTag, media, withNewProps } from '../utils'
 
 const BlurbsSegmentTagged = asTag(Segment)
 const BlurbsSegment = styled(BlurbsSegmentTagged)`
@@ -75,7 +75,7 @@ const Blurbs = ({
       <Grid relaxed stackable columns={React.Children.count(children)} divided padded>
         {React.Children.map(children, blurb => (
           <Grid.Column>
-            {blurb}
+            {withNewProps(blurb, { color })}
           </Grid.Column>
         ))}
       </Grid>
