@@ -10,9 +10,9 @@ import {
 } from 'semantic-ui-react'
 import Blurb from '../components/Blurb'
 
-import { applyTag, media } from '../utils'
+import { asTag, media } from '../utils'
 
-const BlurbsSegmentTagged = applyTag(Segment)
+const BlurbsSegmentTagged = asTag(Segment)
 const BlurbsSegment = styled(BlurbsSegmentTagged)`
   /* default relaxed spacing */
   padding-top: 5em;

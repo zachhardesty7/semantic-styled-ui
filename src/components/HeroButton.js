@@ -7,7 +7,7 @@ import { Button } from 'semantic-ui-react'
 import Icon from './Icon'
 
 import {
-  applyTag,
+  asTag,
   calcDuration,
   getBackgroundColor,
   getColor,
@@ -16,7 +16,7 @@ import {
   withoutProps
 } from '../utils'
 
-const FilteredStyledButton = applyTag(withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover']))
+const FilteredStyledButton = asTag(withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover']))
 const StyledButton = styled(FilteredStyledButton)`
   && {
     ${getColor('white')}

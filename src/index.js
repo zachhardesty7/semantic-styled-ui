@@ -1,26 +1,29 @@
 import Blurb from './components/Blurb'
+import Form from './components/Form'
+import Icon from './components/Icon'
+import IconGroup from './components/IconGroup'
 import NavigationItem from './components/NavigationItem'
 import NavigationLogo from './components/NavigationLogo'
-import Form from './components/Form'
-import IconGroup from './components/IconGroup'
-import Icon from './components/Icon'
 import PortfolioItem from './components/PortfolioItem'
 
-import Navigation from './sections/Navigation'
-import Hero from './sections/Hero'
-import Footer from './sections/Footer'
 import Blurbs from './sections/Blurbs'
+import Footer from './sections/Footer'
+import Hero from './sections/Hero'
+import Navigation from './sections/Navigation'
+
+import * as Utils from './utils'
 
 export {
   Blurb,
   Blurbs,
+  Footer,
+  Form,
+  Hero,
+  Icon,
+  IconGroup,
   Navigation,
   NavigationItem,
   NavigationLogo,
-  Hero,
-  Footer,
-  Form,
   PortfolioItem,
-  IconGroup,
-  Icon
+  Utils
 }

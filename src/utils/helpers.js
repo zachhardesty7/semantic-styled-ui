@@ -111,7 +111,7 @@ export const withoutProps = (Component, propKeys = []) => (
  * @param {React.ComponentType} Component target to control prop flow of
  * @returns {Function} function to apply "tag" to "as"
  */
-export const applyTag = Component => (
+export const asTag = Component => (
   React.forwardRef(({ tag, children, ...rest }, ref) => (
     <Component ref={ref} as={tag} {...rest}>{children}</Component>
   ))

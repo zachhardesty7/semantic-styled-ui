@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react'
 
 import {
-  applyTag,
+  asTag,
   getBackgroundColor,
   getColor,
   getHoverColor,
@@ -18,7 +18,7 @@ import {
   withoutProps
 } from '../utils'
 
-const FilteredBottomBar = applyTag(withoutProps(Segment, ['color', 'backgroundColor']))
+const FilteredBottomBar = asTag(withoutProps(Segment, ['color', 'backgroundColor']))
 const BottomBar = styled(FilteredBottomBar)`
   margin-top: 0px;
   ${getColor('light')}

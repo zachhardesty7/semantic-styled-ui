@@ -5,14 +5,14 @@ import styled, { css } from 'styled-components'
 import { Menu } from 'semantic-ui-react'
 
 import {
-  applyTag,
+  asTag,
   calcDuration,
   media,
   process,
   withoutProps
 } from '../utils'
 
-const MenuItemTagged = applyTag(withoutProps(Menu.Item, ['pointing']))
+const MenuItemTagged = asTag(withoutProps(Menu.Item, ['pointing']))
 const MenuItem = styled(MenuItemTagged)`
   ${media.phone`
     a {

@@ -11,7 +11,7 @@ import {
 import HeroButton from '../components/HeroButton'
 
 import {
-  applyTag,
+  asTag,
   defaultColors,
   getColor,
   media,
@@ -64,7 +64,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
   }
 `
 
-const FilteredHeroHeader = applyTag(withoutProps(Header, ['inlineLogo']))
+const FilteredHeroHeader = asTag(withoutProps(Header, ['inlineLogo']))
 const HeroHeader = styled(FilteredHeroHeader)`
   ${getColor('white')}
   font-display: fallback;

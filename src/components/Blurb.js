@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 import { Header } from 'semantic-ui-react'
 
-import { applyTag, withoutProps } from '../utils'
+import { asTag, withoutProps } from '../utils'
 
-const FilteredStyledHeader = applyTag(withoutProps(Header, ['color']))
+const FilteredStyledHeader = asTag(withoutProps(Header, ['color']))
 const StyledHeader = styled(FilteredStyledHeader)`
   ${({ color }) => color && `color: ${color}`};
 `

@@ -6,14 +6,14 @@ import { Container, Menu, Segment } from 'semantic-ui-react'
 import NavigationItem from '../components/NavigationItem'
 import NavigationLogo from '../components/NavigationLogo'
 
-import { applyTag, withNewProps, withoutProps } from '../utils'
+import { asTag, withNewProps, withoutProps } from '../utils'
 
-const NavSegmentTagged = applyTag(withoutProps(Segment, ['pointing']))
+const NavSegmentTagged = asTag(withoutProps(Segment, ['pointing']))
 const NavSegment = styled(NavSegmentTagged)`
   ${({ pointing }) => pointing && 'padding-bottom: 0px'};
 `
 
-const NavMenuTagged = applyTag(Menu)
+const NavMenuTagged = asTag(Menu)
 const NavMenu = styled(NavMenuTagged)`
   /* margin-bottom: 1em; */ /* REVIEW: */
   flex-wrap: wrap;
