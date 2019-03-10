@@ -11,7 +11,8 @@ import Footer from './sections/Footer'
 import Hero from './sections/Hero'
 import Navigation from './sections/Navigation'
 
-import * as Utils from './utils'
+import defaultColors from './utils/colors'
+import media from './utils/media'
 
 export {
   Blurb,
@@ -24,6 +25,13 @@ export {
   Navigation,
   NavigationItem,
   NavigationLogo,
-  PortfolioItem,
-  Utils
+  PortfolioItem
 }
+
+export {
+  defaultColors,
+  media
+}
+
+export * from './utils/helpers'
+export * from './utils/styled'
