@@ -115,7 +115,7 @@ const HeroSubtitle = styled(HeroHeader)`
 const Chunk = styled.header`
   display: inline-block;
   border-bottom: ${({ underline, theme }) => (
-    (underline === true && (theme.accent || defaultColors.accent)) ||
+    (underline === true && `5px solid ${(theme.accent || defaultColors.accent)}`) ||
     underline
       ? `5px solid ${underline || theme.accent || defaultColors.accent}`
       : 'none'
