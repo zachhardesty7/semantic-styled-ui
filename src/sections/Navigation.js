@@ -10,7 +10,9 @@ import { asTag, withNewProps, withoutProps } from '../utils'
 
 const NavSegmentTagged = asTag(withoutProps(Segment, ['pointing']))
 const NavSegment = styled(NavSegmentTagged)`
-  ${({ pointing }) => pointing && 'padding-bottom: 0px'};
+  && {
+    ${({ pointing }) => pointing && 'padding-bottom: 0px'};
+  }
 `
 
 const NavMenuTagged = asTag(Menu)
