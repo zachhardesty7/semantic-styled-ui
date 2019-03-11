@@ -33,42 +33,46 @@ const sizes = {
 
 const FilteredHeroSegment = withoutProps(Segment, ['size'])
 const HeroSegment = styled(FilteredHeroSegment)`
-  padding-top: ${({ baseline, size }) => (
+  && {
+    padding-top: ${({ baseline, size }) => (
     baseline === 'top'
       ? sizes.small[size]
       : sizes.large[size]
   )}em;
-  padding-bottom: ${({ baseline, size }) => (
+    padding-bottom: ${({ baseline, size }) => (
     baseline === 'top'
       ? sizes.large[size]
       : sizes.small[size]
   )}em;
 
-  /* background overlay to dim and saturate */
-  &::before {
-    content: "";
-    height: 100%;
-    width: 100.5%;
-    background: ${({ overlay }) => (
+    /* background overlay to dim and saturate */
+    &::before {
+      content: "";
+      height: 100%;
+      width: 100.5%;
+      background: ${({ overlay }) => (
     (overlay === 'dark' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))') ||
-      (overlay === 'darker' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))')
+        (overlay === 'darker' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))')
   )};
-    filter: saturate(2) sepia(0.4);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center +45%;
-    top: 0;
-    left: -0.5%;
-    position: absolute;
-    z-index: 2 !important;
+      filter: saturate(2) sepia(0.4);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center +45%;
+      top: 0;
+      left: -0.5%;
+      position: absolute;
+      z-index: 2 !important;
+    }
   }
 `
 
 const FilteredHeroHeader = asTag(withoutProps(Header, ['inlineLogo']))
 const HeroHeader = styled(FilteredHeroHeader)`
-  ${getColor('white')}
-  font-display: fallback;
-  font-weight: normal !important;
+  && {
+    ${getColor('white')}
+    font-display: fallback;
+    font-weight: normal !important;
+  }
 `
 
 const HeroTitle = styled(HeroHeader)`
@@ -141,6 +145,7 @@ const Hero = ({
   overlay,
   logo,
   inlineLogo,
+  color,
   title,
   subtitle,
   baseline,
@@ -186,11 +191,11 @@ const Hero = ({
           )}
 
           {title && (
-            <HeroTitle tag='h1' inlineLogo={inlineLogo}>{title}</HeroTitle>
+            <HeroTitle tag='h1' color={color} inlineLogo={inlineLogo}>{title}</HeroTitle>
           )}
 
           {subtitle && (
-            <HeroSubtitle tag='h2' inlineLogo={inlineLogo}>{subtitle}</HeroSubtitle>
+            <HeroSubtitle tag='h2' color={color} inlineLogo={inlineLogo}>{subtitle}</HeroSubtitle>
           )}
 
           {button}
@@ -211,6 +216,7 @@ Hero.propTypes = {
     PropTypes.element, PropTypes.object
   ]),
   inlineLogo: PropTypes.bool,
+  color: PropTypes.string,
   title: PropTypes.node,
   subtitle: PropTypes.node,
   button: PropTypes.node,
@@ -225,6 +231,7 @@ Hero.defaultProps = {
   size: 'base',
   logo: null,
   inlineLogo: false,
+  color: '',
   title: null,
   subtitle: null,
   button: null,
