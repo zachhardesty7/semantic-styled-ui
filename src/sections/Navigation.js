@@ -17,11 +17,11 @@ const NavSegment = styled(NavSegmentTagged)`
 
 const NavMenuTagged = asTag(Menu)
 const NavMenu = styled(NavMenuTagged)`
-  /* margin-bottom: 1em; */ /* REVIEW: */
   flex-wrap: wrap;
   justify-content: center;
 
-  ${({ pointing }) => pointing && 'border-bottom: none !important;'};
+  ${({ pointing }) => pointing && 'border-bottom: none !important'};
+  ${({ pointing }) => pointing && 'margin-bottom: 2px'};
 `
 
 // TODO: add sticky header
