@@ -13,6 +13,22 @@ import Navigation from './sections/Navigation'
 
 import defaultColors from './utils/colors'
 import media from './utils/media'
+import {
+  asTag,
+  calcDuration,
+  camelToKebab,
+  encode,
+  process,
+  toJoinedTitleCase,
+  withNewProps,
+  withoutProps
+} from './utils/helpers'
+import {
+  getBackgroundColor,
+  getColor,
+  getHoverBackgroundColor,
+  getHoverColor
+} from './utils/styled'
 
 export {
   Blurb,
@@ -30,8 +46,17 @@ export {
 
 export {
   defaultColors,
-  media
+  media,
+  asTag,
+  calcDuration,
+  camelToKebab,
+  encode,
+  process,
+  toJoinedTitleCase,
+  withNewProps,
+  withoutProps,
+  getBackgroundColor,
+  getColor,
+  getHoverBackgroundColor,
+  getHoverColor
 }
-
-export * from './utils/helpers'
-export * from './utils/styled'
