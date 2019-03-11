@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
   Container,
@@ -115,10 +115,9 @@ const HeroSubtitle = styled(HeroHeader)`
 const Chunk = styled.header`
   display: inline-block;
   border-bottom: ${({ underline, theme }) => (
-    (underline === true && `5px solid ${(theme.accent || defaultColors.accent)}`) ||
-    underline
-      ? `5px solid ${underline || theme.accent || defaultColors.accent}`
-      : 'none'
+    (underline === true && css`5px solid ${theme.accent || defaultColors.accent}`) ||
+    (underline && css`5px solid ${underline || theme.accent || defaultColors.accent}`) ||
+    'none'
   )};
   z-index: 3;
   position: relative;
