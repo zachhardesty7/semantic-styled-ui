@@ -30,13 +30,13 @@ const BlurbsSegment = styled(BlurbsSegmentTagged)`
         padding: 0 1.5em;
         margin: 0 auto !important;
       }
-    `}
+    `};
 
     ${media.phone`
       .container {
         margin: 0 2em !important;
       }
-    `}
+    `};
   }
 `
 

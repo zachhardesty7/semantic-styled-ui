@@ -20,10 +20,10 @@ const LogoCon = styled.div`
     margin-right: 50%;
     margin-left: 50%;
 
-    > .item {
+    & > .item {
       border-bottom: none;
     }
-  `}
+  `};
 `
 
 const Logo = styled.div`

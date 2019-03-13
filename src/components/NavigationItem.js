@@ -18,7 +18,7 @@ const MenuItem = styled(MenuItemTagged)`
     a {
       font-size: 0.97rem;
     }
-  `}
+  `};
 
   ${({ pointing }) => pointing && css`
     &&& {
@@ -38,7 +38,7 @@ const MenuItem = styled(MenuItemTagged)`
         background-color: rgba(0,0,0,.05);
       }
     }
-  `}
+  `};
 `
 
 const NavigationItem = ({

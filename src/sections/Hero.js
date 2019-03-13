@@ -69,7 +69,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
 const FilteredHeroHeader = asTag(withoutProps(Header, ['inlineLogo']))
 const HeroHeader = styled(FilteredHeroHeader)`
   && {
-    ${getColor('white')}
+    ${getColor('white')};
     font-display: fallback;
     font-weight: normal !important;
   }

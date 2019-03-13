@@ -51,7 +51,7 @@ const ColoredIcon = styled(FilteredIcon)`
         (theme.secondary || defaultColors.secondary)
       )};
     }
-  `}
+  `};
 `
 /* eslint-enable indent */
 

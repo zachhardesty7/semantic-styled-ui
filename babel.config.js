@@ -22,9 +22,9 @@ module.exports = {
     ]
   ],
   plugins: [
-    '@quickbaseoss/babel-plugin-styled-components-css-namespace',
+    ['@quickbaseoss/babel-plugin-styled-components-css-namespace', { cssNamespace: '&&&&' }],
     [
-      'babel-plugin-styled-components', {
+      'styled-components', {
         pure: true,
         fileName: false,
         displayName: false

@@ -19,11 +19,11 @@ import {
 const FilteredStyledButton = asTag(withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover']))
 const StyledButton = styled(FilteredStyledButton)`
   && {
-    ${getColor('white')}
-    ${getBackgroundColor('secondary')}
+    ${getColor('white')};
+    ${getBackgroundColor('secondary')};
     transition: ease-in-out 50ms;
 
-    ${getHoverBackgroundColor('primary')}
+    ${getHoverBackgroundColor('primary')};
     &:hover {
       transition: ease-in-out 100ms;
     }

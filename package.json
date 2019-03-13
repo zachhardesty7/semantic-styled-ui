@@ -19,6 +19,7 @@
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
   "repository": "github:zachhardesty7/semantic-styled-ui",
   "scripts": {
+    "clean": "rimraf dist/*",
     "link:react": "npm link ../../../work/connectdoor/website/node_modules/react",
     "link:react-dom": "npm link ../../../work/connectdoor/website/node_modules/react-dom",
     "link:styled-components": "npm link ../../../work/connectdoor/website/node_modules/styled-components",
@@ -26,7 +27,8 @@
     "link:all": "yarn run link:react && yarn run link:react-dom && yarn run link:styled-components && yarn run link:semantic-ui-css",
     "dev": "yarn run build && yarn link",
     "pub": "yarn run build && yarn publish",
-    "build": "rimraf dist/* && babel ./src --out-dir ./dist --copy-files"
+    "babel": "babel ./src --out-dir ./dist --copy-files",
+    "build": "yarn run clean && yarn run babel"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -42,7 +44,7 @@
     "@babel/plugin-transform-template-literals": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
-    "@quickbaseoss/babel-plugin-styled-components-css-namespace": "^0.1.1",
+    "@quickbaseoss/babel-plugin-styled-components-css-namespace": "^1.0.0-rc",
     "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.10.0",
     "babel-plugin-transform-object-from-entries": "^1.0.0",

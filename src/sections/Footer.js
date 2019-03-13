@@ -22,8 +22,8 @@ const FilteredBottomBar = asTag(withoutProps(Segment, ['color', 'backgroundColor
 const BottomBar = styled(FilteredBottomBar)`
   && {
     margin-top: 0px;
-    ${getColor('light')}
-    ${getBackgroundColor('primary')}
+    ${getColor('light')};
+    ${getBackgroundColor('primary')};
   }
 `
 
