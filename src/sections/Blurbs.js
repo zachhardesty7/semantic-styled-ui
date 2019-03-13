@@ -12,10 +12,11 @@ import Blurb from '../components/Blurb'
 
 import { asTag, media, withNewProps } from '../utils'
 
+/* set default to relaxed vertical padding */
+/* fix absurdly wide blurb segments on tablet size */
 const BlurbsSegmentTagged = asTag(Segment)
 const BlurbsSegment = styled(BlurbsSegmentTagged)`
   && {
-    /* default relaxed spacing */
     padding-top: 5em;
     padding-bottom: 5em;
 
@@ -23,7 +24,6 @@ const BlurbsSegment = styled(BlurbsSegmentTagged)`
       font-size: 2em;
     }
 
-    /* fix absurdly wide blurb segments */
     ${media.tablet`
       .container {
         max-width: 397px !important;

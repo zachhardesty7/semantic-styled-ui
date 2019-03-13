@@ -29,8 +29,8 @@ const BottomBar = styled(FilteredBottomBar)`
 
 const Link = styled.a`
   text-decoration: underline;
-  ${getColor('light')}
-  ${getHoverColor('white')}
+  ${getColor('light')};
+  ${getHoverColor('white')};
 `
 
 const Footer = ({

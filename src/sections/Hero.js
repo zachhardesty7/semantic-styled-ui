@@ -84,14 +84,14 @@ const HeroTitle = styled(HeroHeader)`
 
     ${media.laptop`
       font-size: 4em;
-    `}
+    `};
     ${media.tablet`
       font-size: 3.8em;
-    `}
+    `};
     ${media.phone`
       font-size: 12vw !important;
       width: fit-content !important;
-    `}
+    `};
   }
 `
 
@@ -101,15 +101,15 @@ const HeroSubtitle = styled(HeroHeader)`
 
   ${media.laptop`
     font-size: 1.45em;
-  `}
+  `};
   ${media.tablet`
     font-size: 1.4em;
-  `}
+  `};
   ${media.phone`
     width: min-content;
     min-width: 11em;
     font-size: 1.4em;
-  `}
+  `};
 `
 
 const Chunk = styled.header`
