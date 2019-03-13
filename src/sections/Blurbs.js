@@ -16,12 +16,8 @@ import { asTag, media, withNewProps } from '../utils'
 /* fix absurdly wide blurb segments on tablet size */
 const BlurbsSegmentTagged = asTag(Segment)
 const BlurbsSegment = styled(BlurbsSegmentTagged)`
-  padding-top: 5em;
-  padding-bottom: 5em;
-
-  h4 {
-    font-size: 2em;
-  }
+  padding-top: 6em;
+  padding-bottom: 6em;
 
   ${media.tablet`
     .container {
@@ -40,17 +36,20 @@ const BlurbsSegment = styled(BlurbsSegmentTagged)`
 
 const HeaderContainer = styled(Container)`
   /* pad between title/content and items */
-  padding-bottom: 3em;
+  padding-bottom: 2.75em;
+`
 
-  h3 {
-    font-size: 3em;
-  }
+const HeaderTagged = asTag(Header)
+const HeaderTitle = styled(HeaderTagged)`
+  font-size: 3em;
 `
 
 const Blurbs = ({
   title,
   content,
+  textAlign,
   color,
+  secondary,
   className,
   children
 }) => (
@@ -58,20 +57,21 @@ const Blurbs = ({
     tag='section'
     vertical
     basic
-    secondary
+    secondary={secondary}
     className={className}
   >
     {(title || content) && (
       <HeaderContainer text>
         {title && (
-          <Header as='h3' textAlign='center'>{title}</Header>
+          <HeaderTitle tag='h3' textAlign='center'>{title}</HeaderTitle>
         )}
         {content && (
-          <Header.Content>{content}</Header.Content>
+          <Header.Content textAlign={textAlign}>{content}</Header.Content>
         )}
       </HeaderContainer>
     )}
     <Container textAlign='center'>
+      {/* relaxed stackable divided padded */}
       <Grid relaxed stackable columns={React.Children.count(children)} divided padded>
         {React.Children.map(children, blurb => (
           <Grid.Column>
@@ -86,7 +86,9 @@ const Blurbs = ({
 Blurbs.propTypes = {
   title: PropTypes.node,
   content: PropTypes.node,
+  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
   color: PropTypes.string,
+  secondary: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node
 }
@@ -94,7 +96,9 @@ Blurbs.propTypes = {
 Blurbs.defaultProps = {
   title: null,
   content: null,
+  textAlign: 'left',
   color: '',
+  secondary: false,
   className: '',
   children: null
 }

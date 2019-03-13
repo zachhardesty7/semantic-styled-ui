@@ -64,7 +64,7 @@ const HeroSegment = styled(FilteredHeroSegment)`
   }
 `
 
-const FilteredHeroHeader = asTag(withoutProps(Header, ['inlineLogo']))
+const FilteredHeroHeader = asTag(withoutProps(Header, ['inlineLogo', 'color']))
 const HeroHeader = styled(FilteredHeroHeader)`
   ${getColor('white')};
   font-display: fallback;

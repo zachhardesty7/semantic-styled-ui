@@ -30,7 +30,10 @@ const StyledButton = styled(FilteredStyledButton)`
 
 const HeroIcon = styled(Icon)`
   ${getColor('white')};
-  ${({ pointing }) => (pointing === 'left' ? 'margin-right: .75em !important' : 'margin-left: .75em !important')};
+  ${({ pointing }) => (pointing === 'left'
+    ? 'margin-right: .75em !important'
+    : 'margin-left: .75em !important'
+  )};
   vertical-align: bottom;
   width: 1em;
   height: 1em;

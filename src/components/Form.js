@@ -9,7 +9,16 @@ import {
   Transition
 } from 'semantic-ui-react'
 
-import { encode, process } from '../utils'
+import { encode, process, withoutProps } from '../utils'
+
+const FilteredForm = withoutProps(Form, ['padded'])
+const StyledForm = styled(FilteredForm)`
+  ${({ padded }) => (
+    (padded === 'top' && 'padding-top: 2em') ||
+    (padded === 'bottom' && 'padding-bottom: 2em') ||
+    (padded && 'padding: 2em 0')
+  )};
+`
 
 const MessageContainer = styled(Message)`
   display: flex !important;
@@ -21,6 +30,7 @@ const SSUIForm = ({
   fields,
   textArea,
   button,
+  padded,
   className
 }) => {
   const [success, setSuccess] = useState(false)
@@ -76,13 +86,14 @@ const SSUIForm = ({
   }
 
   return (
-    <Form
+    <StyledForm
       name={name}
       onSubmit={handleSubmit}
       data-netlify='true'
       data-netlify-honeypot='bot-field'
       success={success}
       error={error}
+      padded={padded}
       className={className}
     >
       {/* limit bot responses with Netlify */}
@@ -167,7 +178,7 @@ const SSUIForm = ({
       </Transition.Group>
 
       <Form.Button type='submit'>{button}</Form.Button>
-    </Form>
+    </StyledForm>
   )
 }
 
@@ -178,6 +189,7 @@ SSUIForm.propTypes = {
     PropTypes.string, PropTypes.bool
   ]),
   button: PropTypes.string,
+  padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
   className: PropTypes.string
 }
 
@@ -186,6 +198,7 @@ SSUIForm.defaultProps = {
   fields: [],
   textArea: true,
   button: 'Submit',
+  padded: false,
   className: ''
 }
 

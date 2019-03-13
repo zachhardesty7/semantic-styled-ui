@@ -9,6 +9,7 @@ import { asTag, withoutProps } from '../utils'
 const FilteredStyledHeader = asTag(withoutProps(Header, ['color']))
 const StyledHeader = styled(FilteredStyledHeader)`
   ${({ color }) => color && `color: ${color}`};
+  font-size: 2em;
 `
 
 const Blurb = ({
@@ -24,7 +25,6 @@ const Blurb = ({
     <StyledHeader
       tag={tag}
       color={color}
-      textAlign='center'
     >
       {header}
     </StyledHeader>

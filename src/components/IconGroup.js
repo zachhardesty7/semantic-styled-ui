@@ -5,9 +5,14 @@ import styled from 'styled-components'
 import { withNewProps } from '../utils'
 
 const Groups = styled.div`
-  ${({ compact }) => !compact && 'padding: 1em 0'};
   display: flex;
   justify-content: ${({ justify }) => justify};
+  
+  ${({ padded }) => (
+    (padded === 'top' && 'padding-top: 1em') ||
+    (padded === 'bottom' && 'padding-bottom: 1em') ||
+    (padded && 'padding: 1em 0')
+  )};
 `
 
 const Group = styled.div`
@@ -26,14 +31,14 @@ const Group = styled.div`
 
 const IconGroup = ({
   justify,
-  compact,
+  padded,
   className,
   children,
   ...rest
 }) => (
   <Groups
     justify={justify}
-    compact={compact}
+    padded={padded}
     className={className}
   >
     {React.Children.map(children, Child => (
@@ -46,14 +51,14 @@ const IconGroup = ({
 
 IconGroup.propTypes = {
   justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end']),
-  compact: PropTypes.bool,
+  padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
   className: PropTypes.string,
   children: PropTypes.node.isRequired
 }
 
 IconGroup.defaultProps = {
   justify: 'initial',
-  compact: false,
+  padded: false,
   className: ''
 }
 
