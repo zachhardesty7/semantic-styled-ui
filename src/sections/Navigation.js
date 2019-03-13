@@ -10,20 +10,16 @@ import { asTag, withNewProps, withoutProps } from '../utils'
 
 const NavSegmentTagged = asTag(withoutProps(Segment, ['pointing']))
 const NavSegment = styled(NavSegmentTagged)`
-  && {
-    ${({ pointing }) => pointing && 'padding-bottom: 0px'};
-  }
+  ${({ pointing }) => pointing && 'padding-bottom: 0px'};
 `
 
 const NavMenuTagged = asTag(Menu)
 const NavMenu = styled(NavMenuTagged)`
-  &&& {
-    flex-wrap: wrap;
-    justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
 
-    ${({ pointing }) => pointing && 'border-bottom: none !important'};
-    ${({ pointing }) => pointing && 'margin-bottom: 2px'};
-  }
+  ${({ pointing }) => pointing && 'border-bottom: none !important'};
+  ${({ pointing }) => pointing && 'margin-bottom: 2px'};
 `
 
 // TODO: add sticky header

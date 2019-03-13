@@ -18,26 +18,22 @@ import {
 
 const FilteredStyledButton = asTag(withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover']))
 const StyledButton = styled(FilteredStyledButton)`
-  && {
-    ${getColor('white')};
-    ${getBackgroundColor('secondary')};
-    transition: ease-in-out 50ms;
+  ${getColor('white')};
+  ${getBackgroundColor('secondary')};
+  transition: ease-in-out 50ms;
 
-    ${getHoverBackgroundColor('primary')};
-    &:hover {
-      transition: ease-in-out 100ms;
-    }
+  ${getHoverBackgroundColor('primary')};
+  &:hover {
+    transition: ease-in-out 100ms;
   }
 `
 
 const HeroIcon = styled(Icon)`
-  && {
-    ${getColor('white')};
-    ${({ pointing }) => (pointing === 'left' ? 'margin-right: .75em !important' : 'margin-left: .75em !important')};
-    vertical-align: bottom;
-    width: 1em;
-    height: 1em;
-  }
+  ${getColor('white')};
+  ${({ pointing }) => (pointing === 'left' ? 'margin-right: .75em !important' : 'margin-left: .75em !important')};
+  vertical-align: bottom;
+  width: 1em;
+  height: 1em;
 `
 
 const HeroButton = ({

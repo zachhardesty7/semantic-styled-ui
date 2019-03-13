@@ -16,38 +16,34 @@ import { asTag, media, withNewProps } from '../utils'
 /* fix absurdly wide blurb segments on tablet size */
 const BlurbsSegmentTagged = asTag(Segment)
 const BlurbsSegment = styled(BlurbsSegmentTagged)`
-  && {
-    padding-top: 5em;
-    padding-bottom: 5em;
+  padding-top: 5em;
+  padding-bottom: 5em;
 
-    h4 {
-      font-size: 2em;
-    }
-
-    ${media.tablet`
-      .container {
-        max-width: 397px !important;
-        padding: 0 1.5em;
-        margin: 0 auto !important;
-      }
-    `};
-
-    ${media.phone`
-      .container {
-        margin: 0 2em !important;
-      }
-    `};
+  h4 {
+    font-size: 2em;
   }
+
+  ${media.tablet`
+    .container {
+      max-width: 397px !important;
+      padding: 0 1.5em;
+      margin: 0 auto !important;
+    }
+  `};
+
+  ${media.phone`
+    .container {
+      margin: 0 2em !important;
+    }
+  `};
 `
 
 const HeaderContainer = styled(Container)`
-  && {
-    /* pad between title/content and items */
-    padding-bottom: 3em;
+  /* pad between title/content and items */
+  padding-bottom: 3em;
 
-    h3 {
-      font-size: 3em;
-    }
+  h3 {
+    font-size: 3em;
   }
 `
 

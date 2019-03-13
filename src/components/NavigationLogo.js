@@ -26,13 +26,13 @@ const LogoCon = styled.div`
   `};
 `
 
-/* img:last-child will reset weird behavior in gatsby */
-/* will work with regular img child or gatsby-image picture element */
 const Logo = styled.div`
   margin: 0 0.5em;
   height: 100% !important;
   width: 100% !important;
 
+  /* reset weird behavior in gatsby */
+  /* will work with regular img child or gatsby-image picture element */
   img:last-child {
     position: relative !important;
     width: ${({ logoSize }) => `${logoSizes[logoSize]}px`} !important;
@@ -40,7 +40,6 @@ const Logo = styled.div`
     ${media.phone`
       width: ${({ logoSize }) => `${logoSizes[logoSize] * 0.8}px`} !important;
     `};
-
   }
 `
 

@@ -33,66 +33,60 @@ const sizes = {
 
 const FilteredHeroSegment = withoutProps(Segment, ['size'])
 const HeroSegment = styled(FilteredHeroSegment)`
-  && {
-    padding-top: ${({ baseline, size }) => (
+  padding-top: ${({ baseline, size }) => (
     baseline === 'top'
       ? sizes.small[size]
       : sizes.large[size]
   )}em;
-    padding-bottom: ${({ baseline, size }) => (
+  padding-bottom: ${({ baseline, size }) => (
     baseline === 'top'
       ? sizes.large[size]
       : sizes.small[size]
   )}em;
 
-    /* background overlay to dim and saturate */
-    &::before {
-      content: "";
-      height: 100%;
-      width: 100.5%;
-      background: ${({ overlay }) => (
+  /* background overlay to dim and saturate */
+  &::before {
+    content: "";
+    height: 100%;
+    width: 100.5%;
+    background: ${({ overlay }) => (
     (overlay === 'dark' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))') ||
-        (overlay === 'darker' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))')
+      (overlay === 'darker' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))')
   )};
-      filter: saturate(2) sepia(0.4);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center +45%;
-      top: 0;
-      left: -0.5%;
-      position: absolute;
-      z-index: 2 !important;
-    }
+    filter: saturate(2) sepia(0.4);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center +45%;
+    top: 0;
+    left: -0.5%;
+    position: absolute;
+    z-index: 2 !important;
   }
 `
 
 const FilteredHeroHeader = asTag(withoutProps(Header, ['inlineLogo']))
 const HeroHeader = styled(FilteredHeroHeader)`
-  && {
-    ${getColor('white')};
-    font-display: fallback;
-    font-weight: normal !important;
-  }
+  ${getColor('white')};
+  font-display: fallback;
+  font-weight: normal !important;
 `
 
 const HeroTitle = styled(HeroHeader)`
-  && {
-    ${({ inlineLogo }) => inlineLogo && 'display: inline-block'};
-    ${({ inlineLogo }) => inlineLogo && 'margin-bottom: 0'};
-    padding-right: 0.15em;
-    font-size: 4.7em;
+  ${({ inlineLogo }) => inlineLogo && 'display: inline-block'};
+  ${({ inlineLogo }) => inlineLogo && 'margin-bottom: 0'};
+  padding-right: 0.15em;
+  font-size: 4.7em;
 
-    ${media.laptop`
-      font-size: 4em;
-    `};
-    ${media.tablet`
-      font-size: 3.8em;
-    `};
-    ${media.phone`
-      font-size: 12vw !important;
-      width: fit-content !important;
-    `};
-  }
+  ${media.laptop`
+    font-size: 4em;
+  `};
+  ${media.tablet`
+    font-size: 3.8em;
+  `};
+  ${media.phone`
+    font-size: 12vw !important;
+    width: fit-content !important;
+  `};
 `
 
 const HeroSubtitle = styled(HeroHeader)`

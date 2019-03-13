@@ -12,10 +12,8 @@ import {
 import { encode, process } from '../utils'
 
 const MessageContainer = styled(Message)`
-  && {
-    display: flex !important;
-    margin-bottom: 1em;
-  }
+  display: flex !important;
+  margin-bottom: 1em;
 `
 
 const SSUIForm = ({
