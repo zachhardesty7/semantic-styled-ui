@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -26,6 +26,7 @@
     "link:all": "cross-env-shell yarn run link:react && yarn run link:react-dom && yarn run link:styled-components && yarn run link:semantic-ui-css",
     "link:gc": "cross-env-shell LINKSSUI=../../../work/gulfcorp/website/node_modules yarn run link:all",
     "link:cd": "cross-env-shell LINKSSUI=../../../work/connectdoor/website/node_modules yarn run link:all",
+    "link:zh": "cross-env-shell LINKSSUI=../zachhardesty.com/node_modules yarn run link:all",
     "dev": "yarn run build && yarn link",
     "pub": "yarn run build && yarn publish",
     "clean": "rimraf dist/*",

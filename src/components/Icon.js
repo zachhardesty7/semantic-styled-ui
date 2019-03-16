@@ -23,6 +23,7 @@ const ColoredIcon = styled(FilteredIcon)`
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
   margin: 0;
+  opacity: 1;
 
   color: ${({
     color,
@@ -37,7 +38,8 @@ const ColoredIcon = styled(FilteredIcon)`
   )};
 
   ${({ link }) => link && css`
-    &:hover {
+    ${IconContainer}:hover & {
+      opacity: 1;
       color: ${({
     /* eslint-disable indent */
         colorHover,
@@ -53,10 +55,54 @@ const ColoredIcon = styled(FilteredIcon)`
     }
   `};
 `
+
+const ColoredLabel = styled.span`
+  color: ${({
+      color,
+      light,
+      inverted,
+      theme
+    }) => (
+      color ||
+      (light && (theme.light || defaultColors.light)) ||
+      (inverted && (theme.secondary || defaultColors.secondary)) ||
+      (theme.primary || defaultColors.primary)
+    )};
+
+  ${({ link }) => link && css`
+    ${IconContainer}:hover & {
+      color: ${({
+        colorHover,
+        light,
+        inverted,
+        theme
+      }) => (
+        colorHover ||
+        (light && (theme.white || defaultColors.white)) ||
+        (inverted && (theme.primary || defaultColors.primary)) ||
+        (theme.secondary || defaultColors.secondary)
+      )};
+    }
+  `};
+`
+
 /* eslint-enable indent */
+
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const Link = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 const SSUIIcon = ({
   name,
+  label,
   link,
   size,
   light,
@@ -65,37 +111,67 @@ const SSUIIcon = ({
   colorHover,
   className
 }) => (
-  link ? (
-    <a
-      href={link === true ? '#' : link}
-      rel='noopener noreferrer'
-      target={link === true ? null : '_blank'}
-      className={className}
-    >
-      <ColoredIcon
-        name={name}
-        link
-        size={size}
-        inverted={inverted}
-        light={light}
-        color={color}
-        colorHover={colorHover}
-      />
-    </a>
-  ) : (
-    <ColoredIcon
-      name={name}
-      size={size}
-      inverted={inverted}
-      light={light}
-      color={color}
-      colorHover={colorHover}
-      className={className}
-    />
-  ))
+  <IconContainer>
+    {link ? (
+      <Link
+        href={link === true ? '#' : link}
+        rel='noopener noreferrer'
+        target={link === true ? null : '_blank'}
+        className={className}
+      >
+        <ColoredIcon
+          name={name.toLowerCase()}
+          link
+          size={size}
+          inverted={inverted}
+          light={light}
+          color={color}
+          colorHover={colorHover}
+        />
+        {label && (
+          <ColoredLabel
+            link
+            inverted={inverted}
+            light={light}
+            color={color}
+            colorHover={colorHover}
+          >
+            {label === true ? name : label}
+          </ColoredLabel>
+        )}
+      </Link>
+    ) : (
+      <>
+        <ColoredIcon
+          name={name.toLowerCase()}
+          size={size}
+          inverted={inverted}
+          light={light}
+          color={color}
+          colorHover={colorHover}
+          className={className}
+        />
+        {label && (
+          <ColoredLabel
+            link
+            inverted={inverted}
+            light={light}
+            color={color}
+            colorHover={colorHover}
+          >
+            {label === true ? name : label}
+          </ColoredLabel>
+        )}
+      </>
+    )}
+  </IconContainer>
+)
 
 SSUIIcon.propTypes = {
   name: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.string, PropTypes.bool
+  ]),
   link: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
@@ -109,6 +185,7 @@ SSUIIcon.propTypes = {
 
 SSUIIcon.defaultProps = {
   link: false,
+  label: false,
   size: 'medium',
   color: '',
   colorHover: '',
