@@ -4,7 +4,11 @@ import styled, { css } from 'styled-components'
 
 import { Icon } from 'semantic-ui-react'
 
-import { defaultColors, withoutProps } from '../utils'
+import {
+  calcDuration,
+  defaultColors,
+  withoutProps
+} from '../utils'
 
 const iconMap = {
   mini: '0.4em',
@@ -103,21 +107,30 @@ const Link = styled.a`
 const SSUIIcon = ({
   name,
   label,
+  tag,
   link,
   size,
   light,
   inverted,
   color,
   colorHover,
-  className
+  className,
+  ...rest
 }) => (
   <IconContainer>
     {link ? (
       <Link
-        href={link === true ? '#' : link}
-        rel='noopener noreferrer'
-        target={link === true ? null : '_blank'}
+        as={tag}
+        href={(tag === 'a' && link) || undefined}
+        to={(tag !== 'a' && link.slice(link.indexOf('#') + 1)) || undefined}
+        spy={(tag !== 'a' && link.includes('#')) || undefined}
+        smooth={(tag !== 'a' && link.includes('#')) || undefined}
+        duration={(tag !== 'a' && link.includes('#')) ? calcDuration : undefined}
+        {...(tag !== 'a' && !link.includes('#') && { activeClassName: 'active' })}
+        rel={!link.includes('#') ? 'noopener noreferrer' : undefined}
+        target={!link.includes('#') ? '_blank' : undefined}
         className={className}
+        {...rest}
       >
         <ColoredIcon
           name={name.toLowerCase()}
@@ -171,9 +184,10 @@ SSUIIcon.propTypes = {
   label: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
-  link: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.bool
+  tag: PropTypes.oneOfType([
+    PropTypes.string, PropTypes.elementType
   ]),
+  link: PropTypes.string,
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'medium', 'large', 'big', 'bigger', 'huge', 'massive']),
   color: PropTypes.string,
   colorHover: PropTypes.string,
@@ -183,8 +197,9 @@ SSUIIcon.propTypes = {
 }
 
 SSUIIcon.defaultProps = {
-  link: false,
   label: false,
+  tag: 'a',
+  link: '',
   size: 'medium',
   color: '',
   colorHover: '',

@@ -42,25 +42,30 @@ const MenuItem = styled(MenuItemTagged)`
 const NavigationItem = ({
   name,
   tag,
-  to,
+  link,
   anchor,
   stacked,
   pointing,
   className,
-  children
+  children,
+  ...rest
 }) => (
   <MenuItem
     name={name || children.toString()}
     tag={tag}
-    to={to || `/${process(children.toString())}/`}
-    spy={anchor || undefined}
-    smooth={anchor || undefined}
-    duration={anchor ? calcDuration : undefined}
-    {...(!anchor && !stacked && { activeClassName: 'active' })}
+    href={(tag === 'a' && link) || undefined}
+    to={(tag !== 'a' && (link.slice(link.indexOf('#') + 1) || `/${process(children.toString())}/`)) || undefined}
+    spy={(tag !== 'a' && link.includes('#')) || undefined}
+    smooth={(tag !== 'a' && link.includes('#')) || undefined}
+    duration={(tag !== 'a' && link.includes('#')) ? calcDuration : undefined}
+    {...(tag !== 'a' && !link.includes('#') && !stacked && { activeClassName: 'active' })}
     // REVIEW: if correctness of more verbose option matters
     // {...(!anchor && !stacked ? { activeClassName: 'active' } : {})}
+    rel={!link.includes('#') ? 'noopener noreferrer' : undefined}
+    target={!link.includes('#') ? '_blank' : undefined}
     pointing={pointing}
     className={className}
+    {...rest}
   >
     {children}
   </MenuItem>
@@ -72,7 +77,7 @@ NavigationItem.propTypes = {
     PropTypes.string,
     PropTypes.elementType
   ]),
-  to: PropTypes.string,
+  link: PropTypes.string,
   anchor: PropTypes.bool,
   pointing: PropTypes.bool,
   stacked: PropTypes.bool,
@@ -83,7 +88,7 @@ NavigationItem.propTypes = {
 NavigationItem.defaultProps = {
   name: '',
   tag: 'a',
-  to: '',
+  link: '',
   anchor: false,
   pointing: false,
   stacked: false,
