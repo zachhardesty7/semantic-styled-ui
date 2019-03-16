@@ -153,7 +153,6 @@ const SSUIIcon = ({
         />
         {label && (
           <ColoredLabel
-            link
             inverted={inverted}
             light={light}
             color={color}
