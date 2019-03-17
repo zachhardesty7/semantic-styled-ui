@@ -2,12 +2,13 @@
 import React from 'react'
 
 /**
+ * convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
  * shim for Object.fromEntries()
  *
  * @param {[[string, any]]} iter array of arrays of key, value pairs
- * @returns obj with key, value pairs assigned
+ * @returns {*} obj with key, value pairs assigned
  */
-function ObjectFromEntries(iter) {
+const ObjectFromEntries = (iter) => {
   const obj = {}
   const arr = [...iter]
 
@@ -30,8 +31,14 @@ function ObjectFromEntries(iter) {
 }
 
 /**
+ * capitalize first letter of words and remove spaces
+ *
  * @param {string} str arbitrary input
  * @returns {string} parsed into title-case with spaces removed
+ * @example
+ *
+ * toJoinedTitleCase('an arbitrary string input')
+ * // => 'AnArbitraryStringInput'
  */
 export const toJoinedTitleCase = str => (
   str.replace(
@@ -42,8 +49,10 @@ export const toJoinedTitleCase = str => (
 
 /**
  * used for smooth scrolling when clicking anchor link
+ * with `react-scroll` plugin, duration increases with dist
  *
- * @param {number} scrollDistanceInPx
+ * @requires `react-scroll`
+ * @param {number} scrollDistanceInPx distance of element from viewport
  * @returns {number} ms equal to scroll distance capped at upper and lower bounds of 800 & 2000
  */
 export const calcDuration = (scrollDistanceInPx) => {
@@ -54,20 +63,36 @@ export const calcDuration = (scrollDistanceInPx) => {
 }
 
 /**
+ * lowercase and replaces spaces with dashes
+ *
  * @param {string} str arbitrary input
- * @returns {string} parsed string without spaces and lowercase
+ * @returns {string} parsed output
+ * @example
+ *
+ * process('An Arbitrary String Input')
+ * // => 'an-arbitrary-string-input'
  */
 export const process = str => `${str.toLowerCase().replace(/\W/g, '-')}`
 
 /**
- * camelCaseToDash('userId') => "user-id"
- * camelCaseToDash('waitAMoment') => "wait-a-moment"
- * camelCaseToDash('TurboPascal') => "turbo-pascal"
+ * convert camel case string to kebab case
+ * @param {string} str arbitrary input
+ * @returns {string} parsed output
+ * @example
+ *
+ * camelCaseToDash('userId')
+ * // => "user-id"
+ * camelCaseToDash('waitAMoment')
+ * // => "wait-a-moment"
+ * camelCaseToDash('TurboPascal')
+ * // => "turbo-pascal"
  */
 export const camelToKebab = str => str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
 
 /**
- * @param {object} data key-value pairs of strings from form submission
+ * URL encodes the data of key, value pairs as submitted by a form
+ *
+ * @param {Object<string, string>} data arbitrary key, value pairs
  * @returns {string} URL encoded data
  */
 export const encode = data => Object.keys(data)
@@ -82,18 +107,19 @@ export const encode = data => Object.keys(data)
  * @param {React.ComponentProps} props object of new props
  * @returns {React.ComponentType} new cloned React Component with shallow merged props
  */
-export const withNewProps = (Component, props) => {
+export const withNewProps = (Component, props = {}) => {
   const newProps = { ...props, ...Component.props }
   return React.cloneElement(Component, { ...newProps })
 }
 
 /**
- * facilitate preventing props from reaching DOM elements
+ * dynamically prevent props from reaching DOM elements
  * by providing styled-components a prop filter function
  *
  * @param {React.ComponentType} Component target to control prop flow of
  * @param {string[]} propKeys array of prop keys to control
  * @returns {Function} filter function to screen for passed props
+ * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
  */
 export const withoutProps = (Component, propKeys = []) => (
   React.forwardRef(({ children, ...rest }, ref) => {
@@ -105,11 +131,11 @@ export const withoutProps = (Component, propKeys = []) => (
 )
 
 /**
- * apply the "tag" prop to the "as" prop without overwriting
- * styled-components behavior and pass Ref
+ * convert the "tag" prop to the "as" prop without overwriting
+ * styled-components behavior and forward React Ref
  *
  * @param {React.ComponentType} Component target to control prop flow of
- * @returns {Function} function to apply "tag" to "as"
+ * @returns {Function} a function to convert "tag" to "as"
  */
 export const asTag = Component => (
   React.forwardRef(({ tag, children, ...rest }, ref) => (
