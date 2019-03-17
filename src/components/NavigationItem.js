@@ -43,7 +43,6 @@ const NavigationItem = ({
   name,
   tag,
   link,
-  anchor,
   stacked,
   pointing,
   className,
@@ -78,7 +77,6 @@ NavigationItem.propTypes = {
     PropTypes.elementType
   ]),
   link: PropTypes.string,
-  anchor: PropTypes.bool,
   pointing: PropTypes.bool,
   stacked: PropTypes.bool,
   className: PropTypes.string,
@@ -89,7 +87,6 @@ NavigationItem.defaultProps = {
   name: '',
   tag: 'a',
   link: '',
-  anchor: false,
   pointing: false,
   stacked: false,
   className: ''

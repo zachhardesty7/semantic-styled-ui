@@ -46,20 +46,21 @@ const Logo = styled.div`
 const NavigationLogo = ({
   name,
   tag,
-  to,
-  anchor,
+  link,
   stacked,
   logoSize,
   className,
-  children
+  children,
+  ...rest
 }) => (
   <LogoCon stacked={stacked} className={className}>
     <NavigationItem
       name={name}
       tag={tag}
-      to={to}
-      anchor={anchor}
+      link={link}
       stacked={stacked}
+      pointing={false}
+      {...rest}
     >
       <Logo as={children.type} {...children.props} logoSize={logoSize} />
     </NavigationItem>
@@ -72,8 +73,7 @@ NavigationLogo.propTypes = {
     PropTypes.string,
     PropTypes.elementType
   ]),
-  to: PropTypes.string,
-  anchor: PropTypes.bool,
+  link: PropTypes.string,
   stacked: PropTypes.bool,
   logoSize: PropTypes.oneOf(['small', 'base', 'large']),
   className: PropTypes.string,
@@ -83,8 +83,7 @@ NavigationLogo.propTypes = {
 NavigationLogo.defaultProps = {
   name: 'home',
   tag: 'a',
-  to: '/',
-  anchor: false,
+  link: '',
   stacked: false,
   logoSize: 'base',
   className: ''
