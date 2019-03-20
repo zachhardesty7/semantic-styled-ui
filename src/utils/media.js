@@ -24,8 +24,19 @@ function _templateObject6() {
  */
 const media = {
   /**
-   * @param {TemplateStringsArray} args template literal of css
-   * @returns {TemplateStringsArray} template literal of css wrapped in media query
+   * apply styled-component css when screen-size <= 425px
+   *
+   * @requires `styled-components`
+   * @param {any[]} args template literal of css to be interpolated
+   * @returns {any[]} css wrapped in media query
+   * @example
+   * ```
+   * const Component = styled.div`
+   *  ${media.phone`
+   *    font-size: 0.97rem;
+   *  `};
+   * `
+   * ```
    */
   phone: (...args) => css`
     @media only screen and (max-width: 425px) {
@@ -34,8 +45,19 @@ const media = {
   `,
 
   /**
-   * @param {TemplateStringsArray} args template literal of css
-   * @returns {TemplateStringsArray} template literal of css wrapped in media query
+   * apply styled-component css when screen-size >= 426px && screen-size <= 767px
+   *
+   * @requires `styled-components`
+   * @param {any[]} args template literal of css to be interpolated
+   * @returns {any[]} css wrapped in media query
+   * @example
+   * ```
+   * const Component = styled.div`
+   *  ${media.tablet`
+   *    font-size: 0.97rem;
+   *  `};
+   * `
+   * ```
    */
   tablet: (...args) => css`
     @media only screen and (min-width: 426px) and (max-width: 767px) {
@@ -44,8 +66,19 @@ const media = {
   `,
 
   /**
-   * @param {TemplateStringsArray} args template literal of css
-   * @returns {TemplateStringsArray} template literal of css wrapped in media query
+   * apply styled-component css when screen-size <= 767px
+   *
+   * @requires `styled-components`
+   * @param {any[]} args template literal of css to be interpolated
+   * @returns {any[]} css wrapped in media query
+   * @example
+   * ```
+   * const Component = styled.div`
+   *  ${media.mobile`
+   *    font-size: 0.97rem;
+   *  `};
+   * `
+   * ```
    */
   mobile: (...args) => css`
     @media only screen and (max-width: 767px) {
@@ -54,8 +87,19 @@ const media = {
   `,
 
   /**
-   * @param {TemplateStringsArray} args template literal of css
-   * @returns {TemplateStringsArray} template literal of css wrapped in media query
+   * apply styled-component css when screen-size >= 768px && screen-size <= 991px
+   *
+   * @requires `styled-components`
+   * @param {any[]} args template literal of css to be interpolated
+   * @returns {any[]} css wrapped in media query
+   * @example
+   * ```
+   * const Component = styled.div`
+   *  ${media.laptop`
+   *    font-size: 0.97rem;
+   *  `};
+   * `
+   * ```
    */
   laptop: (...args) => css`
     @media only screen and (min-width: 768px) and (max-width:991px) {
@@ -64,8 +108,19 @@ const media = {
   `,
 
   /**
-   * @param {TemplateStringsArray} args template literal of css
-   * @returns {TemplateStringsArray} template literal of css wrapped in media query
+   * apply styled-component css when screen-size >= 992px && screen-size <= 1199px
+   *
+   * @requires `styled-components`
+   * @param {any[]} args template literal of css to be interpolated
+   * @returns {any[]} css wrapped in media query
+   * @example
+   * ```
+   * const Component = styled.div`
+   *  ${media.desktop`
+   *    font-size: 0.97rem;
+   *  `};
+   * `
+   * ```
    */
   desktop: (...args) => css`
     @media only screen and (min-width: 992px) and (max-width:1199px) {
@@ -74,8 +129,19 @@ const media = {
   `,
 
   /**
-   * @param {TemplateStringsArray} args template literal of css
-   * @returns {TemplateStringsArray} template literal of css wrapped in media query
+   * apply styled-component css when screen-size >= 1200px
+   *
+   * @requires `styled-components`
+   * @param {any[]} args template literal of css to be interpolated
+   * @returns {any[]} css wrapped in media query
+   * @example
+   * ```
+   * const Component = styled.div`
+   *  ${media.desktop`
+   *    font-size: 0.97rem;
+   *  `};
+   * `
+   * ```
    */
   widescreen: (...args) => css`
     @media only screen and (min-width: 1200px) {

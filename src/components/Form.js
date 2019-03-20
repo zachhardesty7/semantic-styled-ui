@@ -100,7 +100,7 @@ const SSUIForm = ({
       <input type='hidden' name='bot-field' />
       {fields
         .map((item, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
-        .filter(item => item) // remove false (null) entries
+        .filter(Boolean) // remove falsy (null) entries
         .map(fieldGroup => (
           <Form.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
             {fieldGroup.map((field) => {

@@ -5,8 +5,8 @@ import React from 'react'
  * convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
  * shim for Object.fromEntries()
  *
- * @param {[[string, any]]} iter array of arrays of key, value pairs
- * @returns {*} obj with key, value pairs assigned
+ * @param {Iterable<[string, any]>} iter iterable of arrays of key, value pairs
+ * @returns {{}} obj with key, value pairs assigned
  */
 const ObjectFromEntries = (iter) => {
   const obj = {}
@@ -48,6 +48,8 @@ export const toJoinedTitleCase = str => (
 )
 
 /**
+ * clamp duration of scrolling
+ *
  * used for smooth scrolling when clicking anchor link
  * with `react-scroll` plugin, duration increases with dist
  *
@@ -76,69 +78,132 @@ export const process = str => `${str.toLowerCase().replace(/\W/g, '-')}`
 
 /**
  * convert camel case string to kebab case
+ *
  * @param {string} str arbitrary input
  * @returns {string} parsed output
  * @example
  *
  * camelCaseToDash('userId')
- * // => "user-id"
+ * // => 'user-id'
  * camelCaseToDash('waitAMoment')
- * // => "wait-a-moment"
+ * // => 'wait-a-moment'
  * camelCaseToDash('TurboPascal')
- * // => "turbo-pascal"
+ * // => 'turbo-pascal'
  */
 export const camelToKebab = str => str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
 
 /**
  * URL encodes the data of key, value pairs as submitted by a form
  *
- * @param {Object<string, string>} data arbitrary key, value pairs
+ * @param {{ [field: string]: string }} data arbitrary form data
  * @returns {string} URL encoded data
+ * @example
+ *
+ * encode({ key1: 'val1', key2: 'val2' })
+ * // => 'key1=val1&key2=val2'
  */
-export const encode = data => Object.keys(data)
-  .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+export const encode = data => Object.entries(data)
+  .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
   .join('&')
 
 /**
  * soft merge new props into a React Component without
  * overwriting the original props (preserves immutability)
  *
- * @param {React.ComponentType} Component target to receive new props
- * @param {React.ComponentProps} props object of new props
- * @returns {React.ComponentType} new cloned React Component with shallow merged props
+ * @param {React.ReactElement<P, T>} Element instance target to receive new props
+ * @param props object of new props
+ * @returns {React.ReactElement<P, T>} cloned React Element with shallowly merged props
+ * @requires `react`
+ * @template {{}} P - props obj of input Element
+ * @template {React.ElementType<P>} T - type of input Element
+ * @example
+ *
+ * withNewProps(<Container key0='val0' />, { key1: 'val1', key2: 'val2' })
+ * // => <Container key0='val0' key1='val1' key2='val2' />
+ * withNewProps(<Container key3='important-value' />, { key3: 'val3', key4: 'val4' })
+ * // => <Container key3='important-value' key4='val4' />
  */
-export const withNewProps = (Component, props = {}) => {
-  const newProps = { ...props, ...Component.props }
-  return React.cloneElement(Component, { ...newProps })
+export const withNewProps = (Element, props = {}) => {
+  const newProps = { ...props, ...Element.props }
+  return React.cloneElement(Element, { ...newProps })
 }
 
 /**
  * dynamically prevent props from reaching DOM elements
- * by providing styled-components a prop filter function
+ * by providing styled-components a prop blacklist, most
+ * useful to prevent props intended for a styled component
+ * from getting picked up by the {...rest} of the base component
  *
- * @param {React.ComponentType} Component target to control prop flow of
+ * @param {React.ElementType<P>} ElementType target to control prop flow of
  * @param {string[]} propKeys array of prop keys to control
- * @returns {Function} filter function to screen for passed props
+ * @returns {(props: P, ref: React.RefObject<P>) => React.ForwardRefExoticComponent<P>} ref
+ * forwarding function that removes unwanted `propKeys` from original props
+ * @requires `react` && usually `styled-components`
  * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
+ * @template {{}} P - props obj of input component
+ * @example
+ * ```
+ * // don't include asterisks
+ * const ContainerWithPassThrough = ({ className, ...rest }) => (
+ *  <div className={className} {...rest} />
+ * )
+ *
+ * const FilteredContainer = withoutProps(ContainerWithPassThrough, ['color'])
+ * const Container = styled(FilteredContainer)`
+ *  color: ${({ color }) => color};
+ * `
+ *
+ * const Component = ({ color }) => (
+ *  <Container
+ *    color={color}
+ *    className='con'
+ *  />
+ * )
+ *
+ * <Component color='blue' />
+ * // => <div className='con' /> // with a blue color
+ * ```
  */
-export const withoutProps = (Component, propKeys = []) => (
+export const withoutProps = (ElementType, propKeys = []) => (
   React.forwardRef(({ children, ...rest }, ref) => {
     const filtered = ObjectFromEntries(Object.entries(rest)
       .filter(([key, val]) => !propKeys.includes(key)))
 
-    return <Component ref={ref} {...filtered}>{children}</Component>
+    return <ElementType ref={ref} {...filtered}>{children}</ElementType>
   })
 )
 
 /**
  * convert the "tag" prop to the "as" prop without overwriting
- * styled-components behavior and forward React Ref
+ * styled-components behavior while forwarding React Ref,
+ * most useful when base component already uses the "as" tag
+ * to dynamically control component rendering tag
  *
- * @param {React.ComponentType} Component target to control prop flow of
- * @returns {Function} a function to convert "tag" to "as"
+ * @param {React.ElementType<P>} ElementType target to control rendering tag
+ * @returns {(props: P, ref: React.RefObject<P>) => React.ForwardRefExoticComponent<P>}
+ * a function to pass ref and convert "tag" to "as"
+ * @requires `react` && usually `styled-components`
+ * @template {{}} P - props obj of input component
+ * @example
+ *
+ * ```
+ * // don't include asterisks
+ * const ContainerWithAsRendering = ({ as }) => React.createElement(as)
+ *
+ * const TaggedContainer = asTag(ContainerWithAsRendering)
+ * const Container = styled(TaggedContainer)``
+ *
+ * const Component = ({ tag }) => <Container tag={tag} />
+ *
+ * <Component tag='section' />
+ * // => <section />
+ * ```
  */
-export const asTag = Component => (
+export const asTag = ElementType => (
   React.forwardRef(({ tag, children, ...rest }, ref) => (
-    <Component ref={ref} as={tag} {...rest}>{children}</Component>
+    <ElementType ref={ref} as={tag} {...rest}>{children}</ElementType>
   ))
 )
+
+// helpful for testing
+export const sleep = ms => data => new Promise(resolve => setTimeout(() => resolve(data), ms))
