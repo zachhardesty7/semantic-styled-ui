@@ -40,9 +40,8 @@ const HeroIcon = styled(Icon)`
 `
 
 const HeroButton = ({
-  to,
   tag,
-  anchor,
+  link,
   pointing,
   compact,
   color,
@@ -52,12 +51,15 @@ const HeroButton = ({
 }) => (
   <StyledButton
     tag={tag}
-    to={to || `/${process(children.toString())}/`}
+    href={(tag === 'a' && link) || undefined}
+    to={(tag !== 'a' && link.slice(link.indexOf('#') + 1)) || undefined}
+    spy={(tag !== 'a' && link.includes('#')) || undefined}
+    smooth={(tag !== 'a' && link.includes('#')) || undefined}
+    duration={(tag !== 'a' && link.includes('#')) ? calcDuration : undefined}
+    rel={!link.includes('#') ? 'noopener noreferrer' : undefined}
+    target={!link.includes('#') ? '_blank' : undefined}
     size='huge'
     tabIndex='0'
-    spy={anchor || undefined}
-    smooth={anchor || undefined}
-    duration={anchor ? calcDuration : undefined}
     primary
     compact={compact}
     backgroundColor={color}
@@ -117,9 +119,8 @@ HeroButton.propTypes = {
 }
 
 HeroButton.defaultProps = {
-  to: '',
   tag: 'a',
-  anchor: false,
+  link: '',
   pointing: 'right',
   compact: false,
   color: '',
