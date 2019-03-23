@@ -19,27 +19,30 @@
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
   "repository": "github:zachhardesty7/semantic-styled-ui",
   "scripts": {
-    "link:react": "cross-env-shell npm link ${LINKSSUI}/react",
-    "link:react-dom": "cross-env-shell npm link ${LINKSSUI}/react-dom",
-    "link:styled-components": "cross-env-shell npm link ${LINKSSUI}/styled-components",
-    "link:semantic-ui-css": "cross-env-shell npm link ${LINKSSUI}/semantic-ui-css",
-    "link:all": "cross-env-shell yarn run link:react && yarn run link:react-dom && yarn run link:styled-components && yarn run link:semantic-ui-css",
-    "link:gc": "cross-env-shell LINKSSUI=../../../work/gulfcorp/website/node_modules yarn run link:all",
-    "link:cd": "cross-env-shell LINKSSUI=../../../work/connectdoor/website/node_modules yarn run link:all",
-    "link:zh": "cross-env-shell LINKSSUI=../zachhardesty.com/node_modules yarn run link:all",
-    "dev": "yarn run build && yarn link",
-    "pub": "yarn run build && yarn publish",
+    "register:react": "cd ${LINKSSUI}/react && yarn unlink && yarn link",
+    "register:react-dom": "cd ${LINKSSUI}/react-dom && yarn unlink && yarn link",
+    "register:styled-components": "cd ${LINKSSUI}/styled-components && yarn unlink && yarn link",
+    "register:semantic-ui-css": "cd ${LINKSSUI}/semantic-ui-css && yarn unlink && yarn link",
+    "register:all": "yarn run register:react && yarn run register:react-dom && yarn run register:styled-components && yarn run register:semantic-ui-css",
+    "link:all": "yarn link react && yarn link react-dom && yarn link styled-components && yarn link semantic-ui-css",
+    "link:gc": "cross-env-shell LINKSSUI=../../../work/gulfcorp/website/node_modules yarn run register:all && yarn run link:all",
+    "link:cd": "cross-env-shell LINKSSUI=../../../work/connectdoor/website/node_modules yarn run register:all && yarn run link:all",
+    "link:zh": "cross-env-shell LINKSSUI=../zachhardesty.com/node_modules yarn run register:all && yarn run link:all",
+    "link:ls": "echo $(tput bold)currently linked pkgs, view yarn link:lsa for pkg locations:$(tput sgr0); (ls -l node_modules; ls -l node_modules/@*) | grep ^l | grep -o \"[[:alpha:]][[:alpha:]][[:alpha:]] [[:digit:]][[:digit:]].*$\"",
+    "link:lsa": "echo $(tput bold)linkable / registered pkgs:$(tput sgr0); ls -la ~/.config/yarn/link/ | grep ^l | grep -o \"[[:alpha:]][[:alpha:]][[:alpha:]] [[:digit:]][[:digit:]].*$\"",
     "clean": "rimraf dist/*",
     "babel": "babel ./src --out-dir ./dist --copy-files",
-    "build": "yarn run clean && yarn run babel"
+    "build": "yarn run clean && yarn run babel",
+    "dev": "yarn run build && yarn link",
+    "pub": "yarn run build && yarn publish"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
-    "semantic-ui-react": "^0.85.0"
+    "semantic-ui-react": "^0.86.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
+    "@babel/core": "^7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",

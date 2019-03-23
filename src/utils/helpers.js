@@ -164,14 +164,17 @@ export const withNewProps = (Element, props = {}) => {
  * // => <div className='con' /> // with a blue color
  * ```
  */
-export const withoutProps = (ElementType, propKeys = []) => (
-  React.forwardRef(({ children, ...rest }, ref) => {
+export const withoutProps = (ElementType, propKeys = []) => {
+  // facilitate debugging with named func
+  const withoutPropsHOC = ({ children, ...rest }, ref) => {
     const filtered = ObjectFromEntries(Object.entries(rest)
       .filter(([key, val]) => !propKeys.includes(key)))
 
     return <ElementType ref={ref} {...filtered}>{children}</ElementType>
-  })
-)
+  }
+
+  return React.forwardRef(withoutPropsHOC)
+}
 
 /**
  * convert the "tag" prop to the "as" prop without overwriting
@@ -199,11 +202,14 @@ export const withoutProps = (ElementType, propKeys = []) => (
  * // => <section />
  * ```
  */
-export const asTag = ElementType => (
-  React.forwardRef(({ tag, children, ...rest }, ref) => (
-    <ElementType ref={ref} as={tag} {...rest}>{children}</ElementType>
-  ))
-)
+export const asTag = (ElementType) => {
+  // facilitate debugging with named func
+  const asTagHOC = ({ tag, children, ...rest }, ref) => (
+    <ElementType as={tag} ref={ref} {...rest}>{children}</ElementType>
+  )
+
+  return React.forwardRef(asTagHOC)
+}
 
 // helpful for testing
 export const sleep = ms => data => new Promise(resolve => setTimeout(() => resolve(data), ms))
