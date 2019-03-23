@@ -76,7 +76,7 @@ const HeroTitle = styled(HeroHeader)`
   ${({ inlineLogo }) => inlineLogo && 'margin-bottom: 0'};
   padding-right: 0.15em;
   font-size: 4.7em;
-
+  
   ${media.laptop`
     font-size: 4em;
   `};
@@ -199,21 +199,44 @@ const Hero = ({
 }
 
 Hero.propTypes = {
+  /** darken background image to improve readability */
   overlay: PropTypes.oneOf(['dark', 'darker']),
+
+  /** align content to top or bottom */
   baseline: PropTypes.oneOf(['top', 'bottom']),
+
+  /** apply css supported color string or use default if true */
   underline: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
+
+  /** size using "em" units */
   size: PropTypes.oneOf(['compact', 'base', 'relaxed']),
+
+  /** image of logo */
   logo: PropTypes.oneOfType([
     PropTypes.element, PropTypes.object
   ]),
+
+  /** format logo left of content */
   inlineLogo: PropTypes.bool,
+
+  /** apply css supported color string to Icon and text, overrides theme / default */
   color: PropTypes.string,
+
+  /** primary content */
   title: PropTypes.node,
+
+  /** secondary content */
   subtitle: PropTypes.node,
+
+  /** call-to-action @see `HeroButton` */
   button: PropTypes.node,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** background images */
   children: PropTypes.node
 }
 

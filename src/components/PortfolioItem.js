@@ -50,9 +50,16 @@ const PortfolioItem = ({
 }
 
 PortfolioItem.propTypes = {
+  /** primary content */
   title: PropTypes.node,
+
+  /** secondary content */
   subtitle: PropTypes.node,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** image-based content */
   children: PropTypes.element
 }
 

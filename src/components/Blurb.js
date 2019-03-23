@@ -33,14 +33,35 @@ const Blurb = ({
 )
 
 Blurb.propTypes = {
+  /** content above header */
   icon: PropTypes.node,
+
+  /** primary content */
   header: PropTypes.node,
+
+  /** apply css supported color string to Header text, overrides theme / default */
   color: PropTypes.string,
+
+  /**
+  * element type to render as (string or function)
+  * supports HTML tag as a string or React component definition
+  *
+  * @example
+  *
+  * 'div'
+  * 'section'
+  * ReactComponent
+  * Card
+  */
   tag: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** secondary content of body */
   children: PropTypes.node
 }
 

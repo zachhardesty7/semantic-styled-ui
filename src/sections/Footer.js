@@ -115,17 +115,43 @@ const Footer = ({
 }
 
 Footer.propTypes = {
+  /** apply css supported color string to content, overrides theme / default */
   color: PropTypes.string,
+
+  /** apply css supported color string to background, overrides theme / default */
   backgroundColor: PropTypes.string,
+
+  /** apply css supported color string to content on hover, overrides theme / default */
   hoverColor: PropTypes.string,
+
+  /** format content as stacked */
   stacked: PropTypes.bool,
+
+  /** hide icons and split float developer info */
   separated: PropTypes.bool,
+
+  /** you! */
   developerName: PropTypes.string,
+
+  /** your website or blog or whatever */
   developerLink: PropTypes.string,
+
+  /**
+   * collection of Icons to render
+   * @see `Icon` && `IconGroup`
+  */
   icons: PropTypes.node,
+
+  /** set color to secondary, colorHover to primary */
   inverted: PropTypes.bool,
+
+  /** attach footer to bottom of page when little content */
   sticky: PropTypes.bool,
+
+  /** date & company that holds copyright */
   copyright: PropTypes.string,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string
 }
 

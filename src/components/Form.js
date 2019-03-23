@@ -183,13 +183,24 @@ const SSUIForm = ({
 }
 
 SSUIForm.propTypes = {
+  /** enhances semantics */
   name: PropTypes.string,
+
+  /** labels for fields */
   fields: PropTypes.arrayOf(PropTypes.string),
+
+  /** label or true to use default */
   textArea: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
+
+  /** button text content */
   button: PropTypes.string,
+
+  /** spacing around element, @TODO add distance modifier */
   padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string
 }
 

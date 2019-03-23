@@ -75,20 +75,44 @@ const HeroButton = ({
 )
 
 HeroButton.propTypes = {
-  to: PropTypes.string,
+  /**
+  * element type to render as (string or function)
+  * supports HTML tag as a string or React component definition
+  *
+  * @example
+  *
+  * 'div'
+  * 'section'
+  * ReactComponent
+  * Card
+  */
   tag: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
-  anchor: PropTypes.bool,
+
+  /** anchor link (prefixed with "#") or standard href */
+  link: PropTypes.string,
+
+  /** formatted with active indicator */
   pointing: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(['left', 'right'])
   ]),
+
+  /** reduce whitespace */
   compact: PropTypes.bool,
+
+  /** apply css supported color string to background, overrides theme / default */
   color: PropTypes.string,
+
+  /** apply css supported color string to background on hover, overrides theme / default */
   colorHover: PropTypes.string,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** text content */
   children: PropTypes.node
 }
 

@@ -84,12 +84,25 @@ const Blurbs = ({
 )
 
 Blurbs.propTypes = {
+  /** header */
   title: PropTypes.node,
+
+  /** body content proceeding blurbs */
   content: PropTypes.node,
+
+  /** format body content */
   textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
+
+  /** apply css supported color string to all children, overrides theme / default */
   color: PropTypes.string,
+
+  /** format to appear less prominent (grey background) */
   secondary: PropTypes.bool,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** primary content of Blurbs.Item */
   children: PropTypes.node
 }
 

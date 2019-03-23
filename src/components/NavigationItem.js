@@ -71,15 +71,38 @@ const NavigationItem = ({
 )
 
 NavigationItem.propTypes = {
+  /** provide name reference to linked page */
   name: PropTypes.string,
+
+  /**
+  * element type to render as (string or function)
+  * supports HTML tag as a string or React component definition
+  *
+  * @example
+  *
+  * 'div'
+  * 'section'
+  * ReactComponent
+  * Card
+  */
   tag: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
+
+  /** anchor link (prefixed with "#") or standard href */
   link: PropTypes.string,
+
+  /** formatted with active indicator */
   pointing: PropTypes.bool,
+
+  /** required to support stacking logo */
   stacked: PropTypes.bool,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** primary content, usually string, used as link if link not provided */
   children: PropTypes.node.isRequired
 }
 

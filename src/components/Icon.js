@@ -180,19 +180,51 @@ const SSUIIcon = ({
 )
 
 SSUIIcon.propTypes = {
+  /**
+   * icon name as supported by Font Awesome 5.0.8
+   * @see[Icon Name Reference Sheet](https://react.semantic-ui.com/elements/icon/)
+   */
   name: PropTypes.string.isRequired,
+
+  /** display a text string with the icon */
   label: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
+
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   *
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
   tag: PropTypes.oneOfType([
     PropTypes.string, PropTypes.elementType
   ]),
+
+  /** anchor link (prefixed with "#") or standard href */
   link: PropTypes.string,
+
+  /** size using "em" units */
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'medium', 'large', 'big', 'bigger', 'huge', 'massive']),
+
+  /** apply css supported color string to Icon and text, overrides theme / default */
   color: PropTypes.string,
+
+  /** apply css supported color string to Icon and text on hover, overrides theme / default */
   colorHover: PropTypes.string,
+
+  /** set color to grey, colorHover to white */
   light: PropTypes.bool,
+
+  /** set color to secondary, colorHover to primary */
   inverted: PropTypes.bool,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string
 }
 

@@ -58,17 +58,44 @@ const Navigation = ({
 )
 
 Navigation.propTypes = {
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   *
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
   tag: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
+
+  /** size using "em" units */
   size: PropTypes.oneOf(['small', 'tiny', 'mini', 'large', 'huge', 'massive']),
+
+  /** format to be used with text items */
   text: PropTypes.bool,
+
+  /** reduce whitespace */
   compact: PropTypes.bool,
+
+  /** reduce prominence */
   secondary: PropTypes.bool,
+
+  /** indicate active page */
   pointing: PropTypes.bool,
+
+  /** horizontal position */
   centered: PropTypes.bool,
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** collection of items to render as menu */
   children: PropTypes.node
 }
 

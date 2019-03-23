@@ -50,9 +50,16 @@ const IconGroup = ({
 )
 
 IconGroup.propTypes = {
+  /** flex alignment of icon container */
   justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end']),
+
+  /** spacing around element, @TODO add distance modifier */
   padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** primary content of icon(s) */
   children: PropTypes.node.isRequired
 }
 

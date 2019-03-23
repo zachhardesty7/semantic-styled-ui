@@ -68,15 +68,38 @@ const NavigationLogo = ({
 )
 
 NavigationLogo.propTypes = {
+  /** provide name reference to linked page */
   name: PropTypes.string,
+
+  /**
+  * element type to render as (string or function)
+  * supports HTML tag as a string or React component definition
+  *
+  * @example
+  *
+  * 'div'
+  * 'section'
+  * ReactComponent
+  * Card
+  */
   tag: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
+
+  /** anchor link (prefixed with "#") or standard href */
   link: PropTypes.string,
+
+  /** required to support stacking logo */
   stacked: PropTypes.bool,
+
+  /** simple em based size */
   logoSize: PropTypes.oneOf(['small', 'base', 'large']),
+
+  /** additional or pass thru classes for composition */
   className: PropTypes.string,
+
+  /** primary content, usually string, used as link if link not provided */
   children: PropTypes.element.isRequired
 }
 
