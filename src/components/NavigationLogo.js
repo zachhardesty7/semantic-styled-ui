@@ -106,7 +106,7 @@ NavigationLogo.propTypes = {
 NavigationLogo.defaultProps = {
   name: 'home',
   tag: 'a',
-  link: '',
+  link: '/',
   stacked: false,
   logoSize: 'base',
   className: ''
