@@ -118,15 +118,15 @@ export const encode = data => Object.entries(data)
  * @template {React.ElementType<P>} T - type of input Element
  * @example
  *
- * withNewProps(<Container key0='val0' />, { key1: 'val1', key2: 'val2' })
- * // => <Container key0='val0' key1='val1' key2='val2' />
- * withNewProps(<Container key3='important-value' />, { key3: 'val3', key4: 'val4' })
- * // => <Container key3='important-value' key4='val4' />
+ * withNewProps(<Container prop0='val0' />, { prop1: 'val1', prop2: 'val2' })
+ * // => <Container prop0='val0' prop1='val1' prop2='val2' />
+ * withNewProps(<Container prop3='important-value' />, { prop3: 'val3', prop4: 'val4' })
+ * // => <Container prop3='important-value' prop4='val4' />
+ *
  */
-export const withNewProps = (Element, props = {}) => {
-  const newProps = { ...props, ...Element.props }
-  return React.cloneElement(Element, { ...newProps })
-}
+export const withNewProps = (Element, props = {}) => (
+  Element && React.cloneElement(Element, { ...props, ...Element.props })
+)
 
 /**
  * dynamically prevent props from reaching DOM elements

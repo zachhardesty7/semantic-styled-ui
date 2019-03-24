@@ -44,7 +44,6 @@ const Logo = styled.div`
 `
 
 const NavigationLogo = ({
-  name,
   tag,
   link,
   stacked,
@@ -55,7 +54,6 @@ const NavigationLogo = ({
 }) => (
   <LogoCon stacked={stacked} className={className}>
     <NavigationItem
-      name={name}
       tag={tag}
       link={link}
       stacked={stacked}
@@ -68,9 +66,6 @@ const NavigationLogo = ({
 )
 
 NavigationLogo.propTypes = {
-  /** provide name reference to linked page */
-  name: PropTypes.string,
-
   /**
   * element type to render as (string or function)
   * supports HTML tag as a string or React component definition
@@ -104,7 +99,6 @@ NavigationLogo.propTypes = {
 }
 
 NavigationLogo.defaultProps = {
-  name: 'home',
   tag: 'a',
   link: '/',
   stacked: false,

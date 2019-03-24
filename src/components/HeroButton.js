@@ -5,14 +5,13 @@ import styled from 'styled-components'
 import { Button } from 'semantic-ui-react'
 
 import Icon from './Icon'
+import Link from './Link'
 
 import {
   asTag,
-  calcDuration,
   getBackgroundColor,
   getColor,
   getHoverBackgroundColor,
-  process,
   withoutProps
 } from '../utils'
 
@@ -47,33 +46,31 @@ const HeroButton = ({
   color,
   colorHover,
   className,
-  children
+  children,
+  ...rest
 }) => (
-  <StyledButton
+  <Link
     tag={tag}
-    href={(tag === 'a' && link) || undefined}
-    to={(tag !== 'a' && link.slice(link.indexOf('#') + 1)) || undefined}
-    spy={(tag !== 'a' && link.includes('#')) || undefined}
-    smooth={(tag !== 'a' && link.includes('#')) || undefined}
-    duration={(tag !== 'a' && link.includes('#')) ? calcDuration : undefined}
-    rel={!link.includes('#') ? 'noopener noreferrer' : undefined}
-    target={!link.includes('#') ? '_blank' : undefined}
-    size='huge'
-    tabIndex='0'
-    primary
-    compact={compact}
-    backgroundColor={color}
-    backgroundColorHover={colorHover}
+    link={link}
     className={className}
+    {...rest}
   >
-    {pointing === 'left' && (
-      <HeroIcon pointing={pointing} name='angle left' />
-    )}
-    {children}
-    {pointing && pointing !== 'left' && (
-      <HeroIcon pointing={pointing} name='angle right' />
-    )}
-  </StyledButton>
+    <StyledButton
+      size='huge'
+      primary
+      compact={compact}
+      backgroundColor={color}
+      backgroundColorHover={colorHover}
+    >
+      {pointing === 'left' && (
+        <HeroIcon pointing={pointing} name='angle left' />
+      )}
+      {children}
+      {pointing && pointing !== 'left' && (
+        <HeroIcon pointing={pointing} name='angle right' />
+      )}
+    </StyledButton>
+  </Link>
 )
 
 HeroButton.propTypes = {

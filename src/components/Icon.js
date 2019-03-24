@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Icon } from 'semantic-ui-react'
+import Link from './Link'
 
 import {
-  calcDuration,
+  asTag,
   defaultColors,
   withoutProps
 } from '../utils'
@@ -22,8 +23,11 @@ const iconMap = {
   massive: '8em'
 }
 
-const FilteredIcon = withoutProps(Icon, ['color', 'colorHover', 'size', 'light', 'inverted'])
+const FilteredIcon = asTag(withoutProps(Icon, ['color', 'colorHover', 'size', 'light', 'inverted']))
 const ColoredIcon = styled(FilteredIcon)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
   margin: 0;
@@ -98,12 +102,6 @@ const IconContainer = styled.div`
   align-items: center;
 `
 
-const Link = styled.a`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
 const SSUIIcon = ({
   name,
   label,
@@ -120,15 +118,9 @@ const SSUIIcon = ({
   <IconContainer>
     {link ? (
       <Link
-        as={tag}
-        href={(tag === 'a' && link) || undefined}
-        to={(tag !== 'a' && link.slice(link.indexOf('#') + 1)) || undefined}
-        spy={(tag !== 'a' && link.includes('#')) || undefined}
-        smooth={(tag !== 'a' && link.includes('#')) || undefined}
-        duration={(tag !== 'a' && link.includes('#')) ? calcDuration : undefined}
-        {...(tag !== 'a' && !link.includes('#') && { activeClassName: 'active' })}
-        rel={!link.includes('#') ? 'noopener noreferrer' : undefined}
-        target={!link.includes('#') ? '_blank' : undefined}
+        wrap
+        tag={tag}
+        link={link}
         className={className}
         {...rest}
       >
@@ -156,6 +148,7 @@ const SSUIIcon = ({
     ) : (
       <>
         <ColoredIcon
+          tag={tag}
           name={name.toLowerCase()}
           size={size}
           inverted={inverted}
@@ -163,6 +156,7 @@ const SSUIIcon = ({
           color={color}
           colorHover={colorHover}
           className={className}
+          {...rest}
         />
         {label && (
           <ColoredLabel

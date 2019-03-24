@@ -4,11 +4,11 @@ import styled, { css } from 'styled-components'
 
 import { Menu } from 'semantic-ui-react'
 
+import Link from './Link'
+
 import {
   asTag,
-  calcDuration,
   media,
-  process,
   withoutProps
 } from '../utils'
 
@@ -40,7 +40,6 @@ const MenuItem = styled(MenuItemTagged)`
 `
 
 const NavigationItem = ({
-  name,
   tag,
   link,
   stacked,
@@ -49,31 +48,20 @@ const NavigationItem = ({
   children,
   ...rest
 }) => (
-  <MenuItem
-    name={name || children.toString()}
+  <Link
     tag={tag}
-    href={(tag === 'a' && link) || undefined}
-    to={(tag !== 'a' && (link.slice(link.indexOf('#') + 1) || `/${process(children.toString())}/`)) || undefined}
-    spy={(tag !== 'a' && link.includes('#')) || undefined}
-    smooth={(tag !== 'a' && link.includes('#')) || undefined}
-    duration={(tag !== 'a' && link.includes('#')) ? calcDuration : undefined}
-    {...(tag !== 'a' && !link.includes('#') && !stacked && { activeClassName: 'active' })}
-    // REVIEW: if correctness of more verbose option matters
-    // {...(!anchor && !stacked ? { activeClassName: 'active' } : {})}
-    rel={!link.includes('#') ? 'noopener noreferrer' : undefined}
-    target={!link.includes('#') ? '_blank' : undefined}
-    pointing={pointing}
+    link={link}
+    activeClassName={(tag !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
     className={className}
     {...rest}
   >
-    {children}
-  </MenuItem>
+    <MenuItem pointing={pointing}>
+      {children}
+    </MenuItem>
+  </Link>
 )
 
 NavigationItem.propTypes = {
-  /** provide name reference to linked page */
-  name: PropTypes.string,
-
   /**
   * element type to render as (string or function)
   * supports HTML tag as a string or React component definition
@@ -107,7 +95,6 @@ NavigationItem.propTypes = {
 }
 
 NavigationItem.defaultProps = {
-  name: '',
   tag: 'a',
   link: '',
   pointing: false,
