@@ -18,8 +18,6 @@ const Link = ({
   const isAnchor = tag !== 'a' && link.includes('#')
   const isExternal = tag === 'a' && !link.includes('#')
 
-  console.log(children)
-
   return (
     React.Children.map(children, (Child) => {
       const props = {
