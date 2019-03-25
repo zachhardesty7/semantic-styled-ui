@@ -64,7 +64,7 @@ Link.propTypes = {
   link: PropTypes.string,
 
   /** render as enclosing tag */
-  wrap: PropTypes.boolean,
+  wrap: PropTypes.bool,
 
   /** primary content, usually string, used as link if link not provided */
   children: PropTypes.node.isRequired
