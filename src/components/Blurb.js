@@ -6,8 +6,10 @@ import { Header } from 'semantic-ui-react'
 
 import { asTag, withoutProps } from '../utils'
 
-const FilteredStyledHeader = asTag(withoutProps(Header, ['color']))
-const StyledHeader = styled(FilteredStyledHeader)`
+const S = {} // styled-components namespace
+
+const FilteredHeader = asTag(withoutProps(Header, ['color']))
+S.Header = styled(FilteredHeader)`
   ${({ color }) => color && `color: ${color}`};
   font-size: 2em;
 `
@@ -17,18 +19,18 @@ const Blurb = ({
   header,
   tag,
   color,
-  className,
-  children
+  children,
+  ...rest
 }) => (
-  <section className={className}>
+  <section {...rest}>
     {icon}
-    <StyledHeader
+    <S.Header
       tag={tag}
       color={color}
     >
       {header}
-    </StyledHeader>
-    <Header.Content as='p'>{children}</Header.Content>
+    </S.Header>
+    <Header.Content>{children}</Header.Content>
   </section>
 )
 
@@ -58,9 +60,6 @@ Blurb.propTypes = {
     PropTypes.elementType
   ]),
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
   /** secondary content of body */
   children: PropTypes.node
 }
@@ -70,7 +69,6 @@ Blurb.defaultProps = {
   header: null,
   color: '',
   tag: 'h4',
-  className: '',
   children: null
 }
 

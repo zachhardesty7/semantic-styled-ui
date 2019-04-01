@@ -4,18 +4,28 @@ import styled from 'styled-components'
 
 import { withNewProps } from '../utils'
 
-const Groups = styled.div`
+const paddingTable = {
+  compact: '0.5em',
+  tight: '1em',
+  base: '2em',
+  relaxed: '4em',
+  loose: '6em'
+}
+
+const S = {} // styled-components namespace
+
+S.Groups = styled.div`
   display: flex;
   justify-content: ${({ justify }) => justify};
   
-  ${({ padded }) => (
-    (padded === 'top' && 'padding-top: 1em') ||
-    (padded === 'bottom' && 'padding-bottom: 1em') ||
-    (padded && 'padding: 1em 0')
+  ${({ padded, padding }) => (
+    (padded === 'top' && `padding-top: ${paddingTable[padding]}`) ||
+    (padded === 'bottom' && `padding-bottom: ${paddingTable[padding]}`) ||
+    (padded && `padding: ${paddingTable[padding]} 0`)
   )};
 `
 
-const Group = styled.div`
+S.Group = styled.div`
   display: flex;
   margin: 0;
   padding: 0 0.5em;
@@ -32,29 +42,34 @@ const Group = styled.div`
 const IconGroup = ({
   justify,
   padded,
+  padding,
   className,
   children,
   ...rest
 }) => (
-  <Groups
+  <S.Groups
     justify={justify}
     padded={padded}
+    padding={padding}
     className={className}
   >
     {React.Children.map(children, Child => (
-      <Group>
+      <S.Group>
         {withNewProps(Child, rest)}
-      </Group>
+      </S.Group>
     ))}
-  </Groups>
+  </S.Groups>
 )
 
 IconGroup.propTypes = {
   /** flex alignment of icon container */
   justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end']),
 
-  /** spacing around element, @TODO add distance modifier */
+  /** spacing around element exists */
   padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
+
+  /** control amount of spacing around element */
+  padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
 
   /** additional or pass thru classes for composition */
   className: PropTypes.string,
@@ -66,6 +81,7 @@ IconGroup.propTypes = {
 IconGroup.defaultProps = {
   justify: 'initial',
   padded: false,
+  padding: 'tight',
   className: ''
 }
 

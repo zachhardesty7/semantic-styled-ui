@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import { Icon } from 'semantic-ui-react'
+import { Icon as SUIIcon } from 'semantic-ui-react'
 import Link from './Link'
 
 import {
@@ -23,11 +23,10 @@ const iconMap = {
   massive: '8em'
 }
 
-const FilteredIcon = asTag(withoutProps(Icon, ['color', 'colorHover', 'size', 'light', 'inverted']))
-const ColoredIcon = styled(FilteredIcon)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const S = {} // styled-components namespace
+
+const FilteredIcon = asTag(withoutProps(SUIIcon, ['color', 'colorHover', 'size', 'light', 'inverted']))
+S.Icon = styled(FilteredIcon)`
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
   margin: 0;
@@ -46,7 +45,7 @@ const ColoredIcon = styled(FilteredIcon)`
   )};
 
   ${({ link }) => link && css`
-    ${IconContainer}:hover & {
+    ${S.Wrapper}:hover & {
       opacity: 1;
       color: ${({
     /* eslint-disable indent */
@@ -64,7 +63,7 @@ const ColoredIcon = styled(FilteredIcon)`
   `};
 `
 
-const ColoredLabel = styled.span`
+S.Label = styled.span`
   color: ${({
       color,
       light,
@@ -78,7 +77,7 @@ const ColoredLabel = styled.span`
     )};
 
   ${({ link }) => link && css`
-    ${IconContainer}:hover & {
+    ${S.Wrapper}:hover & {
       color: ${({
         colorHover,
         light,
@@ -96,13 +95,13 @@ const ColoredLabel = styled.span`
 
 /* eslint-enable indent */
 
-const IconContainer = styled.div`
+S.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `
 
-const SSUIIcon = ({
+const Icon = ({
   name,
   label,
   tag,
@@ -112,19 +111,17 @@ const SSUIIcon = ({
   inverted,
   color,
   colorHover,
-  className,
   ...rest
 }) => (
-  <IconContainer>
+  <S.Wrapper>
     {link ? (
       <Link
         wrap
-        tag={tag}
+        tag={tag || 'a'}
         link={link}
-        className={className}
         {...rest}
       >
-        <ColoredIcon
+        <S.Icon
           name={name.toLowerCase()}
           link
           size={size}
@@ -134,7 +131,7 @@ const SSUIIcon = ({
           colorHover={colorHover}
         />
         {label && (
-          <ColoredLabel
+          <S.Label
             link
             inverted={inverted}
             light={light}
@@ -142,12 +139,12 @@ const SSUIIcon = ({
             colorHover={colorHover}
           >
             {label === true ? name : label}
-          </ColoredLabel>
+          </S.Label>
         )}
       </Link>
     ) : (
       <>
-        <ColoredIcon
+        <S.Icon
           tag={tag}
           name={name.toLowerCase()}
           size={size}
@@ -155,25 +152,24 @@ const SSUIIcon = ({
           light={light}
           color={color}
           colorHover={colorHover}
-          className={className}
           {...rest}
         />
         {label && (
-          <ColoredLabel
+          <S.Label
             inverted={inverted}
             light={light}
             color={color}
             colorHover={colorHover}
           >
             {label === true ? name : label}
-          </ColoredLabel>
+          </S.Label>
         )}
       </>
     )}
-  </IconContainer>
+  </S.Wrapper>
 )
 
-SSUIIcon.propTypes = {
+Icon.propTypes = {
   /**
    * icon name as supported by Font Awesome 5.0.8
    * @see[Icon Name Reference Sheet](https://react.semantic-ui.com/elements/icon/)
@@ -216,22 +212,18 @@ SSUIIcon.propTypes = {
   light: PropTypes.bool,
 
   /** set color to secondary, colorHover to primary */
-  inverted: PropTypes.bool,
-
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string
+  inverted: PropTypes.bool
 }
 
-SSUIIcon.defaultProps = {
+Icon.defaultProps = {
   label: false,
-  tag: 'a',
+  tag: null,
   link: '',
   size: 'medium',
   color: '',
   colorHover: '',
   light: false,
-  inverted: false,
-  className: ''
+  inverted: false
 }
 
-export default React.memo(SSUIIcon)
+export default React.memo(Icon)

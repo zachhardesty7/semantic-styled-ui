@@ -12,8 +12,10 @@ const logoSizes = {
   large: 215
 }
 
+const S = {} // styled-components namespace
+
 /* if stacked, set stacked logo spacing & remove underline */
-const LogoCon = styled.div`
+S.Wrapper = styled.div`
   align-self: center;
   
   ${({ stacked }) => stacked && css`
@@ -26,7 +28,8 @@ const LogoCon = styled.div`
   `};
 `
 
-const Logo = styled.div`
+/* use "!important" to override Gatsby-Image inline style */
+S.Logo = styled.div`
   margin: 0 0.5em;
   height: 100% !important;
   width: 100% !important;
@@ -52,7 +55,7 @@ const NavigationLogo = ({
   children,
   ...rest
 }) => (
-  <LogoCon stacked={stacked} className={className}>
+  <S.Wrapper stacked={stacked} className={className}>
     <NavigationItem
       tag={tag}
       link={link}
@@ -60,9 +63,9 @@ const NavigationLogo = ({
       pointing={false}
       {...rest}
     >
-      <Logo as={children.type} {...children.props} logoSize={logoSize} />
+      <S.Logo as={children.type} {...children.props} logoSize={logoSize} />
     </NavigationItem>
-  </LogoCon>
+  </S.Wrapper>
 )
 
 NavigationLogo.propTypes = {

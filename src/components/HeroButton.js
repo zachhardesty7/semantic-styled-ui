@@ -15,8 +15,11 @@ import {
   withoutProps
 } from '../utils'
 
-const FilteredStyledButton = asTag(withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover']))
-const StyledButton = styled(FilteredStyledButton)`
+const S = {} // styled-components namespace
+
+const FilteredButton = asTag(withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover']))
+S.Button = styled(FilteredButton)`
+  display: inline-flex;
   ${getColor('white')};
   ${getBackgroundColor('secondary')};
   transition: ease-in-out 50ms;
@@ -27,11 +30,12 @@ const StyledButton = styled(FilteredStyledButton)`
   }
 `
 
-const HeroIcon = styled(Icon)`
+const FilteredIcon = asTag(withoutProps(Icon, ['pointing']))
+S.Icon = styled(FilteredIcon)`
   ${getColor('white')};
   ${({ pointing }) => (pointing === 'left'
-    ? 'margin-right: .75em !important'
-    : 'margin-left: .75em !important'
+    ? 'margin-right: .75em'
+    : 'margin-left: .75em'
   )};
   vertical-align: bottom;
   width: 1em;
@@ -45,17 +49,15 @@ const HeroButton = ({
   compact,
   color,
   colorHover,
-  className,
   children,
   ...rest
 }) => (
   <Link
     tag={tag}
     link={link}
-    className={className}
     {...rest}
   >
-    <StyledButton
+    <S.Button
       size='huge'
       primary
       compact={compact}
@@ -63,13 +65,13 @@ const HeroButton = ({
       backgroundColorHover={colorHover}
     >
       {pointing === 'left' && (
-        <HeroIcon pointing={pointing} name='angle left' />
+        <S.Icon pointing={pointing} name='angle left' />
       )}
       {children}
-      {pointing && pointing !== 'left' && (
-        <HeroIcon pointing={pointing} name='angle right' />
+      {(pointing === 'right' || pointing === true) && (
+        <S.Icon pointing={pointing} name='angle right' />
       )}
-    </StyledButton>
+    </S.Button>
   </Link>
 )
 
@@ -108,9 +110,6 @@ HeroButton.propTypes = {
   /** apply css supported color string to background on hover, overrides theme / default */
   colorHover: PropTypes.string,
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
   /** text content */
   children: PropTypes.node
 }
@@ -122,7 +121,6 @@ HeroButton.defaultProps = {
   compact: false,
   color: '',
   colorHover: '',
-  className: '',
   children: null
 }
 

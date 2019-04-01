@@ -3,22 +3,24 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { Container, Menu, Segment } from 'semantic-ui-react'
-import NavigationItem from '../components/NavigationItem'
-import NavigationLogo from '../components/NavigationLogo'
+import NavigationItem from '../NavigationItem'
+import NavigationLogo from '../NavigationLogo'
 
-import { asTag, withNewProps, withoutProps } from '../utils'
+import { asTag, withNewProps, withoutProps } from '../../utils'
 
-const NavSegmentTagged = asTag(withoutProps(Segment, ['pointing']))
-const NavSegment = styled(NavSegmentTagged)`
+const S = {} // styled-components namespace
+
+const SegmentTagged = asTag(withoutProps(Segment, ['pointing']))
+S.Segment = styled(SegmentTagged)`
   ${({ pointing }) => pointing && 'padding-bottom: 0px'};
 `
 
-const NavMenuTagged = asTag(Menu)
-const NavMenu = styled(NavMenuTagged)`
+const MenuTagged = asTag(Menu)
+S.Menu = styled(MenuTagged)`
   flex-wrap: wrap;
   justify-content: center;
 
-  ${({ pointing }) => pointing && 'border-bottom: none !important'};
+  ${({ pointing }) => pointing && 'border-bottom: none'};
   ${({ pointing }) => pointing && 'margin-bottom: 2px'};
 `
 
@@ -31,18 +33,18 @@ const Navigation = ({
   secondary,
   pointing,
   centered,
-  className,
-  children
+  children,
+  ...rest
 }) => (
-  <NavSegment
+  <S.Segment
     tag='header'
     pointing={pointing}
     basic
     vertical
-    className={className}
+    {...rest}
   >
     <Container textAlign={centered ? 'center' : undefined}>
-      <NavMenu
+      <S.Menu
         tag='nav'
         size={size}
         text={text}
@@ -52,9 +54,9 @@ const Navigation = ({
       >
         {/* apply tag && pointing to all children */}
         {React.Children.map(children, Child => withNewProps(Child, { tag, pointing }))}
-      </NavMenu>
+      </S.Menu>
     </Container>
-  </NavSegment>
+  </S.Segment>
 )
 
 Navigation.propTypes = {
@@ -92,9 +94,6 @@ Navigation.propTypes = {
   /** horizontal position */
   centered: PropTypes.bool,
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
   /** collection of items to render as menu */
   children: PropTypes.node
 }
@@ -107,7 +106,6 @@ Navigation.defaultProps = {
   secondary: true,
   pointing: true,
   centered: true,
-  className: '',
   children: null
 }
 

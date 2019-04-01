@@ -8,14 +8,22 @@ import {
   Header,
   Segment
 } from 'semantic-ui-react'
-import Blurb from '../components/Blurb'
+import Blurb from '../Blurb'
 
-import { asTag, media, withNewProps } from '../utils'
+import {
+  asTag,
+  media,
+  withNewProps,
+  withoutProps
+} from '../../utils'
+
+const S = {} // styled-components namespace
 
 /* set default to relaxed vertical padding */
 /* fix absurdly wide blurb segments on tablet size */
-const BlurbsSegmentTagged = asTag(Segment)
-const BlurbsSegment = styled(BlurbsSegmentTagged)`
+/* use "!important" to override .ui.text.container */
+const BlurbsTagged = asTag(Segment)
+S.Blurbs = styled(BlurbsTagged)`
   padding-top: 6em;
   padding-bottom: 6em;
 
@@ -34,14 +42,19 @@ const BlurbsSegment = styled(BlurbsSegmentTagged)`
   `};
 `
 
-const HeaderContainer = styled(Container)`
+S.Header = styled(Container)`
   /* pad between title/content and items */
   padding-bottom: 2.75em;
 `
 
 const HeaderTagged = asTag(Header)
-const HeaderTitle = styled(HeaderTagged)`
+S.Title = styled(HeaderTagged)`
   font-size: 3em;
+`
+
+const HeaderContentFiltered = withoutProps(Header.Content, ['textAlign'])
+S.Content = styled(HeaderContentFiltered)`
+  text-align: ${({ textAlign }) => textAlign};
 `
 
 const Blurbs = ({
@@ -50,28 +63,27 @@ const Blurbs = ({
   textAlign,
   color,
   secondary,
-  className,
-  children
+  children,
+  ...rest
 }) => (
-  <BlurbsSegment
+  <S.Blurbs
     tag='section'
     vertical
     basic
     secondary={secondary}
-    className={className}
+    {...rest}
   >
     {(title || content) && (
-      <HeaderContainer text>
+      <S.Header text>
         {title && (
-          <HeaderTitle tag='h3' textAlign='center'>{title}</HeaderTitle>
+          <S.Title tag='h3' textAlign='center'>{title}</S.Title>
         )}
         {content && (
-          <Header.Content textAlign={textAlign}>{content}</Header.Content>
+          <S.Content textAlign={textAlign}>{content}</S.Content>
         )}
-      </HeaderContainer>
+      </S.Header>
     )}
     <Container textAlign='center'>
-      {/* relaxed stackable divided padded */}
       <Grid relaxed stackable columns={React.Children.count(children)} divided padded>
         {React.Children.map(children, blurb => (
           <Grid.Column>
@@ -80,7 +92,7 @@ const Blurbs = ({
         ))}
       </Grid>
     </Container>
-  </BlurbsSegment>
+  </S.Blurbs>
 )
 
 Blurbs.propTypes = {
@@ -99,9 +111,6 @@ Blurbs.propTypes = {
   /** format to appear less prominent (grey background) */
   secondary: PropTypes.bool,
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
   /** primary content of Blurbs.Item */
   children: PropTypes.node
 }
@@ -112,11 +121,10 @@ Blurbs.defaultProps = {
   textAlign: 'left',
   color: '',
   secondary: false,
-  className: '',
   children: null
 }
 
-// NOTE: prevent error when attempting to double memoize components
+// prevent error of accidentally double memoizing components
 const BlurbsMemo = React.memo(Blurbs)
 BlurbsMemo.Item = Blurb
 

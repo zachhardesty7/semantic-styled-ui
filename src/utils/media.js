@@ -1,7 +1,7 @@
 import { css } from 'styled-components'
 
 // FIXME: not transpiling with styled-components babel plugin instead
-// of default babel transpilation
+// of default babel transpilation - pending update from styled-component-namespaces
 // https://github.com/styled-components/babel-plugin-styled-components/issues/78
 // https://www.styled-components.com/docs/tooling#babel-plugin
 
@@ -18,6 +18,8 @@ function _templateObject6() {
   return data;
 }
 */
+
+/** @TODO convert to string based interpolation */
 
 /**
  * allow quick implementation of standardized media query sizes

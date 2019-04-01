@@ -5,10 +5,11 @@ import React from 'react'
  * convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
  * shim for Object.fromEntries()
  *
- * @param {Iterable<[string, any]>} iter iterable of arrays of key, value pairs
- * @returns {{}} obj with key, value pairs assigned
+ * @template V
+ * @param {Iterable<[string, V]>} iter iterable of arrays of key, value pairs
+ * @returns {{[key: string]: V}} obj with key, value pairs assigned
  */
-const ObjectFromEntries = (iter) => {
+export const ObjectFromEntries = (iter) => {
   const obj = {}
   const arr = [...iter]
 

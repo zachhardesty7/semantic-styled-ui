@@ -4,19 +4,21 @@ import styled from 'styled-components'
 
 import { Dimmer, Grid, Header } from 'semantic-ui-react'
 
-const Item = styled(Dimmer.Dimmable)`
+const S = {} // styled-components namespace
+
+S.Dimmable = styled(Dimmer.Dimmable)`
   height: 100%;
 `
 
-const DimmerContent = styled(Dimmer)`
+S.Dimmer = styled(Dimmer)`
   display: flex;
   
   .content .header {
-    color: rgba(0,0,0,.87) !important;
+    color: rgba(0,0,0,.87);
   }
 `
 
-const PortfolioImage = styled.img`
+S.Image = styled.img`
   height: 100%;
   object-fit: cover;
 `
@@ -24,26 +26,25 @@ const PortfolioImage = styled.img`
 const PortfolioItem = ({
   title,
   subtitle,
-  className,
   children,
   ...rest
 }) => {
   const [hovered, setHovered] = useState(false)
 
   return (
-    <Grid.Column className={className} {...rest}>
+    <Grid.Column {...rest}>
       {children && (
-        <Item
+        <S.Dimmable
           dimmed={hovered}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <PortfolioImage centered as={children.type} {...children.props} />
-          <DimmerContent inverted simple>
+          <S.Image centered as={children.type} {...children.props} />
+          <S.Dimmer inverted simple>
             {title && <Header as='h2'>{title}</Header>}
             {subtitle && <Header as='h3'>{subtitle}</Header>}
-          </DimmerContent>
-        </Item>
+          </S.Dimmer>
+        </S.Dimmable>
       )}
     </Grid.Column>
   )
@@ -56,9 +57,6 @@ PortfolioItem.propTypes = {
   /** secondary content */
   subtitle: PropTypes.node,
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
   /** image-based content */
   children: PropTypes.element
 }
@@ -66,7 +64,6 @@ PortfolioItem.propTypes = {
 PortfolioItem.defaultProps = {
   title: null,
   subtitle: null,
-  className: '',
   children: null
 }
 

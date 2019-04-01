@@ -16,16 +16,18 @@ import {
   getHoverColor,
   withNewProps,
   withoutProps
-} from '../utils'
+} from '../../utils'
+
+const S = {} // styled-components namespace
 
 const FilteredBottomBar = asTag(withoutProps(Segment, ['color', 'backgroundColor']))
-const BottomBar = styled(FilteredBottomBar)`
+S.Segment = styled(FilteredBottomBar)`
   margin-top: 0px;
   ${getColor('light')};
   ${getBackgroundColor('primary')};
 `
 
-const Link = styled.a`
+S.Link = styled.a`
   text-decoration: underline;
   ${getColor('light')};
   ${getHoverColor('white')};
@@ -34,7 +36,7 @@ const Link = styled.a`
 const Footer = ({
   color,
   backgroundColor,
-  hoverColor,
+  colorHover,
   sticky,
   copyright,
   stacked,
@@ -43,7 +45,7 @@ const Footer = ({
   icons,
   developerName,
   developerLink,
-  className
+  ...rest
 }) => {
   const con = useRef()
 
@@ -65,16 +67,16 @@ const Footer = ({
   })
 
   return (
-    // NOTE: unsure why this was changed in "semantic-ui-react": "0.85.0"
-    // source code seems to indicate it should evaluate to .FindNode regardless
-    // but compiler indicates that it's attempting to ref a func component
+    // bug in "semantic-ui-react": ">0.85.0"
+    // code is incorrectly identifying Child as a forwardRef despite
+    // eventual child rendering as functional component, manually override
     // https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
     <Ref.FindNode innerRef={con}>
-      <BottomBar
+      <S.Segment
         tag='footer'
         color={color}
         backgroundColor={backgroundColor}
-        className={className}
+        {...rest}
       >
         <Container>
           <Grid columns={2} verticalAlign='middle'>
@@ -85,7 +87,7 @@ const Footer = ({
                 </Grid.Column>
                 <Grid.Column width={8} textAlign='right'>
                   {'designed and developed by '}
-                  <Link href={developerLink}>{developerName}</Link>
+                  <S.Link href={developerLink}>{developerName}</S.Link>
                 </Grid.Column>
               </>
             ) : (
@@ -95,13 +97,13 @@ const Footer = ({
                     {`copyright © ${copyright}`}
                     {stacked ? <br /> : ' | '}
                     {'designed and developed by '}
-                    <Link href={developerLink}>{developerName}</Link>
+                    <S.Link href={developerLink}>{developerName}</S.Link>
                   </div>
                 </Grid.Column>
                 <Grid.Column width={4} textAlign='right'>
                   <Container>
                     {React.Children.map(icons, Child => (
-                      withNewProps(Child, { color, hoverColor, inverted })
+                      withNewProps(Child, { color, colorHover, inverted })
                     ))}
                   </Container>
                 </Grid.Column>
@@ -109,7 +111,7 @@ const Footer = ({
             )}
           </Grid>
         </Container>
-      </BottomBar>
+      </S.Segment>
     </Ref.FindNode>
   )
 }
@@ -122,7 +124,7 @@ Footer.propTypes = {
   backgroundColor: PropTypes.string,
 
   /** apply css supported color string to content on hover, overrides theme / default */
-  hoverColor: PropTypes.string,
+  colorHover: PropTypes.string,
 
   /** format content as stacked */
   stacked: PropTypes.bool,
@@ -149,16 +151,13 @@ Footer.propTypes = {
   sticky: PropTypes.bool,
 
   /** date & company that holds copyright */
-  copyright: PropTypes.string,
-
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string
+  copyright: PropTypes.string
 }
 
 Footer.defaultProps = {
   color: '',
   backgroundColor: '',
-  hoverColor: '',
+  colorHover: '',
   stacked: false,
   separated: false,
   developerName: '',
@@ -166,8 +165,7 @@ Footer.defaultProps = {
   icons: null,
   inverted: false,
   sticky: true,
-  copyright: '',
-  className: ''
+  copyright: ''
 }
 
 export default React.memo(Footer)

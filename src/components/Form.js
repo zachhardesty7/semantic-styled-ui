@@ -3,35 +3,52 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import {
-  Form,
   Icon,
   Message,
+  Form as SUIForm,
   Transition
 } from 'semantic-ui-react'
 
 import { encode, process, withoutProps } from '../utils'
 
-const FilteredForm = withoutProps(Form, ['padded'])
-const StyledForm = styled(FilteredForm)`
-  ${({ padded }) => (
-    (padded === 'top' && 'padding-top: 2em') ||
-    (padded === 'bottom' && 'padding-bottom: 2em') ||
-    (padded && 'padding: 2em 0')
+const paddingTable = {
+  compact: '0.5em',
+  tight: '1em',
+  base: '2em',
+  relaxed: '4em',
+  loose: '6em'
+}
+
+const S = {} // styled-components namespace
+
+const FilteredForm = withoutProps(SUIForm, ['padded'])
+S.Form = styled(FilteredForm)`
+  ${({ padded, padding }) => (
+    (padded === 'top' && `padding-top: ${paddingTable[padding]}`) ||
+    (padded === 'bottom' && `padding-bottom: ${paddingTable[padding]}`) ||
+    (padded && `padding: ${paddingTable[padding]} 0`)
   )};
 `
 
-const MessageContainer = styled(Message)`
+S.Message = styled(Message)`
+  /* use "!important" to override Transition */
   display: flex !important;
   margin-bottom: 1em;
 `
 
-const SSUIForm = ({
+/**
+ * The only true form
+ *
+ * @visibleName Form
+ */
+const Form = ({
   name,
   fields,
   textArea,
   button,
   padded,
-  className
+  padding,
+  ...rest
 }) => {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
@@ -86,7 +103,7 @@ const SSUIForm = ({
   }
 
   return (
-    <StyledForm
+    <S.Form
       name={name}
       onSubmit={handleSubmit}
       data-netlify='true'
@@ -94,7 +111,8 @@ const SSUIForm = ({
       success={success}
       error={error}
       padded={padded}
-      className={className}
+      padding={padding}
+      {...rest}
     >
       {/* limit bot responses with Netlify */}
       <input type='hidden' name='bot-field' />
@@ -157,31 +175,31 @@ const SSUIForm = ({
 
       <Transition.Group animation='fade down' duration={500}>
         {success && (
-          <MessageContainer icon success>
+          <S.Message icon success>
             <Icon name='check' aria-label='success' />
             <Message.Content>
               <Message.Header>Form Submitted</Message.Header>
               You&#39;ll hear back from our team shortly!
             </Message.Content>
-          </MessageContainer>
+          </S.Message>
         )}
         {error && (
-          <MessageContainer icon error>
+          <S.Message icon error>
             <Icon name='exclamation' aria-label='fail' />
             <Message.Content>
               <Message.Header>Error</Message.Header>
               Please fill out all fields!
             </Message.Content>
-          </MessageContainer>
+          </S.Message>
         )}
       </Transition.Group>
 
       <Form.Button type='submit'>{button}</Form.Button>
-    </StyledForm>
+    </S.Form>
   )
 }
 
-SSUIForm.propTypes = {
+Form.propTypes = {
   /** enhances semantics */
   name: PropTypes.string,
 
@@ -196,20 +214,20 @@ SSUIForm.propTypes = {
   /** button text content */
   button: PropTypes.string,
 
-  /** spacing around element, @TODO add distance modifier */
+  /** spacing around element exists */
   padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string
+  /** control amount of spacing around element */
+  padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose'])
 }
 
-SSUIForm.defaultProps = {
+Form.defaultProps = {
   name: '',
   fields: [],
   textArea: true,
   button: 'Submit',
   padded: false,
-  className: ''
+  padding: 'base'
 }
 
-export default React.memo(SSUIForm)
+export default React.memo(Form)

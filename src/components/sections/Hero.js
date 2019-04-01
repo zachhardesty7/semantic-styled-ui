@@ -8,7 +8,7 @@ import {
   Segment,
   Transition
 } from 'semantic-ui-react'
-import HeroButton from '../components/HeroButton'
+import HeroButton from '../HeroButton'
 
 import {
   asTag,
@@ -16,33 +16,35 @@ import {
   getColor,
   media,
   withoutProps
-} from '../utils'
+} from '../../utils'
 
 const sizes = {
   small: {
-    relaxed: 8,
-    base: 6,
-    compact: 4
+    relaxed: '8em',
+    base: '6em',
+    compact: '4em'
   },
   large: {
-    relaxed: 24,
-    base: 16,
-    compact: 8
+    relaxed: '24em',
+    base: '16em',
+    compact: '8em'
   }
 }
 
-const FilteredHeroSegment = withoutProps(Segment, ['size'])
-const HeroSegment = styled(FilteredHeroSegment)`
+const S = {}
+
+const FilteredSegment = withoutProps(Segment, ['size'])
+S.Segment = styled(FilteredSegment)`
   padding-top: ${({ baseline, size }) => (
     baseline === 'top'
       ? sizes.small[size]
       : sizes.large[size]
-  )}em;
+  )};
   padding-bottom: ${({ baseline, size }) => (
     baseline === 'top'
       ? sizes.large[size]
       : sizes.small[size]
-  )}em;
+  )};
 
   /* background overlay to dim and saturate */
   &::before {
@@ -60,18 +62,18 @@ const HeroSegment = styled(FilteredHeroSegment)`
     top: 0;
     left: -0.5%;
     position: absolute;
-    z-index: 2 !important;
+    z-index: 2;
   }
 `
 
-const FilteredHeroHeader = asTag(withoutProps(Header, ['inlineLogo', 'color']))
-const HeroHeader = styled(FilteredHeroHeader)`
+const FilteredHeader = asTag(withoutProps(Header, ['inlineLogo', 'color']))
+S.BaseHeader = styled(FilteredHeader)`
   ${getColor('white')};
   font-display: fallback;
-  font-weight: normal !important;
+  font-weight: normal;
 `
 
-const HeroTitle = styled(HeroHeader)`
+S.Title = styled(S.BaseHeader)`
   ${({ inlineLogo }) => inlineLogo && 'display: inline-block'};
   ${({ inlineLogo }) => inlineLogo && 'margin-bottom: 0'};
   padding-right: 0.15em;
@@ -84,12 +86,12 @@ const HeroTitle = styled(HeroHeader)`
     font-size: 3.8em;
   `};
   ${media.phone`
-    font-size: 12vw !important;
-    width: fit-content !important;
+    font-size: 12vw;
+    width: fit-content;
   `};
 `
 
-const HeroSubtitle = styled(HeroHeader)`
+S.Subtitle = styled(S.BaseHeader)`
   ${({ inlineLogo }) => inlineLogo && 'margin-top: 0.75em'};
   font-size: 1.7rem;
 
@@ -106,7 +108,7 @@ const HeroSubtitle = styled(HeroHeader)`
   `};
 `
 
-const Chunk = styled.header`
+S.Chunk = styled.header`
   display: inline-block;
   border-bottom: ${({ underline, theme }) => (
     (underline === true && css`5px solid ${theme.accent || defaultColors.accent}`) ||
@@ -117,7 +119,8 @@ const Chunk = styled.header`
   position: relative;
 `
 
-const BackgroundImage = styled.img`
+/* use "!important" to override Gatsby-Image inline style */
+S.BackgroundImage = styled.img`
   position: absolute !important;
   top: 0;
   left: -0.5%;
@@ -130,7 +133,7 @@ const BackgroundImage = styled.img`
   }
 `
 
-const Logo = styled.img`
+S.Logo = styled.img`
   margin-right: 1em;
 `
 
@@ -145,8 +148,8 @@ const Hero = ({
   underline,
   size,
   button,
-  className,
-  children
+  children,
+  ...rest
 }) => {
   const [curBackground, setCurBackground] = useState(0)
   useEffect(() => {
@@ -158,12 +161,12 @@ const Hero = ({
   })
 
   return (
-    <HeroSegment
+    <S.Segment
       vertical
       baseline={baseline}
       size={size}
       overlay={overlay}
-      className={className}
+      {...rest}
     >
       {React.Children.map(children, (Background, i) => (
         <Transition
@@ -172,29 +175,29 @@ const Hero = ({
           animation='fade'
           duration={3000}
         >
-          <BackgroundImage as={Background.type} {...Background.props} />
+          <S.BackgroundImage as={Background.type} {...Background.props} />
         </Transition>
       ))}
 
       <Container>
         {/* nested inline chunk to facilitate underline */}
-        <Chunk underline={underline}>
+        <S.Chunk underline={underline}>
           {logo && (
-            <Logo as={logo.type} {...logo.props} alt='logo' />
+            <S.Logo as={logo.type} {...logo.props} alt='logo' />
           )}
 
           {title && (
-            <HeroTitle tag='h1' color={color} inlineLogo={inlineLogo}>{title}</HeroTitle>
+            <S.Title tag='h1' color={color} inlineLogo={inlineLogo}>{title}</S.Title>
           )}
 
           {subtitle && (
-            <HeroSubtitle tag='h2' color={color} inlineLogo={inlineLogo}>{subtitle}</HeroSubtitle>
+            <S.Subtitle tag='h2' color={color} inlineLogo={inlineLogo}>{subtitle}</S.Subtitle>
           )}
 
           {button}
-        </Chunk>
+        </S.Chunk>
       </Container>
-    </HeroSegment>
+    </S.Segment>
   )
 }
 
@@ -233,9 +236,6 @@ Hero.propTypes = {
   /** call-to-action @see `HeroButton` */
   button: PropTypes.node,
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
   /** background images */
   children: PropTypes.node
 }
@@ -251,7 +251,6 @@ Hero.defaultProps = {
   title: null,
   subtitle: null,
   button: null,
-  className: '',
   children: null
 }
 

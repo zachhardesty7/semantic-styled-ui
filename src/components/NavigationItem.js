@@ -12,8 +12,10 @@ import {
   withoutProps
 } from '../utils'
 
-const MenuItemTagged = asTag(withoutProps(Menu.Item, ['pointing']))
-const MenuItem = styled(MenuItemTagged)`
+const S = {} // styled-components namespace
+
+const FilteredItem = asTag(withoutProps(Menu.Item, ['pointing', 'activeClassName']))
+S.Item = styled(FilteredItem)`
   ${media.phone`
     a {
       font-size: 0.97rem;
@@ -44,7 +46,6 @@ const NavigationItem = ({
   link,
   stacked,
   pointing,
-  className,
   children,
   ...rest
 }) => (
@@ -52,12 +53,11 @@ const NavigationItem = ({
     tag={tag}
     link={link}
     activeClassName={(tag !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
-    className={className}
     {...rest}
   >
-    <MenuItem pointing={pointing}>
+    <S.Item pointing={pointing}>
       {children}
-    </MenuItem>
+    </S.Item>
   </Link>
 )
 
@@ -87,9 +87,6 @@ NavigationItem.propTypes = {
   /** required to support stacking logo */
   stacked: PropTypes.bool,
 
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
   /** primary content, usually string, used as link if link not provided */
   children: PropTypes.node.isRequired
 }
@@ -98,8 +95,7 @@ NavigationItem.defaultProps = {
   tag: 'a',
   link: '',
   pointing: false,
-  stacked: false,
-  className: ''
+  stacked: false
 }
 
 export default React.memo(NavigationItem)
