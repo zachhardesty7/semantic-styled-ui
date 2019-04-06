@@ -2,36 +2,6 @@
 import React from 'react'
 
 /**
- * convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
- * shim for Object.fromEntries()
- *
- * @template V
- * @param {Iterable<[string, V]>} iter iterable of arrays of key, value pairs
- * @returns {{[key: string]: V}} obj with key, value pairs assigned
- */
-export const ObjectFromEntries = (iter) => {
-  const obj = {}
-  const arr = [...iter]
-
-  arr.forEach((pair) => {
-    if (Object(pair) !== pair) {
-      throw new TypeError('iterable for fromEntries should yield objects')
-    }
-
-    const { 0: key, 1: val } = pair
-
-    Object.defineProperty(obj, key, {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: val
-    })
-  })
-
-  return obj
-}
-
-/**
  * capitalize first letter of words and remove spaces
  *
  * @param {string} str arbitrary input
@@ -168,7 +138,7 @@ export const withNewProps = (Element, props = {}) => (
 export const withoutProps = (ElementType, propKeys = []) => {
   // facilitate debugging with named func
   const withoutPropsHOC = ({ children, ...rest }, ref) => {
-    const filtered = ObjectFromEntries(Object.entries(rest)
+    const filtered = Object.fromEntries()(Object.entries(rest)
       .filter(([key, val]) => !propKeys.includes(key)))
 
     return <ElementType ref={ref} {...filtered}>{children}</ElementType>

@@ -6,6 +6,7 @@ module.exports = {
         modules: false,
         useBuiltIns: 'usage',
         shippedProposals: true,
+        corejs: 3,
         targets: {
           browsers: [
             '>0.25%',
@@ -31,11 +32,16 @@ module.exports = {
       }
     ],
     [
+      '@babel/plugin-transform-runtime', {
+        corejs: 3,
+        useESModules: true
+      }
+    ],
+    [
       '@babel/plugin-transform-template-literals', {
         loose: true
       }
     ],
-    '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-syntax-dynamic-import'
+    '@babel/plugin-proposal-optional-chaining'
   ]
 }

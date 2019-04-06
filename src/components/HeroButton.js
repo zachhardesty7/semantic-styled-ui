@@ -96,10 +96,7 @@ HeroButton.propTypes = {
   link: PropTypes.string,
 
   /** formatted with active indicator */
-  pointing: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['left', 'right'])
-  ]),
+  pointing: PropTypes.oneOf(['left', 'right', true, false]),
 
   /** reduce whitespace */
   compact: PropTypes.bool,

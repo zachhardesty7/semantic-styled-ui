@@ -140,7 +140,7 @@ Footer.propTypes = {
 
   /**
    * collection of Icons to render
-   * @see `Icon` && `IconGroup`
+   * @see[`Icon`](#icon) && [`IconGroup`](#icongroup)
   */
   icons: PropTypes.node,
 

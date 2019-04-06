@@ -233,7 +233,7 @@ Hero.propTypes = {
   /** secondary content */
   subtitle: PropTypes.node,
 
-  /** call-to-action @see `HeroButton` */
+  /** call-to-action @see [`HeaderButton`](#headerbutton) */
   button: PropTypes.node,
 
   /** background images */
