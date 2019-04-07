@@ -27,19 +27,19 @@ S.Blurbs = styled(BlurbsTagged)`
   padding-top: 6em;
   padding-bottom: 6em;
 
-  ${media.tablet`
+  @media ${media.tablet} {
     .container {
       max-width: 397px !important;
       padding: 0 1.5em;
       margin: 0 auto !important;
     }
-  `};
+  }
 
-  ${media.phone`
+  @media ${media.phone} {
     .container {
       margin: 0 2em !important;
     }
-  `};
+  }
 `
 
 S.Header = styled(Container)`

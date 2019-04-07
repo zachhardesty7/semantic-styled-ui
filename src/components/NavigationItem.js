@@ -16,11 +16,11 @@ const S = {} // styled-components namespace
 
 const FilteredItem = asTag(withoutProps(Menu.Item, ['pointing', 'activeClassName']))
 S.Item = styled(FilteredItem)`
-  ${media.phone`
+  @media ${media.phone} {
     a {
       font-size: 0.97rem;
     }
-  `};
+  }
 
   ${({ pointing }) => pointing && css`
     border-bottom: 2px solid rgba(34,36,38,.15);

@@ -40,9 +40,9 @@ S.Logo = styled.div`
     position: relative !important;
     width: ${({ logoSize }) => `${logoSizes[logoSize]}px`} !important;
 
-    ${media.phone`
+    @media ${media.phone} {
       width: ${({ logoSize }) => `${logoSizes[logoSize] * 0.8}px`} !important;
-    `};
+    }
   }
 `
 

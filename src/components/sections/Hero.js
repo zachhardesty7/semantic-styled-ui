@@ -82,30 +82,30 @@ S.Title = styled(S.BaseHeader)`
   ${media.laptop`
     font-size: 4em;
   `};
-  ${media.tablet`
+  @media ${media.tablet} {
     font-size: 3.8em;
-  `};
-  ${media.phone`
+  }
+  @media ${media.phone} {
     font-size: 12vw;
     width: fit-content;
-  `};
+  }
 `
 
 S.Subtitle = styled(S.BaseHeader)`
   ${({ inlineLogo }) => inlineLogo && 'margin-top: 0.75em'};
   font-size: 1.7rem;
 
-  ${media.laptop`
+  @media ${media.laptop} {
     font-size: 1.45em;
-  `};
-  ${media.tablet`
+  }
+  @media ${media.tablet} {
     font-size: 1.4em;
-  `};
-  ${media.phone`
+  }
+  @media ${media.phone} {
     width: min-content;
     min-width: 11em;
     font-size: 1.4em;
-  `};
+  }
 `
 
 S.Chunk = styled.header`
