@@ -13,7 +13,7 @@
  *
  * `1200px <= widescreen`
  */
-const media = {
+export const media = {
   /**
    * apply styled-component css when screen-size <= 425px
    *
@@ -86,5 +86,3 @@ const media = {
    */
   widescreen: 'only screen and (min-width: 1200px)'
 }
-
-export default media

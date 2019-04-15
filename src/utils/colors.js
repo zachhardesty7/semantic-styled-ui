@@ -1,4 +1,4 @@
-const colors = {
+const baseColors = {
   blue: '#172749',
   red: '#fe0000',
   grey: '#5b5b5b',
@@ -13,11 +13,9 @@ const colors = {
   white: '#fff'
 }
 
-const aliasedColors = {
-  ...colors,
-  primary: colors.blue,
-  secondary: colors.white,
-  accent: colors.red
+export const defaultColors = {
+  ...baseColors,
+  primary: baseColors.blue,
+  secondary: baseColors.white,
+  accent: baseColors.red
 }
-
-export default aliasedColors

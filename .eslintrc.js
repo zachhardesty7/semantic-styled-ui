@@ -35,14 +35,15 @@ module.exports = {
         ]
       }
     ],
-    'standard/array-bracket-even-spacing': 'off',
-    'standard/computed-property-even-spacing': 'off',
-    'standard/object-curly-even-spacing': 'off',
-    'no-console': 'off',
     'jsx-quotes': [
       'error',
       'prefer-single'
     ],
+    'standard/array-bracket-even-spacing': 'off',
+    'standard/computed-property-even-spacing': 'off',
+    'standard/object-curly-even-spacing': 'off',
+    'import/prefer-default-export': 'off',
+    'no-console': 'off',
     'sort-imports': [
       'warn',
       {

@@ -8,7 +8,7 @@ import React from 'react'
  * @param {Iterable<[string, any]>} iter iterable of arrays of key, value pairs
  * @returns {{}} obj with key, value pairs assigned
  */
-const ObjectFromEntries = (iter) => {
+export const ObjectFromEntries = (iter) => {
   const obj = {}
   const arr = [...iter]
 

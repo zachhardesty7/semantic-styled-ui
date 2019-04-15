@@ -11,7 +11,7 @@ import { camelToKebab, defaultColors } from '.'
  * @template {keyof defaultColors} K
  * @requires `styled-components`
  * @param {string} property css property to target
- * @returns {(preset?: K) => ({propertyVal, theme}: {propertVal: string, theme?: string}) => {}}
+ * @returns {(preset?: K) => ({propertyVal, theme}: {propertyVal: string, theme?: string}) => {}}
  * function that destructures `property` and applies it inside style object
  * @example
  *
