@@ -1,34 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react'
-
-/**
- * convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
- * shim for Object.fromEntries()
- *
- * @param {Iterable<[string, any]>} iter iterable of arrays of key, value pairs
- * @returns {{}} obj with key, value pairs assigned
- */
-export const ObjectFromEntries = (iter) => {
-  const obj = {}
-  const arr = [...iter]
-
-  arr.forEach((pair) => {
-    if (Object(pair) !== pair) {
-      throw new TypeError('iterable for fromEntries should yield objects')
-    }
-
-    const { 0: key, 1: val } = pair
-
-    Object.defineProperty(obj, key, {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: val
-    })
-  })
-
-  return obj
-}
+import { ObjectFromEntries } from './shims'
 
 /**
  * capitalize first letter of words and remove spaces
@@ -110,12 +82,12 @@ export const encode = data => Object.entries(data)
  * soft merge new props into a React Component without
  * overwriting the original props (preserves immutability)
  *
- * @param {React.ReactElement<P, T>} Element instance target to receive new props
+ * @param {React.ReactElement<P, T>} element instance target to receive new props
  * @param props object of new props
- * @returns {React.ReactElement<P, T>} cloned React Element with shallowly merged props
+ * @returns {React.ReactElement<P, any>} cloned React Element with shallowly merged props
  * @requires `react`
  * @template {{}} P - props obj of input Element
- * @template {React.ElementType<P>} T - type of input Element
+ * @template {string} T - type of input Element
  * @example
  *
  * withNewProps(<Container prop0='val0' />, { prop1: 'val1', prop2: 'val2' })
@@ -124,8 +96,8 @@ export const encode = data => Object.entries(data)
  * // => <Container prop3='important-value' prop4='val4' />
  *
  */
-export const withNewProps = (Element, props = {}) => (
-  Element && React.cloneElement(Element, { ...props, ...Element.props })
+export const withNewProps = (element, props = {}) => (
+  element && React.cloneElement(element, { ...props, ...element.props })
 )
 
 /**
@@ -134,13 +106,13 @@ export const withNewProps = (Element, props = {}) => (
  * useful to prevent props intended for a styled component
  * from getting picked up by the {...rest} of the base component
  *
- * @param {React.ElementType<P>} ElementType target to control prop flow of
+ * @param {React.ElementType<any>} Component target to control rendering tag
  * @param {string[]} propKeys array of prop keys to control
- * @returns {(props: P, ref: React.RefObject<P>) => React.ForwardRefExoticComponent<P>} ref
- * forwarding function that removes unwanted `propKeys` from original props
+ * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<any>) => React.ReactElement<P, any>}
+ * ref forwarding function that removes unwanted `propKeys` from original props
  * @requires `react` && usually `styled-components`
  * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
- * @template {{}} P - props obj of input component
+ * @template {{}} P - props from run-time inner calling component
  * @example
  * ```
  * // don't include asterisks
@@ -164,16 +136,16 @@ export const withNewProps = (Element, props = {}) => (
  * // => <div className='con' /> // with a blue color
  * ```
  */
-export const withoutProps = (ElementType, propKeys = []) => {
+export const withoutProps = (Component, propKeys = []) => {
   // facilitate debugging with named func
-  const withoutPropsHOC = ({ children, ...rest }, ref) => {
-    const filtered = Object.fromEntries(Object.entries(rest)
-      .filter(([key, val]) => !propKeys.includes(key)))
+  const EnhancedComponent = ({ children, ...rest }, ref) => {
+    const filtered = ObjectFromEntries(Object.entries(rest)
+      .filter(([key]) => !propKeys.includes(key)))
 
-    return <ElementType ref={ref} {...filtered}>{children}</ElementType>
+    return <Component ref={ref} {...filtered}>{children}</Component>
   }
 
-  return React.forwardRef(withoutPropsHOC)
+  return React.forwardRef(EnhancedComponent)
 }
 
 /**
@@ -182,11 +154,11 @@ export const withoutProps = (ElementType, propKeys = []) => {
  * most useful when base component already uses the "as" tag
  * to dynamically control component rendering tag
  *
- * @param {React.ElementType<P>} ElementType target to control rendering tag
- * @returns {(props: P, ref: React.RefObject<P>) => React.ForwardRefExoticComponent<P>}
+ * @param {React.ElementType<any>} Component target to control rendering tag
+ * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<any>) => React.ReactElement<P, any>}
  * a function to pass ref and convert "tag" to "as"
  * @requires `react` && usually `styled-components`
- * @template {{}} P - props obj of input component
+ * @template {{}} P - props from run-time inner calling component
  * @example
  *
  * ```
@@ -202,13 +174,15 @@ export const withoutProps = (ElementType, propKeys = []) => {
  * // => <section />
  * ```
  */
-export const asTag = (ElementType) => {
+export const asTag = (Component) => {
+  // const ComponentType = Component
+
   // facilitate debugging with named func
-  const asTagHOC = ({ tag, children, ...rest }, ref) => (
-    <ElementType as={tag} ref={ref} {...rest}>{children}</ElementType>
+  const EnhancedComponent = ({ tag, children, ...rest }, ref) => (
+    <Component as={tag} ref={ref} {...rest}>{children}</Component>
   )
 
-  return React.forwardRef(asTagHOC)
+  return React.forwardRef(EnhancedComponent)
 }
 
 // helpful for testing
