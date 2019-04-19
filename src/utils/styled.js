@@ -2,17 +2,27 @@ import { css } from 'styled-components'
 import { camelToKebab, defaultColors } from '.'
 
 /**
+ * type definition(s)
+ * @typedef {keyof typeof defaultColors} DefaultColor - property name of an object
+ *
+ * imports
+ * @typedef {import('styled-components').FlattenSimpleInterpolation} FlattenSimpleInterpolation
+ */
+
+/**
  * get a function to execute inside styled components that applies target
  * css property to styled-component with backup preset from theme
  *
  * **NOTE**: it's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`
  *
- * @template {keyof defaultColors} K
- * @requires `styled-components`
- * @param {string} property css property to target
- * @returns {(preset?: K) => ({propertyVal, theme}: {propertyVal: string, theme?: string}) => {}}
+ * @param {P} property css property to target
+ * @returns {(preset?: DefaultColor) =>
+ *  ({[property]: val, theme}: {val: any, theme?: any}) =>
+ *  {[property: string]: any}}
  * function that destructures `property` and applies it inside style object
+ * @requires `styled-components`
+ * @template {string} P
  * @example
  *
  * const StyledElement = styled.div`
@@ -32,11 +42,15 @@ export const getProperty = property => preset => ({ [property]: val, theme }) =>
  * **NOTE**: it's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`
  *
+ * **NOTE**: input property and props require the word `Hover` appended to the end of the prop
+ *
+ * @param {P} property css property to target (with manually appended word `Hover`)
+ * @returns {(preset?: DefaultColor) =>
+ *  ({[property]: val, theme}: {val: any, theme?: any}) => FlattenSimpleInterpolation}
+ *  function that destructures `property` and applies
+ *  it inside style template wrapped with a hover pseudo-selector
  * @requires `styled-components`
- * @param {string} property css property to target (append word Hover)
- * @returns {(preset?: string) => (propertyVal: string, theme?: string) => any[]}
- * function that destructures `property` and applies
- * it inside style template wrapped with a hover pseudo-selector
+ * @template {string} P
  * @example
  *
  * const StyledElement = styled.div`
@@ -45,11 +59,11 @@ export const getProperty = property => preset => ({ [property]: val, theme }) =>
  *
  * <StyledElement marginHover='2em' />
  */
-export const getHoverProperty = property => preset => ({ [property]: val, theme }) => (css`
+export const getHoverProperty = property => preset => ({ [property]: val, theme }) => css`
   &:hover {
     ${camelToKebab(property.slice(0, property.indexOf('Hover')))}: ${val || theme?.[preset] || defaultColors[preset]};
   }
-`)
+`
 
 /**
  * applies css property 'color' to styled-component with backup preset from theme
@@ -57,10 +71,9 @@ export const getHoverProperty = property => preset => ({ [property]: val, theme 
  * **NOTE**: it's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`
  *
+ * @param preset optional preset to use from theme prop
+ * @returns function that destructures `property` and applies it inside style object
  * @requires `styled-components`
- * @param {string} preset optional preset to use from theme prop
- * @returns {function} function that destructures `property` and applies
- * it inside style object
  * @example
  *
  * const StyledElement = styled.div`
@@ -77,10 +90,9 @@ export const getColor = getProperty('color')
  * **NOTE**: it's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`
  *
+ * @param preset optional preset to use from theme prop
+ * @returns function that destructures `property` and applies it inside style object
  * @requires `styled-components`
- * @param {string} preset optional preset to use from theme prop
- * @returns {function} function that destructures `property` and applies
- * it inside style object
  * @example
  *
  * const StyledElement = styled.div`
@@ -97,10 +109,12 @@ export const getBackgroundColor = getProperty('backgroundColor')
  * **NOTE**: it's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`
  *
+ * **NOTE**: input property and props require the word `Hover` appended to the end of the prop
+ *
+ * @param preset css property to target (with manually appended word `Hover`)
+ * @returns function that destructures `property` and applies it
+ *  inside style template wrapped with a hover pseudo-selector
  * @requires `styled-components`
- * @param {string} preset optional preset to use from theme prop
- * @returns {function} function that destructures `property` and applies
- * it inside style object
  * @example
  *
  * const StyledElement = styled.div`
@@ -117,10 +131,12 @@ export const getHoverColor = getHoverProperty('colorHover')
  * **NOTE**: it's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`
  *
+ * **NOTE**: input property and props require the word `Hover` appended to the end of the prop
+ *
+ * @param preset css property to target (with manually appended word `Hover`)
+ * @returns function that destructures `property` and applies it
+ *  inside style template wrapped with a hover pseudo-selector
  * @requires `styled-components`
- * @param {string} preset optional preset to use from theme prop
- * @returns {function} function that destructures `property` and applies
- * it inside style object
  * @example
  *
  * const StyledElement = styled.div`

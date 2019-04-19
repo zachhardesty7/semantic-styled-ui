@@ -104,7 +104,10 @@ export const withNewProps = (element, props = {}) => (
  * dynamically prevent props from reaching DOM elements
  * by providing styled-components a prop blacklist, most
  * useful to prevent props intended for a styled component
- * from getting picked up by the {...rest} of the base component
+ * from getting picked up by the {...rest} of the base component.
+ *
+ * technical: closes over input Component and coerces rendered EnhancedComponent element
+ * to Component.type
  *
  * @param {React.ElementType<any>} Component target to control rendering tag
  * @param {string[]} propKeys array of prop keys to control
@@ -145,6 +148,7 @@ export const withoutProps = (Component, propKeys = []) => {
     return <Component ref={ref} {...filtered}>{children}</Component>
   }
 
+  // ensure ref points to Component NOT functional EnhancedComponent
   return React.forwardRef(EnhancedComponent)
 }
 
@@ -153,6 +157,9 @@ export const withoutProps = (Component, propKeys = []) => {
  * styled-components behavior while forwarding React Ref,
  * most useful when base component already uses the "as" tag
  * to dynamically control component rendering tag
+ *
+ * technical: closes over input Component and coerces rendered EnhancedComponent element
+ * to Component.type
  *
  * @param {React.ElementType<any>} Component target to control rendering tag
  * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<any>) => React.ReactElement<P, any>}
@@ -182,6 +189,7 @@ export const asTag = (Component) => {
     <Component as={tag} ref={ref} {...rest}>{children}</Component>
   )
 
+  // ensure ref points to Component NOT functional EnhancedComponent
   return React.forwardRef(EnhancedComponent)
 }
 
