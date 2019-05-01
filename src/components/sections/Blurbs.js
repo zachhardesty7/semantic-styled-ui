@@ -60,9 +60,9 @@ S.Content = styled(HeaderContentFiltered)`
 const Blurbs = ({
   title,
   content,
-  textAlign,
-  color,
-  secondary,
+  textAlign = 'left',
+  color = '',
+  secondary = false,
   children,
   ...rest
 }) => (
@@ -84,7 +84,13 @@ const Blurbs = ({
       </S.Header>
     )}
     <Container textAlign='center'>
-      <Grid relaxed stackable columns={React.Children.count(children)} divided padded>
+      <Grid
+        columns={Math.min(React.Children.count(children), 8)}
+        relaxed
+        stackable
+        divided
+        padded
+      >
         {React.Children.map(children, blurb => (
           <Grid.Column>
             {withNewProps(blurb, { color })}
@@ -113,15 +119,6 @@ Blurbs.propTypes = {
 
   /** primary content of Blurbs.Item */
   children: PropTypes.node
-}
-
-Blurbs.defaultProps = {
-  title: null,
-  content: null,
-  textAlign: 'left',
-  color: '',
-  secondary: false,
-  children: null
 }
 
 // prevent error of accidentally double memoizing components

@@ -142,7 +142,7 @@ export const withNewProps = (element, props = {}) => (
 export const withoutProps = (Component, propKeys = []) => {
   // facilitate debugging with named func
   const EnhancedComponent = ({ children, ...rest }, ref) => {
-    const filtered = ObjectFromEntries(Object.entries(rest)
+    const filtered = Object.fromEntries(Object.entries(rest)
       .filter(([key]) => !propKeys.includes(key)))
 
     return <Component ref={ref} {...filtered}>{children}</Component>

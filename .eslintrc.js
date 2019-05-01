@@ -25,6 +25,7 @@ module.exports = {
         skipUndeclared: true
       }
     ],
+    'react/require-default-props': 'off',
     'react/no-unescaped-entities': 'off',
     'react/jsx-filename-extension': [
       'warn',

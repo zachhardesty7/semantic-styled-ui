@@ -79,9 +79,9 @@ S.Title = styled(S.BaseHeader)`
   padding-right: 0.15em;
   font-size: 4.7em;
   
-  ${media.laptop`
+  @media ${media.laptop} {
     font-size: 4em;
-  `};
+  }
   @media ${media.tablet} {
     font-size: 3.8em;
   }

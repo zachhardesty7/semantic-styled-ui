@@ -33,18 +33,18 @@ S.Link = styled.a`
   ${getHoverColor('white')};
 `
 
-const Footer = ({
-  color,
-  backgroundColor,
-  colorHover,
-  sticky,
-  copyright,
-  stacked,
-  separated,
-  inverted,
-  icons,
-  developerName,
-  developerLink,
+export const Footer = ({
+  color = '',
+  backgroundColor = '',
+  colorHover = '',
+  sticky = true,
+  copyright = '',
+  stacked = false,
+  separated = false,
+  inverted = false,
+  icons = null,
+  developerName = '',
+  developerLink = '',
   ...rest
 }) => {
   const con = useRef()
@@ -53,7 +53,7 @@ const Footer = ({
   // that stays at the bottom, even when there's little content
   useLayoutEffect(() => {
     if (sticky) {
-      let el = con.current.parentNode
+      let el = con?.current.parentNode
 
       el.children[el.children.length - 2].style.flex = '1 0 auto'
       el.style.display = 'flex'
@@ -153,19 +153,3 @@ Footer.propTypes = {
   /** date & company that holds copyright */
   copyright: PropTypes.string
 }
-
-Footer.defaultProps = {
-  color: '',
-  backgroundColor: '',
-  colorHover: '',
-  stacked: false,
-  separated: false,
-  developerName: '',
-  developerLink: '',
-  icons: null,
-  inverted: false,
-  sticky: true,
-  copyright: ''
-}
-
-export default React.memo(Footer)
