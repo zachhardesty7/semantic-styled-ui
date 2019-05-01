@@ -154,4 +154,5 @@ Footer.propTypes = {
   copyright: PropTypes.string
 }
 
-export default React.memo(Footer)
+// cannot be memoed due to necessity of rerendering to apply flex to parents
+export default Footer
