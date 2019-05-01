@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import {
+  Form,
   Icon,
   Message,
-  Form as SUIForm,
   Transition
 } from 'semantic-ui-react'
 
@@ -21,7 +21,7 @@ const paddingTable = {
 
 const S = {} // styled-components namespace
 
-const FilteredForm = withoutProps(SUIForm, ['padded'])
+const FilteredForm = withoutProps(Form, ['padded'])
 S.Form = styled(FilteredForm)`
   ${({ padded, padding }) => (
     (padded === 'top' && `padding-top: ${paddingTable[padding]}`) ||
@@ -41,7 +41,7 @@ S.Message = styled(Message)`
  *
  * @visibleName Form
  */
-const Form = ({
+const SSUIForm = ({
   name,
   fields,
   textArea,
@@ -199,7 +199,7 @@ const Form = ({
   )
 }
 
-Form.propTypes = {
+SSUIForm.propTypes = {
   /** enhances semantics */
   name: PropTypes.string,
 
@@ -221,7 +221,7 @@ Form.propTypes = {
   padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose'])
 }
 
-Form.defaultProps = {
+SSUIForm.defaultProps = {
   name: '',
   fields: [],
   textArea: true,
@@ -230,4 +230,4 @@ Form.defaultProps = {
   padding: 'base'
 }
 
-export default React.memo(Form)
+export default React.memo(SSUIForm)
