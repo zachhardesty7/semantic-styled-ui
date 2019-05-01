@@ -11,8 +11,8 @@ import Footer from './components/sections/Footer'
 import Hero from './components/sections/Hero'
 import Navigation from './components/sections/Navigation'
 
-import defaultColors from './utils/colors'
-import media from './utils/media'
+import { defaultColors } from './utils/colors'
+import { media } from './utils/media'
 import {
   asTag,
   calcDuration,

@@ -3,8 +3,9 @@ module.exports = {
     [
       '@babel/preset-env', {
         loose: true,
-        useBuiltIns: 'usage',
+        // useBuiltIns: 'usage', // TODO: currently breaks things in Gatsby projects
         shippedProposals: true,
+        modules: false,
         corejs: { version: 3, proposals: true },
         targets: {
           browsers: [
@@ -34,8 +35,7 @@ module.exports = {
     // ],
     [
       '@babel/plugin-transform-runtime', {
-        corejs: 3,
-        proposals: true,
+        corejs: { version: 3, proposals: true },
         useESModules: true
       }
     ],

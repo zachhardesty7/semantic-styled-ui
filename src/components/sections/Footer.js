@@ -33,7 +33,7 @@ S.Link = styled.a`
   ${getHoverColor('white')};
 `
 
-export const Footer = ({
+const Footer = ({
   color = '',
   backgroundColor = '',
   colorHover = '',
@@ -153,3 +153,5 @@ Footer.propTypes = {
   /** date & company that holds copyright */
   copyright: PropTypes.string
 }
+
+export default React.memo(Footer)
