@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Dimmer, Grid, Header } from 'semantic-ui-react'
 
@@ -11,6 +11,7 @@ S.Dimmable = styled(Dimmer.Dimmable)`
 `
 
 S.Dimmer = styled(Dimmer)`
+  ${({ dimmed }) => !dimmed && 'visibility: hidden'};
   display: flex;
   
   .content .header {
@@ -19,14 +20,24 @@ S.Dimmer = styled(Dimmer)`
 `
 
 S.Image = styled.img`
-  height: 100%;
-  object-fit: cover;
+  ${({ fill }) => (fill ? (
+    css`
+      height: 100%;
+      object-fit: cover;
+    `
+  ) : (
+    css`
+      top: 50%;
+      transform: translateY(-50%);
+    `
+  ))};
 `
 
 const PortfolioItem = ({
-  title,
-  subtitle,
-  children,
+  title = '',
+  subtitle = '',
+  fill = true,
+  children = null,
   ...rest
 }) => {
   const [hovered, setHovered] = useState(false)
@@ -39,11 +50,15 @@ const PortfolioItem = ({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <S.Image centered as={children.type} {...children.props} />
-          <S.Dimmer inverted simple>
-            {title && <Header as='h2'>{title}</Header>}
-            {subtitle && <Header as='h3'>{subtitle}</Header>}
-          </S.Dimmer>
+          {/* REVIEW: consider a dimmable prop to use dimmer
+          conditionally or that wraps the image using a HOC */}
+          <S.Image fill={fill} centered as={children.type} {...children.props} />
+          {(title || subtitle) && (
+            <S.Dimmer inverted simple dimmed={hovered}>
+              {title && <Header as='h2'>{title}</Header>}
+              {subtitle && <Header as='h3'>{subtitle}</Header>}
+            </S.Dimmer>
+          )}
         </S.Dimmable>
       )}
     </Grid.Column>
@@ -57,14 +72,11 @@ PortfolioItem.propTypes = {
   /** secondary content */
   subtitle: PropTypes.node,
 
+  /** determine when to cover the entire space with hidden overflow */
+  fill: PropTypes.bool,
+
   /** image-based content */
   children: PropTypes.element
-}
-
-PortfolioItem.defaultProps = {
-  title: null,
-  subtitle: null,
-  children: null
 }
 
 export default React.memo(PortfolioItem)

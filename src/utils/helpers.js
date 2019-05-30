@@ -115,6 +115,7 @@ export const withNewProps = (element, props = {}) => (
  * ref forwarding function that removes unwanted `propKeys` from original props
  * @requires `react` && usually `styled-components`
  * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
+ * @TODO check out making curried like this: https://codesandbox.io/s/l50mlwqo1q
  * @template {{}} P - props from run-time inner calling component
  * @example
  * ```
