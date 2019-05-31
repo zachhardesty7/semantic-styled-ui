@@ -54,7 +54,7 @@ const PortfolioItem = ({
           conditionally or that wraps the image using a HOC */}
           <S.Image fill={fill} centered as={children.type} {...children.props} />
           {(title || subtitle) && (
-            <S.Dimmer inverted simple dimmed={hovered}>
+            <S.Dimmer inverted simple dimmed={hovered || undefined}>
               {title && <Header as='h2'>{title}</Header>}
               {subtitle && <Header as='h3'>{subtitle}</Header>}
             </S.Dimmer>

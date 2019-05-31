@@ -14,7 +14,7 @@ import {
 
 const S = {} // styled-components namespace
 
-const FilteredItem = asTag(withoutProps(Menu.Item, ['pointing', 'activeClassName']))
+const FilteredItem = asTag(withoutProps(Menu.Item, ['pointing']))
 S.Item = styled(FilteredItem)`
   ${({ pointing }) => pointing && css`
     border-bottom: 2px solid rgba(34,36,38,.15);
@@ -51,6 +51,7 @@ const NavigationItem = ({
   ...rest
 }) => (
   <Link
+    onClick={e => e.currentTarget.blur()} // prevent keeping focus after navigating to new page
     tag={tag}
     link={link}
     activeClassName={(tag !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
