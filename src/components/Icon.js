@@ -38,6 +38,10 @@ S.Icon = styled(FilteredIcon)`
     inverted,
     theme
   }) => (
+    // if color not provided
+    // if light, try light theme then default
+    // if inverted, try secondary theme then default
+    // else use primary color
     color ||
     (light && (theme.light || defaultColors.light)) ||
     (inverted && (theme.secondary || defaultColors.secondary)) ||
@@ -48,12 +52,16 @@ S.Icon = styled(FilteredIcon)`
     ${S.Wrapper}:hover & {
       opacity: 1;
       color: ${({
-    /* eslint-disable indent */
+      /* eslint-disable indent */
         colorHover,
         light,
         inverted,
         theme
       }) => (
+          // if colorHover not provided
+          // if light, try white theme then default
+          // if inverted, try secondary theme then default
+          // else use primary color
         colorHover ||
         (light && (theme.white || defaultColors.white)) ||
         (inverted && (theme.primary || defaultColors.primary)) ||

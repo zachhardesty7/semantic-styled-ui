@@ -10,7 +10,7 @@ const S = {} // styled-components namespace
 
 const FilteredHeader = asTag(withoutProps(Header, ['color']))
 S.Header = styled(FilteredHeader)`
-  ${({ color }) => color && `color: ${color}`};
+  color: ${({ color }) => color};
   font-size: 2em;
 `
 
@@ -38,21 +38,22 @@ Blurb.propTypes = {
   /** content above header */
   icon: PropTypes.node,
 
-  /** primary content */
+  /** primary content (styled as text) */
   header: PropTypes.node,
 
   /** apply css supported color string to Header text, overrides theme / default */
   color: PropTypes.string,
 
   /**
-  * element type to render as (string or function)
+  * element type to render `header` as (string or function)
+  * 
   * supports HTML tag as a string or React component definition
   *
   * @example
   *
   * 'div'
   * 'section'
-  * ReactComponent
+  * {ReactComponent}
   * Card
   */
   tag: PropTypes.oneOfType([

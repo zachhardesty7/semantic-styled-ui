@@ -11,7 +11,7 @@ import {
 
 import { encode, process, withoutProps } from '../utils'
 
-const paddingTable = {
+const paddingMap = {
   compact: '0.5em',
   tight: '1em',
   base: '2em',
@@ -24,9 +24,9 @@ const S = {} // styled-components namespace
 const FilteredForm = withoutProps(Form, ['padded'])
 S.Form = styled(FilteredForm)`
   ${({ padded, padding }) => (
-    (padded === 'top' && `padding-top: ${paddingTable[padding]}`) ||
-    (padded === 'bottom' && `padding-bottom: ${paddingTable[padding]}`) ||
-    (padded && `padding: ${paddingTable[padding]} 0`)
+    (padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
+    (padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
+    (padded && `padding: ${paddingMap[padding]} 0`)
   )};
 `
 
@@ -37,7 +37,7 @@ S.Message = styled(Message)`
 `
 
 /**
- * docs for styleguidist (prolly gonna remove)
+ * doc for styleguidist (prolly gonna remove)
  *
  * @visibleName Form
  */
@@ -57,19 +57,19 @@ const SSUIForm = ({
   const fieldsInit = {}
   fields.forEach((field) => {
     if (!field.includes(';')) {
-      fieldsInit[`${process(field)}`] = ''
+      fieldsInit[process(field)] = ''
     } else {
-      fieldsInit[`${process(field.slice(0, field.indexOf('(')))}`] = ''
+      fieldsInit[process(field.slice(0, field.indexOf('(')))] = ''
     }
   })
-  if (textArea) fieldsInit[`text-area`] = ''
+  if (textArea) fieldsInit['text-area'] = ''
 
   const [fieldsObj, setFieldsObj] = useState(fieldsInit)
 
-  const removeSuccessMessage = () => {
+  const removeSuccessMessage = (ms = 6000) => {
     setTimeout(() => {
       setSuccess(false)
-    }, 6000)
+    }, ms)
   }
 
   const handleSubmit = (evt) => {
@@ -82,11 +82,10 @@ const SSUIForm = ({
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({ 'form-name': 'contact', ...fieldsObj })
       })
-        .catch(err => console.log(err))
+        .catch(err => console.error(err))
 
-      const newFieldsObj = {}
-
-      Object.keys(fieldsObj).forEach((key) => { newFieldsObj[key] = '' })
+      // reset state of fields
+      const newFieldsObj = Object.fromEntries(Object.keys(fieldsObj).map(key => [key, '']))
 
       setSuccess(true)
       setError(false)
@@ -98,7 +97,7 @@ const SSUIForm = ({
     evt.preventDefault()
   }
 
-  const handleChange = (e, { id, value }) => {
+  const handleChange = (_, { id, value }) => {
     setFieldsObj({ ...fieldsObj, [id]: value })
   }
 
@@ -117,7 +116,7 @@ const SSUIForm = ({
       {/* limit bot responses with Netlify */}
       <input type='hidden' name='bot-field' />
       {fields
-        .map((item, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
+        .map((_, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
         .filter(Boolean) // remove falsy (null) entries
         .map(fieldGroup => (
           <Form.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
@@ -131,30 +130,35 @@ const SSUIForm = ({
                   value: op
                 }))
 
+                const processedTitle = process(title)
+
                 return (
                   <Form.Select
-                    error={error && fieldsObj[`${process(title)}`] === ''}
-                    id={`${process(title)}`}
-                    key={`${process(title)}`}
+                    error={error && fieldsObj[processedTitle] === ''}
+                    id={processedTitle}
+                    key={processedTitle}
                     fluid
                     placeholder={title}
                     label={title}
                     onChange={handleChange}
-                    value={fieldsObj[`${process(title)}`]}
+                    value={fieldsObj[processedTitle]}
                     options={options}
                   />
                 )
               }
+
+              const processedField = process(field)
+
               return (
                 <Form.Input
-                  error={error && fieldsObj[`${process(field)}`] === ''}
-                  id={`${process(field)}`}
-                  key={`${process(field)}`}
+                  error={error && fieldsObj[processedField] === ''}
+                  id={processedField}
+                  key={processedField}
                   fluid
                   placeholder={field}
                   label={field}
                   onChange={handleChange}
-                  value={fieldsObj[`${process(field)}`]}
+                  value={fieldsObj[processedField]}
                 />
               )
             })}
@@ -164,12 +168,12 @@ const SSUIForm = ({
       {textArea && (
         <Form.TextArea
           id='text-area'
-          error={error && fieldsObj[`text-area`] === ''}
+          error={error && fieldsObj['text-area'] === ''}
           placeholder='Message'
-          label={textArea === true ? 'Enter Message Below:' : textArea}
+          label={textArea === true ? 'Enter message below:' : textArea}
           style={{ minHeight: 125 }}
           onChange={handleChange}
-          value={fieldsObj[`text-area`]}
+          value={fieldsObj['text-area']}
         />
       )}
 
@@ -179,13 +183,13 @@ const SSUIForm = ({
             <Icon name='check' aria-label='success' />
             <Message.Content>
               <Message.Header>Form Submitted</Message.Header>
-              You&#39;ll hear back from our team shortly!
+              {`You'll hear back from us shortly!`}
             </Message.Content>
           </S.Message>
         )}
         {error && (
           <S.Message icon error>
-            <Icon name='exclamation' aria-label='fail' />
+            <Icon name='exclamation' aria-label='failure' />
             <Message.Content>
               <Message.Header>Error</Message.Header>
               Please fill out all fields!
@@ -206,7 +210,8 @@ SSUIForm.propTypes = {
   /** labels for fields */
   fields: PropTypes.arrayOf(PropTypes.string),
 
-  /** label or true to use default */
+  // REVIEW: whether better to pass false option to disable or just use empty string
+  /** label or pass false to disable, defaults to "Enter Message Below:" */
   textArea: PropTypes.oneOfType([
     PropTypes.string, PropTypes.bool
   ]),
@@ -214,10 +219,10 @@ SSUIForm.propTypes = {
   /** button text content */
   button: PropTypes.string,
 
-  /** spacing around element exists */
+  /** if/where spacing around element exists */
   padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
 
-  /** control amount of spacing around element */
+  /** amount of spacing around element */
   padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose'])
 }
 

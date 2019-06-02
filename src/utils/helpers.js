@@ -46,7 +46,7 @@ export const calcDuration = (scrollDistanceInPx) => {
  * process('An Arbitrary String Input')
  * // => 'an-arbitrary-string-input'
  */
-export const process = str => `${str.toLowerCase().replace(/\W/g, '-')}`
+export const process = str => str.toLowerCase().replace(/\W/g, '-')
 
 /**
  * convert camel case string to kebab case

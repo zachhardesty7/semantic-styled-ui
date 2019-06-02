@@ -11,7 +11,6 @@ S.Dimmable = styled(Dimmer.Dimmable)`
 `
 
 S.Dimmer = styled(Dimmer)`
-  ${({ dimmed }) => !dimmed && 'visibility: hidden'};
   display: flex;
   
   .content .header {
@@ -21,24 +20,18 @@ S.Dimmer = styled(Dimmer)`
 
 S.Image = styled.img`
   ${({ fill }) => (
-    fill ? (
-      css`
-        height: 100%;
-        object-fit: cover;
-      `
-    ) : (
-      css`
-        top: 50%;
-        transform: translateY(-50%);
-      `
-    )
+    fill ? (`
+      height: 100%;
+      object-fit: cover;
+    `) : (`
+      top: 50%;
+      transform: translateY(-50%);
+    `)
   )};
 `
 
-const PortfolioItem = ({
-  title = '',
-  subtitle = '',
-  fill = true,
+const Dimming = ({
+  trigger,
   children = null,
   ...rest
 }) => {
@@ -54,9 +47,9 @@ const PortfolioItem = ({
         >
           {/* REVIEW: consider a dimmable prop to use dimmer
           conditionally or that wraps the image using a HOC */}
-          <S.Image fill={fill} centered as={children.type} {...children.props} />
-          {(title || subtitle) && (
-            <S.Dimmer inverted simple dimmed={hovered || undefined}>
+          {trigger}
+          {children && (
+            <S.Dimmer inverted simple>
               {title && <Header as='h2'>{title}</Header>}
               {subtitle && <Header as='h3'>{subtitle}</Header>}
             </S.Dimmer>
@@ -67,18 +60,12 @@ const PortfolioItem = ({
   )
 }
 
-PortfolioItem.propTypes = {
-  /** primary content */
-  title: PropTypes.node,
+Dimming.propTypes = {
+  /** hovering over this activates dimmer */
+  trigger: PropTypes.element,
 
-  /** secondary content */
-  subtitle: PropTypes.node,
-
-  /** determine when to cover the entire space with hidden overflow */
-  fill: PropTypes.bool,
-
-  /** image-based content */
-  children: PropTypes.element
+  /** nodes displayed within dimmer */
+  children: PropTypes.node
 }
 
-export default React.memo(PortfolioItem)
+export default React.memo(Dimming)

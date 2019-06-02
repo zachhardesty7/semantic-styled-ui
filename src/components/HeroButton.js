@@ -33,9 +33,10 @@ S.Button = styled(FilteredButton)`
 const FilteredIcon = asTag(withoutProps(Icon, ['pointing']))
 S.Icon = styled(FilteredIcon)`
   ${getColor('white')};
-  ${({ pointing }) => (pointing === 'left'
-    ? 'margin-right: .75em'
-    : 'margin-left: .75em'
+  ${({ pointing }) => (
+    pointing === 'left'
+      ? 'margin-right: .75em'
+      : 'margin-left: .75em'
   )};
   vertical-align: bottom;
   width: 1em;
@@ -95,10 +96,10 @@ HeroButton.propTypes = {
   /** anchor link (prefixed with "#") or standard href */
   link: PropTypes.string,
 
-  /** formatted with active indicator */
+  /** formatted with active page indicator */
   pointing: PropTypes.oneOf(['left', 'right', true, false]),
 
-  /** reduce whitespace */
+  /** reduce padding whitespace */
   compact: PropTypes.bool,
 
   /** apply css supported color string to background, overrides theme / default */
@@ -107,7 +108,7 @@ HeroButton.propTypes = {
   /** apply css supported color string to background on hover, overrides theme / default */
   colorHover: PropTypes.string,
 
-  /** text content */
+  /** text-based content */
   children: PropTypes.node
 }
 

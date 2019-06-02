@@ -38,10 +38,10 @@ S.Logo = styled.div`
   /* will work with regular img child or gatsby-image picture element */
   img:last-child {
     position: relative !important;
-    width: ${({ logoSize }) => `${logoSizes[logoSize]}px`} !important;
+    width: ${({ logoSize }) => logoSizes[logoSize]}px !important;
 
     @media ${media.phone} {
-      width: ${({ logoSize }) => `${logoSizes[logoSize] * 0.8}px`} !important;
+      width: ${({ logoSize }) => logoSizes[logoSize] * 0.8}px !important;
     }
   }
 `
