@@ -7,11 +7,10 @@ import {
   withNewProps
 } from '../utils'
 
-/** passes thru all props to child */
 const Link = ({
-  tag,
-  link,
-  wrap,
+  tag = 'a',
+  link = '',
+  wrap = false,
   children,
   ...rest
 }) => {
@@ -66,12 +65,6 @@ Link.propTypes = {
 
   /** primary content, usually string, used as link if link not provided */
   children: PropTypes.node.isRequired
-}
-
-Link.defaultProps = {
-  tag: 'a',
-  link: '',
-  wrap: false
 }
 
 export default React.memo(Link)

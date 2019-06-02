@@ -47,11 +47,11 @@ S.Logo = styled.div`
 `
 
 const NavigationLogo = ({
-  tag,
-  link,
-  stacked,
-  logoSize,
-  className,
+  tag = 'a',
+  link = '/',
+  stacked = false,
+  logoSize = 'base',
+  className = '',
   children,
   ...rest
 }) => (
@@ -99,14 +99,6 @@ NavigationLogo.propTypes = {
 
   /** primary content, usually string, used as link if link not provided */
   children: PropTypes.element.isRequired
-}
-
-NavigationLogo.defaultProps = {
-  tag: 'a',
-  link: '/',
-  stacked: false,
-  logoSize: 'base',
-  className: ''
 }
 
 export default React.memo(NavigationLogo)

@@ -102,15 +102,15 @@ S.Wrapper = styled.div`
 `
 
 const Icon = ({
-  name,
-  label,
+  name = '',
+  label = false,
   tag,
-  link,
-  size,
-  light,
-  inverted,
-  color,
-  colorHover,
+  link = '',
+  size = 'medium',
+  light = false,
+  inverted = false,
+  color = '',
+  colorHover = '',
   ...rest
 }) => (
   <S.Wrapper>
@@ -213,17 +213,6 @@ Icon.propTypes = {
 
   /** set color to secondary, colorHover to primary */
   inverted: PropTypes.bool
-}
-
-Icon.defaultProps = {
-  label: false,
-  tag: null,
-  link: '',
-  size: 'medium',
-  color: '',
-  colorHover: '',
-  light: false,
-  inverted: false
 }
 
 export default React.memo(Icon)

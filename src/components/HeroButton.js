@@ -43,12 +43,12 @@ S.Icon = styled(FilteredIcon)`
 `
 
 const HeroButton = ({
-  tag,
-  link,
-  pointing,
-  compact,
-  color,
-  colorHover,
+  tag = 'a',
+  link = '',
+  pointing = 'right',
+  compact = false,
+  color = '',
+  colorHover = '',
   children,
   ...rest
 }) => (
@@ -109,16 +109,6 @@ HeroButton.propTypes = {
 
   /** text content */
   children: PropTypes.node
-}
-
-HeroButton.defaultProps = {
-  tag: 'a',
-  link: '',
-  pointing: 'right',
-  compact: false,
-  color: '',
-  colorHover: '',
-  children: null
 }
 
 export default React.memo(HeroButton)

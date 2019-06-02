@@ -37,17 +37,17 @@ S.Message = styled(Message)`
 `
 
 /**
- * The only true form
+ * docs for styleguidist (prolly gonna remove)
  *
  * @visibleName Form
  */
 const SSUIForm = ({
-  name,
-  fields,
-  textArea,
-  button,
-  padded,
-  padding,
+  name = '',
+  fields = [],
+  textArea = true,
+  button = 'Submit',
+  padded = false,
+  padding = 'base',
   ...rest
 }) => {
   const [success, setSuccess] = useState(false)
@@ -219,15 +219,6 @@ SSUIForm.propTypes = {
 
   /** control amount of spacing around element */
   padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose'])
-}
-
-SSUIForm.defaultProps = {
-  name: '',
-  fields: [],
-  textArea: true,
-  button: 'Submit',
-  padded: false,
-  padding: 'base'
 }
 
 export default React.memo(SSUIForm)

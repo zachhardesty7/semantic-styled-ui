@@ -43,10 +43,10 @@ S.Item = styled(FilteredItem)`
 `
 
 const NavigationItem = ({
-  tag,
-  link,
-  stacked,
-  pointing,
+  tag = 'a',
+  link = '',
+  stacked = false,
+  pointing = false,
   children,
   ...rest
 }) => (
@@ -91,13 +91,6 @@ NavigationItem.propTypes = {
 
   /** primary content, usually string, used as link if link not provided */
   children: PropTypes.node.isRequired
-}
-
-NavigationItem.defaultProps = {
-  tag: 'a',
-  link: '',
-  pointing: false,
-  stacked: false
 }
 
 export default React.memo(NavigationItem)

@@ -17,8 +17,8 @@ S.Header = styled(FilteredHeader)`
 const Blurb = ({
   icon,
   header,
-  tag,
-  color,
+  tag = 'h4',
+  color = '',
   children,
   ...rest
 }) => (
@@ -62,14 +62,6 @@ Blurb.propTypes = {
 
   /** secondary content of body */
   children: PropTypes.node
-}
-
-Blurb.defaultProps = {
-  icon: null,
-  header: null,
-  color: '',
-  tag: 'h4',
-  children: null
 }
 
 export default React.memo(Blurb)

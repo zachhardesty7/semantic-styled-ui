@@ -40,10 +40,10 @@ S.Group = styled.div`
 `
 
 const IconGroup = ({
-  justify,
-  padded,
-  padding,
-  className,
+  justify = 'initial',
+  padded = false,
+  padding = 'tight',
+  className = '',
   children,
   ...rest
 }) => (
@@ -76,13 +76,6 @@ IconGroup.propTypes = {
 
   /** primary content of icon(s) */
   children: PropTypes.node.isRequired
-}
-
-IconGroup.defaultProps = {
-  justify: 'initial',
-  padded: false,
-  padding: 'tight',
-  className: ''
 }
 
 export default React.memo(IconGroup)
