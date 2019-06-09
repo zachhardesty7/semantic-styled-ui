@@ -67,4 +67,5 @@ Link.propTypes = {
   children: PropTypes.node.isRequired
 }
 
+/** @component */
 export default React.memo(Link)
