@@ -5,11 +5,7 @@ import styled, { css } from 'styled-components'
 import { Icon as SUIIcon } from 'semantic-ui-react'
 import Link from './Link'
 
-import {
-  asTag,
-  defaultColors,
-  withoutProps
-} from '../utils'
+import { defaultColors, withoutProps } from '../utils'
 
 const iconMap = {
   mini: '0.4em',
@@ -25,7 +21,7 @@ const iconMap = {
 
 const S = {} // styled-components namespace
 
-const FilteredIcon = asTag(withoutProps(SUIIcon, ['color', 'colorHover', 'size', 'light', 'inverted']))
+const FilteredIcon = withoutProps(SUIIcon, ['color', 'colorHover', 'size', 'light', 'inverted'])
 S.Icon = styled(FilteredIcon)`
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
@@ -52,7 +48,7 @@ S.Icon = styled(FilteredIcon)`
     ${S.Wrapper}:hover & {
       opacity: 1;
       color: ${({
-      /* eslint-disable indent */
+    /* eslint-disable indent */
         colorHover,
         light,
         inverted,
@@ -73,16 +69,16 @@ S.Icon = styled(FilteredIcon)`
 
 S.Label = styled.span`
   color: ${({
-      color,
-      light,
-      inverted,
-      theme
-    }) => (
-      color ||
-      (light && (theme.light || defaultColors.light)) ||
-      (inverted && (theme.secondary || defaultColors.secondary)) ||
-      (theme.primary || defaultColors.primary)
-    )};
+    color,
+    light,
+    inverted,
+    theme
+  }) => (
+    color ||
+    (light && (theme.light || defaultColors.light)) ||
+    (inverted && (theme.secondary || defaultColors.secondary)) ||
+    (theme.primary || defaultColors.primary)
+  )};
 
   ${({ link }) => link && css`
     ${S.Wrapper}:hover & {
@@ -106,14 +102,18 @@ S.Label = styled.span`
 S.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: ${({ align }) => {
+    if (align === 'center') return align
+    return `flex-${align}`
+  }};
 `
 
 const Icon = ({
+  as,
   name = '',
   label = false,
-  tag,
   link = '',
+  align = 'center',
   size = 'medium',
   light = false,
   inverted = false,
@@ -121,11 +121,11 @@ const Icon = ({
   colorHover = '',
   ...rest
 }) => (
-  <S.Wrapper>
+  <S.Wrapper align={align}>
     {link ? (
       <Link
         wrap
-        tag={tag || 'a'}
+        as={as || 'a'}
         link={link}
         {...rest}
       >
@@ -153,7 +153,7 @@ const Icon = ({
     ) : (
       <>
         <S.Icon
-          tag={tag}
+          forwardedAs={as}
           name={name.toLowerCase()}
           size={size}
           inverted={inverted}
@@ -200,12 +200,15 @@ Icon.propTypes = {
    * ReactComponent
    * Card
    */
-  tag: PropTypes.oneOfType([
+  as: PropTypes.oneOfType([
     PropTypes.string, PropTypes.elementType
   ]),
 
   /** anchor link (prefixed with "#") or standard href */
   link: PropTypes.string,
+
+  /** position / justification of all content */
+  align: PropTypes.oneOf(['start', 'center', 'end']),
 
   /** size using "em" units */
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'medium', 'large', 'big', 'bigger', 'huge', 'massive']),

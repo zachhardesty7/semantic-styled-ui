@@ -6,15 +6,11 @@ import { Menu } from 'semantic-ui-react'
 
 import Link from './Link'
 
-import {
-  asTag,
-  media,
-  withoutProps
-} from '../utils'
+import { media, withoutProps } from '../utils'
 
 const S = {} // styled-components namespace
 
-const FilteredItem = asTag(withoutProps(Menu.Item, ['pointing']))
+const FilteredItem = withoutProps(Menu.Item, ['pointing'])
 S.Item = styled(FilteredItem)`
   ${({ pointing }) => pointing && css`
     border-bottom: 2px solid rgba(34,36,38,.15);
@@ -43,7 +39,7 @@ S.Item = styled(FilteredItem)`
 `
 
 const NavigationItem = ({
-  tag = 'a',
+  as = 'a',
   link = '',
   stacked = false,
   pointing = false,
@@ -52,9 +48,9 @@ const NavigationItem = ({
 }) => (
   <Link
     onClick={e => e.currentTarget.blur()} // prevent keeping focus after navigating to new page
-    tag={tag}
+    as={as}
     link={link}
-    activeClassName={(tag !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
+    activeClassName={(as !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
     {...rest}
   >
     <S.Item pointing={pointing}>
@@ -75,7 +71,7 @@ NavigationItem.propTypes = {
   * ReactComponent
   * Card
   */
-  tag: PropTypes.oneOfType([
+  as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),

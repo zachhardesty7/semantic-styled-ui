@@ -11,7 +11,6 @@ import {
 import HeroButton from '../HeroButton'
 
 import {
-  asTag,
   defaultColors,
   getColor,
   media,
@@ -66,7 +65,7 @@ S.Segment = styled(FilteredSegment)`
   }
 `
 
-const FilteredHeader = asTag(withoutProps(Header, ['inlineLogo', 'color']))
+const FilteredHeader = withoutProps(Header, ['inlineLogo', 'color'])
 S.BaseHeader = styled(FilteredHeader)`
   ${getColor('white')};
   font-display: fallback;
@@ -187,11 +186,11 @@ const Hero = ({
           )}
 
           {title && (
-            <S.Title tag='h1' color={color} inlineLogo={inlineLogo}>{title}</S.Title>
+            <S.Title forwardedAs='h1' color={color} inlineLogo={inlineLogo}>{title}</S.Title>
           )}
 
           {subtitle && (
-            <S.Subtitle tag='h2' color={color} inlineLogo={inlineLogo}>{subtitle}</S.Subtitle>
+            <S.Subtitle forwardedAs='h2' color={color} inlineLogo={inlineLogo}>{subtitle}</S.Subtitle>
           )}
 
           {button}

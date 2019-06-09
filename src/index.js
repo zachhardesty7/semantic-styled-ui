@@ -15,7 +15,6 @@ export Navigation from './components/sections/Navigation'
 export { defaultColors } from './utils/colors'
 export { media } from './utils/media'
 export {
-  asTag,
   calcDuration,
   camelToKebab,
   encode,

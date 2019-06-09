@@ -4,34 +4,39 @@ import styled from 'styled-components'
 
 import { Header } from 'semantic-ui-react'
 
-import { asTag, withoutProps } from '../utils'
+import { withNewProps, withoutProps } from '../utils'
 
 const S = {} // styled-components namespace
 
-const FilteredHeader = asTag(withoutProps(Header, ['color']))
+S.Section = styled.section`
+  text-align: ${({ align }) => align};
+`
+
+const FilteredHeader = withoutProps(Header, ['color'])
 S.Header = styled(FilteredHeader)`
   color: ${({ color }) => color};
   font-size: 2em;
 `
 
 const Blurb = ({
+  as = 'h4',
   icon,
+  align = 'center',
   header,
-  tag = 'h4',
   color = '',
   children,
   ...rest
 }) => (
-  <section {...rest}>
-    {icon}
+  <S.Section align={align} {...rest}>
+    {withNewProps(icon, { align })}
     <S.Header
-      tag={tag}
+      forwardedAs={as}
       color={color}
     >
       {header}
     </S.Header>
     <Header.Content>{children}</Header.Content>
-  </section>
+  </S.Section>
 )
 
 Blurb.propTypes = {
@@ -46,7 +51,7 @@ Blurb.propTypes = {
 
   /**
   * element type to render `header` as (string or function)
-  * 
+  *
   * supports HTML tag as a string or React component definition
   *
   * @example
@@ -56,10 +61,13 @@ Blurb.propTypes = {
   * {ReactComponent}
   * Card
   */
-  tag: PropTypes.oneOfType([
+  as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
+
+  /** position / justification of all content */
+  align: PropTypes.oneOf(['start', 'center', 'end']),
 
   /** secondary content of body */
   children: PropTypes.node

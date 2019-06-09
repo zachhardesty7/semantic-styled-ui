@@ -10,10 +10,10 @@ import { Grid } from 'semantic-ui-react';
   doubling
 >
   <PortfolioItem
-    title = 'Title'
-    subtitle = 'Subtitle'
+    title='Title'
+    subtitle='Subtitle'
   >
-    <img width="200px" src="http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg" />
+    <img width='200px' alt='placeholder' src='http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg' />
   </PortfolioItem>
 </Grid>
 ```
@@ -28,10 +28,10 @@ import { Grid } from 'semantic-ui-react';
   doubling
 >
   <PortfolioItem
-    title = 'Title'
-    subtitle = 'Subtitle'
-    fill = {false}
+    title='Title'
+    subtitle='Subtitle'
+    fill={false}
   >
-    <img width="200px" src="http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg" />
+    <img width='200px' alt='placeholder' src='http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg' />
   </PortfolioItem>
 </Grid>

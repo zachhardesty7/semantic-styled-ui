@@ -11,7 +11,6 @@ import {
 import Blurb from '../Blurb'
 
 import {
-  asTag,
   media,
   withNewProps,
   withoutProps
@@ -22,8 +21,7 @@ const S = {} // styled-components namespace
 /* set default to relaxed vertical padding */
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
-const BlurbsTagged = asTag(Segment)
-S.Blurbs = styled(BlurbsTagged)`
+S.Blurbs = styled(Segment)`
   padding-top: 6em;
   padding-bottom: 6em;
 
@@ -47,8 +45,7 @@ S.Header = styled(Container)`
   padding-bottom: 2.75em;
 `
 
-const HeaderTagged = asTag(Header)
-S.Title = styled(HeaderTagged)`
+S.Title = styled(Header)`
   font-size: 3em;
 `
 
@@ -67,7 +64,7 @@ const Blurbs = ({
   ...rest
 }) => (
   <S.Blurbs
-    tag='section'
+    forwardedAs='section'
     vertical
     basic
     secondary={secondary}
@@ -76,7 +73,7 @@ const Blurbs = ({
     {(title || content) && (
       <S.Header text>
         {title && (
-          <S.Title tag='h3' textAlign='center'>{title}</S.Title>
+          <S.Title forwardedAs='h3' textAlign='center'>{title}</S.Title>
         )}
         {content && (
           <S.Content textAlign={textAlign}>{content}</S.Content>

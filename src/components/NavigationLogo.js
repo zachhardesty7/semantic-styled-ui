@@ -47,7 +47,7 @@ S.Logo = styled.div`
 `
 
 const NavigationLogo = ({
-  tag = 'a',
+  as = 'a',
   link = '/',
   stacked = false,
   logoSize = 'base',
@@ -57,7 +57,7 @@ const NavigationLogo = ({
 }) => (
   <S.Wrapper stacked={stacked} className={className}>
     <NavigationItem
-      tag={tag}
+      as={as}
       link={link}
       stacked={stacked}
       pointing={false}
@@ -80,7 +80,7 @@ NavigationLogo.propTypes = {
   * ReactComponent
   * Card
   */
-  tag: PropTypes.oneOfType([
+  as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),

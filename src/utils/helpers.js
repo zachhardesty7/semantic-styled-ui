@@ -1,6 +1,5 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react'
-import { ObjectFromEntries } from './shims'
 
 /**
  * capitalize first letter of words and remove spaces
@@ -109,7 +108,7 @@ export const withNewProps = (element, props = {}) => (
  * technical: closes over input Component and coerces rendered EnhancedComponent element
  * to Component.type
  *
- * @param {React.ElementType<any>} Component target to control rendering tag
+ * @param {React.ElementType<any>} Component target to control props of
  * @param {string[]} propKeys array of prop keys to control
  * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<any>) => React.ReactElement<P, any>}
  * ref forwarding function that removes unwanted `propKeys` from original props
@@ -148,47 +147,6 @@ export const withoutProps = (Component, propKeys = []) => {
 
     return <Component ref={ref} {...filtered}>{children}</Component>
   }
-
-  // ensure ref points to Component NOT functional EnhancedComponent
-  return React.forwardRef(EnhancedComponent)
-}
-
-/**
- * convert the "tag" prop to the "as" prop without overwriting
- * styled-components behavior while forwarding React Ref,
- * most useful when base component already uses the "as" tag
- * to dynamically control component rendering tag
- *
- * technical: closes over input Component and coerces rendered EnhancedComponent element
- * to Component.type
- *
- * @param {React.ElementType<any>} Component target to control rendering tag
- * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<any>) => React.ReactElement<P, any>}
- * a function to pass ref and convert "tag" to "as"
- * @requires `react` && usually `styled-components`
- * @template {{}} P - props from run-time inner calling component
- * @example
- *
- * ```
- * // don't include asterisks
- * const ContainerWithAsRendering = ({ as }) => React.createElement(as)
- *
- * const TaggedContainer = asTag(ContainerWithAsRendering)
- * const Container = styled(TaggedContainer)``
- *
- * const Component = ({ tag }) => <Container tag={tag} />
- *
- * <Component tag='section' />
- * // => <section />
- * ```
- */
-export const asTag = (Component) => {
-  // const ComponentType = Component
-
-  // facilitate debugging with named func
-  const EnhancedComponent = ({ tag, children, ...rest }, ref) => (
-    <Component as={tag} ref={ref} {...rest}>{children}</Component>
-  )
 
   // ensure ref points to Component NOT functional EnhancedComponent
   return React.forwardRef(EnhancedComponent)

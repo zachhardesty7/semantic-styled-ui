@@ -6,6 +6,7 @@ module.exports = {
     'standard'
   ],
   plugins: [
+    'markdown',
     'react-hooks'
   ],
   env: {
@@ -65,5 +66,16 @@ module.exports = {
       'error',
       'never'
     ]
-  }
+  },
+  overrides: [{
+    files: ['**/*.md'],
+    rules: {
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-indent': 'off',
+        'react/jsx-no-undef': 'off',
+        'react/jsx-filename-extension': 'off',
+        semi: 'off',
+        'no-unused-expressions': 'off'
+      }
+  }]
 }

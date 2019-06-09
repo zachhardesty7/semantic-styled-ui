@@ -6,17 +6,16 @@ import { Container, Menu, Segment } from 'semantic-ui-react'
 import NavigationItem from '../NavigationItem'
 import NavigationLogo from '../NavigationLogo'
 
-import { asTag, withNewProps, withoutProps } from '../../utils'
+import { withNewProps, withoutProps } from '../../utils'
 
 const S = {} // styled-components namespace
 
-const SegmentTagged = asTag(withoutProps(Segment, ['pointing']))
-S.Segment = styled(SegmentTagged)`
+const SegmentFiltered = withoutProps(Segment, ['pointing'])
+S.Segment = styled(SegmentFiltered)`
   ${({ pointing }) => pointing && 'padding-bottom: 0px'};
 `
 
-const MenuTagged = asTag(Menu)
-S.Menu = styled(MenuTagged)`
+S.Menu = styled(Menu)`
   flex-wrap: wrap;
   justify-content: center;
 
@@ -26,7 +25,7 @@ S.Menu = styled(MenuTagged)`
 
 // TODO: add sticky header
 const Navigation = ({
-  tag,
+  as,
   size,
   text,
   compact,
@@ -37,7 +36,7 @@ const Navigation = ({
   ...rest
 }) => (
   <S.Segment
-    tag='header'
+    forwardedAs='header'
     pointing={pointing}
     basic
     vertical
@@ -45,7 +44,7 @@ const Navigation = ({
   >
     <Container textAlign={centered ? 'center' : undefined}>
       <S.Menu
-        tag='nav'
+        forwardedAs='nav'
         size={size}
         text={text}
         compact={compact}
@@ -53,7 +52,7 @@ const Navigation = ({
         pointing={pointing}
       >
         {/* apply tag && pointing to all children */}
-        {React.Children.map(children, Child => withNewProps(Child, { tag, pointing }))}
+        {React.Children.map(children, Child => withNewProps(Child, { as, pointing }))}
       </S.Menu>
     </Container>
   </S.Segment>
@@ -71,7 +70,7 @@ Navigation.propTypes = {
    * ReactComponent
    * Card
    */
-  tag: PropTypes.oneOfType([
+  as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
@@ -99,7 +98,7 @@ Navigation.propTypes = {
 }
 
 Navigation.defaultProps = {
-  tag: 'a',
+  as: 'a',
   size: undefined,
   text: false,
   compact: true,

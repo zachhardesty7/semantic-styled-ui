@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Dimmer, Grid, Header } from 'semantic-ui-react'
+import { withoutProps } from '../utils'
 
 const S = {} // styled-components namespace
 
@@ -20,7 +21,8 @@ S.Dimmer = styled(Dimmer)`
   }
 `
 
-S.Image = styled.img`
+const ImageFiltered = withoutProps('img', ['fill'])
+S.Image = styled(ImageFiltered)`
   ${({ fill }) => (
     fill ? (
       css`

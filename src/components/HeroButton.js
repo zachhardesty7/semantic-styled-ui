@@ -8,7 +8,6 @@ import Icon from './Icon'
 import Link from './Link'
 
 import {
-  asTag,
   getBackgroundColor,
   getColor,
   getHoverBackgroundColor,
@@ -17,7 +16,7 @@ import {
 
 const S = {} // styled-components namespace
 
-const FilteredButton = asTag(withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover']))
+const FilteredButton = withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover'])
 S.Button = styled(FilteredButton)`
   display: inline-flex;
   ${getColor('white')};
@@ -30,7 +29,7 @@ S.Button = styled(FilteredButton)`
   }
 `
 
-const FilteredIcon = asTag(withoutProps(Icon, ['pointing']))
+const FilteredIcon = withoutProps(Icon, ['pointing'])
 S.Icon = styled(FilteredIcon)`
   ${getColor('white')};
   ${({ pointing }) => (
@@ -44,7 +43,7 @@ S.Icon = styled(FilteredIcon)`
 `
 
 const HeroButton = ({
-  tag = 'a',
+  as = 'a',
   link = '',
   pointing = 'right',
   compact = false,
@@ -54,7 +53,7 @@ const HeroButton = ({
   ...rest
 }) => (
   <Link
-    tag={tag}
+    as={as}
     link={link}
     {...rest}
   >
@@ -88,7 +87,7 @@ HeroButton.propTypes = {
   * ReactComponent
   * Card
   */
-  tag: PropTypes.oneOfType([
+  as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),

@@ -8,21 +8,21 @@ import {
 } from '../utils'
 
 const Link = ({
-  tag = 'a',
+  as = 'a',
   link = '',
   wrap = false,
   children,
   ...rest
 }) => {
-  const isAnchor = tag !== 'a' && link.includes('#')
-  const isExternal = tag === 'a' && !link.includes('#')
+  const isAnchor = as !== 'a' && link.includes('#')
+  const isExternal = as === 'a' && !link.includes('#')
 
   return (
     React.Children.map(children, (Child) => {
       const props = {
-        href: (tag === 'a' && link) || undefined,
+        href: (as === 'a' && link) || undefined,
         // remove "#" or get dest from children text
-        to: (tag !== 'a' && (link.slice(link.indexOf('#') + 1) || `/${process(Child?.props?.children?.toString())}/`)) || undefined,
+        to: (as !== 'a' && (link.slice(link.indexOf('#') + 1) || `/${process(Child?.props?.children?.toString())}/`)) || undefined,
         spy: isAnchor || undefined,
         smooth: isAnchor || undefined,
         duration: isAnchor ? calcDuration : undefined,
@@ -31,11 +31,11 @@ const Link = ({
         ...rest
       }
 
-      const Tag = tag
+      const Tag = as
 
       return wrap
         ? <Tag {...props}>{Child}</Tag>
-        : withNewProps(Child, { ...props, tag })
+        : withNewProps(Child, { ...props, forwardedAs: as })
     })
   )
 }
@@ -52,7 +52,7 @@ Link.propTypes = {
   * ReactComponent
   * Card
   */
-  tag: PropTypes.oneOfType([
+  as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.elementType
   ]),
