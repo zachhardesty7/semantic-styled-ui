@@ -7,6 +7,7 @@ import { Dimmer, Grid, Header } from 'semantic-ui-react'
 const S = {} // styled-components namespace
 
 S.Dimmable = styled(Dimmer.Dimmable)`
+  width: fit-content;
   height: 100%;
 `
 
@@ -30,6 +31,7 @@ S.Image = styled.img`
       css`
         top: 50%;
         transform: translateY(-50%);
+        position: relative;
       `
     )
   )};
