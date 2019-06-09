@@ -33,6 +33,7 @@ module.exports = {
     //     cssPropOptimization: true
     //   }
     // ],
+    '@babel/plugin-proposal-export-default-from',
     [
       '@babel/plugin-transform-runtime', {
         corejs: { version: 3, proposals: true },

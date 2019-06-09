@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'react-native/no-raw-text': 'off',
     'react/prop-types': [
       'warn',
       {
@@ -36,6 +37,14 @@ module.exports = {
         ]
       }
     ],
+    'react/jsx-indent': [
+      'warn',
+      2,
+      {
+        checkAttributes: true,
+        indentLogicalExpressions: true
+      }
+    ],
     'jsx-quotes': [
       'error',
       'prefer-single'
@@ -43,8 +52,9 @@ module.exports = {
     'standard/array-bracket-even-spacing': 'off',
     'standard/computed-property-even-spacing': 'off',
     'standard/object-curly-even-spacing': 'off',
-    'import/prefer-default-export': 'off',
     'no-console': 'off',
+    'import/prefer-default-export': 'off',
+    'import/namespace': 'error',
     'sort-imports': [
       'warn',
       {
