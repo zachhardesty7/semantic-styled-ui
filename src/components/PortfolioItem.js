@@ -7,8 +7,9 @@ import { withoutProps } from '../utils'
 
 const S = {} // styled-components namespace
 
+// TODO: fix width
 S.Dimmable = styled(Dimmer.Dimmable)`
-  width: fit-content;
+  /* width: fit-content; */
   height: 100%;
 `
 
