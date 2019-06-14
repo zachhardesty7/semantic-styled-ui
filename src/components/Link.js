@@ -57,7 +57,10 @@ Link.propTypes = {
     PropTypes.elementType
   ]),
 
-  /** anchor link (prefixed with "#") or standard href */
+  /**
+   * anchor link (prefixed with "#") or standard href, uses child content
+   * if not provided and using an a tag
+   */
   link: PropTypes.string,
 
   /** render as enclosing tag */

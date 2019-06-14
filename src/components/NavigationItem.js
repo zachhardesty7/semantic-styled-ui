@@ -10,7 +10,7 @@ import { media, withoutProps } from '../utils'
 
 const S = {} // styled-components namespace
 
-const FilteredItem = withoutProps(Menu.Item, ['pointing'])
+const FilteredItem = withoutProps(Menu.Item, ['pointing', 'activeClassName'])
 S.Item = styled(FilteredItem)`
   ${({ pointing }) => pointing && css`
     border-bottom: 2px solid rgba(34,36,38,.15);
