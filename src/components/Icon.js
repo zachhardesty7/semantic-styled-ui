@@ -110,7 +110,7 @@ S.Wrapper = styled.div`
 
 const Icon = ({
   as,
-  name = '',
+  name,
   label = false,
   link = '',
   align = 'center',
@@ -210,7 +210,7 @@ Icon.propTypes = {
   /** position / justification of all content */
   align: PropTypes.oneOf(['start', 'center', 'end']),
 
-  /** size using "em" units */
+  /** size based on "em" units */
   size: PropTypes.oneOf(['mini', 'tiny', 'small', 'medium', 'large', 'big', 'bigger', 'huge', 'massive']),
 
   /** apply css supported color string to Icon and text, overrides theme / default */

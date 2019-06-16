@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-import { Dimmer, Grid, Header } from 'semantic-ui-react'
+import { Dimmer, Grid } from 'semantic-ui-react'
 
 const S = {} // styled-components namespace
 
@@ -30,6 +30,11 @@ S.Image = styled.img`
   )};
 `
 
+/**
+ * **NOTE: not production ready.**
+ *
+ * Intended to facilitate displaying content over images on hover.
+ */
 const Dimming = ({
   trigger,
   children = null,
@@ -50,8 +55,7 @@ const Dimming = ({
           {trigger}
           {children && (
             <S.Dimmer inverted simple>
-              {title && <Header as='h2'>{title}</Header>}
-              {subtitle && <Header as='h3'>{subtitle}</Header>}
+              {children}
             </S.Dimmer>
           )}
         </S.Dimmable>

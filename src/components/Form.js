@@ -37,7 +37,9 @@ S.Message = styled(Message)`
 `
 
 /**
- * Doc for styleguidist (prolly gonna remove).
+ * Complex form component that can just handle fields and 1 textarea.
+ * Can be most effectively used as a contact form. Also provides feedback
+ * for successful and failed submissions.
  *
  * @visibleName Form
  */
