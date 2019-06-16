@@ -1,4 +1,5 @@
-export { defaultColors } from './colors'
-export { media } from './media'
+export * from './colors'
+export * from './media'
 export * from './helpers'
 export * from './styled'
+export * from './shims'

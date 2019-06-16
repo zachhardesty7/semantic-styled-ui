@@ -12,20 +12,4 @@ export Footer from './components/sections/Footer'
 export Hero from './components/sections/Hero'
 export Navigation from './components/sections/Navigation'
 
-export { defaultColors } from './utils/colors'
-export { media } from './utils/media'
-export {
-  calcDuration,
-  camelToKebab,
-  encode,
-  process,
-  toJoinedTitleCase,
-  withNewProps,
-  withoutProps
-} from './utils/helpers'
-export {
-  getBackgroundColor,
-  getColor,
-  getHoverBackgroundColor,
-  getHoverColor
-} from './utils/styled'
+export * from './utils'
