@@ -9,7 +9,7 @@ import { media } from '../utils'
 const logoSizes = {
   small: 90,
   base: 155,
-  large: 215
+  large: 215,
 }
 
 const S = {} // styled-components namespace
@@ -82,7 +82,7 @@ NavigationLogo.propTypes = {
   */
   as: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.elementType,
   ]),
 
   /** anchor link (prefixed with "#") or standard href */
@@ -98,7 +98,7 @@ NavigationLogo.propTypes = {
   className: PropTypes.string,
 
   /** primary content, usually string, used as link if link not provided */
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 }
 
 export default React.memo(NavigationLogo)

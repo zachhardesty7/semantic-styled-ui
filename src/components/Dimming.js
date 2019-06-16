@@ -65,7 +65,7 @@ Dimming.propTypes = {
   trigger: PropTypes.element,
 
   /** nodes displayed within dimmer */
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 export default React.memo(Dimming)

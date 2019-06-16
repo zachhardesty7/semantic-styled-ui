@@ -6,14 +6,14 @@ import {
   Container,
   Grid,
   Header,
-  Segment
+  Segment,
 } from 'semantic-ui-react'
 import Blurb from '../Blurb'
 
 import {
   media,
   withNewProps,
-  withoutProps
+  withoutProps,
 } from '../../utils'
 
 const S = {} // styled-components namespace
@@ -115,7 +115,7 @@ Blurbs.propTypes = {
   secondary: PropTypes.bool,
 
   /** primary content of Blurbs.Item */
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 // prevent error of accidentally double memoizing components

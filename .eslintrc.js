@@ -6,6 +6,9 @@ module.exports = {
     'standard'
   ],
   plugins: [
+    'jsdoc',
+    'json',
+    'optimize-regex',
     'markdown',
     'react-hooks'
   ],
@@ -16,6 +19,19 @@ module.exports = {
   },
   globals: {
     fetch: true
+  },
+  settings: {
+    jsdoc: {
+      ignorePrivate: true,
+      exemptEmptyFunctions: true,
+      forceRequireReturn: true,
+      preferredTypes: {
+        "*": false,
+        ".<>": true,
+        "<>": true,
+        "[]": true
+      }
+    }
   },
   rules: {
     'react-hooks/rules-of-hooks': 'error',
@@ -53,6 +69,8 @@ module.exports = {
     'standard/array-bracket-even-spacing': 'off',
     'standard/computed-property-even-spacing': 'off',
     'standard/object-curly-even-spacing': 'off',
+    'optimize-regex/optimize-regex': 'warn',
+    'comma-dangle': ['error', 'always-multiline'],
     'no-console': 'off',
     'import/prefer-default-export': 'off',
     'import/namespace': 'error',
@@ -65,17 +83,37 @@ module.exports = {
     'space-before-function-paren': [
       'error',
       'never'
-    ]
+    ],
+    // https://www.npmjs.com/package/eslint-plugin-jsdoc#eslint-plugin-jsdoc-settings-allow-private-to-disable-rules-for-that-comment-block
+    'jsdoc/check-alignment': 'warn',
+    'jsdoc/check-param-names': 'warn',
+    'jsdoc/check-syntax': 'warn',
+    'jsdoc/check-tag-names': 'warn',
+    'jsdoc/check-types': 'warn',
+    'jsdoc/implements-on-classes': 'warn',
+    'jsdoc/match-description': 'warn',
+    'jsdoc/newline-after-description': 'warn',
+    'jsdoc/require-hyphen-before-param-description': 'warn',
+    'jsdoc/require-jsdoc': 'warn',
+    'jsdoc/require-param': 'warn',
+    'jsdoc/require-param-description': 'warn',
+    'jsdoc/require-param-name': 'warn',
+    'jsdoc/require-param-type': 'warn',
+    'jsdoc/require-returns': 'warn',
+    'jsdoc/require-returns-check': 'warn',
+    'jsdoc/require-returns-description': 'warn',
+    'jsdoc/require-returns-type': 'warn',
+    'jsdoc/valid-types': 'warn',
   },
   overrides: [{
     files: ['**/*.md'],
     rules: {
-        'react/react-in-jsx-scope': 'off',
-        'react/jsx-indent': 'off',
-        'react/jsx-no-undef': 'off',
-        'react/jsx-filename-extension': 'off',
-        semi: 'off',
-        'no-unused-expressions': 'off'
-      }
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-indent': 'off',
+      'react/jsx-no-undef': 'off',
+      'react/jsx-filename-extension': 'off',
+      semi: 'off',
+      'no-unused-expressions': 'off'
+    }
   }]
 }

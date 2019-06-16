@@ -6,7 +6,7 @@ import {
   Form,
   Icon,
   Message,
-  Transition
+  Transition,
 } from 'semantic-ui-react'
 
 import { encode, process, withoutProps } from '../utils'
@@ -16,7 +16,7 @@ const paddingMap = {
   tight: '1em',
   base: '2em',
   relaxed: '4em',
-  loose: '6em'
+  loose: '6em',
 }
 
 const S = {} // styled-components namespace
@@ -37,7 +37,7 @@ S.Message = styled(Message)`
 `
 
 /**
- * doc for styleguidist (prolly gonna remove)
+ * Doc for styleguidist (prolly gonna remove).
  *
  * @visibleName Form
  */
@@ -80,7 +80,7 @@ const SSUIForm = ({
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact', ...fieldsObj })
+        body: encode({ 'form-name': 'contact', ...fieldsObj }),
       })
         .catch(err => console.error(err))
 
@@ -127,7 +127,7 @@ const SSUIForm = ({
                 options = options.split('; ')
                 options = options.map(op => ({
                   text: op,
-                  value: op
+                  value: op,
                 }))
 
                 const processedTitle = process(title)
@@ -213,7 +213,7 @@ SSUIForm.propTypes = {
   // REVIEW: whether better to pass false option to disable or just use empty string
   /** label or pass false to disable, defaults to "Enter Message Below:" */
   textArea: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.bool
+    PropTypes.string, PropTypes.bool,
   ]),
 
   /** button text content */
@@ -223,7 +223,7 @@ SSUIForm.propTypes = {
   padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
 
   /** amount of spacing around element */
-  padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose'])
+  padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
 }
 
 export default React.memo(SSUIForm)

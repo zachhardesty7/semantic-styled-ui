@@ -84,5 +84,5 @@ export const media = {
    *  }
    * `
    */
-  widescreen: 'only screen and (min-width: 1200px)'
+  widescreen: 'only screen and (min-width: 1200px)',
 }

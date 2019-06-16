@@ -16,7 +16,7 @@ const iconMap = {
   big: '2em',
   bigger: '3em',
   huge: '4em',
-  massive: '8em'
+  massive: '8em',
 }
 
 const S = {} // styled-components namespace
@@ -32,7 +32,7 @@ S.Icon = styled(FilteredIcon)`
     color,
     light,
     inverted,
-    theme
+    theme,
   }) => (
     // if color not provided
     // if light, try light theme then default
@@ -52,7 +52,7 @@ S.Icon = styled(FilteredIcon)`
         colorHover,
         light,
         inverted,
-        theme
+        theme,
       }) => (
           // if colorHover not provided
           // if light, try white theme then default
@@ -72,7 +72,7 @@ S.Label = styled.span`
     color,
     light,
     inverted,
-    theme
+    theme,
   }) => (
     color ||
     (light && (theme.light || defaultColors.light)) ||
@@ -86,7 +86,7 @@ S.Label = styled.span`
         colorHover,
         light,
         inverted,
-        theme
+        theme,
       }) => (
         colorHover ||
         (light && (theme.white || defaultColors.white)) ||
@@ -186,7 +186,7 @@ Icon.propTypes = {
 
   /** display a text string with the icon */
   label: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.bool
+    PropTypes.string, PropTypes.bool,
   ]),
 
   /**
@@ -201,7 +201,7 @@ Icon.propTypes = {
    * Card
    */
   as: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.elementType
+    PropTypes.string, PropTypes.elementType,
   ]),
 
   /** anchor link (prefixed with "#") or standard href */
@@ -223,7 +223,7 @@ Icon.propTypes = {
   light: PropTypes.bool,
 
   /** set color to secondary, colorHover to primary */
-  inverted: PropTypes.bool
+  inverted: PropTypes.bool,
 }
 
 export default React.memo(Icon)

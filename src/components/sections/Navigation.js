@@ -72,7 +72,7 @@ Navigation.propTypes = {
    */
   as: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.elementType,
   ]),
 
   /** size using "em" units */
@@ -94,7 +94,7 @@ Navigation.propTypes = {
   centered: PropTypes.bool,
 
   /** collection of items to render as menu */
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 Navigation.defaultProps = {
@@ -105,7 +105,7 @@ Navigation.defaultProps = {
   secondary: true,
   pointing: true,
   centered: true,
-  children: null
+  children: null,
 }
 
 const NavigationMemo = React.memo(Navigation)

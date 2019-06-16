@@ -83,7 +83,7 @@ PortfolioItem.propTypes = {
   fill: PropTypes.bool,
 
   /** image-based content */
-  children: PropTypes.element
+  children: PropTypes.element,
 }
 
 export default React.memo(PortfolioItem)

@@ -1,10 +1,9 @@
-/* eslint-disable react/no-multi-comp */
 import React from 'react'
 
 /**
- * capitalize first letter of words and remove spaces
+ * Capitalize first letter of words and remove spaces.
  *
- * @param {string} str arbitrary input
+ * @param {string} str - arbitrary input
  * @returns {string} parsed into title-case with spaces removed
  * @example
  *
@@ -19,13 +18,13 @@ export const toJoinedTitleCase = str => (
 )
 
 /**
- * clamp duration of scrolling
+ * Clamp duration of scrolling.
  *
- * used for smooth scrolling when clicking anchor link
- * with `react-scroll` plugin, duration increases with dist
+ * Used for smooth scrolling when clicking anchor link
+ * with `react-scroll` plugin, duration increases with dist.
  *
  * @requires `react-scroll`
- * @param {number} scrollDistanceInPx distance of element from viewport
+ * @param {number} scrollDistanceInPx - distance of element from viewport
  * @returns {number} ms equal to scroll distance capped at upper and lower bounds of 800 & 2000
  */
 export const calcDuration = (scrollDistanceInPx) => {
@@ -36,9 +35,9 @@ export const calcDuration = (scrollDistanceInPx) => {
 }
 
 /**
- * lowercase and replaces spaces with dashes
+ * Lowercase and replaces spaces with dashes.
  *
- * @param {string} str arbitrary input
+ * @param {string} str - arbitrary input
  * @returns {string} parsed output
  * @example
  *
@@ -48,9 +47,9 @@ export const calcDuration = (scrollDistanceInPx) => {
 export const process = str => str.toLowerCase().replace(/\W/g, '-')
 
 /**
- * convert camel case string to kebab case
+ * Convert camel case string to kebab case.
  *
- * @param {string} str arbitrary input
+ * @param {string} str - arbitrary input
  * @returns {string} parsed output
  * @example
  *
@@ -61,12 +60,12 @@ export const process = str => str.toLowerCase().replace(/\W/g, '-')
  * camelCaseToDash('TurboPascal')
  * // => 'turbo-pascal'
  */
-export const camelToKebab = str => str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
+export const camelToKebab = str => str.replace(/([A-Za-z])(?=[A-Z])/g, '$1-').toLowerCase()
 
 /**
- * URL encodes the data of key, value pairs as submitted by a form
+ * URL encodes the data of key, value pairs as submitted by a form.
  *
- * @param {{ [field: string]: string }} data arbitrary form data
+ * @param {Object.<string, string>} data - arbitrary form data
  * @returns {string} URL encoded data
  * @example
  *
@@ -78,11 +77,11 @@ export const encode = data => Object.entries(data)
   .join('&')
 
 /**
- * soft merge new props into a React Component without
- * overwriting the original props (preserves immutability)
+ * Soft merge new props into a React Component without
+ * overwriting the original props (preserves immutability).
  *
- * @param {React.ReactElement<P, T>} element instance target to receive new props
- * @param props object of new props
+ * @param {React.ReactElement<P, T>} element - instance target to receive new props
+ * @param {P} props - object of new props
  * @returns {React.ReactElement<P, any>} cloned React Element with shallowly merged props
  * @requires `react`
  * @template {{}} P - props obj of input Element
@@ -100,21 +99,21 @@ export const withNewProps = (element, props = {}) => (
 )
 
 /**
- * dynamically prevent props from reaching DOM elements
- * by providing styled-components a prop blacklist, most
+ * Dynamically prevent props from reaching DOM elements
+ * by providing styled-components a prop blacklist. Most
  * useful to prevent props intended for a styled component
  * from getting picked up by the {...rest} of the base component.
  *
- * technical: closes over input Component and coerces rendered EnhancedComponent element
- * to Component.type
+ * Technical: closes over input Component and coerces rendered EnhancedComponent element
+ * to Component.type.
  *
- * @param {React.ElementType<any>} Component target to control props of
- * @param {string[]} propKeys array of prop keys to control
+ * @param {React.ElementType<any>} Component - target to control props of
+ * @param {string[]} propKeys - array of prop keys to control
  * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<any>) => React.ReactElement<P, any>}
  * ref forwarding function that removes unwanted `propKeys` from original props
  * @requires `react` && usually `styled-components`
  * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
- * @TODO check out making curried like this: https://codesandbox.io/s/l50mlwqo1q
+ * @todo check out making curried like this: https://codesandbox.io/s/l50mlwqo1q
  * @template {{}} P - props from run-time inner calling component
  * @example
  * ```

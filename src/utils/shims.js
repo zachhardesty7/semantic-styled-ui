@@ -1,9 +1,8 @@
-// @ts-nocheck
 /**
- * convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
- * shim for Object.fromEntries()
+ * Convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
+ * shim for Object.fromEntries().
  *
- * @param {Iterable<[string, any]>} iter iterable of arrays of key, value pairs
+ * @param {Iterable<[string, any]>} iter - iterable of arrays of key, value pairs
  * @returns {{}} obj with key, value pairs assigned
  */
 export const ObjectFromEntries = (iter) => {
@@ -25,7 +24,7 @@ export const ObjectFromEntries = (iter) => {
       configurable: true,
       enumerable: true,
       writable: true,
-      value: val
+      value: val,
     })
   })
 

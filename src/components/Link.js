@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {
   calcDuration,
   process,
-  withNewProps
+  withNewProps,
 } from '../utils'
 
 const Link = ({
@@ -28,7 +28,7 @@ const Link = ({
         duration: isAnchor ? calcDuration : undefined,
         rel: isExternal ? 'noopener noreferrer' : undefined,
         target: isExternal ? '_blank' : undefined,
-        ...rest
+        ...rest,
       }
 
       const Tag = as
@@ -54,7 +54,7 @@ Link.propTypes = {
   */
   as: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.elementType,
   ]),
 
   /**
@@ -67,7 +67,7 @@ Link.propTypes = {
   wrap: PropTypes.bool,
 
   /** primary content, usually string, used as link if link not provided */
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 /** @component */

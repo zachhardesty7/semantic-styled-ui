@@ -63,14 +63,14 @@ Blurb.propTypes = {
   */
   as: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.elementType,
   ]),
 
   /** position / justification of all content */
   align: PropTypes.oneOf(['start', 'center', 'end']),
 
   /** secondary content of body */
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 export default React.memo(Blurb)

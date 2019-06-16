@@ -11,7 +11,7 @@ import {
   getBackgroundColor,
   getColor,
   getHoverBackgroundColor,
-  withoutProps
+  withoutProps,
 } from '../utils'
 
 const S = {} // styled-components namespace
@@ -89,7 +89,7 @@ HeroButton.propTypes = {
   */
   as: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.elementType,
   ]),
 
   /** anchor link (prefixed with "#") or standard href */
@@ -108,7 +108,7 @@ HeroButton.propTypes = {
   colorHover: PropTypes.string,
 
   /** text-based content */
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 export default React.memo(HeroButton)

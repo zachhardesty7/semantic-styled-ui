@@ -6,7 +6,7 @@ import {
   Container,
   Header,
   Segment,
-  Transition
+  Transition,
 } from 'semantic-ui-react'
 import HeroButton from '../HeroButton'
 
@@ -14,20 +14,20 @@ import {
   defaultColors,
   getColor,
   media,
-  withoutProps
+  withoutProps,
 } from '../../utils'
 
 const sizes = {
   small: {
     relaxed: '8em',
     base: '6em',
-    compact: '4em'
+    compact: '4em',
   },
   large: {
     relaxed: '24em',
     base: '16em',
-    compact: '8em'
-  }
+    compact: '8em',
+  },
 }
 
 const S = {}
@@ -209,7 +209,7 @@ Hero.propTypes = {
 
   /** apply css supported color string or use default if true */
   underline: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.bool
+    PropTypes.string, PropTypes.bool,
   ]),
 
   /** size using "em" units */
@@ -217,7 +217,7 @@ Hero.propTypes = {
 
   /** image of logo */
   logo: PropTypes.oneOfType([
-    PropTypes.element, PropTypes.object
+    PropTypes.element, PropTypes.object,
   ]),
 
   /** format logo left of content */
@@ -236,7 +236,7 @@ Hero.propTypes = {
   button: PropTypes.node,
 
   /** background images */
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 Hero.defaultProps = {
@@ -250,7 +250,7 @@ Hero.defaultProps = {
   title: null,
   subtitle: null,
   button: null,
-  children: null
+  children: null,
 }
 
 const HeroMemo = React.memo(Hero)

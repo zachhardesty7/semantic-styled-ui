@@ -73,7 +73,7 @@ NavigationItem.propTypes = {
   */
   as: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.elementType
+    PropTypes.elementType,
   ]),
 
   /** anchor link (prefixed with "#") or standard href */
@@ -86,7 +86,7 @@ NavigationItem.propTypes = {
   stacked: PropTypes.bool,
 
   /** primary content, usually string, used as link if link not provided */
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 export default React.memo(NavigationItem)

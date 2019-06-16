@@ -6,7 +6,7 @@ import {
   Container,
   Grid,
   Ref,
-  Segment
+  Segment,
 } from 'semantic-ui-react'
 
 import {
@@ -14,7 +14,7 @@ import {
   getColor,
   getHoverColor,
   withNewProps,
-  withoutProps
+  withoutProps,
 } from '../../utils'
 
 const S = {} // styled-components namespace
@@ -150,7 +150,7 @@ Footer.propTypes = {
   sticky: PropTypes.bool,
 
   /** date & company that holds copyright */
-  copyright: PropTypes.string
+  copyright: PropTypes.string,
 }
 
 // cannot be memoed due to necessity of rerendering to apply flex to parents

@@ -9,7 +9,7 @@ const paddingTable = {
   tight: '1em',
   base: '2em',
   relaxed: '4em',
-  loose: '6em'
+  loose: '6em',
 }
 
 const S = {} // styled-components namespace
@@ -75,7 +75,7 @@ IconGroup.propTypes = {
   className: PropTypes.string,
 
   /** primary content of icon(s) */
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 export default React.memo(IconGroup)
