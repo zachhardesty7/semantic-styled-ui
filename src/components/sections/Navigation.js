@@ -25,14 +25,14 @@ S.Menu = styled(Menu)`
 
 // TODO: add sticky header
 const Navigation = ({
-  as,
-  size,
-  text,
-  compact,
-  secondary,
-  pointing,
-  centered,
-  children,
+  as = 'a',
+  size = undefined,
+  text = false,
+  compact = true,
+  secondary = true,
+  pointing = true,
+  centered = true,
+  children = null,
   ...rest
 }) => (
   <S.Segment
@@ -95,17 +95,6 @@ Navigation.propTypes = {
 
   /** collection of items to render as menu */
   children: PropTypes.node,
-}
-
-Navigation.defaultProps = {
-  as: 'a',
-  size: undefined,
-  text: false,
-  compact: true,
-  secondary: true,
-  pointing: true,
-  centered: true,
-  children: null,
 }
 
 const NavigationMemo = React.memo(Navigation)

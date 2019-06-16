@@ -137,17 +137,17 @@ S.Logo = styled.img`
 `
 
 const Hero = ({
-  overlay,
-  logo,
-  inlineLogo,
-  color,
-  title,
-  subtitle,
-  baseline,
-  underline,
-  size,
-  button,
-  children,
+  overlay = 'dark',
+  baseline = false,
+  underline = false,
+  size = 'base',
+  logo = null,
+  inlineLogo = false,
+  color = '',
+  title = null,
+  subtitle = null,
+  button = null,
+  children = null,
   ...rest
 }) => {
   const [curBackground, setCurBackground] = useState(0)
@@ -237,20 +237,6 @@ Hero.propTypes = {
 
   /** background images */
   children: PropTypes.node,
-}
-
-Hero.defaultProps = {
-  overlay: 'dark',
-  baseline: false,
-  underline: false,
-  size: 'base',
-  logo: null,
-  inlineLogo: false,
-  color: '',
-  title: null,
-  subtitle: null,
-  button: null,
-  children: null,
 }
 
 const HeroMemo = React.memo(Hero)
