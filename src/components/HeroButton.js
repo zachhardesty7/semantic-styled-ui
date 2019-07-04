@@ -8,10 +8,10 @@ import Icon from './Icon'
 import Link from './Link'
 
 import {
-  getBackgroundColor,
-  getColor,
-  getHoverBackgroundColor,
-  withoutProps,
+	getBackgroundColor,
+	getColor,
+	getHoverBackgroundColor,
+	withoutProps,
 } from '../utils'
 
 const S = {} // styled-components namespace
@@ -33,50 +33,50 @@ const FilteredIcon = withoutProps(Icon, ['pointing'])
 S.Icon = styled(FilteredIcon)`
   ${getColor('white')};
   ${({ pointing }) => (
-    pointing === 'left'
-      ? 'margin-right: .75em'
-      : 'margin-left: .75em'
-  )};
+		pointing === 'left'
+			? 'margin-right: .75em'
+			: 'margin-left: .75em'
+	)};
   vertical-align: bottom;
   width: 1em;
   height: 1em;
 `
 
 const HeroButton = ({
-  as = 'a',
-  link = '',
-  pointing = 'right',
-  compact = false,
-  color = '',
-  colorHover = '',
-  children,
-  ...rest
+	as = 'a',
+	link = '',
+	pointing = 'right',
+	compact = false,
+	color = '',
+	colorHover = '',
+	children,
+	...rest
 }) => (
-  <Link
-    as={as}
-    link={link}
-    {...rest}
-  >
-    <S.Button
-      size='huge'
-      primary
-      compact={compact}
-      backgroundColor={color}
-      backgroundColorHover={colorHover}
-    >
-      {pointing === 'left' && (
-        <S.Icon pointing={pointing} name='angle left' />
-      )}
-      {children}
-      {(pointing === 'right' || pointing === true) && (
-        <S.Icon pointing={pointing} name='angle right' />
-      )}
-    </S.Button>
-  </Link>
+	<Link
+		as={as}
+		link={link}
+		{...rest}
+	>
+		<S.Button
+			size='huge'
+			primary
+			compact={compact}
+			backgroundColor={color}
+			backgroundColorHover={colorHover}
+		>
+			{pointing === 'left' && (
+				<S.Icon pointing={pointing} name='angle left' />
+			)}
+			{children}
+			{(pointing === 'right' || pointing === true) && (
+				<S.Icon pointing={pointing} name='angle right' />
+			)}
+		</S.Button>
+	</Link>
 )
 
 HeroButton.propTypes = {
-  /**
+	/**
   * element type to render as (string or function)
   * supports HTML tag as a string or React component definition
   *
@@ -87,36 +87,36 @@ HeroButton.propTypes = {
   * ReactComponent
   * Card
   */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType,
-  ]),
+	as: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.elementType,
+	]),
 
-  /** anchor link (prefixed with "#") or standard href */
-  link: PropTypes.string,
+	/** anchor link (prefixed with "#") or standard href */
+	link: PropTypes.string,
 
-  /** formatted with active page indicator */
-  pointing: PropTypes.oneOf(['left', 'right', true, false]),
+	/** formatted with active page indicator */
+	pointing: PropTypes.oneOf(['left', 'right', true, false]),
 
-  /** reduce padding whitespace */
-  compact: PropTypes.bool,
+	/** reduce padding whitespace */
+	compact: PropTypes.bool,
 
-  /**
+	/**
    * apply css supported color string to background, overrides theme / default
    *
    * text defaults to `white` and background to `secondary` theme settings
    */
-  color: PropTypes.string,
+	color: PropTypes.string,
 
-  /**
+	/**
    * apply css supported color string to background on hover, overrides theme / default
    *
    * defaults to `primary` theme setting
    */
-  colorHover: PropTypes.string,
+	colorHover: PropTypes.string,
 
-  /** text-based content */
-  children: PropTypes.node,
+	/** text-based content */
+	children: PropTypes.node,
 }
 
 export default React.memo(HeroButton)

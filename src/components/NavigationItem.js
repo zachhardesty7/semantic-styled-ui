@@ -39,28 +39,28 @@ S.Item = styled(FilteredItem)`
 `
 
 const NavigationItem = ({
-  as = 'a',
-  link = '',
-  stacked = false,
-  pointing = false,
-  children,
-  ...rest
+	as = 'a',
+	link = '',
+	stacked = false,
+	pointing = false,
+	children,
+	...rest
 }) => (
-  <Link
-    onClick={e => e.currentTarget.blur()} // prevent keeping focus after navigating to new page
-    as={as}
-    link={link}
-    activeClassName={(as !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
-    {...rest}
-  >
-    <S.Item pointing={pointing}>
-      {children}
-    </S.Item>
-  </Link>
+	<Link
+		onClick={e => e.currentTarget.blur()} // prevent keeping focus after navigating to new page
+		as={as}
+		link={link}
+		activeClassName={(as !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
+		{...rest}
+	>
+		<S.Item pointing={pointing}>
+			{children}
+		</S.Item>
+	</Link>
 )
 
 NavigationItem.propTypes = {
-  /**
+	/**
   * element type to render as (string or function)
   * supports HTML tag as a string or React component definition
   *
@@ -71,22 +71,22 @@ NavigationItem.propTypes = {
   * ReactComponent
   * Card
   */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType,
-  ]),
+	as: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.elementType,
+	]),
 
-  /** anchor link (prefixed with "#") or standard href */
-  link: PropTypes.string,
+	/** anchor link (prefixed with "#") or standard href */
+	link: PropTypes.string,
 
-  /** formatted with active indicator */
-  pointing: PropTypes.bool,
+	/** formatted with active indicator */
+	pointing: PropTypes.bool,
 
-  /** required to support stacking logo */
-  stacked: PropTypes.bool,
+	/** required to support stacking logo */
+	stacked: PropTypes.bool,
 
-  /** primary content, usually string, used as link if link not provided */
-  children: PropTypes.node.isRequired,
+	/** primary content, usually string, used as link if link not provided */
+	children: PropTypes.node.isRequired,
 }
 
 export default React.memo(NavigationItem)

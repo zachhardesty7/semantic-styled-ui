@@ -54,13 +54,19 @@ module.exports = {
         ]
       }
     ],
+    'indent': ['error', 'tab'],
+    'no-tabs': 'off',
     'react/jsx-indent': [
-      'warn',
-      2,
+      'error',
+      'tab',
       {
         checkAttributes: true,
         indentLogicalExpressions: true
       }
+    ],
+    'react/jsx-indent-props': [
+      'error',
+      'tab'
     ],
     'jsx-quotes': [
       'error',
@@ -72,8 +78,11 @@ module.exports = {
     'optimize-regex/optimize-regex': 'warn',
     'comma-dangle': ['error', 'always-multiline'],
     'no-console': 'off',
+    'no-param-reassign': 'warn',
+    'promise/catch-or-return': 'warn',
+    'promise/always-return': 'warn',
     'import/prefer-default-export': 'off',
-    'import/namespace': 'error',
+    'import/namespace': 'warn',
     'sort-imports': [
       'warn',
       {

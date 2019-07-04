@@ -3,17 +3,17 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import {
-  Container,
-  Grid,
-  Header,
-  Segment,
+	Container,
+	Grid,
+	Header,
+	Segment,
 } from 'semantic-ui-react'
 import Blurb from '../Blurb'
 
 import {
-  media,
-  withNewProps,
-  withoutProps,
+	media,
+	withNewProps,
+	withoutProps,
 } from '../../utils'
 
 const S = {} // styled-components namespace
@@ -55,67 +55,67 @@ S.Content = styled(HeaderContentFiltered)`
 `
 
 const Blurbs = ({
-  title,
-  content,
-  textAlign = 'left',
-  color = '',
-  secondary = false,
-  children,
-  ...rest
+	title,
+	content,
+	textAlign = 'left',
+	color = '',
+	secondary = false,
+	children,
+	...rest
 }) => (
-  <S.Blurbs
-    forwardedAs='section'
-    vertical
-    basic
-    secondary={secondary}
-    {...rest}
-  >
-    {(title || content) && (
-      <S.Header text>
-        {title && (
-          <S.Title forwardedAs='h3' textAlign='center'>{title}</S.Title>
-        )}
-        {content && (
-          <S.Content textAlign={textAlign}>{content}</S.Content>
-        )}
-      </S.Header>
-    )}
-    <Container textAlign='center'>
-      <Grid
-        columns={Math.min(React.Children.count(children), 8)}
-        relaxed
-        stackable
-        divided
-        padded
-      >
-        {React.Children.map(children, blurb => (
-          <Grid.Column>
-            {withNewProps(blurb, { color })}
-          </Grid.Column>
-        ))}
-      </Grid>
-    </Container>
-  </S.Blurbs>
+	<S.Blurbs
+		forwardedAs='section'
+		vertical
+		basic
+		secondary={secondary}
+		{...rest}
+	>
+		{(title || content) && (
+			<S.Header text>
+				{title && (
+					<S.Title forwardedAs='h3' textAlign='center'>{title}</S.Title>
+				)}
+				{content && (
+					<S.Content textAlign={textAlign}>{content}</S.Content>
+				)}
+			</S.Header>
+		)}
+		<Container textAlign='center'>
+			<Grid
+				columns={Math.min(React.Children.count(children), 8)}
+				relaxed
+				stackable
+				divided
+				padded
+			>
+				{React.Children.map(children, blurb => (
+					<Grid.Column>
+						{withNewProps(blurb, { color })}
+					</Grid.Column>
+				))}
+			</Grid>
+		</Container>
+	</S.Blurbs>
 )
 
 Blurbs.propTypes = {
-  /** header */
-  title: PropTypes.node,
+	/** header */
+	title: PropTypes.node,
 
-  /** body content proceeding blurbs */
-  content: PropTypes.node,
+	/** body content proceeding blurbs */
+	content: PropTypes.node,
 
-  /** format body content */
-  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
+	/** format body content */
+	textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
 
-  /** apply css supported color string to all children, overrides theme / default */
-  color: PropTypes.string,
+	/** apply css supported color string to all children, overrides theme / default */
+	color: PropTypes.string,
 
-  /** format to appear less prominent (grey background) */
-  secondary: PropTypes.bool,
+	/** format to appear less prominent (grey background) */
+	secondary: PropTypes.bool,
 
-  /** primary content of Blurbs.Item */
-  children: PropTypes.node,
+	/** primary content of Blurbs.Item */
+	children: PropTypes.node,
 }
 
 // prevent error of accidentally double memoizing components

@@ -25,7 +25,7 @@ import { defaultColors } from './colors'
  * )
  */
 export const getProperty = property => preset => props => ({
-  [property]: props[property] || props.theme?.[preset] || defaultColors[preset],
+	[property]: props[property] || props.theme?.[preset] || defaultColors[preset],
 })
 
 /**

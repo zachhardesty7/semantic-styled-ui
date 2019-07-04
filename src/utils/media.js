@@ -14,7 +14,7 @@
  * `1200px <= widescreen`
  */
 export const media = {
-  /**
+	/**
    * apply styled-component css when screen-size <= 425px
    *
    * @example
@@ -24,9 +24,9 @@ export const media = {
    *  }
    * `
    */
-  phone: 'only screen and (max-width: 425px)',
+	phone: 'only screen and (max-width: 425px)',
 
-  /**
+	/**
    * apply styled-component css when screen-size >= 426px && screen-size <= 767px
    *
    * @example
@@ -36,9 +36,9 @@ export const media = {
    *  }
    * `
    */
-  tablet: 'only screen and (min-width: 426px) and (max-width: 767px)',
+	tablet: 'only screen and (min-width: 426px) and (max-width: 767px)',
 
-  /**
+	/**
    * apply styled-component css when screen-size <= 767px
    *
    * @example
@@ -48,9 +48,9 @@ export const media = {
    *  }
    * `
    */
-  mobile: 'only screen and (max-width: 767px)',
+	mobile: 'only screen and (max-width: 767px)',
 
-  /**
+	/**
    * apply styled-component css when screen-size >= 768px && screen-size <= 991px
    *
    * @example
@@ -60,9 +60,9 @@ export const media = {
    *  }
    * `
    */
-  laptop: 'only screen and (min-width: 768px) and (max-width:991px)',
+	laptop: 'only screen and (min-width: 768px) and (max-width:991px)',
 
-  /**
+	/**
    * apply styled-component css when screen-size >= 992px && screen-size <= 1199px
    *
    * @example
@@ -72,9 +72,9 @@ export const media = {
    *  }
    * `
    */
-  desktop: 'only screen and (min-width: 992px) and (max-width:1199px)',
+	desktop: 'only screen and (min-width: 992px) and (max-width:1199px)',
 
-  /**
+	/**
    * apply styled-component css when screen-size >= 1200px
    *
    * @example
@@ -84,5 +84,5 @@ export const media = {
    *  }
    * `
    */
-  widescreen: 'only screen and (min-width: 1200px)',
+	widescreen: 'only screen and (min-width: 1200px)',
 }

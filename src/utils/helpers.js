@@ -11,10 +11,10 @@ import React from 'react'
  * // => 'AnArbitraryStringInput'
  */
 export const toJoinedTitleCase = str => (
-  str.replace(
-    /\w*/g,
-    txt => txt.charAt(0).toUpperCase() + txt.substr(1)
-  ).replace(/\W/g, '')
+	str.replace(
+		/\w*/g,
+		txt => txt.charAt(0).toUpperCase() + txt.substr(1)
+	).replace(/\W/g, '')
 )
 
 /**
@@ -28,10 +28,10 @@ export const toJoinedTitleCase = str => (
  * @returns {number} ms equal to scroll distance capped at upper and lower bounds of 800 & 2000
  */
 export const calcDuration = (scrollDistanceInPx) => {
-  const min = 800
-  const max = 2000
+	const min = 800
+	const max = 2000
 
-  return Math.min(Math.max(Math.abs(scrollDistanceInPx), min), max)
+	return Math.min(Math.max(Math.abs(scrollDistanceInPx), min), max)
 }
 
 /**
@@ -73,8 +73,8 @@ export const camelToKebab = str => str.replace(/([A-Za-z])(?=[A-Z])/g, '$1-').to
  * // => 'key1=val1&key2=val2'
  */
 export const encode = data => Object.entries(data)
-  .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
-  .join('&')
+	.map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
+	.join('&')
 
 /**
  * Soft merge new props into a React Component without
@@ -95,7 +95,7 @@ export const encode = data => Object.entries(data)
  *
  */
 export const withNewProps = (element, props = {}) => (
-  element && React.cloneElement(element, { ...props, ...element.props })
+	element && React.cloneElement(element, { ...props, ...element.props })
 )
 
 /**
@@ -139,16 +139,16 @@ export const withNewProps = (element, props = {}) => (
  * ```
  */
 export const withoutProps = (Component, propKeys = []) => {
-  // facilitate debugging with named func
-  const EnhancedComponent = ({ children, ...rest }, ref) => {
-    const filtered = Object.fromEntries(Object.entries(rest)
-      .filter(([key]) => !propKeys.includes(key)))
+	// facilitate debugging with named func
+	const EnhancedComponent = ({ children, ...rest }, ref) => {
+		const filtered = Object.fromEntries(Object.entries(rest)
+			.filter(([key]) => !propKeys.includes(key)))
 
-    return <Component ref={ref} {...filtered}>{children}</Component>
-  }
+		return <Component ref={ref} {...filtered}>{children}</Component>
+	}
 
-  // ensure ref points to Component NOT functional EnhancedComponent
-  return React.forwardRef(EnhancedComponent)
+	// ensure ref points to Component NOT functional EnhancedComponent
+	return React.forwardRef(EnhancedComponent)
 }
 
 // helpful for testing

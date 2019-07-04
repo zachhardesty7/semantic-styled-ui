@@ -20,14 +20,14 @@ S.Dimmer = styled(Dimmer)`
 
 S.Image = styled.img`
   ${({ fill }) => (
-    fill ? (`
+		fill ? (`
       height: 100%;
       object-fit: cover;
     `) : (`
       top: 50%;
       transform: translateY(-50%);
     `)
-  )};
+	)};
 `
 
 /**
@@ -36,40 +36,40 @@ S.Image = styled.img`
  * Intended to facilitate displaying content over images on hover.
  */
 const Dimming = ({
-  trigger,
-  children = null,
-  ...rest
+	trigger,
+	children = null,
+	...rest
 }) => {
-  const [hovered, setHovered] = useState(false)
+	const [hovered, setHovered] = useState(false)
 
-  return (
-    <Grid.Column {...rest}>
-      {children && (
-        <S.Dimmable
-          dimmed={hovered}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-        >
-          {/* REVIEW: consider a dimmable prop to use dimmer
+	return (
+		<Grid.Column {...rest}>
+			{children && (
+				<S.Dimmable
+					dimmed={hovered}
+					onMouseEnter={() => setHovered(true)}
+					onMouseLeave={() => setHovered(false)}
+				>
+					{/* REVIEW: consider a dimmable prop to use dimmer
           conditionally or that wraps the image using a HOC */}
-          {trigger}
-          {children && (
-            <S.Dimmer inverted simple>
-              {children}
-            </S.Dimmer>
-          )}
-        </S.Dimmable>
-      )}
-    </Grid.Column>
-  )
+					{trigger}
+					{children && (
+						<S.Dimmer inverted simple>
+							{children}
+						</S.Dimmer>
+					)}
+				</S.Dimmable>
+			)}
+		</Grid.Column>
+	)
 }
 
 Dimming.propTypes = {
-  /** hovering over this activates dimmer */
-  trigger: PropTypes.element,
+	/** hovering over this activates dimmer */
+	trigger: PropTypes.element,
 
-  /** nodes displayed within dimmer */
-  children: PropTypes.node,
+	/** nodes displayed within dimmer */
+	children: PropTypes.node,
 }
 
 export default React.memo(Dimming)
