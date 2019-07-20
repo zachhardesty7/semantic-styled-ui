@@ -10,9 +10,7 @@ import { defaultColors } from './colors'
  * underlying DOM element, use helper function `withoutProps`.
  *
  * @param {string} property - css property to target
- * @returns {(preset: DefaultColor) =>
- * (props: StyledProps) =>
- * StyledReturn}
+ * @returns {(preset: DefaultColor) => (props: Record<string, any>) => Record<string, any>}
  * function that destructures `property` and applies it inside style object
  * @requires `styled-components`
  * @example
@@ -38,8 +36,7 @@ export const getProperty = property => preset => props => ({
  * **NOTE**: Input property and props require the word `Hover` appended to the end of the prop.
  *
  * @param {string} property - css property to target (with manually appended word `Hover`)
- * @returns {(preset: DefaultColor) =>
- *  (props: StyledProps) => FlattenSimpleInterpolation}
+ * @returns {(preset: DefaultColor) => (props: Record<string, any>) => FlattenSimpleInterpolation}
  *  function that destructures `property` and applies
  *  it inside style template wrapped with a hover pseudo-selector
  * @requires `styled-components`
@@ -140,12 +137,7 @@ export const getHoverColor = getHoverProperty('colorHover')
 export const getHoverBackgroundColor = getHoverProperty('backgroundColorHover')
 
 /**
- * type definition(s)
- * @typedef {keyof typeof defaultColors} DefaultColor - property name of an object
- * @typedef {{[property: string]: any, theme?: any}} StyledProps - standard dynamic prop fetch with
- * backup theme or defaultColors
- * @typedef {{[property: string]: any}} StyledReturn - resulting object of a getter function
- *
- * imports
+ * @typedef {keyof typeof defaultColors} DefaultColor property name of an object
+ * backup theme or any of defaultColors
  * @typedef {import('styled-components').FlattenSimpleInterpolation} FlattenSimpleInterpolation
  */

@@ -1,21 +1,21 @@
 /**
  * allow quick implementation of standardized media query sizes
  *
- * `phone <= 425px`
+ * phone: `<= 425px`
  *
- * `426px <= tablet <= 767px`
+ * tablet: `426px - 767px`
  *
- * `mobile <= 767px`
+ * mobile: `<= 767px`
  *
- * `768px <= laptop <= 991px`
+ * laptop: `768px - 991px`
  *
- * `992px <= desktop <= 1199px`
+ * desktop: `992px - 1199px`
  *
- * `1200px <= widescreen`
+ * widescreen: `>= 1200px`
  */
 export const media = {
 	/**
-   * apply styled-component css when screen-size <= 425px
+   * apply styled-component css when screen-size `<= 425px`
    *
    * @example
    * const Component = styled.div`
@@ -27,7 +27,7 @@ export const media = {
 	phone: 'only screen and (max-width: 425px)',
 
 	/**
-   * apply styled-component css when screen-size >= 426px && screen-size <= 767px
+   * apply styled-component css when screen-size `>= 426px` && screen-size `<= 767px`
    *
    * @example
    * const Component = styled.div`
@@ -39,7 +39,7 @@ export const media = {
 	tablet: 'only screen and (min-width: 426px) and (max-width: 767px)',
 
 	/**
-   * apply styled-component css when screen-size <= 767px
+   * apply styled-component css when screen-size `<= 767px`
    *
    * @example
    * const Component = styled.div`
@@ -51,7 +51,7 @@ export const media = {
 	mobile: 'only screen and (max-width: 767px)',
 
 	/**
-   * apply styled-component css when screen-size >= 768px && screen-size <= 991px
+   * apply styled-component css when screen-size `>= 768px` && screen-size `<= 991px`
    *
    * @example
    * const Component = styled.div`
@@ -63,7 +63,7 @@ export const media = {
 	laptop: 'only screen and (min-width: 768px) and (max-width:991px)',
 
 	/**
-   * apply styled-component css when screen-size >= 992px && screen-size <= 1199px
+   * apply styled-component css when screen-size `>= 992px` && screen-size `<= 1199px`
    *
    * @example
    * const Component = styled.div`
@@ -75,7 +75,7 @@ export const media = {
 	desktop: 'only screen and (min-width: 992px) and (max-width:1199px)',
 
 	/**
-   * apply styled-component css when screen-size >= 1200px
+   * apply styled-component css when screen-size `>= 1200px`
    *
    * @example
    * const Component = styled.div`

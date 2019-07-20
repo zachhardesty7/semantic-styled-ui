@@ -35,7 +35,7 @@ export const calcDuration = (scrollDistanceInPx) => {
 }
 
 /**
- * Lowercase and replaces spaces with dashes.
+ * Lowercase and replace spaces with dashes.
  *
  * @param {string} str - arbitrary input
  * @returns {string} parsed output
@@ -65,7 +65,7 @@ export const camelToKebab = str => str.replace(/([A-Za-z])(?=[A-Z])/g, '$1-').to
 /**
  * URL encodes the data of key, value pairs as submitted by a form.
  *
- * @param {Object.<string, string>} data - arbitrary form data
+ * @param {Record<string, string>} data arbitrary form data
  * @returns {string} URL encoded data
  * @example
  *
@@ -80,11 +80,12 @@ export const encode = data => Object.entries(data)
  * Soft merge new props into a React Component without
  * overwriting the original props (preserves immutability).
  *
- * @param {React.ReactElement<P, T>} element - instance target to receive new props
- * @param {P} props - object of new props
- * @returns {React.ReactElement<P, any>} cloned React Element with shallowly merged props
+ * @param {React.ReactElement<P1, T>} element - instance target to receive new props
+ * @param {P2} props - object of new props
+ * @returns {React.ReactElement<P1 & P2, T>} cloned React Element with shallowly merged props
  * @requires `react`
- * @template {{}} P - props obj of input Element
+ * @template {{}} P1 - props obj of input Element
+ * @template {{}} P2 - props obj to merge
  * @template {string} T - type of input Element
  * @example
  *
@@ -107,14 +108,15 @@ export const withNewProps = (element, props = {}) => (
  * Technical: closes over input Component and coerces rendered EnhancedComponent element
  * to Component.type.
  *
- * @param {React.ElementType<any>} Component - target to control props of
- * @param {string[]} propKeys - array of prop keys to control
- * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<any>) => React.ReactElement<P, any>}
- * ref forwarding function that removes unwanted `propKeys` from original props
+ * @param {React.ElementType<P>} Component - target to control props of
+ * @param {PK} propKeys - array of prop keys to control
+ * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<T>) => React.ReactElement<Omit<P, PK>, T>} ref forwarding function that removes unwanted `propKeys` from original props
  * @requires `react` && usually `styled-components`
  * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
  * @todo check out making curried like this: https://codesandbox.io/s/l50mlwqo1q
  * @template {{}} P - props from run-time inner calling component
+ * @template {string} T - type of run-time inner calling component
+ * @template {string[]} PK - type of run-time inner calling component
  * @example
  * ```
  * // don't include asterisks
@@ -153,3 +155,9 @@ export const withoutProps = (Component, propKeys = []) => {
 
 // helpful for testing
 export const sleep = ms => data => new Promise(resolve => setTimeout(() => resolve(data), ms))
+
+/** 
+ * @template {string} T
+ * @template {keyof T} K
+ * @typedef {Pick<T, Exclude<keyof T, K>>} Omit
+*/
