@@ -65,7 +65,7 @@ export const camelToKebab = str => str.replace(/([A-Za-z])(?=[A-Z])/g, '$1-').to
 /**
  * URL encodes the data of key, value pairs as submitted by a form.
  *
- * @param {Record<string, string>} data arbitrary form data
+ * @param {Record<string, string>} data - arbitrary form data
  * @returns {string} URL encoded data
  * @example
  *

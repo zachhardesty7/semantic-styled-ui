@@ -179,9 +179,10 @@ const Icon = ({
 
 Icon.propTypes = {
 	/**
-   * icon name as supported by Font Awesome 5.0.8
-   * @see[Icon Name Reference Sheet](https://react.semantic-ui.com/elements/icon/)
-   */
+  * icon name as supported by Font Awesome 5.0.8
+  *
+  * @see - [Icon Name Reference Sheet](https://react.semantic-ui.com/elements/icon/)
+  */
 	name: PropTypes.string.isRequired,
 
 	/** display a text string with the icon */
@@ -190,16 +191,16 @@ Icon.propTypes = {
 	]),
 
 	/**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * ReactComponent
-   * Card
-   */
+  * element type to render as (string or function)
+  * supports HTML tag as a string or React component definition
+  *
+  * @example
+  *
+  * 'div'
+  * 'section'
+  * ReactComponent
+  * Card
+  */
 	as: PropTypes.oneOfType([
 		PropTypes.string, PropTypes.elementType,
 	]),

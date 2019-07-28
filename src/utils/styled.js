@@ -60,7 +60,7 @@ export const getHoverProperty = property => preset => props => css`
  * **NOTE**: It's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`.
  *
- * @param preset optional preset to use from theme prop
+ * @param preset - optional preset to use from theme prop
  * @returns function that destructures `property` and applies it inside style object
  * @requires `styled-components`
  * @example
@@ -79,7 +79,7 @@ export const getColor = getProperty('color')
  * **NOTE**: it's often necessary to prevent these props from being passed to the
  * underlying DOM element, use helper function `withoutProps`
  *
- * @param preset optional preset to use from theme prop
+ * @param preset - optional preset to use from theme prop
  * @returns function that destructures `property` and applies it inside style object
  * @requires `styled-components`
  * @example
@@ -100,7 +100,7 @@ export const getBackgroundColor = getProperty('backgroundColor')
  *
  * **NOTE**: input property and props require the word `Hover` appended to the end of the prop
  *
- * @param preset css property to target (with manually appended word `Hover`)
+ * @param preset - css property to target (with manually appended word `Hover`)
  * @returns function that destructures `property` and applies it
  *  inside style template wrapped with a hover pseudo-selector
  * @requires `styled-components`
@@ -122,7 +122,7 @@ export const getHoverColor = getHoverProperty('colorHover')
  *
  * **NOTE**: input property and props require the word `Hover` appended to the end of the prop
  *
- * @param preset css property to target (with manually appended word `Hover`)
+ * @param preset - css property to target (with manually appended word `Hover`)
  * @returns function that destructures `property` and applies it
  *  inside style template wrapped with a hover pseudo-selector
  * @requires `styled-components`

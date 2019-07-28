@@ -58,9 +58,9 @@ Link.propTypes = {
 	]),
 
 	/**
-   * anchor link (prefixed with "#") or standard href, uses child content
-   * if not provided and using an a tag
-   */
+  * anchor link (prefixed with "#") or standard href, uses child content
+  * if not provided and using an a tag
+  */
 	link: PropTypes.string,
 
 	/** render as enclosing tag */
@@ -70,5 +70,5 @@ Link.propTypes = {
 	children: PropTypes.node.isRequired,
 }
 
-/** @component */
+/* @component */
 export default React.memo(Link)

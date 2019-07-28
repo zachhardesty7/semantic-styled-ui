@@ -102,17 +102,17 @@ HeroButton.propTypes = {
 	compact: PropTypes.bool,
 
 	/**
-   * apply css supported color string to background, overrides theme / default
-   *
-   * text defaults to `white` and background to `secondary` theme settings
-   */
+  * apply css supported color string to background, overrides theme / default
+  *
+  * text defaults to `white` and background to `secondary` theme settings
+  */
 	color: PropTypes.string,
 
 	/**
-   * apply css supported color string to background on hover, overrides theme / default
-   *
-   * defaults to `primary` theme setting
-   */
+  * apply css supported color string to background on hover, overrides theme / default
+  *
+  * defaults to `primary` theme setting
+  */
 	colorHover: PropTypes.string,
 
 	/** text-based content */

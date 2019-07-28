@@ -3,7 +3,7 @@
  * shim for Object.fromEntries().
  *
  * @param {Iterable<[string, any]>} iter - iterable of tuple arrays of key, value pairs
- * @returns {Record<String, any>} obj with key, value pairs assigned
+ * @returns {Record<string, any>} obj with key, value pairs assigned
  */
 export const ObjectFromEntries = (iter) => {
 	const obj = {}
