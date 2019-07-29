@@ -110,8 +110,8 @@ S.Wrapper = styled.div`
 
 const Icon = ({
 	as,
-	name,
-	label = false,
+	name = '',
+	label = '',
 	link = '',
 	align = 'center',
 	size = 'medium',
@@ -125,7 +125,7 @@ const Icon = ({
 		{link ? (
 			<Link
 				wrap
-				as={as || 'a'}
+				as={as}
 				link={link}
 				{...rest}
 			>

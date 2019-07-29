@@ -19,6 +19,8 @@ const Link = ({
 
 	return (
 		React.Children.map(children, (Child) => {
+			if (!Child) return false // prevent wrapping empty elements
+
 			const props = {
 				href: (as === 'a' && link) || undefined,
 				// remove "#" or get dest from children text

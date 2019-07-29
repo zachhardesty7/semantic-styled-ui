@@ -10,7 +10,7 @@ import React from 'react'
  * toJoinedTitleCase('an arbitrary string input')
  * // => 'AnArbitraryStringInput'
  */
-export const toJoinedTitleCase = str => (
+export const toJoinedTitleCase = (str = '') => (
 	str.replace(
 		/\w*/g,
 		txt => txt.charAt(0).toUpperCase() + txt.substr(1)
@@ -44,7 +44,7 @@ export const calcDuration = (scrollDistanceInPx) => {
  * process('An Arbitrary String Input')
  * // => 'an-arbitrary-string-input'
  */
-export const process = str => str.toLowerCase().replace(/\W/g, '-')
+export const process = (str = '') => str.toLowerCase().replace(/\W/g, '-')
 
 /**
  * Convert camel case string to kebab case.
@@ -60,7 +60,7 @@ export const process = str => str.toLowerCase().replace(/\W/g, '-')
  * camelCaseToDash('TurboPascal')
  * // => 'turbo-pascal'
  */
-export const camelToKebab = str => str.replace(/([A-Za-z])(?=[A-Z])/g, '$1-').toLowerCase()
+export const camelToKebab = (str = '') => str.replace(/([A-Za-z])(?=[A-Z])/g, '$1-').toLowerCase()
 
 /**
  * URL encodes the data of key, value pairs as submitted by a form.
