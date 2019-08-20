@@ -23,6 +23,9 @@ const S = {} // styled-components namespace
 
 const FilteredIcon = withoutProps(SUIIcon, ['color', 'colorHover', 'size', 'light', 'inverted'])
 S.Icon = styled(FilteredIcon)`
+	display: flex;
+	justify-content: center;
+	align-items: center;
   font-size: ${({ size }) => iconMap[size]};
   padding: ${({ group }) => (group ? '0 0.5em' : '0')};
   margin: 0;
@@ -46,6 +49,7 @@ S.Icon = styled(FilteredIcon)`
 
   ${({ link }) => link && css`
     ${S.Wrapper}:hover & {
+			/* cursor: pointer; */
       opacity: 1;
       color: ${({
 		/* eslint-disable indent */
@@ -102,10 +106,8 @@ S.Label = styled.span`
 S.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${({ align }) => {
-		if (align === 'center') return align
-		return `flex-${align}`
-	}};
+  align-items: ${({ align }) => (align === 'center' ? align : `flex-${align}`)};
+  justify-content: ${({ align }) => (align === 'center' ? align : `flex-${align}`)};
 `
 
 const Icon = ({

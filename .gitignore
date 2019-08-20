@@ -69,3 +69,5 @@ bower_components
 
 # optional repl history
 .node_repl_history
+
+.DS_Store

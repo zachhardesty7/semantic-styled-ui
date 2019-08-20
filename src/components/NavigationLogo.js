@@ -12,6 +12,12 @@ const logoSizes = {
 	large: 215,
 }
 
+const logoSizesSVG = {
+	small: 4,
+	base: 6,
+	large: 8,
+}
+
 const S = {} // styled-components namespace
 
 /* if stacked, set stacked logo spacing & remove underline */
@@ -44,6 +50,16 @@ S.Logo = styled.div`
       width: ${({ logoSize }) => logoSizes[logoSize] * 0.8}px !important;
     }
   }
+
+	svg {
+		padding: 0.6em;
+		vertical-align: middle;
+		width: ${({ logoSize }) => logoSizesSVG[logoSize]}em;
+
+    @media ${media.phone} {
+      width: ${({ logoSize }) => logoSizesSVG[logoSize] * 0.8}em;
+    }
+	}
 `
 
 const NavigationLogo = ({
