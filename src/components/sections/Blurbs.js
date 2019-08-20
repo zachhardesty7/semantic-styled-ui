@@ -19,7 +19,6 @@ import {
 
 const S = {} // styled-components namespace
 
-/* set default to relaxed vertical padding */
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
 S.Blurbs = styled(Segment)`

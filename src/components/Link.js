@@ -37,7 +37,7 @@ const Link = ({
 
 			return wrap
 				? <Tag {...props}>{Child}</Tag>
-				: withNewProps(Child, { ...props, forwardedAs: as })
+				: withNewProps(Child, { ...props, as })
 		})
 	)
 }

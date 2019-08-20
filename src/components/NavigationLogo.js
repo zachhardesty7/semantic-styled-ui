@@ -79,7 +79,7 @@ const NavigationLogo = ({
 			pointing={false}
 			{...rest}
 		>
-			<S.Logo forwardedAs={children.type} {...children.props} logoSize={logoSize} />
+			<S.Logo as={children.type} {...children.props} logoSize={logoSize} />
 		</NavigationItem>
 	</S.Wrapper>
 )
