@@ -12,7 +12,7 @@ const S = {} // styled-components namespace
 
 const SegmentFiltered = withoutProps(Segment, ['pointing'])
 S.Segment = styled(SegmentFiltered)`
-  ${({ pointing }) => pointing && 'padding-bottom: 0px'};
+  ${({ pointing }) => pointing && 'padding-bottom: 0'};
 `
 
 S.Menu = styled(Menu)`
@@ -60,16 +60,16 @@ const Navigation = ({
 
 Navigation.propTypes = {
 	/**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * ReactComponent
-   * Card
-   */
+  * element type to render as (string or function)
+  * supports HTML tag as a string or React component definition
+  *
+  * @example
+  *
+  * 'div'
+  * 'section'
+  * ReactComponent
+  * Card
+  */
 	as: PropTypes.oneOfType([
 		PropTypes.string,
 		PropTypes.elementType,

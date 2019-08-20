@@ -12,6 +12,7 @@ import Blurb from '../Blurb'
 
 import {
 	media,
+	paddingMap,
 	withNewProps,
 	withoutProps,
 } from '../../utils'
@@ -22,8 +23,11 @@ const S = {} // styled-components namespace
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
 S.Blurbs = styled(Segment)`
-  padding-top: 6em;
-  padding-bottom: 6em;
+  ${({ padded, padding }) => (
+		(padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
+		(padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
+		(padded && `padding: ${paddingMap[padding]} 0`)
+	)};
 
   @media ${media.tablet} {
     .container {
@@ -60,6 +64,8 @@ const Blurbs = ({
 	textAlign = 'left',
 	color = '',
 	secondary = false,
+	padded = 'both',
+	padding = 'relaxed',
 	children,
 	...rest
 }) => (
@@ -113,6 +119,12 @@ Blurbs.propTypes = {
 
 	/** format to appear less prominent (grey background) */
 	secondary: PropTypes.bool,
+
+	/** if/where spacing around element exists */
+	padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
+
+	/** control amount of spacing around element */
+	padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
 
 	/** primary content of Blurbs.Item */
 	children: PropTypes.node,

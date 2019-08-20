@@ -2,15 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { withNewProps } from '../utils'
-
-const paddingTable = {
-	compact: '0.5em',
-	tight: '1em',
-	base: '2em',
-	relaxed: '4em',
-	loose: '6em',
-}
+import { paddingMap, withNewProps } from '../utils'
 
 const S = {} // styled-components namespace
 
@@ -19,16 +11,16 @@ S.Groups = styled.div`
   justify-content: ${({ justify }) => justify};
   
   ${({ padded, padding }) => (
-		(padded === 'top' && `padding-top: ${paddingTable[padding]}`) ||
-    (padded === 'bottom' && `padding-bottom: ${paddingTable[padding]}`) ||
-    (padded && `padding: ${paddingTable[padding]} 0`)
+		(padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
+    (padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
+    (padded && `padding: ${paddingMap[padding]} 0`)
 	)};
 `
 
 S.Group = styled.div`
   display: flex;
   margin: 0;
-  padding: 0 0.5em;
+  padding: 0 ${paddingMap.compact};
 
   &:first-child {
     padding-left: 0;
