@@ -70,6 +70,8 @@ const Blurbs = ({
 	...rest
 }) => (
 	<S.Blurbs
+		padded={padded}
+		padding={padding}
 		forwardedAs='section'
 		vertical
 		basic
