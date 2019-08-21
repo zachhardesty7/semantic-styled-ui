@@ -49,6 +49,7 @@ const NavigationItem = ({
 	<Link
 		onClick={e => e.currentTarget.blur()} // prevent keeping focus after navigating to new page
 		as={as}
+		forwarded
 		link={link}
 		activeClassName={(as !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
 		{...rest}

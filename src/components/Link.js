@@ -11,6 +11,7 @@ const Link = ({
 	as = 'a',
 	link = '',
 	wrap = false,
+	forwarded = false,
 	children,
 	...rest
 }) => {
@@ -35,9 +36,9 @@ const Link = ({
 
 			const Tag = as
 
-			return wrap
-				? <Tag {...props}>{Child}</Tag>
-				: withNewProps(Child, { ...props, as })
+			if (wrap) return <Tag {...props}>{Child}</Tag>
+			if (forwarded) return withNewProps(Child, { ...props, forwardedAs: as })
+			return withNewProps(Child, { ...props, as })
 		})
 	)
 }
@@ -67,6 +68,9 @@ Link.propTypes = {
 
 	/** render as enclosing tag */
 	wrap: PropTypes.bool,
+
+	/** when not wrapping, convert `as` tag to `forwardedAs` for `styled-components` */
+	forwarded: PropTypes.bool,
 
 	/** primary content, usually string, used as link if link not provided */
 	children: PropTypes.node.isRequired,
