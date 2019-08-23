@@ -138,8 +138,9 @@ Footer.propTypes = {
 	developerLink: PropTypes.string,
 
 	/**
-   * collection of Icons to render
-   * @see[`Icon`](#icon) && [`IconGroup`](#icongroup)
+  * collection of Icons to render
+  *
+  * @see[`Icon`](#icon) && [`IconGroup`](#icongroup)
   */
 	icons: PropTypes.node,
 

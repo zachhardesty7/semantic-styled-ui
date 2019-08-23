@@ -21,7 +21,8 @@ const S = {} // styled-components namespace
 
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
-S.Blurbs = styled(Segment)`
+const FSegment = withoutProps(Segment, ['padded'])
+S.Blurbs = styled(FSegment)`
   ${({ padded, padding }) => (
 		(padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
 		(padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
