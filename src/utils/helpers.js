@@ -100,6 +100,14 @@ export const withNewProps = (element, props = {}) => (
 )
 
 /**
+ * helper function to find and return semantic name used for debugging components
+ *
+ * @param {{}} target - usually a react element
+ * @returns {string} - best "name" of element
+ */
+const getComponentName = target => target.displayName || target.name || 'Component'
+
+/**
  * Dynamically prevent props from reaching DOM elements
  * by providing styled-components a prop blacklist. Most
  * useful to prevent props intended for a styled component
@@ -142,22 +150,44 @@ export const withNewProps = (element, props = {}) => (
  */
 export const withoutProps = (Component, propKeys = []) => {
 	// facilitate debugging with named func
-	const EnhancedComponent = ({ children, ...rest }, ref) => {
+	const FilteredComponent = ({ children, ...rest }, ref) => {
 		const filtered = Object.fromEntries(Object.entries(rest)
 			.filter(([key]) => !propKeys.includes(key)))
 
 		return <Component ref={ref} {...filtered}>{children}</Component>
 	}
 
-	// ensure ref points to Component NOT functional EnhancedComponent
-	return React.forwardRef(EnhancedComponent)
+	// attach "FilteredProps" tag in React Dev Tools v5
+	FilteredComponent.displayName = `FilteredProps(${getComponentName(Component)})`
+
+	// ensure ref points to Element NOT functional FilteredComponent
+	const result = React.forwardRef(FilteredComponent)
+	result.name = Component.name // pass thru original name tags
+
+	return result
 }
+
+// TODO: come up with method to prevent creating an additional element in DevTools v5
+// export const withoutPropsImpure = (Component, propKeys = []) => {
+// 	// facilitate debugging with named func
+// 	const OldComponent = Component
+// 	Component.apply()
+// 	Component = ({ children, ...rest }) => {
+// 		const filteredProps = Object.fromEntries(Object.entries(rest)
+// 			.filter(([key]) => !propKeys.includes(key)))
+
+// 		return <OldComponent {...filtered}>{children}</OldComponent>
+// 	}
+
+// 	// ensure ref points to Component NOT functional FilteredPropsComponent
+// 	return Component.bind(this, )
+// }
 
 // helpful for testing
 export const sleep = ms => data => new Promise(resolve => setTimeout(() => resolve(data), ms))
 
-/** 
+/**
  * @template {string} T
  * @template {keyof T} K
  * @typedef {Pick<T, Exclude<keyof T, K>>} Omit
-*/
+ */

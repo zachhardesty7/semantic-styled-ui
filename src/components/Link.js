@@ -31,7 +31,7 @@ const Link = ({
 				duration: isAnchor ? calcDuration : undefined,
 				rel: isExternal ? 'noopener noreferrer' : undefined,
 				target: isExternal ? '_blank' : undefined,
-				...rest,
+				...rest, // does not include `as`
 			}
 
 			const Tag = as
