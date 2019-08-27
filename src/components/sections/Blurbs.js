@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
 	Container,
@@ -58,9 +58,28 @@ S.Content = styled(HeaderContentFiltered)`
   text-align: ${({ textAlign }) => textAlign};
 `
 
+S.Grid = styled(Grid)`
+	${({ fullWidth }) => fullWidth === 'gutter' && 'flex-wrap: nowrap'};
+`
+
+S.GridCol = styled(Grid.Column)`
+	${({ fullWidth }) => fullWidth === 'gutter' && css`
+		margin-left: 10px;
+		margin-right: 10px;
+
+		&:last-of-type {
+			margin-right: 20px;
+		}
+		&:first-of-type {
+			margin-left: 20px;
+		}
+	`};
+`
+
 const Blurbs = ({
 	title,
 	content,
+	fullWidth = false,
 	textAlign = 'left',
 	color = '',
 	secondary = false,
@@ -88,20 +107,21 @@ const Blurbs = ({
 				)}
 			</S.Header>
 		)}
-		<Container textAlign='center'>
-			<Grid
+		<Container fluid={!!fullWidth} textAlign='center'>
+			<S.Grid
 				columns={Math.min(React.Children.count(children), 8)}
 				relaxed
 				stackable
 				divided
 				padded
+				fullWidth={fullWidth}
 			>
 				{React.Children.map(children, blurb => (
-					<Grid.Column>
+					<S.GridCol fullWidth={fullWidth}>
 						{withNewProps(blurb, { color })}
-					</Grid.Column>
+					</S.GridCol>
 				))}
-			</Grid>
+			</S.Grid>
 		</Container>
 	</S.Blurbs>
 )
@@ -112,6 +132,9 @@ Blurbs.propTypes = {
 
 	/** body content proceeding blurbs */
 	content: PropTypes.node,
+
+	/** do not restrict width of blurbs container */
+	fullWidth: PropTypes.oneOf([true, false, 'gutter']),
 
 	/** format body content */
 	textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
