@@ -80,13 +80,12 @@ export const encode = data => Object.entries(data)
  * Soft merge new props into a React Component without
  * overwriting the original props (preserves immutability).
  *
- * @param {React.ReactElement<P1, T>} element - instance target to receive new props
- * @param {P2} props - object of new props
- * @returns {React.ReactElement<P1 & P2, T>} cloned React Element with shallowly merged props
+ * @param {React.ReactElement<P>} [element] - instance target to receive new props
+ * @param {Record<string, any>} props - object of new props
+ * @returns {false | React.ReactElement<P & P2>} cloned React Element with shallowly merged props
  * @requires `react`
- * @template {{}} P1 - props obj of input Element
- * @template {{}} P2 - props obj to merge
- * @template {string} T - type of input Element
+ * @template P - props obj of input Element
+ * @template P2 - props obj to merge
  * @example
  *
  * withNewProps(<Container prop0='val0' />, { prop1: 'val1', prop2: 'val2' })
@@ -102,10 +101,12 @@ export const withNewProps = (element, props = {}) => (
 /**
  * helper function to find and return semantic name used for debugging components
  *
- * @param {{}} target - usually a react element
- * @returns {string} - best "name" of element
+ * @param {object} target - usually a react element
+ * @param {string} [target.displayName] - manually defined name for debug
+ * @param {string} [target.name] - generally assigned via React from var name
+ * @returns {string} best "name" of element
  */
-const getComponentName = target => target.displayName || target.name || 'Component'
+const getComponentName = ({ displayName, name }) => displayName || name || 'Component'
 
 /**
  * Dynamically prevent props from reaching DOM elements
@@ -126,8 +127,7 @@ const getComponentName = target => target.displayName || target.name || 'Compone
  * @template {string} T - type of run-time inner calling component
  * @template {string[]} PK - type of run-time inner calling component
  * @example
- * ```
- * // don't include asterisks
+ *
  * const ContainerWithPassThrough = ({ className, ...rest }) => (
  *  <div className={className} {...rest} />
  * )
@@ -146,7 +146,6 @@ const getComponentName = target => target.displayName || target.name || 'Compone
  *
  * <Component color='blue' />
  * // => <div className='con' /> // with a blue color
- * ```
  */
 export const withoutProps = (Component, propKeys = []) => {
 	// facilitate debugging with named func
@@ -185,9 +184,3 @@ export const withoutProps = (Component, propKeys = []) => {
 
 // helpful for testing
 export const sleep = ms => data => new Promise(resolve => setTimeout(() => resolve(data), ms))
-
-/**
- * @template {string} T
- * @template {keyof T} K
- * @typedef {Pick<T, Exclude<keyof T, K>>} Omit
- */

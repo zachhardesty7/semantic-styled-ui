@@ -135,9 +135,3 @@ export const getHoverColor = getHoverProperty('colorHover')
  * <StyledElement backgroundColorHover='red' />
  */
 export const getHoverBackgroundColor = getHoverProperty('backgroundColorHover')
-
-/**
- * @typedef {keyof typeof defaultColors} DefaultColor property name of an object
- * backup theme or any of defaultColors
- * @typedef {import('styled-components').FlattenSimpleInterpolation} FlattenSimpleInterpolation
- */

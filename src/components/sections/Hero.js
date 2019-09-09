@@ -205,7 +205,7 @@ Hero.propTypes = {
 	overlay: PropTypes.oneOf(['dark', 'darker']),
 
 	/** align content to top or bottom */
-	baseline: PropTypes.oneOf(['top', 'bottom']),
+	baseline: PropTypes.oneOf([false, 'top', 'bottom']),
 
 	/** apply css supported color string or use default if true */
 	underline: PropTypes.oneOfType([
