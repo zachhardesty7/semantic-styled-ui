@@ -138,7 +138,7 @@ S.Logo = styled.img`
 
 const Hero = ({
 	overlay = 'dark',
-	baseline = false,
+	baseline = 'bottom',
 	underline = false,
 	size = 'base',
 	logo = null,
@@ -205,7 +205,7 @@ Hero.propTypes = {
 	overlay: PropTypes.oneOf(['dark', 'darker']),
 
 	/** align content to top or bottom */
-	baseline: PropTypes.oneOf([false, 'top', 'bottom']),
+	baseline: PropTypes.oneOf(['top', 'bottom']),
 
 	/** apply css supported color string or use default if true */
 	underline: PropTypes.oneOfType([

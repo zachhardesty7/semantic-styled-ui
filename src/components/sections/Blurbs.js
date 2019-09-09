@@ -30,7 +30,7 @@ S.Blurbs = styled(FSegment)`
 	)};
 
   @media ${media.tablet} {
-    .container {
+    .container:not(.fluid) {
       max-width: 397px !important;
       padding: 0 1.5em;
       margin: 0 auto !important;
@@ -38,7 +38,7 @@ S.Blurbs = styled(FSegment)`
   }
 
   @media ${media.phone} {
-    .container {
+    .container:not(.fluid) {
       margin: 0 2em !important;
     }
   }
@@ -58,11 +58,23 @@ S.Content = styled(HeaderContentFiltered)`
   text-align: ${({ textAlign }) => textAlign};
 `
 
-S.Grid = styled(Grid)`
-	${({ fullWidth }) => fullWidth === 'gutter' && 'flex-wrap: nowrap'};
+const GridFiltered = withoutProps(Grid, ['fullWidth'])
+S.Grid = styled(GridFiltered)`
+	${({ fullWidth }) => fullWidth === 'gutter' && css`
+		@media ${media.laptop} {
+			flex-wrap: nowrap
+		}
+		@media ${media.desktop} {
+			flex-wrap: nowrap
+		}
+		@media ${media.widescreen} {
+			flex-wrap: nowrap
+		}
+	`};
 `
 
-S.GridCol = styled(Grid.Column)`
+const GridColFiltered = withoutProps(Grid.Column, ['fullWidth'])
+S.GridCol = styled(GridColFiltered)`
 	${({ fullWidth }) => fullWidth === 'gutter' && css`
 		margin-left: 10px;
 		margin-right: 10px;
