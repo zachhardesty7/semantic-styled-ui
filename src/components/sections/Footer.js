@@ -40,6 +40,7 @@ const Footer = ({
 	copyright = '',
 	stacked = false,
 	separated = false,
+	fullWidth = false,
 	inverted = false,
 	icons = null,
 	developerName = '',
@@ -77,7 +78,7 @@ const Footer = ({
 				backgroundColor={backgroundColor}
 				{...rest}
 			>
-				<Container>
+				<Container fluid={fullWidth}>
 					<Grid columns={2} verticalAlign='middle'>
 						{separated ? (
 							<>
@@ -130,6 +131,9 @@ Footer.propTypes = {
 
 	/** hide icons and split float developer info */
 	separated: PropTypes.bool,
+
+	/** allow footer to stretch to edges */
+	fullWidth: PropTypes.bool,
 
 	/** you! */
 	developerName: PropTypes.string,
