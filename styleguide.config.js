@@ -41,7 +41,4 @@ module.exports = {
 	// https://github.com/styleguidist/react-styleguidist/blob/master/src/client/styles/theme.js
 	// showUsage: true,
 	styleguideDir: 'public',
-	styleguideComponents: {
-		Editor: path.join(__dirname, 'src/styleguide/Editor'),
-	},
 }
