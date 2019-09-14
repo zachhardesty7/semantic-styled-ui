@@ -19,7 +19,11 @@ import {
 
 const S = {} // styled-components namespace
 
-const FilteredBottomBar = withoutProps(Segment, ['color', 'backgroundColor'])
+const ForwardedSegment = React.forwardRef(({ children, ...rest }, ref) => (
+	<Ref innerRef={ref}><Segment {...rest}>{children}</Segment></Ref>
+))
+
+const FilteredBottomBar = withoutProps(ForwardedSegment, ['color', 'backgroundColor'])
 S.Segment = styled(FilteredBottomBar)`
   margin-top: 0px;
   ${getColor('light')};
@@ -71,7 +75,7 @@ const Footer = ({
 	// code is incorrectly identifying Child as a forwardRef despite
 	// eventual child rendering as functional component, manually override
 	// https://github.com/Semantic-Org/Semantic-UI-React/pull/3405/commits/d6f29a9f515cfe48628e90af7311c9f823beef7a
-		<Ref.FindNode innerRef={con}>
+		<Ref innerRef={con}>
 			<S.Segment
 				forwardedAs='footer'
 				color={color}
@@ -112,7 +116,7 @@ const Footer = ({
 					</Grid>
 				</Container>
 			</S.Segment>
-		</Ref.FindNode>
+		</Ref>
 	)
 }
 
