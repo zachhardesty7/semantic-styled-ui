@@ -11,10 +11,12 @@ import React from 'react'
  * // => 'AnArbitraryStringInput'
  */
 export const toJoinedTitleCase = (str = '') => (
-	str.replace(
-		/\w*/g,
-		txt => txt.charAt(0).toUpperCase() + txt.substr(1)
-	).replace(/\W/g, '')
+	str
+		.replace(
+			/\w*/g,
+			txt => txt.charAt(0).toUpperCase() + txt.substr(1)
+		)
+		.replace(/\W/g, '')
 )
 
 /**
