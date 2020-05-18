@@ -6,7 +6,6 @@ module.exports = {
 				// useBuiltIns: 'usage', // TODO: currently breaks things in Gatsby projects
 				shippedProposals: true,
 				modules: false,
-				corejs: { version: 3, proposals: true },
 			},
 		],
 		[
@@ -20,7 +19,6 @@ module.exports = {
 		'@babel/plugin-proposal-export-default-from',
 		[
 			'@babel/plugin-transform-runtime', {
-				corejs: { version: 3, proposals: true },
 				useESModules: true,
 			},
 		],
