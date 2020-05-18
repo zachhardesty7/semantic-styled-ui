@@ -35,7 +35,8 @@ S.Image = styled.img`
  *
  * Intended to facilitate displaying content over images on hover.
  */
-const Dimming = ({
+
+export const Dimming = ({
 	trigger,
 	children = null,
 	...rest
@@ -71,5 +72,3 @@ Dimming.propTypes = {
 	/** nodes displayed within dimmer */
 	children: PropTypes.node,
 }
-
-export default React.memo(Dimming)

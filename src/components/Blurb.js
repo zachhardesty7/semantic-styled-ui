@@ -39,7 +39,7 @@ S.BackgroundImage = styled.img`
   }
 `
 
-const Blurb = ({
+export const Blurb = ({
 	as = 'h4',
 	icon,
 	backgroundImage,
@@ -103,5 +103,3 @@ Blurb.propTypes = {
 	/** secondary content of body */
 	children: PropTypes.node,
 }
-
-export default React.memo(Blurb)

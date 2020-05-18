@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import NavigationItem from './NavigationItem'
+import { NavigationItem } from './NavigationItem'
 
 import { media } from '../utils'
 
@@ -62,7 +62,7 @@ S.Logo = styled.div`
 	}
 `
 
-const NavigationLogo = ({
+export const NavigationLogo = ({
 	as = 'a',
 	link = '/',
 	stacked = false,
@@ -116,5 +116,3 @@ NavigationLogo.propTypes = {
 	/** primary content, usually string, used as link if link not provided */
 	children: PropTypes.element.isRequired,
 }
-
-export default React.memo(NavigationLogo)

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Icon as SUIIcon } from 'semantic-ui-react'
-import Link from './Link'
+import { Link } from './Link'
 
 import { defaultColors, withoutProps } from '../utils'
 
@@ -110,7 +110,7 @@ S.Wrapper = styled.div`
   justify-content: ${({ align }) => (align === 'center' ? align : `flex-${align}`)};
 `
 
-const Icon = ({
+export const Icon = ({
 	as,
 	name = '',
 	label = '',
@@ -228,5 +228,3 @@ Icon.propTypes = {
 	/** set color to secondary, colorHover to primary */
 	inverted: PropTypes.bool,
 }
-
-export default React.memo(Icon)

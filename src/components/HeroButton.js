@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 import { Button } from 'semantic-ui-react'
 
-import Icon from './Icon'
-import Link from './Link'
+import { Icon } from './Icon'
+import { Link } from './Link'
 
 import {
 	getBackgroundColor,
@@ -42,7 +42,7 @@ S.Icon = styled(FilteredIcon)`
   height: 1em;
 `
 
-const HeroButton = ({
+export const HeroButton = ({
 	as = 'a',
 	link = '',
 	pointing = 'right',
@@ -118,5 +118,3 @@ HeroButton.propTypes = {
 	/** text-based content */
 	children: PropTypes.node,
 }
-
-export default React.memo(HeroButton)

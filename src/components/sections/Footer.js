@@ -36,7 +36,7 @@ S.Link = styled.a`
   ${getHoverColor('white')};
 `
 
-const Footer = ({
+export const Footer = ({
 	color = '',
 	backgroundColor = '',
 	colorHover = '',
@@ -161,6 +161,3 @@ Footer.propTypes = {
 	/** date & company that holds copyright */
 	copyright: PropTypes.string,
 }
-
-// cannot be memoed due to necessity of rerendering to apply flex to parents
-export default Footer

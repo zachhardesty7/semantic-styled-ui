@@ -8,7 +8,7 @@ import {
 	Segment,
 	Transition,
 } from 'semantic-ui-react'
-import HeroButton from '../HeroButton'
+import { HeroButton } from '../HeroButton'
 
 import {
 	defaultColors,
@@ -136,7 +136,7 @@ S.Logo = styled.img`
   margin-right: 1em;
 `
 
-const Hero = ({
+export const Hero = ({
 	overlay = 'dark',
 	baseline = 'bottom',
 	underline = false,
@@ -239,6 +239,4 @@ Hero.propTypes = {
 	children: PropTypes.node,
 }
 
-const HeroMemo = React.memo(Hero)
-HeroMemo.Button = HeroButton
-export default HeroMemo
+Hero.Button = HeroButton

@@ -7,7 +7,7 @@ import {
 	withNewProps,
 } from '../utils'
 
-const Link = ({
+export const Link = ({
 	as = 'a',
 	link = '',
 	wrap = false,
@@ -75,6 +75,3 @@ Link.propTypes = {
 	/** primary content, usually string, used as link if link not provided */
 	children: PropTypes.node.isRequired,
 }
-
-/* @component */
-export default React.memo(Link)

@@ -41,7 +41,7 @@ S.Image = styled(ImageFiltered)`
 	)};
 `
 
-const PortfolioItem = ({
+export const PortfolioItem = ({
 	title = '',
 	subtitle = '',
 	fill = true,
@@ -86,5 +86,3 @@ PortfolioItem.propTypes = {
 	/** image-based content */
 	children: PropTypes.element,
 }
-
-export default React.memo(PortfolioItem)

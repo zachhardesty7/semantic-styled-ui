@@ -23,27 +23,26 @@ const S = {} // styled-components namespace
 
 const FilteredForm = withoutProps(Form, ['padded'])
 S.Form = styled(FilteredForm)`
-  ${({ padded, padding }) => (
+	${({ padded, padding }) => (
 		(padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
-    (padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
-    (padded && `padding: ${paddingMap[padding]} 0`)
+		(padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
+		(padded && `padding: ${paddingMap[padding]} 0`)
 	)};
 `
 
 S.Message = styled(Message)`
-  /* use "!important" to override Transition */
-  display: flex !important;
-  margin-bottom: 1em;
+	/* use "!important" to override Transition */
+	display: flex !important;
+	margin-bottom: 1em;
 `
 
 /**
  * Complex form component that can just handle fields and 1 textarea.
  * Can be most effectively used as a contact form. Also provides feedback
  * for successful and failed submissions.
- *
- * @visibleName Form
  */
-const SSUIForm = ({
+
+export const ContactForm = ({
 	name = '',
 	fields = [],
 	textArea = true,
@@ -55,7 +54,7 @@ const SSUIForm = ({
 	const [success, setSuccess] = useState(false)
 	const [error, setError] = useState(false)
 
-	// process and push raw fields into state
+	/** @type {Record<string, string>} process and push raw fields into state */
 	const fieldsInit = {}
 	fields.forEach((field) => {
 		if (!field.includes(';')) {
@@ -75,7 +74,7 @@ const SSUIForm = ({
 	}
 
 	const handleSubmit = (evt) => {
-		if (Object.values(fieldsObj).some(val => val === '')) {
+		if (Object.values(fieldsObj).some((val) => val === '')) {
 			setSuccess(false)
 			setError(true)
 		} else {
@@ -84,10 +83,10 @@ const SSUIForm = ({
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				body: encode({ 'form-name': 'contact', ...fieldsObj }),
 			})
-				.catch(err => console.error(err))
+				.catch((err) => console.error(err))
 
 			// reset state of fields
-			const newFieldsObj = Object.fromEntries(Object.keys(fieldsObj).map(key => [key, '']))
+			const newFieldsObj = Object.fromEntries(Object.keys(fieldsObj).map((key) => [key, '']))
 
 			setSuccess(true)
 			setError(false)
@@ -120,14 +119,14 @@ const SSUIForm = ({
 			{fields
 				.map((_, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
 				.filter(Boolean) // remove falsy (null) entries
-				.map(fieldGroup => (
+				.map((fieldGroup) => (
 					<Form.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
 						{fieldGroup.map((field) => {
 							if (field.includes(';')) { // custom syntax due to Contentful limitations
 								const title = field.slice(0, field.indexOf('('))
 								let options = field.slice(field.indexOf('(') + 1, field.indexOf(')')) // remove title
 								options = options.split('; ')
-								options = options.map(op => ({
+								options = options.map((op) => ({
 									text: op,
 									value: op,
 								}))
@@ -165,8 +164,7 @@ const SSUIForm = ({
 							)
 						})}
 					</Form.Group>
-				))
-			}
+				))}
 			{textArea && (
 				<Form.TextArea
 					id='text-area'
@@ -185,7 +183,7 @@ const SSUIForm = ({
 						<Icon name='check' aria-label='success' />
 						<Message.Content>
 							<Message.Header>Form Submitted</Message.Header>
-							{`You'll hear back from us shortly!`}
+							You'll hear back from us shortly!
 						</Message.Content>
 					</S.Message>
 				)}
@@ -194,7 +192,7 @@ const SSUIForm = ({
 						<Icon name='exclamation' aria-label='failure' />
 						<Message.Content>
 							<Message.Header>Error</Message.Header>
-              Please fill out all fields!
+							Please fill out all fields!
 						</Message.Content>
 					</S.Message>
 				)}
@@ -205,7 +203,7 @@ const SSUIForm = ({
 	)
 }
 
-SSUIForm.propTypes = {
+ContactForm.propTypes = {
 	/** enhances semantics */
 	name: PropTypes.string,
 
@@ -227,5 +225,3 @@ SSUIForm.propTypes = {
 	/** amount of spacing around element */
 	padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
 }
-
-export default React.memo(SSUIForm)

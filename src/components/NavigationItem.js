@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { Menu } from 'semantic-ui-react'
 
-import Link from './Link'
+import { Link } from './Link'
 
 import { media, withoutProps } from '../utils'
 
@@ -38,7 +38,7 @@ S.Item = styled(FilteredItem)`
   }
 `
 
-const NavigationItem = ({
+export const NavigationItem = ({
 	as = 'a',
 	link = '',
 	stacked = false,
@@ -89,5 +89,3 @@ NavigationItem.propTypes = {
 	/** primary content, usually string, used as link if link not provided */
 	children: PropTypes.node.isRequired,
 }
-
-export default React.memo(NavigationItem)

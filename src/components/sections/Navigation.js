@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { Container, Menu, Segment } from 'semantic-ui-react'
-import NavigationItem from '../NavigationItem'
-import NavigationLogo from '../NavigationLogo'
+import { NavigationItem } from '../NavigationItem'
+import { NavigationLogo } from '../NavigationLogo'
 
 import { withNewProps, withoutProps } from '../../utils'
 
@@ -24,7 +24,7 @@ S.Menu = styled(Menu)`
 `
 
 // TODO: add sticky header
-const Navigation = ({
+export const Navigation = ({
 	as = 'a',
 	size = undefined,
 	text = false,
@@ -97,8 +97,5 @@ Navigation.propTypes = {
 	children: PropTypes.node,
 }
 
-const NavigationMemo = React.memo(Navigation)
-NavigationMemo.Item = NavigationItem
-NavigationMemo.Logo = NavigationLogo
-
-export default NavigationMemo
+Navigation.Item = NavigationItem
+Navigation.Logo = NavigationLogo

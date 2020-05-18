@@ -8,7 +8,7 @@ import {
 	Header,
 	Segment,
 } from 'semantic-ui-react'
-import Blurb from '../Blurb'
+import { Blurb } from '../Blurb'
 
 import {
 	media,
@@ -88,7 +88,7 @@ S.GridCol = styled(GridColFiltered)`
 	`};
 `
 
-const Blurbs = ({
+export const Blurbs = ({
 	title,
 	content,
 	fullWidth = false,
@@ -167,8 +167,4 @@ Blurbs.propTypes = {
 	children: PropTypes.node,
 }
 
-// prevent error of accidentally double memoizing components
-const BlurbsMemo = React.memo(Blurbs)
-BlurbsMemo.Item = Blurb
-
-export default BlurbsMemo
+Blurbs.Item = Blurb

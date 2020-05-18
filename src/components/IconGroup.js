@@ -7,31 +7,31 @@ import { paddingMap, withNewProps } from '../utils'
 const S = {} // styled-components namespace
 
 S.Groups = styled.div`
-  display: flex;
-  justify-content: ${({ justify }) => justify};
-  
-  ${({ padded, padding }) => (
+	display: flex;
+	justify-content: ${({ justify }) => justify};
+	
+	${({ padded, padding }) => (
 		(padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
-    (padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
-    (padded && `padding: ${paddingMap[padding]} 0`)
+		(padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
+		(padded && `padding: ${paddingMap[padding]} 0`)
 	)};
 `
 
 S.Group = styled.div`
-  display: flex;
-  margin: 0;
-  padding: 0 ${paddingMap.compact};
+	display: flex;
+	margin: 0;
+	padding: 0 ${paddingMap.compact};
 
-  &:first-child {
-    padding-left: 0;
-  }
+	&:first-child {
+		padding-left: 0;
+	}
 
-  &:last-child {
-    padding-right: 0;
-  }
+	&:last-child {
+		padding-right: 0;
+	}
 `
 
-const IconGroup = ({
+export const IconGroup = ({
 	justify = 'initial',
 	padded = false,
 	padding = 'tight',
@@ -45,7 +45,7 @@ const IconGroup = ({
 		padding={padding}
 		className={className}
 	>
-		{React.Children.map(children, Child => (
+		{React.Children.map(children, (Child) => (
 			<S.Group>
 				{withNewProps(Child, rest)}
 			</S.Group>
@@ -69,5 +69,3 @@ IconGroup.propTypes = {
 	/** primary content of icon(s) */
 	children: PropTypes.node.isRequired,
 }
-
-export default React.memo(IconGroup)
