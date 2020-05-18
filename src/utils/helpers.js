@@ -83,11 +83,10 @@ export const encode = data => Object.entries(data)
  * overwriting the original props (preserves immutability).
  *
  * @param {React.ReactElement<P>} [element] - instance target to receive new props
- * @param {Record<string, any>} props - object of new props
- * @returns {false | React.ReactElement<P & P2>} cloned React Element with shallowly merged props
+ * @param {{}} [props] - object of new props
+ * @returns {false | React.ReactElement<P & props>} cloned React Element with shallowly merged props
  * @requires `react`
- * @template P - props obj of input Element
- * @template P2 - props obj to merge
+ * @template {{}} P - props obj
  * @example
  *
  * withNewProps(<Container prop0='val0' />, { prop1: 'val1', prop2: 'val2' })
@@ -119,15 +118,15 @@ const getComponentName = ({ displayName, name }) => displayName || name || 'Comp
  * Technical: closes over input Component and coerces rendered EnhancedComponent element
  * to Component.type.
  *
- * @param {React.ElementType<P>} Component - target to control props of
- * @param {PK} propKeys - array of prop keys to control
- * @returns {(props: React.PropsWithChildren<P>, ref: React.Ref<T>) => React.ReactElement<Omit<P, PK>, T>} ref forwarding function that removes unwanted `propKeys` from original props
+ * @param {React.ComponentType<{ children?: any; ref?: any }>} Component - tgt to control props of
+ * @param {string[]} propKeys - array of prop keys to block
+ * @returns {React.ForwardRefExoticComponent<Pick<{ [x: string]: any; children: any}, React.ReactText> & React.RefAttributes<T> & Record<string, any>>} ref forwarding function that removes
+ * unwanted `propKeys` from original props
  * @requires `react` && usually `styled-components`
  * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
  * @todo check out making curried like this: https://codesandbox.io/s/l50mlwqo1q
  * @template {{}} P - props from run-time inner calling component
  * @template {string} T - type of run-time inner calling component
- * @template {string[]} PK - type of run-time inner calling component
  * @example
  *
  * const ContainerWithPassThrough = ({ className, ...rest }) => (
@@ -152,10 +151,12 @@ const getComponentName = ({ displayName, name }) => displayName || name || 'Comp
 export const withoutProps = (Component, propKeys = []) => {
 	// facilitate debugging with named func
 	const FilteredComponent = ({ children, ...rest }, ref) => {
-		const filtered = Object.fromEntries(Object.entries(rest)
+		const filteredProps = Object.fromEntries(Object.entries(rest)
 			.filter(([key]) => !propKeys.includes(key)))
 
-		return <Component ref={ref} {...filtered}>{children}</Component>
+		// /** @returns {Writeable<out>} */
+		// /** @type {JSX.Element & { name?: string }} */
+		return <Component ref={ref} {...filteredProps}>{children}</Component>
 	}
 
 	// attach "FilteredProps" tag in React Dev Tools v5
@@ -163,7 +164,8 @@ export const withoutProps = (Component, propKeys = []) => {
 
 	// ensure ref points to Element NOT functional FilteredComponent
 	const result = React.forwardRef(FilteredComponent)
-	result.name = Component.name // pass thru original name tags
+	// FIXME: type error, readonly prop
+	// result.name = Component.name // pass thru original name tags
 
 	return result
 }

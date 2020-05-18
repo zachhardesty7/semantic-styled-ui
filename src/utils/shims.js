@@ -2,7 +2,7 @@
  * Convert an iterable of key, value pair arrays to an object, reverses Object.entries(),
  * shim for Object.fromEntries().
  *
- * @param {Iterable<[string, any]>} iter - iterable of tuple arrays of key, value pairs
+ * @param {[string, any][]} iter - iterable of tuple arrays of key, value pairs
  * @returns {Record<string, any>} obj with key, value pairs assigned
  */
 export const ObjectFromEntries = (iter) => {

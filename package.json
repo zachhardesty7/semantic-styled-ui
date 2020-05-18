@@ -1,6 +1,6 @@
 {
 	"name": "semantic-styled-ui",
-	"version": "0.9.14",
+	"version": "0.9.15",
 	"description": "Set of UI components based of Semantic UI with Styled Components",
 	"keywords": [
 		"semantic",
@@ -48,7 +48,7 @@
 		"build": "yarn run clean && yarn run babel",
 		"dev": "yarn run build && yarn link",
 		"pub:yarn": "yarn run build && yarn publish",
-		"pub": "yarn run build && npm publish"
+		"pub": "yarn clean && yarn babel && npm publish"
 	},
 	"dependencies": {
 		"prop-types": "^15.7.2",
