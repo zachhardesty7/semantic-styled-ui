@@ -1,8 +1,8 @@
-# 2 width tab indentation
+# 2 width spaces indentation
 [*]
-indent_style = tab
+indent_style = space
 indent_size = 2
 
 [.*]
-indent_style = tab
+indent_style = space
 indent_size = 2

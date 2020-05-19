@@ -9,21 +9,21 @@ import { paddingMap, withNewProps, withoutProps } from '../utils'
 const S = {} // styled-components namespace
 
 S.Section = styled.section`
-	text-align: ${({ align }) => align};
-	padding-bottom: ${paddingMap.tight};
+  text-align: ${({ align }) => align};
+  padding-bottom: ${paddingMap.tight};
 `
 
 const FilteredHeader = withoutProps(Header, ['color'])
 S.Header = styled(FilteredHeader)`
-	z-index: 10;
-	position: relative;
+  z-index: 10;
+  position: relative;
   color: ${({ color }) => color};
   font-size: 2em;
 `
 
 S.Content = styled(Header.Content)`
-	z-index: 10;
-	position: relative;
+  z-index: 10;
+  position: relative;
 `
 
 S.BackgroundImage = styled.img`
@@ -40,66 +40,66 @@ S.BackgroundImage = styled.img`
 `
 
 export const Blurb = ({
-	as = 'h4',
-	icon,
-	backgroundImage,
-	align = 'center',
-	header,
-	color = '',
-	children,
-	...rest
+  as = 'h4',
+  icon,
+  backgroundImage,
+  align = 'center',
+  header,
+  color = '',
+  children,
+  ...rest
 }) => (
-	<S.Section align={align} {...rest}>
-		{backgroundImage && (
-			<S.BackgroundImage as={backgroundImage.type} {...backgroundImage.props}>
-				{backgroundImage.children}
-			</S.BackgroundImage>
-		)}
+  <S.Section align={align} {...rest}>
+    {backgroundImage && (
+      <S.BackgroundImage as={backgroundImage.type} {...backgroundImage.props}>
+        {backgroundImage.children}
+      </S.BackgroundImage>
+    )}
 
-		{withNewProps(icon, { align })}
-		<S.Header
-			forwardedAs={as}
-			color={color}
-		>
-			{header}
-		</S.Header>
-		<S.Content>{children}</S.Content>
-	</S.Section>
+    {withNewProps(icon, { align })}
+    <S.Header
+      forwardedAs={as}
+      color={color}
+    >
+      {header}
+    </S.Header>
+    <S.Content>{children}</S.Content>
+  </S.Section>
 )
 
 Blurb.propTypes = {
-	/** content above header */
-	icon: PropTypes.node,
+  /** content above header */
+  icon: PropTypes.node,
 
-	/** element representing image to cover background */
-	backgroundImage: PropTypes.node,
+  /** element representing image to cover background */
+  backgroundImage: PropTypes.node,
 
-	/** primary content (styled as text) */
-	header: PropTypes.node,
+  /** primary content (styled as text) */
+  header: PropTypes.node,
 
-	/** apply css supported color string to Header text, overrides theme / default */
-	color: PropTypes.string,
+  /** apply css supported color string to Header text, overrides theme / default */
+  color: PropTypes.string,
 
-	/**
-  * element type to render `header` as (string or function)
-  *
-  * supports HTML tag as a string or React component definition
-  *
-  * @example
-  *
-  * 'div'
-  * 'section'
-  * {ReactComponent}
-  * Card
-  */
-	as: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.elementType,
-	]),
+  /**
+   * element type to render `header` as (string or function)
+   *
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   *
+   * 'div'
+   * 'section'
+   * {ReactComponent}
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.elementType,
+  ]),
 
-	/** position / justification of all content */
-	align: PropTypes.oneOf(['start', 'center', 'end']),
+  /** position / justification of all content */
+  align: PropTypes.oneOf(['start', 'center', 'end']),
 
-	/** secondary content of body */
-	children: PropTypes.node,
+  /** secondary content of body */
+  children: PropTypes.node,
 }

@@ -22,8 +22,8 @@ import { defaultColors } from './colors'
  *    <StyledElement margin='2em' />
  * )
  */
-export const getProperty = property => preset => props => ({
-	[property]: props[property] || props.theme?.[preset] || defaultColors[preset],
+export const getProperty = (property) => (preset) => (props) => ({
+  [property]: props[property] || props.theme?.[preset] || defaultColors[preset],
 })
 
 /**
@@ -48,11 +48,13 @@ export const getProperty = property => preset => props => ({
  *
  * <StyledElement marginHover='2em' />
  */
-export const getHoverProperty = property => preset => props => css`
+/* eslint-disable max-len */
+export const getHoverProperty = (property) => (preset) => (props) => css`
   &:hover {
     ${camelToKebab(property.slice(0, property.indexOf('Hover')))}: ${props[property] || props.theme?.[preset] || defaultColors[preset]};
   }
 `
+/* eslint-enable max-len */
 
 /**
  * Applies css property 'color' to styled-component with backup preset from theme.

@@ -7,15 +7,15 @@ import { NavigationItem } from './NavigationItem'
 import { media } from '../utils'
 
 const logoSizes = {
-	small: 90,
-	base: 155,
-	large: 215,
+  small: 90,
+  base: 155,
+  large: 215,
 }
 
 const logoSizesSVG = {
-	small: 4,
-	base: 6,
-	large: 8,
+  small: 4,
+  base: 6,
+  large: 8,
 }
 
 const S = {} // styled-components namespace
@@ -51,68 +51,68 @@ S.Logo = styled.div`
     }
   }
 
-	svg {
-		padding: 0.6em;
-		vertical-align: middle;
-		width: ${({ logoSize }) => logoSizesSVG[logoSize]}em;
+  svg {
+    padding: 0.6em;
+    vertical-align: middle;
+    width: ${({ logoSize }) => logoSizesSVG[logoSize]}em;
 
     @media ${media.phone} {
       width: ${({ logoSize }) => logoSizesSVG[logoSize] * 0.8}em;
     }
-	}
+  }
 `
 
 export const NavigationLogo = ({
-	as = 'a',
-	link = '/',
-	stacked = false,
-	logoSize = 'base',
-	className = '',
-	children,
-	...rest
+  as = 'a',
+  link = '/',
+  stacked = false,
+  logoSize = 'base',
+  className = '',
+  children,
+  ...rest
 }) => (
-	<S.Wrapper stacked={stacked} className={className}>
-		<NavigationItem
-			as={as}
-			link={link}
-			stacked={stacked}
-			pointing={false}
-			{...rest}
-		>
-			<S.Logo as={children.type} {...children.props} logoSize={logoSize} />
-		</NavigationItem>
-	</S.Wrapper>
+  <S.Wrapper stacked={stacked} className={className}>
+    <NavigationItem
+      as={as}
+      link={link}
+      stacked={stacked}
+      pointing={false}
+      {...rest}
+    >
+      <S.Logo as={children.type} {...children.props} logoSize={logoSize} />
+    </NavigationItem>
+  </S.Wrapper>
 )
 
 NavigationLogo.propTypes = {
-	/**
-  * element type to render as (string or function)
-  * supports HTML tag as a string or React component definition
-  *
-  * @example
-  *
-  * 'div'
-  * 'section'
-  * ReactComponent
-  * Card
-  */
-	as: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.elementType,
-	]),
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   *
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.elementType,
+  ]),
 
-	/** anchor link (prefixed with "#") or standard href */
-	link: PropTypes.string,
+  /** anchor link (prefixed with "#") or standard href */
+  link: PropTypes.string,
 
-	/** required to support stacking logo */
-	stacked: PropTypes.bool,
+  /** required to support stacking logo */
+  stacked: PropTypes.bool,
 
-	/** simple em based size */
-	logoSize: PropTypes.oneOf(['small', 'base', 'large']),
+  /** simple em based size */
+  logoSize: PropTypes.oneOf(['small', 'base', 'large']),
 
-	/** additional or pass thru classes for composition */
-	className: PropTypes.string,
+  /** additional or pass thru classes for composition */
+  className: PropTypes.string,
 
-	/** primary content, usually string, used as link if link not provided */
-	children: PropTypes.element.isRequired,
+  /** primary content, usually string, used as link if link not provided */
+  children: PropTypes.element.isRequired,
 }

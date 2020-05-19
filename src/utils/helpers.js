@@ -11,12 +11,12 @@ import React from 'react'
  * // => 'AnArbitraryStringInput'
  */
 export const toJoinedTitleCase = (str = '') => (
-	str
-		.replace(
-			/\w*/g,
-			txt => txt.charAt(0).toUpperCase() + txt.substr(1)
-		)
-		.replace(/\W/g, '')
+  str
+    .replace(
+      /\w*/g,
+      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1),
+    )
+    .replace(/\W/g, '')
 )
 
 /**
@@ -30,10 +30,10 @@ export const toJoinedTitleCase = (str = '') => (
  * @returns {number} ms equal to scroll distance capped at upper and lower bounds of 800 & 2000
  */
 export const calcDuration = (scrollDistanceInPx) => {
-	const min = 800
-	const max = 2000
+  const min = 800
+  const max = 2000
 
-	return Math.min(Math.max(Math.abs(scrollDistanceInPx), min), max)
+  return Math.min(Math.max(Math.abs(scrollDistanceInPx), min), max)
 }
 
 /**
@@ -74,9 +74,9 @@ export const camelToKebab = (str = '') => str.replace(/([A-Za-z])(?=[A-Z])/g, '$
  * encode({ key1: 'val1', key2: 'val2' })
  * // => 'key1=val1&key2=val2'
  */
-export const encode = data => Object.entries(data)
-	.map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
-	.join('&')
+export const encode = (data) => Object.entries(data)
+  .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
+  .join('&')
 
 /**
  * Soft merge new props into a React Component without
@@ -96,7 +96,7 @@ export const encode = data => Object.entries(data)
  *
  */
 export const withNewProps = (element, props = {}) => (
-	element && React.cloneElement(element, { ...props, ...element.props })
+  element && React.cloneElement(element, { ...props, ...element.props })
 )
 
 /**
@@ -149,42 +149,40 @@ const getComponentName = ({ displayName, name }) => displayName || name || 'Comp
  * // => <div className='con' /> // with a blue color
  */
 export const withoutProps = (Component, propKeys = []) => {
-	// facilitate debugging with named func
-	const FilteredComponent = ({ children, ...rest }, ref) => {
-		const filteredProps = Object.fromEntries(Object.entries(rest)
-			.filter(([key]) => !propKeys.includes(key)))
+  // facilitate debugging with named func
+  const FilteredComponent = ({ children, ...rest }, ref) => {
+    const filteredProps = Object.fromEntries(Object.entries(rest)
+      .filter(([key]) => !propKeys.includes(key)))
 
-		// /** @returns {Writeable<out>} */
-		// /** @type {JSX.Element & { name?: string }} */
-		return <Component ref={ref} {...filteredProps}>{children}</Component>
-	}
+    return <Component ref={ref} {...filteredProps}>{children}</Component>
+  }
 
-	// attach "FilteredProps" tag in React Dev Tools v5
-	FilteredComponent.displayName = `FilteredProps(${getComponentName(Component)})`
+  // attach "FilteredProps" tag in React Dev Tools v5
+  FilteredComponent.displayName = `FilteredProps(${getComponentName(Component)})`
 
-	// ensure ref points to Element NOT functional FilteredComponent
-	const result = React.forwardRef(FilteredComponent)
-	// FIXME: type error, readonly prop
-	// result.name = Component.name // pass thru original name tags
+  // ensure ref points to Element NOT functional FilteredComponent
+  const result = React.forwardRef(FilteredComponent)
+  // FIXME: type error, readonly prop
+  // result.name = Component.name // pass thru original name tags
 
-	return result
+  return result
 }
 
 // TODO: come up with method to prevent creating an additional element in DevTools v5
 // export const withoutPropsImpure = (Component, propKeys = []) => {
-// 	// facilitate debugging with named func
-// 	const OldComponent = Component
-// 	Component.apply()
-// 	Component = ({ children, ...rest }) => {
-// 		const filteredProps = Object.fromEntries(Object.entries(rest)
-// 			.filter(([key]) => !propKeys.includes(key)))
+//   // facilitate debugging with named func
+//   const OldComponent = Component
+//   Component.apply()
+//   Component = ({ children, ...rest }) => {
+//     const filteredProps = Object.fromEntries(Object.entries(rest)
+//       .filter(([key]) => !propKeys.includes(key)))
 
-// 		return <OldComponent {...filtered}>{children}</OldComponent>
-// 	}
+//     return <OldComponent {...filtered}>{children}</OldComponent>
+//   }
 
-// 	// ensure ref points to Component NOT functional FilteredPropsComponent
-// 	return Component.bind(this, )
+//   // ensure ref points to Component NOT functional FilteredPropsComponent
+//   return Component.bind(this)
 // }
 
 // helpful for testing
-export const sleep = ms => data => new Promise(resolve => setTimeout(() => resolve(data), ms))
+export const sleep = (ms) => (data) => new Promise((resolve) => setTimeout(() => resolve(data), ms))

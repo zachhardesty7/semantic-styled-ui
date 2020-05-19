@@ -25,76 +25,76 @@ S.Menu = styled(Menu)`
 
 // TODO: add sticky header
 export const Navigation = ({
-	as = 'a',
-	size = undefined,
-	text = false,
-	compact = true,
-	secondary = true,
-	pointing = true,
-	centered = true,
-	children = null,
-	...rest
+  as = 'a',
+  size = undefined,
+  text = false,
+  compact = true,
+  secondary = true,
+  pointing = true,
+  centered = true,
+  children = null,
+  ...rest
 }) => (
-	<S.Segment
-		forwardedAs='header'
-		pointing={pointing}
-		basic
-		vertical
-		{...rest}
-	>
-		<Container textAlign={centered ? 'center' : undefined}>
-			<S.Menu
-				forwardedAs='nav'
-				size={size}
-				text={text}
-				compact={compact}
-				secondary={secondary}
-				pointing={pointing}
-			>
-				{/* apply tag && pointing to all children */}
-				{React.Children.map(children, Child => withNewProps(Child, { as, pointing }))}
-			</S.Menu>
-		</Container>
-	</S.Segment>
+  <S.Segment
+    forwardedAs='header'
+    pointing={pointing}
+    basic
+    vertical
+    {...rest}
+  >
+    <Container textAlign={centered ? 'center' : undefined}>
+      <S.Menu
+        forwardedAs='nav'
+        size={size}
+        text={text}
+        compact={compact}
+        secondary={secondary}
+        pointing={pointing}
+      >
+        {/* apply tag && pointing to all children */}
+        {React.Children.map(children, (Child) => withNewProps(Child, { as, pointing }))}
+      </S.Menu>
+    </Container>
+  </S.Segment>
 )
 
 Navigation.propTypes = {
-	/**
-  * element type to render as (string or function)
-  * supports HTML tag as a string or React component definition
-  *
-  * @example
-  *
-  * 'div'
-  * 'section'
-  * ReactComponent
-  * Card
-  */
-	as: PropTypes.oneOfType([
-		PropTypes.string,
-		PropTypes.elementType,
-	]),
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   *
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.elementType,
+  ]),
 
-	/** size using "em" units */
-	size: PropTypes.oneOf(['small', 'tiny', 'mini', 'large', 'huge', 'massive']),
+  /** size using "em" units */
+  size: PropTypes.oneOf(['small', 'tiny', 'mini', 'large', 'huge', 'massive']),
 
-	/** format to be used with text items */
-	text: PropTypes.bool,
+  /** format to be used with text items */
+  text: PropTypes.bool,
 
-	/** reduce whitespace */
-	compact: PropTypes.bool,
+  /** reduce whitespace */
+  compact: PropTypes.bool,
 
-	/** reduce prominence */
-	secondary: PropTypes.bool,
+  /** reduce prominence */
+  secondary: PropTypes.bool,
 
-	/** indicate active page */
-	pointing: PropTypes.bool,
+  /** indicate active page */
+  pointing: PropTypes.bool,
 
-	/** horizontal position */
-	centered: PropTypes.bool,
+  /** horizontal position */
+  centered: PropTypes.bool,
 
-	/** collection of items to render as menu */
-	children: PropTypes.node,
+  /** collection of items to render as menu */
+  children: PropTypes.node,
 }
 
 Navigation.Item = NavigationItem

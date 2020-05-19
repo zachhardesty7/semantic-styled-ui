@@ -26,63 +26,63 @@ S.Dimmer = styled(DimmerFiltered)`
 const ImageFiltered = withoutProps('img', ['fill'])
 S.Image = styled(ImageFiltered)`
   ${({ fill }) => (
-		fill ? (
-			css`
+    fill ? (
+      css`
         height: 100%;
         object-fit: cover;
       `
-		) : (
-			css`
+    ) : (
+      css`
         top: 50%;
         transform: translateY(-50%);
         position: relative;
       `
-		)
-	)};
+    )
+  )};
 `
 
 export const PortfolioItem = ({
-	title = '',
-	subtitle = '',
-	fill = true,
-	children = null,
-	...rest
+  title = '',
+  subtitle = '',
+  fill = true,
+  children = null,
+  ...rest
 }) => {
-	const [hovered, setHovered] = useState(false)
+  const [hovered, setHovered] = useState(false)
 
-	return (
-		<Grid.Column {...rest}>
-			{children && (
-				<S.Dimmable
-					dimmed={hovered}
-					onMouseEnter={() => setHovered(true)}
-					onMouseLeave={() => setHovered(false)}
-				>
-					{/* REVIEW: consider a dimmable prop to use dimmer
+  return (
+    <Grid.Column {...rest}>
+      {children && (
+        <S.Dimmable
+          dimmed={hovered}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          {/* REVIEW: consider a dimmable prop to use dimmer
           conditionally or that wraps the image using a HOC */}
-					<S.Image fill={fill} centered as={children.type} {...children.props} />
-					{(title || subtitle) && (
-						<S.Dimmer inverted simple dimmed={hovered}>
-							{title && <Header as='h2'>{title}</Header>}
-							{subtitle && <Header as='h3'>{subtitle}</Header>}
-						</S.Dimmer>
-					)}
-				</S.Dimmable>
-			)}
-		</Grid.Column>
-	)
+          <S.Image fill={fill} centered as={children.type} {...children.props} />
+          {(title || subtitle) && (
+            <S.Dimmer inverted simple dimmed={hovered}>
+              {title && <Header as='h2'>{title}</Header>}
+              {subtitle && <Header as='h3'>{subtitle}</Header>}
+            </S.Dimmer>
+          )}
+        </S.Dimmable>
+      )}
+    </Grid.Column>
+  )
 }
 
 PortfolioItem.propTypes = {
-	/** primary content */
-	title: PropTypes.node,
+  /** primary content */
+  title: PropTypes.node,
 
-	/** secondary content */
-	subtitle: PropTypes.node,
+  /** secondary content */
+  subtitle: PropTypes.node,
 
-	/** determine when to cover the entire space with hidden overflow */
-	fill: PropTypes.bool,
+  /** determine when to cover the entire space with hidden overflow */
+  fill: PropTypes.bool,
 
-	/** image-based content */
-	children: PropTypes.element,
+  /** image-based content */
+  children: PropTypes.element,
 }
