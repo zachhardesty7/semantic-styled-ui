@@ -14,6 +14,8 @@
   ],
   "homepage": "https://github.com/zachhardesty7/semantic-styled-ui",
   "bugs": "https://github.com/zachhardesty7/semantic-styled-ui/issues",
+  "main": "dist/index.js",
+  "module": "dist/my-library.es.js",
   "license": "MIT",
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
   "repository": "github:zachhardesty7/semantic-styled-ui",
@@ -24,22 +26,19 @@
   "eslintConfig": {
     "extends": "hardesty"
   },
-	"scripts": {
-		"register:react": "scripty",
-		"register:react-dom": "scripty",
-		"register:styled-components": "scripty",
-		"register:semantic-ui-css": "scripty",
-		"register": "scripty",
-		"link:all": "yarn link react && yarn link react-dom && yarn link styled-components && yarn link semantic-ui-css",
-		"link:gc": "export LINKSSUI=../gulf-corp/node_modules || set LINKSSUI=../gulf-corp/node_modules&& yarn register && yarn link:all",
-		"link:cd": "export LINKSSUI=../connectdoor/website/node_modules || set LINKSSUI=../connectdoor/website/node_modules&& yarn register && yarn link:all",
-		"link:zh": "export LINKSSUI=../zachhardesty.com/node_modules || set LINKSSUI=../zachhardesty.com/node_modules&& yarn register && yarn link:all",
-		"link:ls": "echo $(tput bold)currently linked pkgs, run `yarn link:lsa` for pkg locations:$(tput sgr0); (ls -l node_modules; ls -l node_modules/@*) | grep ^l | grep -o \"[[:alpha:]][[:alpha:]][[:alpha:]] [[:digit:]][[:digit:]].*$\"",
-		"link:lsa": "echo $(tput bold)linkable / registered pkgs:$(tput sgr0); ls -la ~/.config/yarn/link/ | grep ^l | grep -o \"[[:alpha:]][[:alpha:]][[:alpha:]] [[:digit:]][[:digit:]].*$\"",
-		"styleguide": "styleguidist server",
-		"styleguide:build": "styleguidist build",
-		"clean": "rimraf dist/*",
-		"babel": "babel ./src --out-dir ./dist --copy-files",
+  "scripts": {
+    "link:ls": "sh scripts/ls.sh",
+    "link:lsa": "sh scripts/lsa.sh",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
+    "clean": "rimraf dist/*",
+    "babel": "babel ./src --out-dir ./dist --copy-files",
+    "build": "rollup -c",
+    "watch": "rollup --config --watch --sourcemap",
+    "dev": "yarn clean && rollup -c --watch",
+    "pub:yarn": "yarn build && yarn publish",
+    "pub": "yarn build && npm publish"
+  },
   "dependencies": {
     "prop-types": "^15.7.2",
     "semantic-ui-react": "^0.88.2"

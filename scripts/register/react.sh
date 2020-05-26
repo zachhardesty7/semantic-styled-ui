@@ -1,1 +1,0 @@
-cd ${LINKSSUI}/react && (yarn unlink && yarn link) || yarn link
