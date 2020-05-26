@@ -1,44 +1,32 @@
 module.exports = {
-	presets: [
-		[
-			'@babel/preset-env', {
-				loose: true,
-				// useBuiltIns: 'usage', // TODO: currently breaks things in Gatsby projects
-				shippedProposals: true,
-				modules: false,
-			},
-		],
-		[
-			'@babel/preset-react', {
-				useBuiltIns: true,
-				pragma: 'React.createElement',
-			},
-		],
-	],
-	plugins: [
-		'@babel/plugin-proposal-export-default-from',
-		[
-			'@babel/plugin-transform-runtime', {
-				useESModules: true,
-			},
-		],
-		[
-			'@quickbaseoss/babel-plugin-styled-components-css-namespace', {
-				cssNamespace: '&&&&&&',
-			},
-		],
-		[
-			'styled-components', {
-				pure: true,
-				fileName: false,
-				displayName: false,
-			},
-		],
-		[
-			'@babel/plugin-transform-template-literals', {
-				loose: true,
-			},
-		],
-		'@babel/plugin-proposal-optional-chaining',
-	],
+  presets: [
+    [
+      '@babel/preset-env', {
+        loose: true,
+        // useBuiltIns: 'usage', // TODO: currently breaks things in Gatsby projects
+        shippedProposals: true,
+        modules: false,
+      },
+    ],
+    [
+      '@babel/preset-react', {
+        useBuiltIns: true,
+        pragma: 'React.createElement',
+      },
+    ],
+  ],
+  plugins: [
+    [
+      '@quickbaseoss/babel-plugin-styled-components-css-namespace', {
+        cssNamespace: '&&&&&&',
+      },
+    ],
+    [
+      'styled-components', {
+        pure: true,
+        fileName: false,
+        displayName: false,
+      },
+    ],
+  ],
 }

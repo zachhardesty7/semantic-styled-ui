@@ -10,6 +10,4 @@ import HeroButton from '../src/components/HeroButton';
       Click me!
     </HeroButton>
   )}
->
-
-</Hero>
+/>
