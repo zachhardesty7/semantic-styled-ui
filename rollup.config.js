@@ -12,13 +12,16 @@ const onwarn = (warning, rollupWarn) => {
       ignoredCode: 'CIRCULAR_DEPENDENCY',
       ignoredPath: 'node_modules/semantic-ui-react/dist/',
     },
+    {
+      ignoredCode: 'THIS_IS_UNDEFINED',
+    },
   ]
 
   // only show warning when code and path don't match
   // anything in above list of ignored warnings
   if (!ignoredWarnings.some(({ ignoredCode, ignoredPath }) => (
     warning.code === ignoredCode &&
-    warning.importer.includes(path.normalize(ignoredPath))))
+    (!ignoredPath || warning.importer.includes(path.normalize(ignoredPath)))))
   ) {
     rollupWarn(warning)
   }
@@ -78,7 +81,7 @@ const config = {
     name: 'SSUI',
     globals,
   },
-  external: ['styled-components', 'react', 'react-dom', 'react/jsx-dev-runtime'],
+  external: ['styled-components', 'react', 'react-dom'],
   plugins: [
     babel({ babelHelpers: 'bundled' }),
     resolve({ extensions: ['.js', '.jsx'] }),

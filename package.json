@@ -16,6 +16,7 @@
   "bugs": "https://github.com/zachhardesty7/semantic-styled-ui/issues",
   "main": "dist/bundle.umd.js",
   "module": "dist/bundle.esm.js",
+  "typings": "types.d.ts",
   "license": "MIT",
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
   "repository": "github:zachhardesty7/semantic-styled-ui",
@@ -36,7 +37,7 @@
     "build": "yarn clean && rollup --config --minifyInternalExports --compact --environment ENV_MODE:prod",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
-    "prepublish": "safe-publish-latest",
+    "prepublishOnly": "safe-publish-latest",
     "pub:yarn": "yarn build && yarn publish",
     "pub": "yarn build && npm publish"
   },
