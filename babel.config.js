@@ -2,6 +2,7 @@ module.exports = {
   presets: [
     [
       '@babel/preset-env', {
+        targets: '> 0.25%, not dead',
         loose: true,
         // useBuiltIns: 'usage', // TODO: currently breaks things in Gatsby projects
         shippedProposals: true,
@@ -10,7 +11,6 @@ module.exports = {
     ],
     [
       '@babel/preset-react', {
-        useBuiltIns: true,
         pragma: 'React.createElement',
       },
     ],

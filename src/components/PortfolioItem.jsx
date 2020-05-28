@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Dimmer, Grid, Header } from 'semantic-ui-react'
-import { withoutProps } from '../utils'
 
 const S = {} // styled-components namespace
 
@@ -13,20 +12,18 @@ S.Dimmable = styled(Dimmer.Dimmable)`
   height: 100%;
 `
 
-const DimmerFiltered = withoutProps(Dimmer, ['dimmed'])
-S.Dimmer = styled(DimmerFiltered)`
-  ${({ dimmed }) => !dimmed && 'visibility: hidden'};
+S.Dimmer = styled(Dimmer)`
+  ${({ $dimmed }) => !$dimmed && 'visibility: hidden'};
   display: flex;
-  
+
   .content .header {
     color: rgba(0,0,0,.87);
   }
 `
 
-const ImageFiltered = withoutProps('img', ['fill'])
-S.Image = styled(ImageFiltered)`
-  ${({ fill }) => (
-    fill ? (
+S.Image = styled.img`
+  ${({ $fill }) => (
+    $fill ? (
       css`
         height: 100%;
         object-fit: cover;
@@ -60,9 +57,9 @@ export const PortfolioItem = ({
         >
           {/* REVIEW: consider a dimmable prop to use dimmer
           conditionally or that wraps the image using a HOC */}
-          <S.Image fill={fill} centered as={children.type} {...children.props} />
+          <S.Image $fill={fill} centered as={children.type} {...children.props} />
           {(title || subtitle) && (
-            <S.Dimmer inverted simple dimmed={hovered}>
+            <S.Dimmer inverted simple $dimmed={hovered}>
               {title && <Header as='h2'>{title}</Header>}
               {subtitle && <Header as='h3'>{subtitle}</Header>}
             </S.Dimmer>

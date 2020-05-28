@@ -6,9 +6,6 @@ import { defaultColors } from './colors'
  * Get a function to execute inside styled components that applies target
  * css property to styled-component with backup preset from theme.
  *
- * **NOTE**: It's often necessary to prevent these props from being passed to the
- * underlying DOM element, use helper function `withoutProps`.
- *
  * @param {string} property - css property to target
  * @returns {(preset: DefaultColor) => (props: Record<string, any>) => Record<string, any>}
  * function that destructures `property` and applies it inside style object
@@ -23,15 +20,12 @@ import { defaultColors } from './colors'
  * )
  */
 export const getProperty = (property) => (preset) => (props) => ({
-  [property]: props[property] || props.theme?.[preset] || defaultColors[preset],
+  [property.slice(1)]: props[property] || props.theme?.[preset] || defaultColors[preset],
 })
 
 /**
  * Get a function to execute inside styled components that applies target
  * css property as hover style to styled-component with backup preset from theme.
- *
- * **NOTE**: It's often necessary to prevent these props from being passed to the
- * underlying DOM element, use helper function `withoutProps`.
  *
  * **NOTE**: Input property and props require the word `Hover` appended to the end of the prop.
  *
@@ -51,16 +45,13 @@ export const getProperty = (property) => (preset) => (props) => ({
 /* eslint-disable max-len */
 export const getHoverProperty = (property) => (preset) => (props) => css`
   &:hover {
-    ${camelToKebab(property.slice(0, property.indexOf('Hover')))}: ${props[property] || props.theme?.[preset] || defaultColors[preset]};
+    ${camelToKebab(property.slice(1, property.indexOf('Hover')))}: ${props[property] || props.theme?.[preset] || defaultColors[preset]};
   }
 `
 /* eslint-enable max-len */
 
 /**
  * Applies css property 'color' to styled-component with backup preset from theme.
- *
- * **NOTE**: It's often necessary to prevent these props from being passed to the
- * underlying DOM element, use helper function `withoutProps`.
  *
  * @param preset - optional preset to use from theme prop
  * @returns function that destructures `property` and applies it inside style object
@@ -73,13 +64,10 @@ export const getHoverProperty = (property) => (preset) => (props) => css`
  *
  * <StyledElement color='red' />
  */
-export const getColor = getProperty('color')
+export const getColor = getProperty('$color')
 
 /**
  * applies css property 'backgroundColor' to styled-component with backup preset from theme
- *
- * **NOTE**: it's often necessary to prevent these props from being passed to the
- * underlying DOM element, use helper function `withoutProps`
  *
  * @param preset - optional preset to use from theme prop
  * @returns function that destructures `property` and applies it inside style object
@@ -92,13 +80,10 @@ export const getColor = getProperty('color')
  *
  * <StyledElement backgroundColor='red' />
  */
-export const getBackgroundColor = getProperty('backgroundColor')
+export const getBackgroundColor = getProperty('$backgroundColor')
 
 /**
  * applies css property 'color' to styled-component with backup preset from theme
- *
- * **NOTE**: it's often necessary to prevent these props from being passed to the
- * underlying DOM element, use helper function `withoutProps`
  *
  * **NOTE**: input property and props require the word `Hover` appended to the end of the prop
  *
@@ -114,13 +99,10 @@ export const getBackgroundColor = getProperty('backgroundColor')
  *
  * <StyledElement colorHover='red' />
  */
-export const getHoverColor = getHoverProperty('colorHover')
+export const getHoverColor = getHoverProperty('$colorHover')
 
 /**
  * applies css property 'backgroundColor' to styled-component with backup preset from theme
- *
- * **NOTE**: it's often necessary to prevent these props from being passed to the
- * underlying DOM element, use helper function `withoutProps`
  *
  * **NOTE**: input property and props require the word `Hover` appended to the end of the prop
  *
@@ -136,4 +118,4 @@ export const getHoverColor = getHoverProperty('colorHover')
  *
  * <StyledElement backgroundColorHover='red' />
  */
-export const getHoverBackgroundColor = getHoverProperty('backgroundColorHover')
+export const getHoverBackgroundColor = getHoverProperty('$backgroundColorHover')

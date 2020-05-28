@@ -35,7 +35,7 @@
     "babel": "babel ./src --out-dir ./dist --copy-files",
     "build": "rollup -c",
     "watch": "rollup --config --watch --sourcemap",
-    "dev": "yarn clean && rollup -c --watch",
+    "dev": "yarn clean && yarn watch",
     "pub:yarn": "yarn build && yarn publish",
     "pub": "yarn build && npm publish"
   },
@@ -61,7 +61,7 @@
     "babel-plugin-styled-components": "^1.10.7",
     "cross-env": "^7.0.2",
     "eslint": "^7.0.0",
-    "eslint-config-hardesty": "^1.9.0",
+    "eslint-config-hardesty": "^1.9.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-styleguidist": "^11.0.6",

@@ -14,7 +14,6 @@ import {
   defaultColors,
   getColor,
   media,
-  withoutProps,
 } from '../../utils'
 
 const sizes = {
@@ -32,17 +31,16 @@ const sizes = {
 
 const S = {}
 
-const FilteredSegment = withoutProps(Segment, ['size'])
-S.Segment = styled(FilteredSegment)`
-  padding-top: ${({ baseline, size }) => (
+S.Segment = styled(Segment)`
+  padding-top: ${({ baseline, $size }) => (
     baseline === 'top'
-      ? sizes.small[size]
-      : sizes.large[size]
+      ? sizes.small[$size]
+      : sizes.large[$size]
   )};
-  padding-bottom: ${({ baseline, size }) => (
+  padding-bottom: ${({ baseline, $size }) => (
     baseline === 'top'
-      ? sizes.large[size]
-      : sizes.small[size]
+      ? sizes.large[$size]
+      : sizes.small[$size]
   )};
 
   /* background overlay to dim and saturate */
@@ -65,19 +63,18 @@ S.Segment = styled(FilteredSegment)`
   }
 `
 
-const FilteredHeader = withoutProps(Header, ['inlineLogo', 'color'])
-S.BaseHeader = styled(FilteredHeader)`
+S.BaseHeader = styled(Header)`
   ${getColor('white')};
   font-display: fallback;
   font-weight: normal;
 `
 
 S.Title = styled(S.BaseHeader)`
-  ${({ inlineLogo }) => inlineLogo && 'display: inline-block'};
-  ${({ inlineLogo }) => inlineLogo && 'margin-bottom: 0'};
+  ${({ $inlineLogo }) => $inlineLogo && 'display: inline-block'};
+  ${({ $inlineLogo }) => $inlineLogo && 'margin-bottom: 0'};
   padding-right: 0.15em;
   font-size: 4.7em;
-  
+
   @media ${media.laptop} {
     font-size: 4em;
   }
@@ -91,7 +88,7 @@ S.Title = styled(S.BaseHeader)`
 `
 
 S.Subtitle = styled(S.BaseHeader)`
-  ${({ inlineLogo }) => inlineLogo && 'margin-top: 0.75em'};
+  ${({ $inlineLogo }) => $inlineLogo && 'margin-top: 0.75em'};
   font-size: 1.7rem;
 
   @media ${media.laptop} {
@@ -163,7 +160,7 @@ export const Hero = ({
     <S.Segment
       vertical
       baseline={baseline}
-      size={size}
+      $size={size}
       overlay={overlay}
       {...rest}
     >
@@ -186,11 +183,11 @@ export const Hero = ({
           )}
 
           {title && (
-            <S.Title forwardedAs='h1' color={color} inlineLogo={inlineLogo}>{title}</S.Title>
+            <S.Title forwardedAs='h1' $color={color} $inlineLogo={inlineLogo}>{title}</S.Title>
           )}
 
           {subtitle && (
-            <S.Subtitle forwardedAs='h2' color={color} inlineLogo={inlineLogo}>
+            <S.Subtitle forwardedAs='h2' $color={color} $inlineLogo={inlineLogo}>
               {subtitle}
             </S.Subtitle>
           )}

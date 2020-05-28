@@ -84,7 +84,7 @@ export const encode = (data) => Object.entries(data)
  *
  * @param {React.ReactElement<P>} [element] - instance target to receive new props
  * @param {{}} [props] - object of new props
- * @returns {false | React.ReactElement<P & props>} cloned React Element with shallowly merged props
+ * @returns {false | React.ReactElement<Intersect<P, props>>} cloned React Element with shallowly merged props
  * @requires `react`
  * @template {{}} P - props obj
  * @example
@@ -110,6 +110,8 @@ export const withNewProps = (element, props = {}) => (
 const getComponentName = ({ displayName, name }) => displayName || name || 'Component'
 
 /**
+ * **@deprecated** - replaced with transient props from styled-components
+ *
  * Dynamically prevent props from reaching DOM elements
  * by providing styled-components a prop blacklist. Most
  * useful to prevent props intended for a styled component
@@ -120,13 +122,11 @@ const getComponentName = ({ displayName, name }) => displayName || name || 'Comp
  *
  * @param {React.ComponentType<{ children?: any; ref?: any }>} Component - tgt to control props of
  * @param {string[]} propKeys - array of prop keys to block
- * @returns {React.ForwardRefExoticComponent<Pick<{ [x: string]: any; children: any}, React.ReactText> & React.RefAttributes<T> & Record<string, any>>} ref forwarding function that removes
- * unwanted `propKeys` from original props
+ * @returns {React.ForwardRefExoticComponent<Intersect<Pick<Intersect<Record<string, any>, {children?: any}>, number|string>, React.RefAttributes<any>>>}
+ * ref forwarding function that removes unwanted `propKeys` from original props
  * @requires `react` && usually `styled-components`
  * @see https://www.styled-components.com/docs/faqs#why-am-i-getting-html-attribute-warnings
  * @todo check out making curried like this: https://codesandbox.io/s/l50mlwqo1q
- * @template {{}} P - props from run-time inner calling component
- * @template {string} T - type of run-time inner calling component
  * @example
  *
  * const ContainerWithPassThrough = ({ className, ...rest }) => (
@@ -162,27 +162,10 @@ export const withoutProps = (Component, propKeys = []) => {
 
   // ensure ref points to Element NOT functional FilteredComponent
   const result = React.forwardRef(FilteredComponent)
-  // FIXME: type error, readonly prop
-  // result.name = Component.name // pass thru original name tags
+  result.displayName = `FilteredProps(${result.displayName})` // pass thru original name tags
 
   return result
 }
-
-// TODO: come up with method to prevent creating an additional element in DevTools v5
-// export const withoutPropsImpure = (Component, propKeys = []) => {
-//   // facilitate debugging with named func
-//   const OldComponent = Component
-//   Component.apply()
-//   Component = ({ children, ...rest }) => {
-//     const filteredProps = Object.fromEntries(Object.entries(rest)
-//       .filter(([key]) => !propKeys.includes(key)))
-
-//     return <OldComponent {...filtered}>{children}</OldComponent>
-//   }
-
-//   // ensure ref points to Component NOT functional FilteredPropsComponent
-//   return Component.bind(this)
-// }
 
 // helpful for testing
 export const sleep = (ms) => (data) => new Promise((resolve) => setTimeout(() => resolve(data), ms))

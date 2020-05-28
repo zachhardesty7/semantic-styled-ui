@@ -24,7 +24,7 @@ const S = {} // styled-components namespace
 S.Wrapper = styled.div`
   align-self: center;
   
-  ${({ stacked }) => stacked && css`
+  ${({ $stacked }) => $stacked && css`
     margin-right: 50%;
     margin-left: 50%;
 
@@ -44,10 +44,10 @@ S.Logo = styled.div`
   /* will work with regular img child or gatsby-image picture element */
   img:last-child {
     position: relative !important;
-    width: ${({ logoSize }) => logoSizes[logoSize]}px !important;
+    width: ${({ $logoSize }) => logoSizes[$logoSize]}px !important;
 
     @media ${media.phone} {
-      width: ${({ logoSize }) => logoSizes[logoSize] * 0.8}px !important;
+      width: ${({ $logoSize }) => logoSizes[$logoSize] * 0.8}px !important;
     }
   }
 
@@ -71,7 +71,7 @@ export const NavigationLogo = ({
   children,
   ...rest
 }) => (
-  <S.Wrapper stacked={stacked} className={className}>
+  <S.Wrapper $stacked={stacked} className={className}>
     <NavigationItem
       as={as}
       link={link}
@@ -79,7 +79,7 @@ export const NavigationLogo = ({
       pointing={false}
       {...rest}
     >
-      <S.Logo as={children.type} {...children.props} logoSize={logoSize} />
+      <S.Logo as={children.type} {...children.props} $logoSize={logoSize} />
     </NavigationItem>
   </S.Wrapper>
 )

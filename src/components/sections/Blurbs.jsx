@@ -14,19 +14,17 @@ import {
   media,
   paddingMap,
   withNewProps,
-  withoutProps,
 } from '../../utils'
 
 const S = {} // styled-components namespace
 
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
-const FSegment = withoutProps(Segment, ['padded'])
-S.Blurbs = styled(FSegment)`
-  ${({ padded, padding }) => (
-    (padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
-    (padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
-    (padded && `padding: ${paddingMap[padding]} 0`)
+S.Blurbs = styled(Segment)`
+  ${({ $padded, padding }) => (
+    ($padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
+    ($padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
+    ($padded && `padding: ${paddingMap[padding]} 0`)
   )};
 
   @media ${media.tablet} {
@@ -49,18 +47,16 @@ S.Header = styled(Container)`
   padding-bottom: 2.75em;
 `
 
-S.Title = styled(Header)`
+S.Title = styled(Header).attrs({ forwardedAs: 'h3' })`
   font-size: 3em;
 `
 
-const HeaderContentFiltered = withoutProps(Header.Content, ['textAlign'])
-S.Content = styled(HeaderContentFiltered)`
-  text-align: ${({ textAlign }) => textAlign};
+S.Content = styled(Header.Content)`
+  text-align: ${({ $textAlign }) => $textAlign};
 `
 
-const GridFiltered = withoutProps(Grid, ['fullWidth'])
-S.Grid = styled(GridFiltered)`
-  ${({ fullWidth }) => fullWidth === 'gutter' && css`
+S.Grid = styled(Grid)`
+  ${({ $fullWidth }) => $fullWidth === 'gutter' && css`
     @media ${media.laptop} {
       flex-wrap: nowrap
     }
@@ -73,9 +69,8 @@ S.Grid = styled(GridFiltered)`
   `};
 `
 
-const GridColFiltered = withoutProps(Grid.Column, ['fullWidth'])
-S.GridCol = styled(GridColFiltered)`
-  ${({ fullWidth }) => fullWidth === 'gutter' && css`
+S.GridCol = styled(Grid.Column)`
+  ${({ $fullWidth }) => $fullWidth === 'gutter' && css`
     margin-left: 10px;
     margin-right: 10px;
 
@@ -101,7 +96,7 @@ export const Blurbs = ({
   ...rest
 }) => (
   <S.Blurbs
-    padded={padded}
+    $padded={padded}
     padding={padding}
     forwardedAs='section'
     vertical
@@ -112,10 +107,10 @@ export const Blurbs = ({
     {(title || content) && (
       <S.Header text>
         {title && (
-          <S.Title forwardedAs='h3' textAlign='center'>{title}</S.Title>
+          <S.Title textAlign='center'>{title}</S.Title>
         )}
         {content && (
-          <S.Content textAlign={textAlign}>{content}</S.Content>
+          <S.Content $textAlign={textAlign}>{content}</S.Content>
         )}
       </S.Header>
     )}
@@ -126,10 +121,10 @@ export const Blurbs = ({
         stackable
         divided
         padded
-        fullWidth={fullWidth}
+        $fullWidth={fullWidth}
       >
         {React.Children.map(children, (blurb) => (
-          <S.GridCol fullWidth={fullWidth}>
+          <S.GridCol $fullWidth={fullWidth}>
             {withNewProps(blurb, { color })}
           </S.GridCol>
         ))}

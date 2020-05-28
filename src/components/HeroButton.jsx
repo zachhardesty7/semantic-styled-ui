@@ -11,13 +11,11 @@ import {
   getBackgroundColor,
   getColor,
   getHoverBackgroundColor,
-  withoutProps,
 } from '../utils'
 
 const S = {} // styled-components namespace
 
-const FilteredButton = withoutProps(Button, ['color', 'backgroundColor', 'backgroundColorHover'])
-S.Button = styled(FilteredButton)`
+S.Button = styled(Button)`
   display: inline-flex;
   ${getColor('white')};
   ${getBackgroundColor('secondary')};
@@ -29,11 +27,10 @@ S.Button = styled(FilteredButton)`
   }
 `
 
-const FilteredIcon = withoutProps(Icon, ['pointing'])
-S.Icon = styled(FilteredIcon)`
+S.Icon = styled(Icon)`
   ${getColor('white')};
-  ${({ pointing }) => (
-    pointing === 'left'
+  ${({ $pointing }) => (
+    $pointing === 'left'
       ? 'margin-right: .75em'
       : 'margin-left: .75em'
   )};
@@ -54,6 +51,7 @@ export const HeroButton = ({
 }) => (
   <Link
     as={as}
+    forwarded
     link={link}
     {...rest}
   >
@@ -61,15 +59,15 @@ export const HeroButton = ({
       size='huge'
       primary
       compact={compact}
-      backgroundColor={color}
-      backgroundColorHover={colorHover}
+      $backgroundColor={color}
+      $backgroundColorHover={colorHover}
     >
       {pointing === 'left' && (
-        <S.Icon pointing={pointing} name='angle left' />
+        <S.Icon $pointing={pointing} name='angle left' />
       )}
       {children}
-      {(pointing === 'right' || pointing === true) && (
-        <S.Icon pointing={pointing} name='angle right' />
+      {(pointing === 'right') && (
+        <S.Icon $pointing={pointing} name='angle right' />
       )}
     </S.Button>
   </Link>
@@ -96,7 +94,7 @@ HeroButton.propTypes = {
   link: PropTypes.string,
 
   /** formatted with active page indicator */
-  pointing: PropTypes.oneOf(['left', 'right', true, false]),
+  pointing: PropTypes.oneOf(['left', 'right']),
 
   /** reduce padding whitespace */
   compact: PropTypes.bool,

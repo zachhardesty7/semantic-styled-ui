@@ -14,7 +14,6 @@ import {
   getColor,
   getHoverColor,
   withNewProps,
-  withoutProps,
 } from '../../utils'
 
 const S = {} // styled-components namespace
@@ -23,8 +22,7 @@ const ForwardedSegment = React.forwardRef(({ children, ...rest }, ref) => (
   <Ref innerRef={ref}><Segment {...rest}>{children}</Segment></Ref>
 ))
 
-const FilteredBottomBar = withoutProps(ForwardedSegment, ['color', 'backgroundColor'])
-S.Segment = styled(FilteredBottomBar)`
+S.Segment = styled(ForwardedSegment)`
   margin-top: 0px;
   ${getColor('light')};
   ${getBackgroundColor('primary')};
@@ -79,8 +77,8 @@ export const Footer = ({
     <Ref innerRef={con}>
       <S.Segment
         forwardedAs='footer'
-        color={color}
-        backgroundColor={backgroundColor}
+        $color={color}
+        $backgroundColor={backgroundColor}
         {...rest}
       >
         <Container fluid={fullWidth}>

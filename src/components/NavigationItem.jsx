@@ -6,13 +6,12 @@ import { Menu } from 'semantic-ui-react'
 
 import { Link } from './Link'
 
-import { media, withoutProps } from '../utils'
+import { media } from '../utils'
 
 const S = {} // styled-components namespace
 
-const FilteredItem = withoutProps(Menu.Item, ['pointing'])
-S.Item = styled(FilteredItem)`
-  ${({ pointing }) => pointing && css`
+S.Item = styled(Menu.Item)`
+  ${({ $pointing }) => $pointing && css`
     border-bottom: 2px solid rgba(34,36,38,.15);
 
     &.active {
@@ -54,7 +53,7 @@ export const NavigationItem = ({
     activeClassName={(as !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
     {...rest}
   >
-    <S.Item pointing={pointing}>
+    <S.Item $pointing={pointing}>
       {children}
     </S.Item>
   </Link>

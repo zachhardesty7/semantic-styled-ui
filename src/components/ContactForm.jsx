@@ -9,7 +9,7 @@ import {
   Transition,
 } from 'semantic-ui-react'
 
-import { encode, process, withoutProps } from '../utils'
+import { encode, process } from '../utils'
 
 const paddingMap = {
   compact: '0.5em',
@@ -21,12 +21,11 @@ const paddingMap = {
 
 const S = {} // styled-components namespace
 
-const FilteredForm = withoutProps(Form, ['padded'])
-S.Form = styled(FilteredForm)`
-  ${({ padded, padding }) => (
-    (padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
-    (padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
-    (padded && `padding: ${paddingMap[padding]} 0`)
+S.Form = styled(Form)`
+  ${({ $padded, padding }) => (
+    ($padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
+    ($padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
+    ($padded && `padding: ${paddingMap[padding]} 0`)
   )};
 `
 
@@ -110,7 +109,7 @@ export const ContactForm = ({
       data-netlify-honeypot='bot-field'
       success={success}
       error={error}
-      padded={padded}
+      $padded={padded}
       padding={padding}
       {...rest}
     >

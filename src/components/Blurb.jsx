@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { Header } from 'semantic-ui-react'
 
-import { paddingMap, withNewProps, withoutProps } from '../utils'
+import { paddingMap, withNewProps } from '../utils'
 
 const S = {} // styled-components namespace
 
@@ -13,11 +13,10 @@ S.Section = styled.section`
   padding-bottom: ${paddingMap.tight};
 `
 
-const FilteredHeader = withoutProps(Header, ['color'])
-S.Header = styled(FilteredHeader)`
+S.Header = styled(Header)`
   z-index: 10;
   position: relative;
-  color: ${({ color }) => color};
+  color: ${({ $color }) => $color};
   font-size: 2em;
 `
 
@@ -59,7 +58,7 @@ export const Blurb = ({
     {withNewProps(icon, { align })}
     <S.Header
       forwardedAs={as}
-      color={color}
+      $color={color}
     >
       {header}
     </S.Header>

@@ -6,13 +6,12 @@ import { Container, Menu, Segment } from 'semantic-ui-react'
 import { NavigationItem } from '../NavigationItem'
 import { NavigationLogo } from '../NavigationLogo'
 
-import { withNewProps, withoutProps } from '../../utils'
+import { withNewProps } from '../../utils'
 
 const S = {} // styled-components namespace
 
-const SegmentFiltered = withoutProps(Segment, ['pointing'])
-S.Segment = styled(SegmentFiltered)`
-  ${({ pointing }) => pointing && 'padding-bottom: 0'};
+S.Segment = styled(Segment)`
+  ${({ $pointing }) => $pointing && 'padding-bottom: 0'};
 `
 
 S.Menu = styled(Menu)`
@@ -37,7 +36,7 @@ export const Navigation = ({
 }) => (
   <S.Segment
     forwardedAs='header'
-    pointing={pointing}
+    $pointing={pointing}
     basic
     vertical
     {...rest}
@@ -52,7 +51,7 @@ export const Navigation = ({
         pointing={pointing}
       >
         {/* apply tag && pointing to all children */}
-        {React.Children.map(children, (Child) => withNewProps(Child, { as, pointing }))}
+        {React.Children.map(children, (Child) => withNewProps(Child, { forwardedAs: as, pointing }))}
       </S.Menu>
     </Container>
   </S.Segment>
