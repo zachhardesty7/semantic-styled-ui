@@ -3,6 +3,10 @@ module.exports = {
     [
       '@babel/preset-env', {
         targets: '> 0.25%, not dead',
+        // REVIEW: prevent rollup this undef error?
+        // targets: {
+        //   esmodules: true,
+        // },
         loose: true,
         bugfixes: true,
         // don't polyfill while commented out
