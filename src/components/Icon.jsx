@@ -5,19 +5,7 @@ import styled, { css } from 'styled-components'
 import { Icon as SUIIcon } from 'semantic-ui-react'
 import { Link } from './Link'
 
-import { defaultColors } from '../utils'
-
-const iconMap = {
-  mini: '0.4em',
-  tiny: '0.5em',
-  small: '0.75em',
-  medium: '1em',
-  large: '1.5em',
-  big: '2em',
-  bigger: '3em',
-  huge: '4em',
-  massive: '8em',
-}
+import { defaultColors, iconMap } from '../utils'
 
 const S = {} // styled-components namespace
 
@@ -26,7 +14,7 @@ S.Icon = styled(SUIIcon)`
   justify-content: center;
   align-items: center;
   font-size: ${({ $size }) => iconMap[$size]};
-  padding: ${({ group }) => (group ? '0 0.5em' : '0')};
+  padding: ${({ $group }) => ($group ? '0 0.5em' : '0')};
   margin: 0;
   opacity: 1;
 
@@ -46,7 +34,7 @@ S.Icon = styled(SUIIcon)`
     (theme.primary || defaultColors.primary)
   )};
 
-  ${({ link }) => link && css`
+  ${({ $link }) => $link && css`
     ${S.Wrapper}:hover & {
       /* cursor: pointer; */
       opacity: 1;
@@ -83,7 +71,7 @@ S.Label = styled.span`
     (theme.primary || defaultColors.primary)
   )};
 
-  ${({ link }) => link && css`
+  ${({ $link }) => $link && css`
     ${S.Wrapper}:hover & {
       color: ${({
         $colorHover,
@@ -132,7 +120,7 @@ export const Icon = ({
       >
         <S.Icon
           name={name.toLowerCase()}
-          link
+          $link
           size={size}
           $inverted={inverted}
           $light={light}

@@ -8,12 +8,12 @@ const S = {} // styled-components namespace
 
 S.Groups = styled.div`
   display: flex;
-  justify-content: ${({ justify }) => justify};
-  
-  ${({ padded, padding }) => (
-    (padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
-    (padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
-    (padded && `padding: ${paddingMap[padding]} 0`)
+  justify-content: ${({ $justify }) => $justify};
+
+  ${({ $padded, $padding }) => (
+    ($padded === 'top' && `padding-top: ${paddingMap[$padding]}`) ||
+    ($padded === 'bottom' && `padding-bottom: ${paddingMap[$padding]}`) ||
+    ($padded && `padding: ${paddingMap[$padding]} 0`)
   )};
 `
 
@@ -40,9 +40,9 @@ export const IconGroup = ({
   ...rest
 }) => (
   <S.Groups
-    justify={justify}
-    padded={padded}
-    padding={padding}
+    $justify={justify}
+    $padded={padded}
+    $padding={padding}
     className={className}
   >
     {React.Children.map(children, (Child) => (

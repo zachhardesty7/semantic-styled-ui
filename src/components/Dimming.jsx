@@ -12,15 +12,15 @@ S.Dimmable = styled(Dimmer.Dimmable)`
 
 S.Dimmer = styled(Dimmer)`
   display: flex;
-  
+
   .content .header {
     color: rgba(0,0,0,.87);
   }
 `
 
 S.Image = styled.img`
-  ${({ fill }) => (
-    fill ? (`
+  ${({ $fill }) => (
+    $fill ? (`
       height: 100%;
       object-fit: cover;
     `) : (`

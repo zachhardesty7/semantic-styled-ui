@@ -51,7 +51,8 @@ export const Navigation = ({
         pointing={pointing}
       >
         {/* apply tag && pointing to all children */}
-        {React.Children.map(children, (Child) => withNewProps(Child, { forwardedAs: as, pointing }))}
+        {React.Children.map(children,
+          (Child) => withNewProps(Child, { forwardedAs: as, pointing }))}
       </S.Menu>
     </Container>
   </S.Segment>

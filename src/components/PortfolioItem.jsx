@@ -21,6 +21,7 @@ S.Dimmer = styled(Dimmer)`
   }
 `
 
+// css functions not necessary but add syntax highlighting
 S.Image = styled.img`
   ${({ $fill }) => (
     $fill ? (

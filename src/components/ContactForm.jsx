@@ -9,15 +9,7 @@ import {
   Transition,
 } from 'semantic-ui-react'
 
-import { encode, process } from '../utils'
-
-const paddingMap = {
-  compact: '0.5em',
-  tight: '1em',
-  base: '2em',
-  relaxed: '4em',
-  loose: '6em',
-}
+import { encode, paddingMap, process } from '../utils'
 
 const S = {} // styled-components namespace
 

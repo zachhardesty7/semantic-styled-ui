@@ -4,26 +4,15 @@ import styled, { css } from 'styled-components'
 
 import { NavigationItem } from './NavigationItem'
 
-import { media } from '../utils'
-
-const logoSizes = {
-  small: 90,
-  base: 155,
-  large: 215,
-}
-
-const logoSizesSVG = {
-  small: 4,
-  base: 6,
-  large: 8,
-}
+import { logoSizes, logoSizesSVG, media } from '../utils'
 
 const S = {} // styled-components namespace
 
-/* if stacked, set stacked logo spacing & remove underline */
+// css functions not necessary but add syntax highlighting
+// if stacked, set stacked logo spacing & remove underline
 S.Wrapper = styled.div`
   align-self: center;
-  
+
   ${({ $stacked }) => $stacked && css`
     margin-right: 50%;
     margin-left: 50%;
@@ -34,7 +23,7 @@ S.Wrapper = styled.div`
   `};
 `
 
-/* use "!important" to override Gatsby-Image inline style */
+// use "!important" to override Gatsby-Image inline style
 S.Logo = styled.div`
   padding: 0 0.5em;
   height: 100% !important;

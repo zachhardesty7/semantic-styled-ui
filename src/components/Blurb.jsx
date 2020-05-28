@@ -9,7 +9,7 @@ import { paddingMap, withNewProps } from '../utils'
 const S = {} // styled-components namespace
 
 S.Section = styled.section`
-  text-align: ${({ align }) => align};
+  text-align: ${({ $align }) => $align};
   padding-bottom: ${paddingMap.tight};
 `
 
@@ -48,7 +48,7 @@ export const Blurb = ({
   children,
   ...rest
 }) => (
-  <S.Section align={align} {...rest}>
+  <S.Section $align={align} {...rest}>
     {backgroundImage && (
       <S.BackgroundImage as={backgroundImage.type} {...backgroundImage.props}>
         {backgroundImage.children}

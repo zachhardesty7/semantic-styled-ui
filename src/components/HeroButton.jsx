@@ -29,11 +29,7 @@ S.Button = styled(Button)`
 
 S.Icon = styled(Icon)`
   ${getColor('white')};
-  ${({ $pointing }) => (
-    $pointing === 'left'
-      ? 'margin-right: .75em'
-      : 'margin-left: .75em'
-  )};
+  ${({ $pointing }) => `margin-${$pointing}: .75em`};
   vertical-align: bottom;
   width: 1em;
   height: 1em;
