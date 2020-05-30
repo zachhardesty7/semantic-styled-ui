@@ -48,7 +48,7 @@ export const NavigationItem = ({
   <Link
     onClick={(e) => e.currentTarget.blur()} // prevent keeping focus after navigating to new page
     as={as}
-    forwarded
+    forwarded // prevent getting caught by styled component `S.Item`
     link={link}
     activeClassName={(as !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
     {...rest}

@@ -45,10 +45,10 @@ S.Icon = styled(SUIIcon)`
         $inverted,
         theme,
       }) => (
-          // if colorHover not provided
-          // if light, try white theme then default
-          // if inverted, try secondary theme then default
-          // else use primary color
+        // if colorHover not provided
+        // if light, try white theme then default
+        // if inverted, try secondary theme then default
+        // else use primary color
         $colorHover ||
         ($light && (theme.white || defaultColors.white)) ||
         ($inverted && (theme.primary || defaultColors.primary)) ||
@@ -121,7 +121,7 @@ export const Icon = ({
         <S.Icon
           name={name.toLowerCase()}
           $link
-          size={size}
+          $size={size}
           $inverted={inverted}
           $light={light}
           $color={color}
@@ -129,7 +129,7 @@ export const Icon = ({
         />
         {label && (
           <S.Label
-            link
+            $link
             $inverted={inverted}
             $light={light}
             $color={color}

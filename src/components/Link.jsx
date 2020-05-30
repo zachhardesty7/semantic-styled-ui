@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link as LinkAnchor } from 'react-scroll'
 
 import {
   calcDuration,
-  process,
   withNewProps,
 } from '../utils'
 
@@ -12,41 +12,52 @@ export const Link = ({
   link = '',
   wrap = false,
   forwarded = false,
+  external = false,
   children,
   ...rest
-}) => {
-  const isAnchor = as !== 'a' && link.includes('#')
-  const isExternal = as === 'a' && !link.includes('#')
+}) => (
+  React.Children.map(children, (Child) => {
+    if (!Child) return false // prevent wrapping empty elements
+    const anchored = link.includes('#')
 
-  return (
-    React.Children.map(children, (Child) => {
-      if (!Child) return false // prevent wrapping empty elements
+    const anchorProps = {
+      spy: true,
+      smooth: true,
+      duration: calcDuration,
+    }
 
-      const props = {
-        href: (as === 'a' && link) || undefined,
-        // remove "#" or get dest from children text
-        to: (as !== 'a' && (link.slice(link.indexOf('#') + 1) || `/${process(Child?.props?.children?.toString())}/`)) || undefined,
-        spy: isAnchor || undefined,
-        smooth: isAnchor || undefined,
-        duration: isAnchor ? calcDuration : undefined,
-        rel: isExternal ? 'noopener noreferrer' : undefined,
-        target: isExternal ? '_blank' : undefined,
-        ...rest, // does not include `as`
-      }
+    const externalProps = {
+      rel: 'noopener noreferrer',
+      target: '_blank',
+    }
 
-      const Tag = as
+    const props = {
+      href: !anchored && !external ? link : undefined,
 
-      if (wrap) return <Tag {...props}>{Child}</Tag>
-      if (forwarded) return withNewProps(Child, { ...props, forwardedAs: as })
-      return withNewProps(Child, { ...props, as })
-    })
-  )
-}
+      // remove "#" for internal anchor or use `/` wrapped `link`
+      to: !external && (anchored ? link.slice(link.indexOf('#') + 1) : `/${link}/`),
+
+      ...(anchored && anchorProps),
+      ...(external && externalProps),
+
+      ...rest, // does not include `as`
+    }
+
+    // use `react-scroll` for smooth scrolling when anchor
+    const Tag = anchored ? LinkAnchor : as
+
+    if (wrap) return <Tag {...props}>{Child}</Tag>
+    if (forwarded) return withNewProps(Child, { ...props, forwardedAs: Tag })
+    return withNewProps(Child, { ...props, as: Tag })
+  })
+)
 
 Link.propTypes = {
   /**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
+   * element type to render as (string or function) supports HTML tag as a string or
+   * React component definition
+   *
+   * NOTE: ignored if `link` contains a "#"
    *
    * @example
    *
@@ -61,17 +72,23 @@ Link.propTypes = {
   ]),
 
   /**
-   * anchor link (prefixed with "#") or standard href, uses child content
-   * if not provided and using an a tag
+   * anchor link (prefixed with "#") or internal link via a new `to` field or can be
+   * used as a standard href if `external` tag is set
    */
   link: PropTypes.string,
 
-  /** render as enclosing tag */
+  /** applies props directly to newly created & rendered `as` component */
   wrap: PropTypes.bool,
 
-  /** when not wrapping, convert `as` tag to `forwardedAs` for `styled-components` */
+  /**
+   * when not wrapping, convert `as` tag to `forwardedAs` for passing the prop thru a
+   * `styled-components`
+   */
   forwarded: PropTypes.bool,
 
-  /** primary content, usually string, used as link if link not provided */
+  /** treats as standard href, usually `a` tagged element */
+  external: PropTypes.bool,
+
+  /** primary content, usually a string, but handles multiple items */
   children: PropTypes.node.isRequired,
 }
