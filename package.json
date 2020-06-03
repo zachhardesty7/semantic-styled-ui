@@ -38,9 +38,9 @@
     "build": "yarn clean && rollup --config --minifyInternalExports --compact --environment ENV_MODE:prod",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
-    "prepublishOnly": "safe-publish-latest",
     "pub:yarn": "yarn build && yarn publish",
-    "pub": "yarn build && npm publish"
+    "pub": "yarn build && npm publish",
+    "release": "release-it"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -66,6 +66,7 @@
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
     "react-styleguidist": "^11.0.8",
+    "release-it": "^13.6.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.13.0",
     "rollup-plugin-terser": "^6.1.0",
