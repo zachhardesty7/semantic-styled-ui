@@ -50,7 +50,6 @@ export const NavigationItem = ({
     as={as}
     forwarded // prevent getting caught by styled component `S.Item`
     link={link}
-    activeClassName={(as !== 'a' && !link.includes('#') && !stacked) ? 'active' : undefined}
     {...rest}
   >
     <S.Item $pointing={pointing}>
