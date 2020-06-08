@@ -107,6 +107,7 @@ export const ContactForm = ({
     >
       {/* limit bot responses with Netlify */}
       <input type='hidden' name='bot-field' />
+      <input type='hidden' name='form-name' value={name} />
       {fields
         .map((_, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
         .filter(Boolean) // remove falsy (null) entries

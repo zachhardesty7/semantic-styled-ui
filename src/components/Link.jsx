@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link as LinkAnchor } from 'react-scroll'
+import { Link as HashLink } from 'react-scroll'
 
 import {
   calcDuration,
@@ -24,6 +24,8 @@ export const Link = ({
       spy: true,
       smooth: true,
       duration: calcDuration,
+      // reset hash link identifier
+      onClick: () => window.history.pushState('', document.title, window.location.pathname),
     }
 
     const externalProps = {
@@ -32,19 +34,19 @@ export const Link = ({
     }
 
     const props = {
-      href: !anchored && !external ? link : undefined,
+      href: link && !anchored && !external ? link : undefined,
 
-      // remove "#" for internal anchor or use `/` wrapped `link`
-      to: !external && (anchored ? link.slice(link.indexOf('#') + 1) : `/${link}/`),
+      // remove "#" for internal anchor or use `/` `link`
+      to: (link && !external && (anchored ? link.slice(link.indexOf('#') + 1) : link)) || undefined,
+
+      ...rest, // does not include `as`
 
       ...(anchored && anchorProps),
       ...(external && externalProps),
-
-      ...rest, // does not include `as`
     }
 
-    // use `react-scroll` for smooth scrolling when anchor
-    const Tag = anchored ? LinkAnchor : as
+    // use `react-scroll` for smooth scrolling when link is a hash
+    const Tag = anchored ? HashLink : as
 
     if (wrap) return <Tag {...props}>{Child}</Tag>
     if (forwarded) return withNewProps(Child, { ...props, forwardedAs: Tag })
@@ -72,8 +74,8 @@ Link.propTypes = {
   ]),
 
   /**
-   * anchor link (prefixed with "#") or internal link via a new `to` field or can be
-   * used as a standard href if `external` tag is set
+   * hash link (prefixed with "#") or internal link applied via a new `to` field or can
+   * be used as a standard href if `external` tag is set
    */
   link: PropTypes.string,
 
