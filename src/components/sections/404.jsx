@@ -13,7 +13,7 @@ export const Section404 = ({
 }) => (
   <Grid textAlign={textAlign} verticalAlign='middle' {...rest}>
     <Grid.Column>
-      <Title subtitle={content}>{title}</Title>
+      <Title subtitle={content} textAlignBody='center'>{title}</Title>
     </Grid.Column>
   </Grid>
 )
