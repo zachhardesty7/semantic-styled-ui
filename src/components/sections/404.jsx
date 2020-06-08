@@ -1,14 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
-import { Grid, Header } from 'semantic-ui-react'
-
-const S = {} // styled-components namespace
-
-S.Title = styled(Header).attrs({ forwardedAs: 'h3' })`
-  font-size: 3em;
-`
+import { Grid } from 'semantic-ui-react'
+import { Title } from '../Title'
 
 // TODO: test mobile, may need `container` on `Grid`
 export const Section404 = ({
@@ -19,16 +13,7 @@ export const Section404 = ({
 }) => (
   <Grid textAlign={textAlign} verticalAlign='middle' {...rest}>
     <Grid.Column>
-      {(title || content) && (
-        <Header text>
-          {title && (
-            <S.Title>{title}</S.Title>
-          )}
-          {content && (
-            <Header.Content>{content}</Header.Content>
-          )}
-        </Header>
-      )}
+      <Title subtitle={content}>{title}</Title>
     </Grid.Column>
   </Grid>
 )

@@ -7,6 +7,7 @@ export { NavigationItem } from './NavigationItem'
 export { NavigationLogo } from './NavigationLogo'
 export { PortfolioItem } from './PortfolioItem'
 export { HeroButton } from './HeroButton'
+export { Title } from './Title'
 
 export { Blurbs } from './sections/Blurbs'
 export { Footer } from './sections/Footer'
