@@ -107,7 +107,7 @@ export const withNewProps = (element, props = {}) => (
  * @param {string} [target.name] - generally assigned via React from var name
  * @returns {string} best "name" of element
  */
-const getComponentName = ({ displayName, name }) => displayName || name || 'Component'
+export const getComponentName = ({ displayName, name }) => displayName || name || 'Component'
 
 /**
  * **@deprecated** - replaced with transient props from styled-components

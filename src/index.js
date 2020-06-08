@@ -1,4 +1,15 @@
-// import 'semantic-ui-css'
+import * as SSUI from './components'
+import { getComponentName } from './utils'
+
+// add dev tools tag to each SSUI component
+Object.values(SSUI).forEach((component) => {
+  // @ts-ignore
+  // eslint-disable-next-line no-param-reassign
+  component.displayName = `SSUI(${getComponentName(component)})`
+})
+
+export * from './components'
+export * from './utils'
 
 export {
   Image,
@@ -51,8 +62,5 @@ export {
   TextArea,
   TransitionablePortal,
   MountNode,
+  Form,
 } from 'semantic-ui-react'
-
-export * from './components'
-
-export * from './utils'
