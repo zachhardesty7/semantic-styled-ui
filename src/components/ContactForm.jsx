@@ -40,6 +40,7 @@ export const ContactForm = ({
   button = 'Submit',
   padded = false,
   padding = 'base',
+  children,
   ...rest
 }) => {
   const [success, setSuccess] = useState(false)
@@ -54,9 +55,9 @@ export const ContactForm = ({
       fieldsInit[process(field.slice(0, field.indexOf('(')))] = ''
     }
   })
-  if (textArea) fieldsInit['text-area'] = ''
 
   const [fieldsObj, setFieldsObj] = useState(fieldsInit)
+  const [textAreaVal, setTextArea] = useState('')
 
   const removeSuccessMessage = (ms = 6000) => {
     setTimeout(() => {
@@ -91,6 +92,10 @@ export const ContactForm = ({
 
   const handleChange = (_, { id, value }) => {
     setFieldsObj({ ...fieldsObj, [id]: value })
+  }
+
+  const handleChangeArea = (_, { value }) => {
+    setTextArea(value)
   }
 
   return (
@@ -160,12 +165,12 @@ export const ContactForm = ({
       {textArea && (
         <Form.TextArea
           id='text-area'
-          error={error && fieldsObj['text-area'] === ''}
+          error={error && textAreaVal === ''}
           placeholder='Message'
           label={textArea === true ? 'Enter message below:' : textArea}
           style={{ minHeight: 125 }}
-          onChange={handleChange}
-          value={fieldsObj['text-area']}
+          onChange={handleChangeArea}
+          value={textAreaVal}
         />
       )}
 
@@ -216,4 +221,7 @@ ContactForm.propTypes = {
 
   /** amount of spacing around element */
   padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
+
+  /** additional form fields */
+  children: PropTypes.node,
 }
