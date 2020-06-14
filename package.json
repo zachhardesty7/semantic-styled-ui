@@ -16,7 +16,7 @@
   "bugs": "https://github.com/zachhardesty7/semantic-styled-ui/issues",
   "main": "dist/bundle.umd.js",
   "module": "dist/bundle.esm.js",
-  "typings": "types.d.ts",
+  "types": "index.d.ts",
   "license": "MIT",
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
   "repository": "github:zachhardesty7/semantic-styled-ui",
