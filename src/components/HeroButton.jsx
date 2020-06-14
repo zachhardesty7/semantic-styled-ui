@@ -40,6 +40,7 @@ export const HeroButton = ({
   link = '',
   pointing = 'right',
   compact = false,
+  size = 'big',
   color = '',
   colorHover = '',
   children,
@@ -52,8 +53,8 @@ export const HeroButton = ({
     {...rest}
   >
     <S.Button
-      size='huge'
       primary
+      size={size}
       compact={compact}
       $backgroundColor={color}
       $backgroundColorHover={colorHover}
@@ -94,6 +95,9 @@ HeroButton.propTypes = {
 
   /** reduce padding whitespace */
   compact: PropTypes.bool,
+
+  /** size passed to SUI button */
+  size: PropTypes.oneOf([]),
 
   /**
    * apply css supported color string to background, overrides theme / default

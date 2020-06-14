@@ -18,7 +18,7 @@ export const Link = ({
 }) => (
   React.Children.map(children, (Child) => {
     if (!Child) return false // prevent wrapping empty elements
-    const anchored = link.includes('#')
+    const anchored = link.includes?.('#')
 
     const anchorProps = {
       spy: true,
