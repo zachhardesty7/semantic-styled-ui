@@ -15,6 +15,7 @@ module.exports = {
         shippedProposals: true, // https://babeljs.io/docs/en/babel-preset-env#shippedproposals
       },
     ],
+    // '@babel/preset-typescript',
     [
       '@babel/preset-react', {
         // https://babeljs.io/docs/en/babel-preset-react/#react-automatic-runtime
@@ -25,6 +26,9 @@ module.exports = {
     ],
   ],
   plugins: [
+    // process.env.ENV_MODE === 'local' && [
+    //   'babel-plugin-typescript-to-proptypes', { comments: true, typeCheck: true },
+    // ],
     [
       '@quickbaseoss/babel-plugin-styled-components-css-namespace', {
         cssNamespace: '&&&&&&',

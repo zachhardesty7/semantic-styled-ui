@@ -63,5 +63,5 @@ Title.propTypes = {
   textAlignSub: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
 
   /** if/where spacing around element exists */
-  padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
+  padded: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom', 'both'])]),
 }

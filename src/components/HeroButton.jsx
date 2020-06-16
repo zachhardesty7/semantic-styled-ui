@@ -97,7 +97,7 @@ HeroButton.propTypes = {
   compact: PropTypes.bool,
 
   /** size passed to SUI button */
-  size: PropTypes.oneOf([]),
+  size: PropTypes.oneOf(['left', 'right']),
 
   /**
    * apply css supported color string to background, overrides theme / default

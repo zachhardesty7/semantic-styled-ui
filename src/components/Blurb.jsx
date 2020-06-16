@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { Header } from 'semantic-ui-react'
@@ -65,40 +64,3 @@ export const Blurb = ({
     <S.Content>{children}</S.Content>
   </S.Section>
 )
-
-Blurb.propTypes = {
-  /** content above header */
-  icon: PropTypes.node,
-
-  /** element representing image to cover background */
-  backgroundImage: PropTypes.node,
-
-  /** primary content (styled as text) */
-  header: PropTypes.node,
-
-  /** apply css supported color string to Header text, overrides theme / default */
-  color: PropTypes.string,
-
-  /**
-   * element type to render `header` as (string or function)
-   *
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * {ReactComponent}
-   * Card
-   */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType,
-  ]),
-
-  /** position / justification of all content */
-  align: PropTypes.oneOf(['start', 'center', 'end']),
-
-  /** secondary content of body */
-  children: PropTypes.node,
-}
