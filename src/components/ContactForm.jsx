@@ -73,7 +73,7 @@ export const ContactForm = ({
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact', ...fieldsObj }),
+        body: encode({ 'form-name': 'contact', 'text-area': textAreaVal, ...fieldsObj }),
       })
         .catch((err) => console.error(err))
 
@@ -149,6 +149,7 @@ export const ContactForm = ({
 
               return (
                 <Form.Input
+                  name={processedField}
                   error={error && fieldsObj[processedField] === ''}
                   id={processedField}
                   key={processedField}
@@ -164,6 +165,7 @@ export const ContactForm = ({
         ))}
       {textArea && (
         <Form.TextArea
+          name='text-area'
           id='text-area'
           error={error && textAreaVal === ''}
           placeholder='Message'
