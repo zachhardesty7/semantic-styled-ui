@@ -11,8 +11,6 @@ import { withNewProps } from '../../utils'
 const S = {} // styled-components namespace
 
 S.Segment = styled(Segment)`
-  ${({ $textAlign }) => $textAlign && 'justify-content: left'};
-
   ${({ $pointing }) => $pointing && 'padding-bottom: 0'};
   ${({ $floating, $relaxed }) => $floating && css`
     position: absolute;
@@ -71,7 +69,7 @@ export const Navigation = ({
       >
         {/* apply tag && pointing to all children */}
         {React.Children.map(children,
-          (Child) => withNewProps(Child, { forwardedAs: as, pointing: noPointing }))}
+          (Child) => withNewProps(Child, { forwardedAs: as, pointing: !noPointing }))}
       </S.Menu>
     ) : (
       <Container textAlign={textAlign}>
@@ -87,7 +85,7 @@ export const Navigation = ({
         >
           {/* apply tag && pointing to all children */}
           {React.Children.map(children,
-            (Child) => withNewProps(Child, { forwardedAs: as, pointing: noPointing }))}
+            (Child) => withNewProps(Child, { forwardedAs: as, pointing: !noPointing }))}
         </S.Menu>
       </Container>
     )}
