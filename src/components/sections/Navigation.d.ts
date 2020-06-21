@@ -4,6 +4,8 @@ export type NavigationAs = string | any;
 
 export type NavigationSize = "small" | "tiny" | "mini" | "large" | "huge" | "massive";
 
+export type NavigationTextAlign = "left" | "center" | "right" | "justify";
+
 export interface NavigationProps {
   /**
    * element type to render as (string or function)
@@ -24,21 +26,33 @@ export interface NavigationProps {
    */
   text?: boolean;
   /**
-   * reduce whitespace
+   * increase whitespace
    */
-  compact?: boolean;
+  relaxed?: boolean,
   /**
-   * reduce prominence
+   * increase prominence
    */
-  secondary?: boolean;
+  primary?: boolean,
   /**
-   * indicate active page
+   * don't indicate active page
    */
-  pointing?: boolean;
+  noPointing?: boolean,
+  /**
+   * flip the colors for display on a light colored background
+   */
+  inverted?: boolean,
+  /**
+   * allow content to reach the edges of the parent
+   */
+  fullWidth?: boolean,
+  /**
+   * elevate nav to sit on top of underlying container
+   */
+  floating?: boolean,
   /**
    * horizontal position
    */
-  centered?: boolean;
+  textAlign?: NavigationTextAlign;
   /**
    * collection of items to render as menu
    */
