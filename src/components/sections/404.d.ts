@@ -17,4 +17,4 @@ export interface Section404Props {
   textAlign?: Section404TextAlign;
 }
 
-export const Section404: React.FC<Section404Props>;
+export function Section404(props: Section404Props): JSX.Element;

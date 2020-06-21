@@ -38,4 +38,4 @@ export interface LinkProps {
   children: React.ReactNode;
 }
 
-export const Link: React.FC<LinkProps>;
+export function Link(props: LinkProps): JSX.Element;

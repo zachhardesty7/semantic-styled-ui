@@ -33,4 +33,4 @@ export interface TitleProps {
   padded?: TitlePadded;
 }
 
-export const Title: React.FC<TitleProps>;
+export function Title(props: TitleProps): JSX.Element;

@@ -47,4 +47,4 @@ export interface BlurbsProps {
   children?: React.ReactNode;
 }
 
-export const Blurbs: React.FC<BlurbsProps>;
+export function Blurbs(props: BlurbsProps): JSX.Element;

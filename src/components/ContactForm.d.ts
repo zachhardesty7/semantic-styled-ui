@@ -37,4 +37,4 @@ export interface ContactFormProps {
   children?: React.ReactNode;
 }
 
-export const ContactForm: React.FC<ContactFormProps>;
+export function ContactForm(props: ContactFormProps): JSX.Element;

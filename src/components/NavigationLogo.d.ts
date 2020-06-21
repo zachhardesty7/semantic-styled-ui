@@ -37,4 +37,4 @@ export interface NavigationLogoProps {
   children: React.ReactElement<any>;
 }
 
-export const NavigationLogo: React.FC<NavigationLogoProps>;
+export function NavigationLogo(props: NavigationLogoProps): JSX.Element;

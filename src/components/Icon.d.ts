@@ -59,4 +59,4 @@ export interface IconProps {
   inverted?: boolean;
 }
 
-export const Icon: React.FC<IconProps>;
+export function Icon(props: IconProps): JSX.Element;

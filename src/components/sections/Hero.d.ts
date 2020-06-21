@@ -57,4 +57,4 @@ export interface HeroProps {
   children?: React.ReactNode;
 }
 
-export const Hero: React.FC<HeroProps>;
+export function Hero(props: HeroProps): JSX.Element;

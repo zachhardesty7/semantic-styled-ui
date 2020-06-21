@@ -34,4 +34,4 @@ export type BlurbProps = {
   // children: PropTypes.node,
 };
 
-export const Blurb: React.FC<BlurbProps>;
+export function Blurb(props: BlurbProps): JSX.Element;

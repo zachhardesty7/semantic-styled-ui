@@ -31,4 +31,4 @@ export interface NavigationItemProps {
   children: React.ReactNode;
 }
 
-export const NavigationItem: React.FC<NavigationItemProps>;
+export function NavigationItem(props: NavigationItemProps): JSX.Element;

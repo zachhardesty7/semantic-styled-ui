@@ -11,4 +11,4 @@ export interface DimmingProps {
   children?: React.ReactNode;
 }
 
-export const Dimming: React.FC<DimmingProps>;
+export function Dimming(props: DimmingProps): JSX.Element;

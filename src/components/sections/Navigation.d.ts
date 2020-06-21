@@ -59,4 +59,4 @@ export interface NavigationProps {
   children?: React.ReactNode;
 }
 
-export const Navigation: React.FC<NavigationProps>;
+export function Navigation(props: NavigationProps): JSX.Element;

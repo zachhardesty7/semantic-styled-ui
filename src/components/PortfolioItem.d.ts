@@ -19,4 +19,4 @@ export interface PortfolioItemProps {
   children?: React.ReactElement<any>;
 }
 
-export const PortfolioItem: React.FC<PortfolioItemProps>;
+export function PortfolioItem(props: PortfolioItemProps): JSX.Element;
