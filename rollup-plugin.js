@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const glob = require('glob')
 const fs = require('fs')
 const { ESLint } = require('eslint')
@@ -8,7 +9,7 @@ const ttp = require('typescript-to-proptypes')
 // https://github.com/merceyz/typescript-to-proptypes/blob/66f228715a14dd5883d7c06a2b19e6439938973f/test/index.test.ts
 // https://github.com/mui-org/material-ui/blob/2231349c302a089cc556614ff562b02a729b1e77/scripts/generateProptypes.ts
 /**
- *
+ * @returns {{}} rollup plugin
  */
 export default function propTypesFromTS() {
   return {
