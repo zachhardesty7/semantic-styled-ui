@@ -15,6 +15,7 @@ export interface ContactFormProps {
    * labels for fields
    */
   fields?: string[];
+  // REVIEW: whether better to pass false option to disable or just use empty string
   /** 
    * label or pass false to disable, defaults to "Enter Message Below:" 
    */
@@ -31,6 +32,10 @@ export interface ContactFormProps {
    * amount of spacing around element
    */
   padding?: ContactFormPadding;
+  /**
+   * called when form is successfully submitted
+   */
+  onSubmit?: () => void,
   /**
    * additional form fields
    */

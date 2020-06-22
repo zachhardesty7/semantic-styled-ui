@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import {
@@ -132,34 +131,5 @@ export const Blurbs = ({
     </Container>
   </S.Blurbs>
 )
-
-Blurbs.propTypes = {
-  /** header */
-  title: PropTypes.node,
-
-  /** body content proceeding blurbs */
-  content: PropTypes.node,
-
-  /** do not restrict width of blurbs container */
-  fullWidth: PropTypes.oneOf([true, false, 'gutter']),
-
-  /** format body content */
-  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-
-  /** apply css supported color string to all children, overrides theme / default */
-  color: PropTypes.string,
-
-  /** format to appear less prominent (grey background) */
-  secondary: PropTypes.bool,
-
-  /** if/where spacing around element exists */
-  padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
-
-  /** control amount of spacing around element */
-  padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
-
-  /** primary content of Blurbs.Item */
-  children: PropTypes.node,
-}
 
 Blurbs.Item = Blurb

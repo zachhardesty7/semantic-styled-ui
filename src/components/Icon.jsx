@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Icon as SUIIcon } from 'semantic-ui-react'
@@ -165,63 +164,3 @@ export const Icon = ({
     )}
   </S.Wrapper>
 )
-
-Icon.propTypes = {
-  /**
-   * icon name as supported by Font Awesome 5.0.8
-   *
-   * @see - [Icon Name Reference Sheet](https://react.semantic-ui.com/elements/icon/)
-   */
-  name: PropTypes.string.isRequired,
-
-  /** display a text string with the icon */
-  label: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.bool,
-  ]),
-
-  /**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * ReactComponent
-   * Card
-   */
-  as: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.elementType,
-  ]),
-
-  /** anchor link (prefixed with "#") or standard href */
-  link: PropTypes.string,
-
-  /** position / justification of all content */
-  align: PropTypes.oneOf(['start', 'center', 'end']),
-
-  /** size based on "em" units */
-  size: PropTypes.oneOf([
-    'mini',
-    'tiny',
-    'small',
-    'medium',
-    'large',
-    'big',
-    'bigger',
-    'huge',
-    'massive',
-  ]),
-
-  /** apply css supported color string to Icon and text, overrides theme / default */
-  color: PropTypes.string,
-
-  /** apply css supported color string to Icon and text on hover, overrides theme / default */
-  colorHover: PropTypes.string,
-
-  /** set color to grey, colorHover to white */
-  light: PropTypes.bool,
-
-  /** set color to secondary, colorHover to primary */
-  inverted: PropTypes.bool,
-}

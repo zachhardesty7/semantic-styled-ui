@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Container, Menu, Segment } from 'semantic-ui-react'
@@ -91,54 +90,6 @@ export const Navigation = ({
     )}
   </S.Segment>
 )
-
-Navigation.propTypes = {
-  /**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * ReactComponent
-   * Card
-   */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType,
-  ]),
-
-  /** size using "em" units */
-  size: PropTypes.oneOf(['small', 'tiny', 'mini', 'large', 'huge', 'massive']),
-
-  /** format to be used with text items */
-  text: PropTypes.bool,
-
-  /** increase whitespace */
-  relaxed: PropTypes.bool,
-
-  /** increase prominence */
-  primary: PropTypes.bool,
-
-  /** don't indicate active page */
-  noPointing: PropTypes.bool,
-
-  /** flip the colors for display on a light colored background */
-  inverted: PropTypes.bool,
-
-  /** allow content to reach the edges of the parent */
-  fullWidth: PropTypes.bool,
-
-  /** elevate nav to sit on top of underlying container */
-  floating: PropTypes.bool,
-
-  /** horizontal position */
-  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-
-  /** collection of items to render as menu */
-  children: PropTypes.node,
-}
 
 Navigation.Left = ({ children, ...rest }) => <Menu.Menu {...rest} position='left'>{children}</Menu.Menu>
 Navigation.Right = ({ children, ...rest }) => <Menu.Menu {...rest} position='right'>{children}</Menu.Menu>

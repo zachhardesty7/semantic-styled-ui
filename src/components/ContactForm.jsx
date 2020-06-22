@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import {
@@ -40,6 +39,7 @@ export const ContactForm = ({
   button = 'Submit',
   padded = false,
   padding = 'base',
+  onSubmit = () => {},
   children,
   ...rest
 }) => {
@@ -83,6 +83,9 @@ export const ContactForm = ({
       setSuccess(true)
       setError(false)
       setFieldsObj(newFieldsObj)
+
+      // call user's submit function
+      onSubmit()
 
       removeSuccessMessage()
     }
@@ -200,30 +203,4 @@ export const ContactForm = ({
       <Form.Button type='submit'>{button}</Form.Button>
     </S.Form>
   )
-}
-
-ContactForm.propTypes = {
-  /** enhances semantics */
-  name: PropTypes.string,
-
-  /** labels for fields */
-  fields: PropTypes.arrayOf(PropTypes.string),
-
-  // REVIEW: whether better to pass false option to disable or just use empty string
-  /** label or pass false to disable, defaults to "Enter Message Below:" */
-  textArea: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.bool,
-  ]),
-
-  /** button text content */
-  button: PropTypes.string,
-
-  /** if/where spacing around element exists */
-  padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
-
-  /** amount of spacing around element */
-  padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
-
-  /** additional form fields */
-  children: PropTypes.node,
 }

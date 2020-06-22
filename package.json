@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.16.2",
+  "version": "0.17.0",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -14,8 +14,8 @@
   ],
   "homepage": "https://github.com/zachhardesty7/semantic-styled-ui",
   "bugs": "https://github.com/zachhardesty7/semantic-styled-ui/issues",
-  "main": "dist/bundle.umd.js",
-  "module": "dist/bundle.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "index.d.ts",
   "license": "MIT",
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
@@ -36,21 +36,25 @@
     "clean:full": "rimraf dist/* node_modules yarn.lock && yarn",
     "babel": "ENV_MODE=local babel ./src --out-dir ./dist --copy-files",
     "build": "yarn clean && rollup --config --minifyInternalExports --compact --environment ENV_MODE:prod",
+    "build:dev": "rollup --config --sourcemap --environment ENV_MODE:local",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
     "pub:yarn": "yarn build && yarn publish",
     "pub": "yarn build && npm publish",
-    "release": "release-it"
+    "prepublishOnly": "safe-publish-latest"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.10.1",
-    "@types/react": "^16.9.36",
+    "@types/react": "^16.9.38",
     "babel-plugin-typescript-to-proptypes": "^1.3.2",
+    "glob": "^7.1.6",
     "prop-types": "^15.7.2",
     "react-scroll": "^1.7.16",
     "react-to-typescript-definitions": "^2.0.0",
+    "rollup-plugin-copy": "^3.3.0",
     "semantic-ui-react": "^0.88.2",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "typescript-to-proptypes": "^2.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",

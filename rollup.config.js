@@ -2,9 +2,12 @@ import babel from '@rollup/plugin-babel'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { terser } from 'rollup-plugin-terser'
+import copy from 'rollup-plugin-copy'
 
 // https://github.com/rollup/rollup/issues/1089#issuecomment-402109607
 import path from 'path'
+
+import propTypesFromTS from './rollup-plugin'
 
 const onwarn = (warning, rollupWarn) => {
   const ignoredWarnings = [
@@ -73,19 +76,29 @@ const prodBundles = [
 ]
 
 const config = {
-  input: 'src/index.js',
-  // preserveModules: true, // REVIEW: cons: slow slow, pros: ??
+  input: 'index.js',
+  preserveModules: true, // REVIEW: cons: slow slow, pros: processing
   output: process.env.ENV_MODE === 'prod' ? prodBundles : {
-    file: 'dist/bundle.umd.js',
-    format: 'umd',
+    dir: 'dist',
+    exports: 'named',
+    format: 'es',
     name: 'SSUI',
     globals,
   },
   external: ['styled-components', 'react', 'react-dom'],
   plugins: [
+    copy({
+      copyOnce: true,
+      flatten: false,
+      targets: [
+        { src: 'index.d.ts', dest: 'dist' },
+        { src: 'src/**/*.d.ts', dest: 'dist/src' },
+      ],
+    }),
     babel({ babelHelpers: 'bundled' }),
     resolve({ extensions: ['.js', '.jsx'] }),
     commonjs(),
+    process.env.ENV_MODE === 'local' && propTypesFromTS(),
   ],
   onwarn,
 }

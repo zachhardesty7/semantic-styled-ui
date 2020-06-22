@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import {
@@ -73,7 +72,7 @@ S.Title = styled(S.BaseHeader)`
   ${({ $inlineLogo }) => $inlineLogo && 'display: inline-block'};
   ${({ $inlineLogo }) => $inlineLogo && 'margin-bottom: 0'};
   padding-right: 0.15em;
-  font-size: 4.7em;
+  font-size: ${({ $secondary }) => ($secondary ? '3.3em' : '4.7em')};
 
   @media ${media.laptop} {
     font-size: 4em;
@@ -105,7 +104,10 @@ S.Subtitle = styled(S.BaseHeader)`
 `
 
 S.Chunk = styled.header`
-  display: inline-block;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+
   border-bottom: ${({ $underline, theme }) => (
     ($underline === true && css`5px solid ${theme.accent || defaultColors.accent}`) ||
     ($underline && css`5px solid ${$underline || theme.accent || defaultColors.accent}`) ||
@@ -140,6 +142,7 @@ export const Hero = ({
   size = 'base',
   logo = null,
   inlineLogo = false,
+  secondary = false,
   color = '',
   title = null,
   subtitle = null,
@@ -183,7 +186,14 @@ export const Hero = ({
           )}
 
           {title && (
-            <S.Title forwardedAs='h1' $color={color} $inlineLogo={inlineLogo}>{title}</S.Title>
+            <S.Title
+              forwardedAs={secondary ? 'h2' : 'h1'}
+              $color={color}
+              $secondary={secondary}
+              $inlineLogo={inlineLogo}
+            >
+              {title}
+            </S.Title>
           )}
 
           {subtitle && (
@@ -197,45 +207,6 @@ export const Hero = ({
       </Container>
     </S.Segment>
   )
-}
-
-Hero.propTypes = {
-  /** darken background image to improve readability */
-  overlay: PropTypes.oneOf(['dark', 'darker']),
-
-  /** align content to top or bottom */
-  baseline: PropTypes.oneOf(['top', 'bottom']),
-
-  /** apply css supported color string or use default if true */
-  underline: PropTypes.oneOfType([
-    PropTypes.string, PropTypes.bool,
-  ]),
-
-  /** size using "em" units */
-  size: PropTypes.oneOf(['compact', 'base', 'relaxed']),
-
-  /** image of logo */
-  logo: PropTypes.oneOfType([
-    PropTypes.element, PropTypes.object,
-  ]),
-
-  /** format logo left of content */
-  inlineLogo: PropTypes.bool,
-
-  /** apply css supported color string to Icon and text, overrides theme / default */
-  color: PropTypes.string,
-
-  /** primary content */
-  title: PropTypes.node,
-
-  /** secondary content */
-  subtitle: PropTypes.node,
-
-  /** call-to-action @see [`HeaderButton`](#headerbutton) */
-  button: PropTypes.node,
-
-  /** background images */
-  children: PropTypes.node,
 }
 
 Hero.Button = HeroButton

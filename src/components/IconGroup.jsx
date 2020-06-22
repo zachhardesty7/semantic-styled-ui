@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { paddingMap, withNewProps } from '../utils'
@@ -52,20 +51,3 @@ export const IconGroup = ({
     ))}
   </S.Groups>
 )
-
-IconGroup.propTypes = {
-  /** flex alignment of icon container */
-  justify: PropTypes.oneOf(['flex-start', 'center', 'flex-end']),
-
-  /** spacing around element exists */
-  padded: PropTypes.oneOf([false, true, 'top', 'bottom', 'both']),
-
-  /** control amount of spacing around element */
-  padding: PropTypes.oneOf(['compact', 'tight', 'base', 'relaxed', 'loose']),
-
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
-  /** primary content of icon(s) */
-  children: PropTypes.node.isRequired,
-}

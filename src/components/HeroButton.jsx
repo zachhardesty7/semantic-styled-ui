@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { Button } from 'semantic-ui-react'
@@ -60,59 +59,12 @@ export const HeroButton = ({
       $backgroundColorHover={colorHover}
     >
       {pointing === 'left' && (
-        <S.Icon $pointing={pointing} name='angle left' />
+        <S.Icon $pointing='right' name='angle left' />
       )}
       {children}
       {(pointing === 'right') && (
-        <S.Icon $pointing={pointing} name='angle right' />
+        <S.Icon $pointing='left' name='angle right' />
       )}
     </S.Button>
   </Link>
 )
-
-HeroButton.propTypes = {
-  /**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * ReactComponent
-   * Card
-   */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType,
-  ]),
-
-  /** anchor link (prefixed with "#") or standard href */
-  link: PropTypes.string,
-
-  /** formatted with active page indicator */
-  pointing: PropTypes.oneOf(['left', 'right']),
-
-  /** reduce padding whitespace */
-  compact: PropTypes.bool,
-
-  /** size passed to SUI button */
-  size: PropTypes.oneOf(['left', 'right']),
-
-  /**
-   * apply css supported color string to background, overrides theme / default
-   *
-   * text defaults to `white` and background to `secondary` theme settings
-   */
-  color: PropTypes.string,
-
-  /**
-   * apply css supported color string to background on hover, overrides theme / default
-   *
-   * defaults to `primary` theme setting
-   */
-  colorHover: PropTypes.string,
-
-  /** text-based content */
-  children: PropTypes.node,
-}

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Dimmer, Grid, Header } from 'semantic-ui-react'
@@ -69,18 +68,4 @@ export const PortfolioItem = ({
       )}
     </Grid.Column>
   )
-}
-
-PortfolioItem.propTypes = {
-  /** primary content */
-  title: PropTypes.node,
-
-  /** secondary content */
-  subtitle: PropTypes.node,
-
-  /** determine when to cover the entire space with hidden overflow */
-  fill: PropTypes.bool,
-
-  /** image-based content */
-  children: PropTypes.element,
 }

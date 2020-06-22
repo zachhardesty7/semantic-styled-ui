@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { Menu } from 'semantic-ui-react'
@@ -57,33 +56,3 @@ export const NavigationItem = ({
     </S.Item>
   </Link>
 )
-
-NavigationItem.propTypes = {
-  /**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * ReactComponent
-   * Card
-   */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType,
-  ]),
-
-  /** anchor link (prefixed with "#") or standard href */
-  link: PropTypes.string,
-
-  /** formatted with active indicator */
-  pointing: PropTypes.bool,
-
-  /** required to support stacking logo */
-  stacked: PropTypes.bool,
-
-  /** primary content, usually string, used as link if link not provided */
-  children: PropTypes.node.isRequired,
-}

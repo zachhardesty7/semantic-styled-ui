@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { Header } from 'semantic-ui-react'
@@ -45,23 +44,3 @@ export const Title = ({
     )}
   </S.Header>
 )
-
-Title.propTypes = {
-  /** main title content */
-  children: PropTypes.node,
-
-  /** what the main content is rendered as */
-  as: PropTypes.node,
-
-  /** subtitle content */
-  subtitle: PropTypes.node,
-
-  /** format title content */
-  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-
-  /** format body / subtitle content */
-  textAlignSub: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-
-  /** if/where spacing around element exists */
-  padded: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['top', 'bottom', 'both'])]),
-}

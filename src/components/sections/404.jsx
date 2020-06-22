@@ -1,6 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import { Grid } from 'semantic-ui-react'
 import { Title } from '../Title'
 
@@ -17,14 +15,3 @@ export const Section404 = ({
     </Grid.Column>
   </Grid>
 )
-
-Section404.propTypes = {
-  /** main message of the error section */
-  title: PropTypes.node,
-
-  /** subtitle of main message */
-  content: PropTypes.node,
-
-  /** format body content */
-  textAlign: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-}

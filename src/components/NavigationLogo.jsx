@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { NavigationItem } from './NavigationItem'
@@ -72,36 +71,3 @@ export const NavigationLogo = ({
     </NavigationItem>
   </S.Wrapper>
 )
-
-NavigationLogo.propTypes = {
-  /**
-   * element type to render as (string or function)
-   * supports HTML tag as a string or React component definition
-   *
-   * @example
-   *
-   * 'div'
-   * 'section'
-   * ReactComponent
-   * Card
-   */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.elementType,
-  ]),
-
-  /** anchor link (prefixed with "#") or standard href */
-  link: PropTypes.string,
-
-  /** required to support stacking logo */
-  stacked: PropTypes.bool,
-
-  /** simple em based size */
-  logoSize: PropTypes.oneOf(['small', 'base', 'large']),
-
-  /** additional or pass thru classes for composition */
-  className: PropTypes.string,
-
-  /** primary content, usually string, used as link if link not provided */
-  children: PropTypes.element.isRequired,
-}
