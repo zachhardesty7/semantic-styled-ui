@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.17.1",
+  "version": "0.18.0",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -36,7 +36,7 @@
     "clean:full": "rimraf dist/* node_modules yarn.lock && yarn",
     "babel": "ENV_MODE=local babel ./src --out-dir ./dist --copy-files",
     "build": "yarn clean && rollup --config --minifyInternalExports --compact --environment ENV_MODE:prod",
-    "build:dev": "rollup --config --sourcemap --environment ENV_MODE:local",
+    "build:dev": "yarn clean && rollup --config --sourcemap --environment ENV_MODE:local",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
     "pub:yarn": "yarn build && yarn publish",

@@ -13,10 +13,10 @@ import { encode, paddingMap, process } from '../utils'
 const S = {} // styled-components namespace
 
 S.Form = styled(Form)`
-  ${({ $padded, padding }) => (
-    ($padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
-    ($padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
-    ($padded && `padding: ${paddingMap[padding]} 0`)
+  ${({ $padded, $padding }) => (
+    ($padded === 'top' && `padding-top: ${paddingMap[$padding]}`) ||
+    ($padded === 'bottom' && `padding-bottom: ${paddingMap[$padding]}`) ||
+    ($padded && `padding: ${paddingMap[$padding]} 0`)
   )};
 `
 
@@ -110,7 +110,7 @@ export const ContactForm = ({
       success={success}
       error={error}
       $padded={padded}
-      padding={padding}
+      $padding={padding}
       {...rest}
     >
       {/* limit bot responses with Netlify */}

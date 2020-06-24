@@ -35,7 +35,7 @@ export interface ContactFormProps {
   /**
    * called when form is successfully submitted
    */
-  onSubmit?: () => void,
+  onSubmit?: () => void;
   /**
    * additional form fields
    */
