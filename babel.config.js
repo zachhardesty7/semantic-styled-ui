@@ -21,14 +21,15 @@ module.exports = {
         // https://babeljs.io/docs/en/babel-preset-react/#react-automatic-runtime
         // runtime: 'automatic',
         useBuiltIns: true,
-        development: process.env.ENV_MODE === 'local',
+        // cannot use `development` which adds `jsx source` and `jsx self` babel plugins
+        // due to `undefined` this
+        // https://github.com/rollup/rollup/pull/3645
       },
     ],
   ],
   plugins: [
-    // process.env.ENV_MODE === 'local' && [
-    //   'babel-plugin-typescript-to-proptypes', { comments: true, typeCheck: true },
-    // ],
+    // add back missing source from `preset-react`
+    process.env.ENV_MODE === 'local' && '@babel/plugin-transform-react-jsx-source',
     [
       '@quickbaseoss/babel-plugin-styled-components-css-namespace', {
         cssNamespace: '&&&&&&',

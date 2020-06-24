@@ -15,9 +15,6 @@ const onwarn = (warning, rollupWarn) => {
       ignoredCode: 'CIRCULAR_DEPENDENCY',
       ignoredPath: 'node_modules/semantic-ui-react/dist/',
     },
-    {
-      ignoredCode: 'THIS_IS_UNDEFINED',
-    },
   ]
 
   // only show warning when code and path don't match
@@ -77,8 +74,8 @@ const prodBundles = [
 
 const config = {
   input: 'index.js',
-  preserveModules: true, // REVIEW: cons: slow slow, pros: processing
   output: process.env.ENV_MODE === 'prod' ? prodBundles : {
+    preserveModules: true, // REVIEW: cons: slow slow, pros: processing
     dir: 'dist',
     exports: 'named',
     format: 'es',
@@ -95,7 +92,7 @@ const config = {
         { src: 'src/**/*.d.ts', dest: 'dist/src' },
       ],
     }),
-    babel({ babelHelpers: 'bundled' }),
+    babel({ babelHelpers: 'bundled', exclude: 'node_modules/**' }),
     resolve({ extensions: ['.js', '.jsx'] }),
     commonjs(),
     process.env.ENV_MODE === 'local' && propTypesFromTS(),
