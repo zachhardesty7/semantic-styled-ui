@@ -33,7 +33,7 @@ S.Icon = styled(SUIIcon)`
     (theme.primary || defaultColors.primary)
   )};
 
-  ${({ $link }) => $link && css`
+  ${({ link }) => link && css`
     ${S.Wrapper}:hover & {
       /* cursor: pointer; */
       opacity: 1;
@@ -105,6 +105,7 @@ export const Icon = ({
   size = 'medium',
   light = false,
   inverted = false,
+  fitted = false,
   color = '',
   colorHover = '',
   ...rest
@@ -114,12 +115,12 @@ export const Icon = ({
       <Link
         wrap
         as={as}
-        link={link}
+        link={typeof link !== 'boolean' ? link : undefined}
         {...rest}
       >
         <S.Icon
           name={name.toLowerCase()}
-          $link
+          link={!!link}
           $size={size}
           $inverted={inverted}
           $light={light}

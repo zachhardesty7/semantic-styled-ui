@@ -91,8 +91,18 @@ export const Navigation = ({
   </S.Segment>
 )
 
-Navigation.Left = ({ children, ...rest }) => <Menu.Menu {...rest} position='left'>{children}</Menu.Menu>
-Navigation.Right = ({ children, ...rest }) => <Menu.Menu {...rest} position='right'>{children}</Menu.Menu>
+Navigation.Left = ({ children, ...rest }) => (
+  <Menu.Menu position='left'>
+    {React.Children.map(children,
+      (Child) => withNewProps(Child, { ...rest }))}
+  </Menu.Menu>
+)
+Navigation.Right = ({ children, ...rest }) => (
+  <Menu.Menu position='right'>
+    {React.Children.map(children,
+      (Child) => withNewProps(Child, { ...rest }))}
+  </Menu.Menu>
+)
 
 Navigation.Item = NavigationItem
 Navigation.Logo = NavigationLogo

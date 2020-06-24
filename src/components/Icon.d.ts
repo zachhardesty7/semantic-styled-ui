@@ -32,7 +32,7 @@ export interface IconProps {
   /**
    * anchor link (prefixed with "#") or standard href
    */
-  link?: string;
+  link?: string | boolean;
   /**
    * position / justification of all content
    */
