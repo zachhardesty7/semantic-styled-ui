@@ -50,6 +50,12 @@ export interface NavigationProps {
    */
   floating?: boolean,
   /**
+   * put all space between children
+   * 
+   * **NOTE:** only works with 2 items
+   */
+  split?: boolean,
+  /**
    * horizontal position
    */
   textAlign?: NavigationTextAlign;

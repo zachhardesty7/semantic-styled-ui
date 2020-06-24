@@ -5,7 +5,7 @@ import { Container, Menu, Segment } from 'semantic-ui-react'
 import { NavigationItem } from '../NavigationItem'
 import { NavigationLogo } from '../NavigationLogo'
 
-import { withNewProps } from '../../utils'
+import { media, withNewProps } from '../../utils'
 
 const S = {} // styled-components namespace
 
@@ -21,8 +21,18 @@ S.Segment = styled(Segment)`
 `
 
 S.Menu = styled(Menu)`
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+
+  &:after {
+    display: none;
+  }
+
+  ${({ $split }) => $split && 'justify-content: space-between'};
+
+  @media ${media.mobile} {
+    justify-content: center;
+  }
 
   ${({ pointing }) => pointing && '& .item { border-radius: 0px }'};
 
@@ -30,6 +40,11 @@ S.Menu = styled(Menu)`
   ${({ pointing }) => pointing && 'margin-bottom: 2px'};
 
   ${({ pointing, $floating }) => pointing && $floating && 'border: none'};
+`
+
+S.SubMenu = styled(Menu.Menu)`
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 // TODO: add sticky header
@@ -43,6 +58,7 @@ export const Navigation = ({
   textAlign = 'center',
   inverted = false,
   fullWidth = false,
+  split = false,
   floating = false,
   children = null,
   ...rest
@@ -65,6 +81,7 @@ export const Navigation = ({
         pointing={!noPointing}
         inverted={inverted}
         $floating={floating}
+        $split={split}
       >
         {/* apply tag && pointing to all children */}
         {React.Children.map(children,
@@ -92,16 +109,16 @@ export const Navigation = ({
 )
 
 Navigation.Left = ({ children, ...rest }) => (
-  <Menu.Menu position='left'>
+  <S.SubMenu>
     {React.Children.map(children,
       (Child) => withNewProps(Child, rest))}
-  </Menu.Menu>
+  </S.SubMenu>
 )
 Navigation.Right = ({ children, ...rest }) => (
-  <Menu.Menu position='right'>
+  <S.SubMenu>
     {React.Children.map(children,
       (Child) => withNewProps(Child, rest))}
-  </Menu.Menu>
+  </S.SubMenu>
 )
 
 Navigation.Item = NavigationItem
