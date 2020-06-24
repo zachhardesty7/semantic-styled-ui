@@ -79,6 +79,24 @@ export const encode = (data) => Object.entries(data)
   .join('&')
 
 /**
+ * URL encodes the data of key, value pairs as submitted by a form.
+ *
+ * @param {any} obj - arbitrary object
+ * @returns {string} input object without `undefined` properties
+ * @example
+ *
+ * removeUndef({ key1: 'val1', key2: undefined })
+ * // => {key1: 'val1'}
+ */
+const removeUndef = (obj) => (
+  Object.fromEntries(
+    Object.entries(obj)
+      .filter(([k, v]) => v != null)
+      .map(([k, v]) => (typeof v === 'object' ? [k, removeUndef(v)] : [k, v])),
+  )
+)
+
+/**
  * Soft merge new props into a React Component without
  * overwriting the original props (preserves immutability).
  *
@@ -96,7 +114,7 @@ export const encode = (data) => Object.entries(data)
  *
  */
 export const withNewProps = (element, props = {}) => (
-  element && React.cloneElement(element, { ...props, ...element.props })
+  element && React.cloneElement(element, { ...removeUndef(props), ...element.props })
 )
 
 /**

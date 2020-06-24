@@ -124,7 +124,7 @@ export const Blurbs = ({
       >
         {React.Children.map(children, (blurb) => (
           <S.GridCol $fullWidth={fullWidth}>
-            {withNewProps(blurb, { color })}
+            {withNewProps(blurb, { color: color || undefined })}
           </S.GridCol>
         ))}
       </S.Grid>

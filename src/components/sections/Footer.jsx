@@ -105,7 +105,11 @@ export const Footer = ({
                 <Grid.Column width={4} textAlign='right'>
                   <Container>
                     {React.Children.map(icons, (Child) => (
-                      withNewProps(Child, { color, colorHover, inverted })
+                      withNewProps(Child, {
+                        color: color || undefined,
+                        colorHover: colorHover || undefined,
+                        inverted,
+                      })
                     ))}
                   </Container>
                 </Grid.Column>

@@ -94,13 +94,13 @@ export const Navigation = ({
 Navigation.Left = ({ children, ...rest }) => (
   <Menu.Menu position='left'>
     {React.Children.map(children,
-      (Child) => withNewProps(Child, { ...rest }))}
+      (Child) => withNewProps(Child, rest))}
   </Menu.Menu>
 )
 Navigation.Right = ({ children, ...rest }) => (
   <Menu.Menu position='right'>
     {React.Children.map(children,
-      (Child) => withNewProps(Child, { ...rest }))}
+      (Child) => withNewProps(Child, rest))}
   </Menu.Menu>
 )
 
