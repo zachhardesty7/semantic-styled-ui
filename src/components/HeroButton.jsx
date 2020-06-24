@@ -16,6 +16,8 @@ const S = {} // styled-components namespace
 
 S.Button = styled(Button)`
   display: inline-flex;
+  align-items: center;
+  margin-right: 0;
   ${getColor('white')};
   ${getBackgroundColor('secondary')};
   transition: ease-in-out 50ms;

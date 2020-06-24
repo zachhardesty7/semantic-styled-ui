@@ -107,6 +107,10 @@ S.Chunk = styled.header`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left: 1rem;
+  margin-right: 1rem;
 
   border-bottom: ${({ $underline, theme }) => (
     ($underline === true && css`5px solid ${theme.accent || defaultColors.accent}`) ||

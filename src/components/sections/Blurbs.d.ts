@@ -22,9 +22,9 @@ export interface BlurbsProps {
    */
   fullWidth?: BlurbsFullWidth;
   /**
-   * format body content
+   * center title and justify body content
    */
-  textAlign?: BlurbsTextAlign;
+  centered?: BlurbsTextAlign;
   /**
    * apply css supported color string to all children, overrides theme / default
    */

@@ -21,6 +21,7 @@ S.Header = styled(Header)`
 
 S.Content = styled(Header.Content)`
   z-index: 10;
+  text-align: ${({ $centered }) => $centered && 'justify'};
   position: relative;
 `
 
@@ -61,6 +62,6 @@ export const Blurb = ({
     >
       {header}
     </S.Header>
-    <S.Content>{children}</S.Content>
+    <S.Content $centered={align}>{children}</S.Content>
   </S.Section>
 )

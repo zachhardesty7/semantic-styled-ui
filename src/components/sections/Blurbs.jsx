@@ -43,15 +43,19 @@ S.Blurbs = styled(Segment)`
 
 S.Header = styled(Container)`
   /* pad between title/content and items */
-  padding-bottom: 2.75em;
+  padding-bottom: 2.75em !important;
 `
 
 S.Title = styled(Header).attrs({ forwardedAs: 'h3' })`
   font-size: 3em;
+
+  @media ${media.phone} {
+    text-align: left;
+  }
 `
 
 S.Content = styled(Header.Content)`
-  text-align: ${({ $textAlign }) => $textAlign};
+  text-align: ${({ $centered }) => $centered && 'justify'};
 `
 
 S.Grid = styled(Grid)`
@@ -86,7 +90,7 @@ export const Blurbs = ({
   title,
   content,
   fullWidth = false,
-  textAlign = 'left',
+  centered = false,
   color = '',
   secondary = false,
   padded = 'both',
@@ -106,14 +110,14 @@ export const Blurbs = ({
     {(title || content) && (
       <S.Header text>
         {title && (
-          <S.Title textAlign='center'>{title}</S.Title>
+          <S.Title textAlign={centered ? 'center' : undefined}>{title}</S.Title>
         )}
         {content && (
-          <S.Content $textAlign={textAlign}>{content}</S.Content>
+          <S.Content $centered={centered}>{content}</S.Content>
         )}
       </S.Header>
     )}
-    <Container fluid={!!fullWidth} textAlign='center'>
+    <Container fluid={!!fullWidth} textAlign={centered ? 'center' : undefined}>
       <S.Grid
         columns={Math.min(React.Children.count(children), 8)}
         relaxed
