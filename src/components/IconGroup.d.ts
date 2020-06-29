@@ -1,33 +1,37 @@
+import * as React from 'react'
 
-import * as React from 'react';
+export type IconGroupJustify = 'flex-start' | 'center' | 'flex-end'
 
-export type IconGroupJustify = "flex-start" | "center" | "flex-end";
+export type IconGroupPadded = boolean | 'top' | 'bottom' | 'both'
 
-export type IconGroupPadded = boolean | "top" | "bottom" | "both";
-
-export type IconGroupPadding = "compact" | "tight" | "base" | "relaxed" | "loose";
+export type IconGroupPadding =
+  | 'compact'
+  | 'tight'
+  | 'base'
+  | 'relaxed'
+  | 'loose'
 
 export interface IconGroupProps {
   /**
    * flex alignment of icon container
    */
-  justify?: IconGroupJustify;
+  justify?: IconGroupJustify
   /**
    * spacing around element exists
    */
-  padded?: IconGroupPadded;
+  padded?: IconGroupPadded
   /**
    * control amount of spacing around element
    */
-  padding?: IconGroupPadding;
+  padding?: IconGroupPadding
   /**
    * additional or pass thru classes for composition
    */
-  className?: string;
+  className?: string
   /**
    * primary content of icon(s)
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-export function IconGroup(props: IconGroupProps): JSX.Element;
+export function IconGroup(props: IconGroupProps): JSX.Element

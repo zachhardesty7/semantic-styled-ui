@@ -1,60 +1,58 @@
-import * as React from 'react';
+import * as React from 'react'
 
-export type HeroOverlay = "dark" | "darker";
+export type HeroOverlay = 'dark' | 'darker'
 
-export type HeroBaseline = "top" | "bottom";
+export type HeroBaseline = 'top' | 'bottom'
 
-export type HeroUnderline = string | boolean;
+export type HeroUnderline = string | boolean
 
-export type HeroSize = "compact" | "base" | "relaxed";
-
-export type HeroLogo = React.ReactElement<any> | Object;
+export type HeroSize = 'compact' | 'base' | 'relaxed'
 
 export interface HeroProps {
   /**
    * darken background image to improve readability
    */
-  overlay?: HeroOverlay;
+  overlay?: HeroOverlay
   /**
    * align content to top or bottom
    */
-  baseline?: HeroBaseline;
+  baseline?: HeroBaseline
   /**
    * apply css supported color string or use default if true
    */
-  underline?: HeroUnderline;
+  underline?: HeroUnderline
   /**
    * size using "em" units
    */
-  size?: HeroSize;
+  size?: HeroSize
   /**
    * image of logo
    */
-  logo?: HeroLogo;
+  logo?: React.ReactNode
   /**
    * format logo left of content
    */
-  inlineLogo?: boolean;
+  inlineLogo?: boolean
   /**
    * apply css supported color string to Icon and text, overrides theme / default
    */
-  color?: string;
+  color?: string
   /**
    * primary content
    */
-  title?: React.ReactNode;
+  title?: React.ReactNode
   /**
    * secondary content
    */
-  subtitle?: React.ReactNode;
+  subtitle?: React.ReactNode
   /**
    * call-to-action @see [`HeaderButton`](#headerbutton)
    */
-  button?: React.ReactNode;
+  button?: React.ReactNode
   /**
    * background images
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
-export function Hero(props: HeroProps): JSX.Element;
+export function Hero(props: HeroProps): JSX.Element

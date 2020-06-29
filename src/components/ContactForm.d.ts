@@ -1,45 +1,50 @@
-import * as React from 'react';
+import * as React from 'react'
 
-export type ContactFormTextArea = string | boolean;
+export type ContactFormTextArea = string | boolean
 
-export type ContactFormPadded = boolean | "top" | "bottom" | "both";
+export type ContactFormPadded = boolean | 'top' | 'bottom' | 'both'
 
-export type ContactFormPadding = "compact" | "tight" | "base" | "relaxed" | "loose";
+export type ContactFormPadding =
+  | 'compact'
+  | 'tight'
+  | 'base'
+  | 'relaxed'
+  | 'loose'
 
 export interface ContactFormProps {
   /**
    * enhances semantics
    */
-  name?: string;
+  name?: string
   /**
    * labels for fields
    */
-  fields?: string[];
+  fields?: string[]
   // REVIEW: whether better to pass false option to disable or just use empty string
-  /** 
-   * label or pass false to disable, defaults to "Enter Message Below:" 
+  /**
+   * label or pass false to disable, defaults to "Enter Message Below:"
    */
-  textArea?: ContactFormTextArea;
+  textArea?: ContactFormTextArea
   /**
    * button text content
    */
-  button?: string;
+  button?: string
   /**
    * if/where spacing around element exists
    */
-  padded?: ContactFormPadded;
+  padded?: ContactFormPadded
   /**
    * amount of spacing around element
    */
-  padding?: ContactFormPadding;
+  padding?: ContactFormPadding
   /**
    * called when form is successfully submitted
    */
-  onSubmit?: () => void;
+  onSubmit?: () => void
   /**
    * additional form fields
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
-export function ContactForm(props: ContactFormProps): JSX.Element;
+export function ContactForm(props: ContactFormProps): JSX.Element

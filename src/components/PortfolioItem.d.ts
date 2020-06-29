@@ -1,22 +1,22 @@
-import * as React from 'react';
+import * as React from 'react'
 
 export interface PortfolioItemProps {
   /**
    * primary content
    */
-  title?: React.ReactNode;
+  title?: React.ReactNode
   /**
    * secondary content
    */
-  subtitle?: React.ReactNode;
+  subtitle?: React.ReactNode
   /**
    * determine when to cover the entire space with hidden overflow
    */
-  fill?: boolean;
+  fill?: boolean
   /**
    * image-based content
    */
-  children?: React.ReactElement<any>;
+  children?: React.ReactNode
 }
 
-export function PortfolioItem(props: PortfolioItemProps): JSX.Element;
+export function PortfolioItem(props: PortfolioItemProps): JSX.Element

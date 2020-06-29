@@ -1,68 +1,73 @@
-import * as React from 'react';
+import * as React from 'react'
 
-export type NavigationAs = string | any;
+export type NavigationSize =
+  | 'small'
+  | 'tiny'
+  | 'mini'
+  | 'large'
+  | 'huge'
+  | 'massive'
 
-export type NavigationSize = "small" | "tiny" | "mini" | "large" | "huge" | "massive";
-
-export type NavigationTextAlign = "left" | "center" | "right" | "justify";
+export type NavigationTextAlign = 'left' | 'center' | 'right' | 'justify'
 
 export interface NavigationProps {
   /**
    * element type to render as (string or function)
    * supports HTML tag as a string or React component definition
+   *
    * @example
    * 'div'
    * 'section'
    * ReactComponent
    * Card
    */
-  as?: NavigationAs;
+  as?: AsProp
   /**
    * size using "em" units
    */
-  size?: NavigationSize;
+  size?: NavigationSize
   /**
    * format to be used with text items
    */
-  text?: boolean;
+  text?: boolean
   /**
    * increase whitespace
    */
-  relaxed?: boolean,
+  relaxed?: boolean
   /**
    * increase prominence
    */
-  primary?: boolean,
+  primary?: boolean
   /**
    * don't indicate active page
    */
-  noPointing?: boolean,
+  noPointing?: boolean
   /**
    * flip the colors for display on a light colored background
    */
-  inverted?: boolean,
+  inverted?: boolean
   /**
    * allow content to reach the edges of the parent
    */
-  fullWidth?: boolean,
+  fullWidth?: boolean
   /**
    * elevate nav to sit on top of underlying container
    */
-  floating?: boolean,
+  floating?: boolean
   /**
    * put all space between children
-   * 
+   *
    * **NOTE:** only works with 2 items
    */
-  split?: boolean,
+  split?: boolean
   /**
    * horizontal position
    */
-  textAlign?: NavigationTextAlign;
+  textAlign?: NavigationTextAlign
   /**
    * collection of items to render as menu
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
-export function Navigation(props: NavigationProps): JSX.Element;
+export function Navigation(props: NavigationProps): JSX.Element

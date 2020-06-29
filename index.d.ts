@@ -6,18 +6,18 @@ export type FlattenSimpleInterpolation = import('styled-components').FlattenSimp
 
 /** define styled components supported theme props */
 export interface DefaultTheme {
-  white: string,
-  primary: string,
-  secondary: string,
-  accent: string,
+  white: string
+  primary: string
+  secondary: string
+  accent: string
 }
 
 // JSDoc helpers
-export type Merge<T1, T2> = Omit<T2, keyof T1> & T1;
+export type Merge<T1, T2> = Omit<T2, keyof T1> & T1
 
-export type Nullable<T> = { [P in keyof T]: T[P] | null };
+export type Nullable<T> = { [P in keyof T]: T[P] | null }
 
-export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
+export type Writeable<T> = { -readonly [P in keyof T]: T[P] }
 
 export type Intersect<T1, T2> = T1 & T2
 

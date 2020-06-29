@@ -1,41 +1,40 @@
-import * as React from 'react';
-
-export type LinkAs = string | any;
+import * as React from 'react'
 
 export interface LinkProps {
   /**
    * element type to render as (string or function) supports HTML tag as a string or
    * React component definition
    * NOTE: ignored if `link` contains a "#"
+   *
    * @example
    * 'div'
    * 'section'
    * ReactComponent
    * Card
    */
-  as?: LinkAs;
+  as?: AsProp
   /**
    * hash link (prefixed with "#") or internal link applied via a new `to` field or can
    * be used as a standard href if `external` tag is set
    */
-  link?: string;
+  link?: string
   /**
    * applies props directly to newly created & rendered `as` component
    */
-  wrap?: boolean;
+  wrap?: boolean
   /**
    * when not wrapping, convert `as` tag to `forwardedAs` for passing the prop thru a
    * `styled-components`
    */
-  forwarded?: boolean;
+  forwarded?: boolean
   /**
    * treats as standard href, usually `a` tagged element
    */
-  external?: boolean;
+  external?: boolean
   /**
    * primary content, usually a string, but handles multiple items
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-export function Link(props: LinkProps): JSX.Element;
+export function Link(props: LinkProps): JSX.Element
