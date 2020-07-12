@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 
 export type BlurbProps = {
   /** content above header */
@@ -28,7 +28,7 @@ export type BlurbProps = {
   as?: string | JSX.Element
 
   /** position / justification of all content */
-  align?: 'start' | 'center' | 'end'
+  align?: "start" | "center" | "end"
 
   /** secondary content of body */
   // children: PropTypes.node,

@@ -1,8 +1,9 @@
 module.exports = {
   presets: [
     [
-      '@babel/preset-env', {
-        targets: '> 0.25%, not dead',
+      "@babel/preset-env",
+      {
+        targets: "> 0.25%, not dead",
         // REVIEW: prevent rollup this undef error?
         // targets: {
         //   esmodules: true,
@@ -17,7 +18,8 @@ module.exports = {
     ],
     // '@babel/preset-typescript',
     [
-      '@babel/preset-react', {
+      "@babel/preset-react",
+      {
         // https://babeljs.io/docs/en/babel-preset-react/#react-automatic-runtime
         // runtime: 'automatic',
         useBuiltIns: true,
@@ -29,10 +31,12 @@ module.exports = {
   ],
   plugins: [
     // add back missing source from `preset-react`
-    process.env.ENV_MODE === 'local' && '@babel/plugin-transform-react-jsx-source',
+    process.env.ENV_MODE === "local" &&
+      "@babel/plugin-transform-react-jsx-source",
     [
-      '@quickbaseoss/babel-plugin-styled-components-css-namespace', {
-        cssNamespace: '&&&&&&',
+      "@quickbaseoss/babel-plugin-styled-components-css-namespace",
+      {
+        cssNamespace: "&&&&&&",
       },
     ],
     // [

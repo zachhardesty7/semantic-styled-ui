@@ -1,17 +1,17 @@
 export type IconLabel = string | boolean
 
-export type IconAlign = 'start' | 'center' | 'end'
+export type IconAlign = "start" | "center" | "end"
 
 export type IconSize =
-  | 'mini'
-  | 'tiny'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'big'
-  | 'bigger'
-  | 'huge'
-  | 'massive'
+  | "mini"
+  | "tiny"
+  | "small"
+  | "medium"
+  | "large"
+  | "big"
+  | "bigger"
+  | "huge"
+  | "massive"
 
 export interface IconProps {
   /**

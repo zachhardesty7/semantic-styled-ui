@@ -1,12 +1,12 @@
-import * as React from 'react'
+import * as React from "react"
 
-export type BlurbsFullWidth = boolean | 'gutter'
+export type BlurbsFullWidth = boolean | "gutter"
 
-export type BlurbsTextAlign = 'left' | 'center' | 'right' | 'justify'
+export type BlurbsTextAlign = "left" | "center" | "right" | "justify"
 
-export type BlurbsPadded = boolean | 'top' | 'bottom' | 'both'
+export type BlurbsPadded = boolean | "top" | "bottom" | "both"
 
-export type BlurbsPadding = 'compact' | 'tight' | 'base' | 'relaxed' | 'loose'
+export type BlurbsPadding = "compact" | "tight" | "base" | "relaxed" | "loose"
 
 export interface BlurbsProps {
   /**

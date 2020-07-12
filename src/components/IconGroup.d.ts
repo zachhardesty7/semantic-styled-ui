@@ -1,15 +1,15 @@
-import * as React from 'react'
+import * as React from "react"
 
-export type IconGroupJustify = 'flex-start' | 'center' | 'flex-end'
+export type IconGroupJustify = "flex-start" | "center" | "flex-end"
 
-export type IconGroupPadded = boolean | 'top' | 'bottom' | 'both'
+export type IconGroupPadded = boolean | "top" | "bottom" | "both"
 
 export type IconGroupPadding =
-  | 'compact'
-  | 'tight'
-  | 'base'
-  | 'relaxed'
-  | 'loose'
+  | "compact"
+  | "tight"
+  | "base"
+  | "relaxed"
+  | "loose"
 
 export interface IconGroupProps {
   /**

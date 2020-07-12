@@ -1,30 +1,20 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React from "react"
+import styled, { css } from "styled-components"
 
-import {
-  Container,
-  Grid,
-  Header,
-  Segment,
-} from 'semantic-ui-react'
-import { Blurb } from '../Blurb'
+import { Container, Grid, Header, Segment } from "semantic-ui-react"
+import { Blurb } from "../Blurb"
 
-import {
-  media,
-  paddingMap,
-  withNewProps,
-} from '../../utils'
+import { media, paddingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
 S.Blurbs = styled(Segment)`
-  ${({ $padded, padding }) => (
-    ($padded === 'top' && `padding-top: ${paddingMap[padding]}`) ||
-    ($padded === 'bottom' && `padding-bottom: ${paddingMap[padding]}`) ||
-    ($padded && `padding: ${paddingMap[padding]} 0`)
-  )};
+  ${({ $padded, padding }) =>
+    ($padded === "top" && `padding-top: ${paddingMap[padding]}`) ||
+    ($padded === "bottom" && `padding-bottom: ${paddingMap[padding]}`) ||
+    ($padded && `padding: ${paddingMap[padding]} 0`)};
 
   @media ${media.tablet} {
     .container:not(.fluid) {
@@ -46,7 +36,7 @@ S.Header = styled(Container)`
   padding-bottom: 2.75em !important;
 `
 
-S.Title = styled(Header).attrs({ forwardedAs: 'h3' })`
+S.Title = styled(Header).attrs({ forwardedAs: "h3" })`
   font-size: 3em;
 
   @media ${media.phone} {
@@ -55,35 +45,39 @@ S.Title = styled(Header).attrs({ forwardedAs: 'h3' })`
 `
 
 S.Content = styled(Header.Content)`
-  text-align: ${({ $centered }) => $centered && 'justify'};
+  text-align: ${({ $centered }) => $centered && "justify"};
 `
 
 S.Grid = styled(Grid)`
-  ${({ $fullWidth }) => $fullWidth === 'gutter' && css`
-    @media ${media.laptop} {
-      flex-wrap: nowrap
-    }
-    @media ${media.desktop} {
-      flex-wrap: nowrap
-    }
-    @media ${media.widescreen} {
-      flex-wrap: nowrap
-    }
-  `};
+  ${({ $fullWidth }) =>
+    $fullWidth === "gutter" &&
+    css`
+      @media ${media.laptop} {
+        flex-wrap: nowrap;
+      }
+      @media ${media.desktop} {
+        flex-wrap: nowrap;
+      }
+      @media ${media.widescreen} {
+        flex-wrap: nowrap;
+      }
+    `};
 `
 
 S.GridCol = styled(Grid.Column)`
-  ${({ $fullWidth }) => $fullWidth === 'gutter' && css`
-    margin-left: 10px;
-    margin-right: 10px;
+  ${({ $fullWidth }) =>
+    $fullWidth === "gutter" &&
+    css`
+      margin-left: 10px;
+      margin-right: 10px;
 
-    &:last-of-type {
-      margin-right: 20px;
-    }
-    &:first-of-type {
-      margin-left: 20px;
-    }
-  `};
+      &:last-of-type {
+        margin-right: 20px;
+      }
+      &:first-of-type {
+        margin-left: 20px;
+      }
+    `};
 `
 
 export const Blurbs = ({
@@ -91,17 +85,17 @@ export const Blurbs = ({
   content,
   fullWidth = false,
   centered = false,
-  color = '',
+  color = "",
   secondary = false,
-  padded = 'both',
-  padding = 'relaxed',
+  padded = "both",
+  padding = "relaxed",
   children,
   ...rest
 }) => (
   <S.Blurbs
     $padded={padded}
     padding={padding}
-    forwardedAs='section'
+    forwardedAs="section"
     vertical
     basic
     secondary={secondary}
@@ -110,14 +104,12 @@ export const Blurbs = ({
     {(title || content) && (
       <S.Header text>
         {title && (
-          <S.Title textAlign={centered ? 'center' : undefined}>{title}</S.Title>
+          <S.Title textAlign={centered ? "center" : undefined}>{title}</S.Title>
         )}
-        {content && (
-          <S.Content $centered={centered}>{content}</S.Content>
-        )}
+        {content && <S.Content $centered={centered}>{content}</S.Content>}
       </S.Header>
     )}
-    <Container fluid={!!fullWidth} textAlign={centered ? 'center' : undefined}>
+    <Container fluid={!!fullWidth} textAlign={centered ? "center" : undefined}>
       <S.Grid
         columns={Math.min(React.Children.count(children), 8)}
         relaxed

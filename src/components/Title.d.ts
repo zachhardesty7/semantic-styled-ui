@@ -1,10 +1,10 @@
-import * as React from 'react'
+import * as React from "react"
 
-export type TitleTextAlign = 'left' | 'center' | 'right' | 'justify'
+export type TitleTextAlign = "left" | "center" | "right" | "justify"
 
-export type TitleTextAlignSub = 'left' | 'center' | 'right' | 'justify'
+export type TitleTextAlignSub = "left" | "center" | "right" | "justify"
 
-export type TitlePadded = boolean | 'top' | 'bottom' | 'both'
+export type TitlePadded = boolean | "top" | "bottom" | "both"
 
 export interface TitleProps {
   /**

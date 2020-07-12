@@ -1,23 +1,18 @@
 {
-	"processors": [
-		"stylelint-processor-styled-components"
-	],
-	"extends": [
-		"stylelint-config-recommended",
-		"stylelint-config-styled-components"
-	],
-	"rules": {
-		"no-descending-specificity": null,
-		"block-opening-brace-space-before": "always",
-		"block-closing-brace-newline-after": [
-			"always",
-			{
-				"ignoreAtRules": [
-					"if",
-					"else"
-				]
-			}
-		],
-		"at-rule-name-space-after": "always"
-	}
+  "processors": ["stylelint-processor-styled-components"],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components"
+  ],
+  "rules": {
+    "no-descending-specificity": null,
+    "block-opening-brace-space-before": "always",
+    "block-closing-brace-newline-after": [
+      "always",
+      {
+        "ignoreAtRules": ["if", "else"]
+      }
+    ],
+    "at-rule-name-space-after": "always"
+  }
 }

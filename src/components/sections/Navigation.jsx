@@ -1,23 +1,25 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React from "react"
+import styled, { css } from "styled-components"
 
-import { Container, Menu, Segment } from 'semantic-ui-react'
-import { NavigationItem } from '../NavigationItem'
-import { NavigationLogo } from '../NavigationLogo'
+import { Container, Menu, Segment } from "semantic-ui-react"
+import { NavigationItem } from "../NavigationItem"
+import { NavigationLogo } from "../NavigationLogo"
 
-import { media, withNewProps } from '../../utils'
+import { media, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
 S.Segment = styled(Segment)`
-  ${({ $pointing }) => $pointing && 'padding-bottom: 0'};
-  ${({ $floating, $relaxed }) => $floating && css`
-    position: absolute;
-    z-index: 1000;
-    width: 100%;
-    background-color: #ffffff00;
-    padding: ${$relaxed ? '1em 1.5em' : '0em'};
-  `};
+  ${({ $pointing }) => $pointing && "padding-bottom: 0"};
+  ${({ $floating, $relaxed }) =>
+    $floating &&
+    css`
+      position: absolute;
+      z-index: 1000;
+      width: 100%;
+      background-color: #ffffff00;
+      padding: ${$relaxed ? "1em 1.5em" : "0em"};
+    `};
 `
 
 S.Menu = styled(Menu)`
@@ -28,18 +30,18 @@ S.Menu = styled(Menu)`
     display: none;
   }
 
-  ${({ $split }) => $split && 'justify-content: space-between'};
+  ${({ $split }) => $split && "justify-content: space-between"};
 
   @media ${media.mobile} {
     justify-content: center;
   }
 
-  ${({ pointing }) => pointing && '& .item { border-radius: 0px }'};
+  ${({ pointing }) => pointing && "& .item { border-radius: 0px }"};
 
-  ${({ pointing }) => pointing && 'border-bottom: none'};
-  ${({ pointing }) => pointing && 'margin-bottom: 2px'};
+  ${({ pointing }) => pointing && "border-bottom: none"};
+  ${({ pointing }) => pointing && "margin-bottom: 2px"};
 
-  ${({ pointing, $floating }) => pointing && $floating && 'border: none'};
+  ${({ pointing, $floating }) => pointing && $floating && "border: none"};
 `
 
 S.SubMenu = styled(Menu.Menu)`
@@ -49,13 +51,13 @@ S.SubMenu = styled(Menu.Menu)`
 
 // TODO: add sticky header
 export const Navigation = ({
-  as = 'a',
-  size = undefined,
+  as = "a",
+  size,
   text = false,
   relaxed = false,
   primary = false,
   noPointing = false,
-  textAlign = 'center',
+  textAlign = "center",
   inverted = false,
   fullWidth = false,
   split = false,
@@ -64,7 +66,7 @@ export const Navigation = ({
   ...rest
 }) => (
   <S.Segment
-    forwardedAs='header'
+    forwardedAs="header"
     $pointing={!noPointing}
     $floating={floating}
     $relaxed={relaxed}
@@ -74,7 +76,7 @@ export const Navigation = ({
   >
     {fullWidth ? (
       <S.Menu
-        forwardedAs='nav'
+        forwardedAs="nav"
         size={size}
         text={text}
         secondary={!primary}
@@ -84,13 +86,14 @@ export const Navigation = ({
         $split={split}
       >
         {/* apply tag && pointing to all children */}
-        {React.Children.map(children,
-          (Child) => withNewProps(Child, { forwardedAs: as, pointing: !noPointing }))}
+        {React.Children.map(children, (Child) =>
+          withNewProps(Child, { forwardedAs: as, pointing: !noPointing })
+        )}
       </S.Menu>
     ) : (
       <Container textAlign={textAlign}>
         <S.Menu
-          forwardedAs='nav'
+          forwardedAs="nav"
           size={size}
           text={text}
           compact={!relaxed}
@@ -100,8 +103,9 @@ export const Navigation = ({
           $floating={floating}
         >
           {/* apply tag && pointing to all children */}
-          {React.Children.map(children,
-            (Child) => withNewProps(Child, { forwardedAs: as, pointing: !noPointing }))}
+          {React.Children.map(children, (Child) =>
+            withNewProps(Child, { forwardedAs: as, pointing: !noPointing })
+          )}
         </S.Menu>
       </Container>
     )}
@@ -110,14 +114,12 @@ export const Navigation = ({
 
 Navigation.Left = ({ children, ...rest }) => (
   <S.SubMenu>
-    {React.Children.map(children,
-      (Child) => withNewProps(Child, rest))}
+    {React.Children.map(children, (Child) => withNewProps(Child, rest))}
   </S.SubMenu>
 )
 Navigation.Right = ({ children, ...rest }) => (
   <S.SubMenu>
-    {React.Children.map(children,
-      (Child) => withNewProps(Child, rest))}
+    {React.Children.map(children, (Child) => withNewProps(Child, rest))}
   </S.SubMenu>
 )
 

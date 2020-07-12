@@ -1,60 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import styled, { css } from 'styled-components'
+import React, { useEffect, useState } from "react"
+import styled, { css } from "styled-components"
 
-import {
-  Container,
-  Header,
-  Segment,
-  Transition,
-} from 'semantic-ui-react'
-import { HeroButton } from '../HeroButton'
+import { Container, Header, Segment, Transition } from "semantic-ui-react"
+import { HeroButton } from "../HeroButton"
 
-import {
-  defaultColors,
-  getColor,
-  media,
-} from '../../utils'
+import { defaultColors, getColor, media } from "../../utils"
 
 const sizes = {
   small: {
-    relaxed: '8em',
-    base: '6em',
-    compact: '4em',
+    relaxed: "8em",
+    base: "6em",
+    compact: "4em",
   },
   large: {
-    relaxed: '24em',
-    base: '16em',
-    compact: '8em',
+    relaxed: "24em",
+    base: "16em",
+    compact: "8em",
   },
 }
 
 const S = {}
 
 S.Segment = styled(Segment)`
-  padding-top: ${({ baseline, $size }) => (
-    baseline === 'top'
-      ? sizes.small[$size]
-      : sizes.large[$size]
-  )};
-  padding-bottom: ${({ baseline, $size }) => (
-    baseline === 'top'
-      ? sizes.large[$size]
-      : sizes.small[$size]
-  )};
+  padding-top: ${({ baseline, $size }) =>
+    baseline === "top" ? sizes.small[$size] : sizes.large[$size]};
+  padding-bottom: ${({ baseline, $size }) =>
+    baseline === "top" ? sizes.large[$size] : sizes.small[$size]};
 
   /* background overlay to dim and saturate */
   &::before {
     content: "";
     height: 100%;
     width: 100.5%;
-    background: ${({ overlay }) => (
-    (overlay === 'dark' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))') ||
-      (overlay === 'darker' && 'linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))')
-    )};
+    background: ${({ overlay }) =>
+      (overlay === "dark" &&
+        "linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))") ||
+      (overlay === "darker" &&
+        "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))")};
     filter: saturate(2) sepia(0.4);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center +45%;
+    background-position: center + 45%;
     top: 0;
     left: -0.5%;
     position: absolute;
@@ -63,16 +49,16 @@ S.Segment = styled(Segment)`
 `
 
 S.BaseHeader = styled(Header)`
-  ${getColor('white')};
+  ${getColor("white")};
   font-display: fallback;
   font-weight: normal;
 `
 
 S.Title = styled(S.BaseHeader)`
-  ${({ $inlineLogo }) => $inlineLogo && 'display: inline-block'};
-  ${({ $inlineLogo }) => $inlineLogo && 'margin-bottom: 0'};
+  ${({ $inlineLogo }) => $inlineLogo && "display: inline-block"};
+  ${({ $inlineLogo }) => $inlineLogo && "margin-bottom: 0"};
   padding-right: 0.15em;
-  font-size: ${({ $secondary }) => ($secondary ? '3.3em' : '4.7em')};
+  font-size: ${({ $secondary }) => ($secondary ? "3.3em" : "4.7em")};
 
   @media ${media.laptop} {
     font-size: 4em;
@@ -87,7 +73,7 @@ S.Title = styled(S.BaseHeader)`
 `
 
 S.Subtitle = styled(S.BaseHeader)`
-  ${({ $inlineLogo }) => $inlineLogo && 'margin-top: 0.75em'};
+  ${({ $inlineLogo }) => $inlineLogo && "margin-top: 0.75em"};
   font-size: 1.7rem;
 
   @media ${media.laptop} {
@@ -112,11 +98,12 @@ S.Chunk = styled.header`
   margin-left: 1rem;
   margin-right: 1rem;
 
-  border-bottom: ${({ $underline, theme }) => (
-    ($underline === true && css`5px solid ${theme.accent || defaultColors.accent}`) ||
-    ($underline && css`5px solid ${$underline || theme.accent || defaultColors.accent}`) ||
-    'none'
-  )};
+  border-bottom: ${({ $underline, theme }) =>
+    ($underline === true &&
+      css`5px solid ${theme.accent || defaultColors.accent}`) ||
+    ($underline &&
+      css`5px solid ${$underline || theme.accent || defaultColors.accent}`) ||
+    "none"};
   z-index: 3;
   position: relative;
 `
@@ -140,14 +127,14 @@ S.Logo = styled.img`
 `
 
 export const Hero = ({
-  overlay = 'dark',
-  baseline = 'bottom',
+  overlay = "dark",
+  baseline = "bottom",
   underline = false,
-  size = 'base',
+  size = "base",
   logo = null,
   inlineLogo = false,
   secondary = false,
-  color = '',
+  color = "",
   title = null,
   subtitle = null,
   button = null,
@@ -157,7 +144,7 @@ export const Hero = ({
   const [curBackground, setCurBackground] = useState(0)
   useEffect(() => {
     const cycle = setTimeout(() => {
-      setCurBackground((curBackground + 1) % (React.Children.count(children)))
+      setCurBackground((curBackground + 1) % React.Children.count(children))
     }, 6000)
 
     return () => clearTimeout(cycle)
@@ -175,7 +162,7 @@ export const Hero = ({
         <Transition
           key={Background.props.alt}
           visible={i === curBackground}
-          animation='fade'
+          animation="fade"
           duration={3000}
         >
           <S.BackgroundImage as={Background.type} {...Background.props} />
@@ -185,13 +172,11 @@ export const Hero = ({
       <Container>
         {/* nested inline chunk to facilitate underline */}
         <S.Chunk $underline={underline}>
-          {logo && (
-            <S.Logo as={logo.type} {...logo.props} alt='logo' />
-          )}
+          {logo && <S.Logo as={logo.type} {...logo.props} alt="logo" />}
 
           {title && (
             <S.Title
-              forwardedAs={secondary ? 'h2' : 'h1'}
+              forwardedAs={secondary ? "h2" : "h1"}
               $color={color}
               $secondary={secondary}
               $inlineLogo={inlineLogo}
@@ -201,7 +186,11 @@ export const Hero = ({
           )}
 
           {subtitle && (
-            <S.Subtitle forwardedAs='h2' $color={color} $inlineLogo={inlineLogo}>
+            <S.Subtitle
+              forwardedAs="h2"
+              $color={color}
+              $inlineLogo={inlineLogo}
+            >
               {subtitle}
             </S.Subtitle>
           )}

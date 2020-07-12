@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 /**
  * Capitalize first letter of words and remove spaces.
@@ -10,14 +10,10 @@ import React from 'react'
  * toJoinedTitleCase('an arbitrary string input')
  * // => 'AnArbitraryStringInput'
  */
-export const toJoinedTitleCase = (str = '') => (
+export const toJoinedTitleCase = (str = "") =>
   str
-    .replace(
-      /\w*/g,
-      (txt) => txt.charAt(0).toUpperCase() + txt.substr(1),
-    )
-    .replace(/\W/g, '')
-)
+    .replace(/\w*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1))
+    .replace(/\W/g, "")
 
 /**
  * Clamp duration of scrolling.
@@ -46,7 +42,7 @@ export const calcDuration = (scrollDistanceInPx) => {
  * process('An Arbitrary String Input')
  * // => 'an-arbitrary-string-input'
  */
-export const process = (str = '') => str.toLowerCase().replace(/\W/g, '-')
+export const process = (str = "") => str.toLowerCase().replace(/\W/g, "-")
 
 /**
  * Convert camel case string to kebab case.
@@ -62,7 +58,8 @@ export const process = (str = '') => str.toLowerCase().replace(/\W/g, '-')
  * camelCaseToDash('TurboPascal')
  * // => 'turbo-pascal'
  */
-export const camelToKebab = (str = '') => str.replace(/([A-Za-z])(?=[A-Z])/g, '$1-').toLowerCase()
+export const camelToKebab = (str = "") =>
+  str.replace(/([A-Za-z])(?=[A-Z])/g, "$1-").toLowerCase()
 
 /**
  * URL encodes the data of key, value pairs as submitted by a form.
@@ -74,9 +71,12 @@ export const camelToKebab = (str = '') => str.replace(/([A-Za-z])(?=[A-Z])/g, '$
  * encode({ key1: 'val1', key2: 'val2' })
  * // => 'key1=val1&key2=val2'
  */
-export const encode = (data) => Object.entries(data)
-  .map(([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`)
-  .join('&')
+export const encode = (data) =>
+  Object.entries(data)
+    .map(
+      ([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`
+    )
+    .join("&")
 
 /**
  * URL encodes the data of key, value pairs as submitted by a form.
@@ -88,13 +88,12 @@ export const encode = (data) => Object.entries(data)
  * removeUndef({ key1: 'val1', key2: undefined })
  * // => {key1: 'val1'}
  */
-const removeUndef = (obj) => (
+const removeUndef = (obj) =>
   Object.fromEntries(
     Object.entries(obj)
-      .filter(([k, v]) => v != null)
-      .map(([k, v]) => (typeof v === 'object' ? [k, removeUndef(v)] : [k, v])),
+      .filter((kv) => kv[1] != null)
+      .map(([k, v]) => (typeof v === "object" ? [k, removeUndef(v)] : [k, v]))
   )
-)
 
 /**
  * Soft merge new props into a React Component without
@@ -113,9 +112,9 @@ const removeUndef = (obj) => (
  * // => <Container prop3='important-value' prop4='val4' />
  *
  */
-export const withNewProps = (element, props = {}) => (
-  element && React.cloneElement(element, { ...removeUndef(props), ...element.props })
-)
+export const withNewProps = (element, props = {}) =>
+  element &&
+  React.cloneElement(element, { ...removeUndef(props), ...element.props })
 
 /**
  * helper function to find and return semantic name used for debugging components
@@ -125,7 +124,8 @@ export const withNewProps = (element, props = {}) => (
  * @param {string} [target.name] - generally assigned via React from var name
  * @returns {string} best "name" of element
  */
-export const getComponentName = ({ displayName, name }) => displayName || name || 'Component'
+export const getComponentName = ({ displayName, name }) =>
+  displayName || name || "Component"
 
 /**
  * **@deprecated** - replaced with transient props from styled-components
@@ -169,14 +169,21 @@ export const getComponentName = ({ displayName, name }) => displayName || name |
 export const withoutProps = (Component, propKeys = []) => {
   // facilitate debugging with named func
   const FilteredComponent = ({ children, ...rest }, ref) => {
-    const filteredProps = Object.fromEntries(Object.entries(rest)
-      .filter(([key]) => !propKeys.includes(key)))
+    const filteredProps = Object.fromEntries(
+      Object.entries(rest).filter(([key]) => !propKeys.includes(key))
+    )
 
-    return <Component ref={ref} {...filteredProps}>{children}</Component>
+    return (
+      <Component ref={ref} {...filteredProps}>
+        {children}
+      </Component>
+    )
   }
 
   // attach "FilteredProps" tag in React Dev Tools v5
-  FilteredComponent.displayName = `FilteredProps(${getComponentName(Component)})`
+  FilteredComponent.displayName = `FilteredProps(${getComponentName(
+    Component
+  )})`
 
   // ensure ref points to Element NOT functional FilteredComponent
   const result = React.forwardRef(FilteredComponent)
@@ -186,4 +193,5 @@ export const withoutProps = (Component, propKeys = []) => {
 }
 
 // helpful for testing
-export const sleep = (ms) => (data) => new Promise((resolve) => setTimeout(() => resolve(data), ms))
+export const sleep = (ms) => (data) =>
+  new Promise((resolve) => setTimeout(() => resolve(data), ms))

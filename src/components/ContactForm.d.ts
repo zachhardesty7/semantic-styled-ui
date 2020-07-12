@@ -1,15 +1,15 @@
-import * as React from 'react'
+import * as React from "react"
 
 export type ContactFormTextArea = string | boolean
 
-export type ContactFormPadded = boolean | 'top' | 'bottom' | 'both'
+export type ContactFormPadded = boolean | "top" | "bottom" | "both"
 
 export type ContactFormPadding =
-  | 'compact'
-  | 'tight'
-  | 'base'
-  | 'relaxed'
-  | 'loose'
+  | "compact"
+  | "tight"
+  | "base"
+  | "relaxed"
+  | "loose"
 
 export interface ContactFormProps {
   /**

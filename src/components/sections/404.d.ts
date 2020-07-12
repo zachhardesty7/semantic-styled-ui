@@ -1,6 +1,6 @@
-import * as React from 'react'
+import * as React from "react"
 
-export type Section404TextAlign = 'left' | 'center' | 'right' | 'justify'
+export type Section404TextAlign = "left" | "center" | "right" | "justify"
 
 export interface Section404Props {
   /**

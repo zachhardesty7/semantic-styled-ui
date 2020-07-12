@@ -1,8 +1,8 @@
 // NOTE: valid typings below
 /** property name of an object backup theme or any of defaultColors */
-export type DefaultColor = keyof typeof import('./src/utils/colors').defaultColors
+export type DefaultColor = keyof typeof import("./src/utils/colors").defaultColors
 
-export type FlattenSimpleInterpolation = import('styled-components').FlattenSimpleInterpolation
+export type FlattenSimpleInterpolation = import("styled-components").FlattenSimpleInterpolation
 
 /** define styled components supported theme props */
 export interface DefaultTheme {
@@ -29,8 +29,8 @@ export interface HTMLNode extends HTMLElement {
   parentNode: HTMLNode
 }
 
-export * from './src/components'
-export * from './src/utils'
+export * from "./src/components"
+export * from "./src/utils"
 
 export {
   Image,
@@ -84,4 +84,4 @@ export {
   TransitionablePortal,
   MountNode,
   Form,
-} from 'semantic-ui-react'
+} from "semantic-ui-react"

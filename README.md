@@ -19,14 +19,14 @@ the beginning of the second repo so visit the first for more commit history.
 
 Clone this repo and then run the following command to download dependencies and build:
 
-``` bash
+```bash
 npm install
 npm run build
 ```
 
 ## Known Issues
 
-* pending
+- pending
 
 ## Contributing
 
@@ -54,18 +54,19 @@ limitations under the License.
 
 ## Special Acknowledgements
 
-* [Semantic UI React][semanticGH] - The official Semantic-UI-React integration
-* [Styled Components][styledGH] - Promote declarative rendering of component styles based
+- [Semantic UI React][semanticgh] - The official Semantic-UI-React integration
+- [Styled Components][styledgh] - Promote declarative rendering of component styles based
   on props
-* [React][reactGH] - A declarative, efficient, and flexible JavaScript library for building user interfaces
-* [React Scroll][scrollGH] - Component for animating vertical scrolling
-* [Javascript Standard JS & Airbnb Hybrid Style][standard] - Airbnb's JS ESLint config + JS Standard Style
+- [React][reactgh] - A declarative, efficient, and flexible JavaScript library for building user interfaces
+- [React Scroll][scrollgh] - Component for animating vertical scrolling
+- [Javascript Standard JS & Airbnb Hybrid Style][standard] - Airbnb's JS ESLint config + JS Standard Style
 
 <!-- Markdown link & img definitions -->
+
 [connect-door]: https://github.com/zachhardesty7/connect-door/
 [gulf-corp]: https://github.com/zachhardesty7/gulf-corp/
 [standard]: https://github.com/doasync/eslint-config-airbnb-standard
-[reactGH]: https://github.com/facebook/react
-[semanticGH]: https://github.com/Semantic-Org/Semantic-UI-React
-[styledGH]: https://github.com/styled-components
-[scrollGH]: https://github.com/fisshy/react-scroll
+[reactgh]: https://github.com/facebook/react
+[semanticgh]: https://github.com/Semantic-Org/Semantic-UI-React
+[styledgh]: https://github.com/styled-components
+[scrollgh]: https://github.com/fisshy/react-scroll

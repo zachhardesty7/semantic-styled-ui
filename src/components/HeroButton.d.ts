@@ -1,8 +1,8 @@
-import * as React from 'react'
+import * as React from "react"
 
-export type HeroButtonPointing = 'left' | 'right'
+export type HeroButtonPointing = "left" | "right"
 
-export type HeroButtonSize = 'left' | 'right'
+export type HeroButtonSize = "left" | "right"
 
 export interface HeroButtonProps {
   /**

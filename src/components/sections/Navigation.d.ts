@@ -1,14 +1,14 @@
-import * as React from 'react'
+import * as React from "react"
 
 export type NavigationSize =
-  | 'small'
-  | 'tiny'
-  | 'mini'
-  | 'large'
-  | 'huge'
-  | 'massive'
+  | "small"
+  | "tiny"
+  | "mini"
+  | "large"
+  | "huge"
+  | "massive"
 
-export type NavigationTextAlign = 'left' | 'center' | 'right' | 'justify'
+export type NavigationTextAlign = "left" | "center" | "right" | "justify"
 
 export interface NavigationProps {
   /**

@@ -6,27 +6,27 @@
  * @returns {Record<string, any>} obj with key, value pairs assigned
  */
 export const ObjectFromEntries = (iter) => {
-	const obj = {}
-	const arr = [...iter]
+  const obj = {}
+  const arr = [...iter]
 
-	if (Object.getOwnPropertyDescriptor(obj, 'fromEntries')) {
-		return Object.fromEntries(arr)
-	}
+  if (Object.getOwnPropertyDescriptor(obj, "fromEntries")) {
+    return Object.fromEntries(arr)
+  }
 
-	arr.forEach((pair) => {
-		if (Object(pair) !== pair) {
-			throw new TypeError('iterable for fromEntries should yield objects')
-		}
+  arr.forEach((pair) => {
+    if (new Object(pair) !== pair) {
+      throw new TypeError("iterable for fromEntries should yield objects")
+    }
 
-		const { 0: key, 1: val } = pair
+    const { 0: key, 1: val } = pair
 
-		Object.defineProperty(obj, key, {
-			configurable: true,
-			enumerable: true,
-			writable: true,
-			value: val,
-		})
-	})
+    Object.defineProperty(obj, key, {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: val,
+    })
+  })
 
-	return obj
+  return obj
 }

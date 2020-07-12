@@ -1,9 +1,9 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React from "react"
+import styled, { css } from "styled-components"
 
-import { NavigationItem } from './NavigationItem'
+import { NavigationItem } from "./NavigationItem"
 
-import { logoSizes, logoSizesSVG, media } from '../utils'
+import { logoSizes, logoSizesSVG, media } from "../utils"
 
 const S = {} // styled-components namespace
 
@@ -12,14 +12,16 @@ const S = {} // styled-components namespace
 S.Wrapper = styled.div`
   align-self: center;
 
-  ${({ $stacked }) => $stacked && css`
-    margin-right: 50%;
-    margin-left: 50%;
+  ${({ $stacked }) =>
+    $stacked &&
+    css`
+      margin-right: 50%;
+      margin-left: 50%;
 
-    & > .item {
-      border-bottom: none;
-    }
-  `};
+      & > .item {
+        border-bottom: none;
+      }
+    `};
 `
 
 // use "!important" to override Gatsby-Image inline style
@@ -51,11 +53,11 @@ S.Logo = styled.div`
 `
 
 export const NavigationLogo = ({
-  as = 'a',
-  link = '/',
+  as = "a",
+  link = "/",
   stacked = false,
-  logoSize = 'base',
-  className = '',
+  logoSize = "base",
+  className = "",
   children,
   ...rest
 }) => (

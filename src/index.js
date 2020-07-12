@@ -1,5 +1,5 @@
-import * as SSUI from "./src/components"
-import { getComponentName } from "./src/utils"
+import * as SSUI from "./components"
+import { getComponentName } from "./utils"
 
 // add dev tools tag to each SSUI component
 Object.values(SSUI).forEach((component) => {
@@ -8,8 +8,8 @@ Object.values(SSUI).forEach((component) => {
   component.displayName = `SSUI(${getComponentName(component)})`
 })
 
-export * from "./src/components"
-export * from "./src/utils"
+export * from "./components"
+export * from "./utils"
 
 export {
   Image,

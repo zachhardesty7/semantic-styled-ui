@@ -1,16 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
-import { Button } from 'semantic-ui-react'
+import { Button } from "semantic-ui-react"
 
-import { Icon } from './Icon'
-import { Link } from './Link'
+import { Icon } from "./Icon"
+import { Link } from "./Link"
 
-import {
-  getBackgroundColor,
-  getColor,
-  getHoverBackgroundColor,
-} from '../utils'
+import { getBackgroundColor, getColor, getHoverBackgroundColor } from "../utils"
 
 const S = {} // styled-components namespace
 
@@ -18,18 +14,18 @@ S.Button = styled(Button)`
   display: inline-flex;
   align-items: center;
   margin-right: 0;
-  ${getColor('white')};
-  ${getBackgroundColor('secondary')};
+  ${getColor("white")};
+  ${getBackgroundColor("secondary")};
   transition: ease-in-out 50ms;
 
-  ${getHoverBackgroundColor('primary')};
+  ${getHoverBackgroundColor("primary")};
   &:hover {
     transition: ease-in-out 100ms;
   }
 `
 
 S.Icon = styled(Icon)`
-  ${getColor('white')};
+  ${getColor("white")};
   ${({ $pointing }) => `margin-${$pointing}: .75em`};
   vertical-align: bottom;
   width: 1em;
@@ -37,22 +33,17 @@ S.Icon = styled(Icon)`
 `
 
 export const HeroButton = ({
-  as = 'a',
-  link = '',
-  pointing = 'right',
+  as = "a",
+  link = "",
+  pointing = "right",
   compact = false,
-  size = 'big',
-  color = '',
-  colorHover = '',
+  size = "big",
+  color = "",
+  colorHover = "",
   children,
   ...rest
 }) => (
-  <Link
-    as={as}
-    forwarded
-    link={link}
-    {...rest}
-  >
+  <Link as={as} forwarded link={link} {...rest}>
     <S.Button
       primary
       size={size}
@@ -60,13 +51,9 @@ export const HeroButton = ({
       $backgroundColor={color}
       $backgroundColorHover={colorHover}
     >
-      {pointing === 'left' && (
-        <S.Icon $pointing='right' name='angle left' />
-      )}
+      {pointing === "left" && <S.Icon $pointing="right" name="angle left" />}
       {children}
-      {(pointing === 'right') && (
-        <S.Icon $pointing='left' name='angle right' />
-      )}
+      {pointing === "right" && <S.Icon $pointing="left" name="angle right" />}
     </S.Button>
   </Link>
 )

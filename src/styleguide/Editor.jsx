@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
-/* eslint-disable-next-line max-len */
-import EditorComponent from 'react-styleguidist/lib/client/rsg-components/Editor/Editor'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import EditorComponent from "react-styleguidist/lib/client/rsg-components/Editor/Editor"
 
 const Wrapper = styled.div`
   & pre[style] {

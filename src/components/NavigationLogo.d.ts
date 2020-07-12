@@ -1,6 +1,6 @@
-import * as React from 'react'
+import * as React from "react"
 
-export type NavigationLogoLogoSize = 'small' | 'base' | 'large'
+export type NavigationLogoLogoSize = "small" | "base" | "large"
 
 export interface NavigationLogoProps {
   /**

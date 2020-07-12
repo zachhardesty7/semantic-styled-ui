@@ -1,32 +1,34 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import React from "react"
+import styled, { css } from "styled-components"
 
-import { Menu } from 'semantic-ui-react'
+import { Menu } from "semantic-ui-react"
 
-import { Link } from './Link'
+import { Link } from "./Link"
 
-import { media } from '../utils'
+import { media } from "../utils"
 
 const S = {} // styled-components namespace
 
 S.Item = styled(Menu.Item)`
-  ${({ $pointing }) => $pointing && css`
-    border-bottom: 2px solid rgba(34,36,38,.15);
+  ${({ $pointing }) =>
+    $pointing &&
+    css`
+      border-bottom: 2px solid rgba(34, 36, 38, 0.15);
 
-    &.active {
-      border-bottom: 2px solid #1b1c1d;
-    }
+      &.active {
+        border-bottom: 2px solid #1b1c1d;
+      }
 
-    /* remove rounded edge that distorts underline */
-    &:last-child {
-      border-radius: 0;
-    }
+      /* remove rounded edge that distorts underline */
+      &:last-child {
+        border-radius: 0;
+      }
 
-    /* mix primary menu w secondary menu style */
-    &:hover {
-      background-color: rgba(0,0,0,.05);
-    }
-  `};
+      /* mix primary menu w secondary menu style */
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    `};
 
   /* REVIEW: report bug when placing this block before the prev */
   @media ${media.phone} {
@@ -37,8 +39,8 @@ S.Item = styled(Menu.Item)`
 `
 
 export const NavigationItem = ({
-  as = 'a',
-  link = '',
+  as = "a",
+  link = "",
   stacked = false,
   pointing = false,
   children,
@@ -51,8 +53,6 @@ export const NavigationItem = ({
     link={link}
     {...rest}
   >
-    <S.Item $pointing={pointing}>
-      {children}
-    </S.Item>
+    <S.Item $pointing={pointing}>{children}</S.Item>
   </Link>
 )

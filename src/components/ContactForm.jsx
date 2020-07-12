@@ -1,23 +1,17 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react"
+import styled from "styled-components"
 
-import {
-  Form,
-  Icon,
-  Message,
-  Transition,
-} from 'semantic-ui-react'
+import { Form, Icon, Message, Transition } from "semantic-ui-react"
 
-import { encode, paddingMap, process } from '../utils'
+import { encode, paddingMap, process } from "../utils"
 
 const S = {} // styled-components namespace
 
 S.Form = styled(Form)`
-  ${({ $padded, $padding }) => (
-    ($padded === 'top' && `padding-top: ${paddingMap[$padding]}`) ||
-    ($padded === 'bottom' && `padding-bottom: ${paddingMap[$padding]}`) ||
-    ($padded && `padding: ${paddingMap[$padding]} 0`)
-  )};
+  ${({ $padded, $padding }) =>
+    ($padded === "top" && `padding-top: ${paddingMap[$padding]}`) ||
+    ($padded === "bottom" && `padding-bottom: ${paddingMap[$padding]}`) ||
+    ($padded && `padding: ${paddingMap[$padding]} 0`)};
 `
 
 S.Message = styled(Message)`
@@ -33,12 +27,12 @@ S.Message = styled(Message)`
  */
 
 export const ContactForm = ({
-  name = '',
+  name = "",
   fields = [],
   textArea = true,
-  button = 'Submit',
+  button = "Submit",
   padded = false,
-  padding = 'base',
+  padding = "base",
   onSubmit = () => {},
   children,
   ...rest
@@ -49,15 +43,15 @@ export const ContactForm = ({
   /** @type {Record<string, string>} process and push raw fields into state */
   const fieldsInit = {}
   fields.forEach((field) => {
-    if (!field.includes(';')) {
-      fieldsInit[process(field)] = ''
+    if (!field.includes(";")) {
+      fieldsInit[process(field)] = ""
     } else {
-      fieldsInit[process(field.slice(0, field.indexOf('(')))] = ''
+      fieldsInit[process(field.slice(0, field.indexOf("(")))] = ""
     }
   })
 
   const [fieldsObj, setFieldsObj] = useState(fieldsInit)
-  const [textAreaVal, setTextArea] = useState('')
+  const [textAreaVal, setTextArea] = useState("")
 
   const removeSuccessMessage = (ms = 6000) => {
     setTimeout(() => {
@@ -66,19 +60,24 @@ export const ContactForm = ({
   }
 
   const handleSubmit = (evt) => {
-    if (Object.values(fieldsObj).some((val) => val === '')) {
+    if (Object.values(fieldsObj).some((val) => val === "")) {
       setSuccess(false)
       setError(true)
     } else {
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'contact', 'text-area': textAreaVal, ...fieldsObj }),
-      })
-        .catch((err) => console.error(err))
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          "text-area": textAreaVal,
+          ...fieldsObj,
+        }),
+      }).catch((error_) => console.error(error_))
 
       // reset state of fields
-      const newFieldsObj = Object.fromEntries(Object.keys(fieldsObj).map((key) => [key, '']))
+      const newFieldsObj = Object.fromEntries(
+        Object.keys(fieldsObj).map((key) => [key, ""])
+      )
 
       setSuccess(true)
       setError(false)
@@ -105,8 +104,8 @@ export const ContactForm = ({
     <S.Form
       name={name}
       onSubmit={handleSubmit}
-      data-netlify='true'
-      data-netlify-honeypot='bot-field'
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
       success={success}
       error={error}
       $padded={padded}
@@ -114,18 +113,25 @@ export const ContactForm = ({
       {...rest}
     >
       {/* limit bot responses with Netlify */}
-      <input type='hidden' name='bot-field' />
-      <input type='hidden' name='form-name' value={name} />
+      <input type="hidden" name="bot-field" />
+      <input type="hidden" name="form-name" value={name} />
       {fields
-        .map((_, i) => (i % 2 === 0 && fields.slice(i, i + 2))) // group fields by twos
+        .map((_, i) => i % 2 === 0 && fields.slice(i, i + 2)) // group fields by twos
         .filter(Boolean) // remove falsy (null) entries
         .map((fieldGroup) => (
-          <Form.Group key={`group-${process(fieldGroup.toString())}`} widths='equal'>
+          <Form.Group
+            key={`group-${process(fieldGroup.toString())}`}
+            widths="equal"
+          >
             {fieldGroup.map((field) => {
-              if (field.includes(';')) { // custom syntax due to Contentful limitations
-                const title = field.slice(0, field.indexOf('('))
-                let options = field.slice(field.indexOf('(') + 1, field.indexOf(')')) // remove title
-                options = options.split('; ')
+              if (field.includes(";")) {
+                // custom syntax due to Contentful limitations
+                const title = field.slice(0, field.indexOf("("))
+                let options = field.slice(
+                  field.indexOf("(") + 1,
+                  field.indexOf(")")
+                ) // remove title
+                options = options.split("; ")
                 options = options.map((op) => ({
                   text: op,
                   value: op,
@@ -135,7 +141,7 @@ export const ContactForm = ({
 
                 return (
                   <Form.Select
-                    error={error && fieldsObj[processedTitle] === ''}
+                    error={error && fieldsObj[processedTitle] === ""}
                     id={processedTitle}
                     key={processedTitle}
                     fluid
@@ -153,7 +159,7 @@ export const ContactForm = ({
               return (
                 <Form.Input
                   name={processedField}
-                  error={error && fieldsObj[processedField] === ''}
+                  error={error && fieldsObj[processedField] === ""}
                   id={processedField}
                   key={processedField}
                   fluid
@@ -168,21 +174,23 @@ export const ContactForm = ({
         ))}
       {textArea && (
         <Form.TextArea
-          name='text-area'
-          id='text-area'
-          error={error && textAreaVal === ''}
-          placeholder='Message'
-          label={textArea === true ? 'Enter message below:' : textArea}
+          name="text-area"
+          id="text-area"
+          error={error && textAreaVal === ""}
+          placeholder="Message"
+          label={textArea === true ? "Enter message below:" : textArea}
           style={{ minHeight: 125 }}
           onChange={handleChangeArea}
           value={textAreaVal}
         />
       )}
 
-      <Transition.Group animation='fade down' duration={500}>
+      {children}
+
+      <Transition.Group animation="fade down" duration={500}>
         {success && (
           <S.Message icon success>
-            <Icon name='check' aria-label='success' />
+            <Icon name="check" aria-label="success" />
             <Message.Content>
               <Message.Header>Form Submitted</Message.Header>
               You'll hear back from us shortly!
@@ -191,7 +199,7 @@ export const ContactForm = ({
         )}
         {error && (
           <S.Message icon error>
-            <Icon name='exclamation' aria-label='failure' />
+            <Icon name="exclamation" aria-label="failure" />
             <Message.Content>
               <Message.Header>Error</Message.Header>
               Please fill out all fields!
@@ -200,7 +208,7 @@ export const ContactForm = ({
         )}
       </Transition.Group>
 
-      <Form.Button type='submit'>{button}</Form.Button>
+      <Form.Button type="submit">{button}</Form.Button>
     </S.Form>
   )
 }

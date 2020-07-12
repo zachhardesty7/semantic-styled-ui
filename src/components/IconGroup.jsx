@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
-import { paddingMap, withNewProps } from '../utils'
+import { paddingMap, withNewProps } from "../utils"
 
 const S = {} // styled-components namespace
 
@@ -9,11 +9,10 @@ S.Groups = styled.div`
   display: flex;
   justify-content: ${({ $justify }) => $justify};
 
-  ${({ $padded, $padding }) => (
-    ($padded === 'top' && `padding-top: ${paddingMap[$padding]}`) ||
-    ($padded === 'bottom' && `padding-bottom: ${paddingMap[$padding]}`) ||
-    ($padded && `padding: ${paddingMap[$padding]} 0`)
-  )};
+  ${({ $padded, $padding }) =>
+    ($padded === "top" && `padding-top: ${paddingMap[$padding]}`) ||
+    ($padded === "bottom" && `padding-bottom: ${paddingMap[$padding]}`) ||
+    ($padded && `padding: ${paddingMap[$padding]} 0`)};
 `
 
 S.Group = styled.div`
@@ -31,10 +30,10 @@ S.Group = styled.div`
 `
 
 export const IconGroup = ({
-  justify = 'initial',
+  justify = "initial",
   padded = false,
-  padding = 'tight',
-  className = '',
+  padding = "tight",
+  className = "",
   children,
   ...rest
 }) => (
@@ -45,9 +44,7 @@ export const IconGroup = ({
     className={className}
   >
     {React.Children.map(children, (Child) => (
-      <S.Group>
-        {withNewProps(Child, rest)}
-      </S.Group>
+      <S.Group>{withNewProps(Child, rest)}</S.Group>
     ))}
   </S.Groups>
 )

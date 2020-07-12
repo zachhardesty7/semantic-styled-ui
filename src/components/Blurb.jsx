@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
-import { Header } from 'semantic-ui-react'
+import { Header } from "semantic-ui-react"
 
-import { paddingMap, withNewProps } from '../utils'
+import { paddingMap, withNewProps } from "../utils"
 
 const S = {} // styled-components namespace
 
@@ -21,7 +21,7 @@ S.Header = styled(Header)`
 
 S.Content = styled(Header.Content)`
   z-index: 10;
-  text-align: ${({ $centered }) => $centered && 'justify'};
+  text-align: ${({ $centered }) => $centered && "justify"};
   position: relative;
 `
 
@@ -39,12 +39,12 @@ S.BackgroundImage = styled.img`
 `
 
 export const Blurb = ({
-  as = 'h4',
+  as = "h4",
   icon,
   backgroundImage,
-  align = 'center',
+  align = "center",
   header,
-  color = '',
+  color = "",
   children,
   ...rest
 }) => (
@@ -56,10 +56,7 @@ export const Blurb = ({
     )}
 
     {withNewProps(icon, { align })}
-    <S.Header
-      forwardedAs={as}
-      $color={color}
-    >
+    <S.Header forwardedAs={as} $color={color}>
       {header}
     </S.Header>
     <S.Content $centered={align}>{children}</S.Content>

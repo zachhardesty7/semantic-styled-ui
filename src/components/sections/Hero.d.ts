@@ -1,12 +1,12 @@
-import * as React from 'react'
+import * as React from "react"
 
-export type HeroOverlay = 'dark' | 'darker'
+export type HeroOverlay = "dark" | "darker"
 
-export type HeroBaseline = 'top' | 'bottom'
+export type HeroBaseline = "top" | "bottom"
 
 export type HeroUnderline = string | boolean
 
-export type HeroSize = 'compact' | 'base' | 'relaxed'
+export type HeroSize = "compact" | "base" | "relaxed"
 
 export interface HeroProps {
   /**
