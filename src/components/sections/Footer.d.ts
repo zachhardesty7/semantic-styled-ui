@@ -49,9 +49,15 @@ export interface FooterProps {
    */
   sticky?: boolean
   /**
-   * date & company that holds copyright
+   * company that holds copyright
    */
   copyright?: string
+  /**
+   * date the copyright began, displays as year.
+   *
+   * expands to include range from this to current year when they don't match
+   */
+  date?: Date
 }
 
 export function Footer(props: FooterProps): JSX.Element

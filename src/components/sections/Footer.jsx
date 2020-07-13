@@ -36,6 +36,7 @@ export const Footer = ({
   colorHover = "",
   sticky = true,
   copyright = "",
+  date = new Date(),
   stacked = false,
   separated = false,
   fullWidth = false,
@@ -82,7 +83,7 @@ export const Footer = ({
             {separated ? (
               <>
                 <Grid.Column width={8}>
-                  {`copyright © ${copyright}`}
+                  {`copyright © ${copyright} ${date.getFullYear()}`}
                 </Grid.Column>
                 <Grid.Column width={8} textAlign="right">
                   {"designed and developed by "}
@@ -93,7 +94,9 @@ export const Footer = ({
               <>
                 <Grid.Column width={12}>
                   <div>
-                    {`copyright © ${copyright}`}
+                    {`copyright © ${copyright} ${date.getFullYear()}`}
+                    {date.getFullYear() !== new Date().getFullYear() &&
+                      ` - ${new Date().getFullYear()}`}
                     {stacked ? <br /> : " | "}
                     {"designed and developed by "}
                     <S.Link href={developerLink}>{developerName}</S.Link>

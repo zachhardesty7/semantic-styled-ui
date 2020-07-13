@@ -113,7 +113,7 @@ export const Hero = ({
       overlay={overlay}
       {...rest}
     >
-      {images.map((Background, i) => (
+      {React.Children.map(images, (Background, i) => (
         <Transition
           key={Background.props.alt}
           visible={i === curBackground}

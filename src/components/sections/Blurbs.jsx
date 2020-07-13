@@ -8,6 +8,8 @@ import { media, paddingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
+const MAX_COLUMNS = 4
+
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
 S.Blurbs = styled(Segment)`
@@ -111,10 +113,10 @@ export const Blurbs = ({
     )}
     <Container fluid={!!fullWidth} textAlign={centered ? "center" : undefined}>
       <S.Grid
-        columns={Math.min(React.Children.count(children), 8)}
+        columns={Math.min(React.Children.count(children), MAX_COLUMNS)}
         relaxed
         stackable
-        divided
+        divided={React.Children.count(children) <= MAX_COLUMNS || undefined}
         padded
         $fullWidth={fullWidth}
       >

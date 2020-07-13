@@ -36,7 +36,7 @@ export interface HeroProps {
   /**
    * background images
    */
-  images?: React.ReactNode[]
+  images?: React.ReactNode
   /**
    * primary content rendered on top of the hero
    */
