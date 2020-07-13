@@ -26,10 +26,6 @@ export interface HeroProps {
    */
   size?: HeroSize
   /**
-   * image of logo
-   */
-  logo?: React.ReactNode
-  /**
    * format logo left of content
    */
   inlineLogo?: boolean
@@ -38,21 +34,13 @@ export interface HeroProps {
    */
   color?: string
   /**
-   * primary content
-   */
-  title?: React.ReactNode
-  /**
-   * secondary content
-   */
-  subtitle?: React.ReactNode
-  /**
-   * call-to-action @see [`HeaderButton`](#headerbutton)
-   */
-  button?: React.ReactNode
-  /**
    * background images
+   */
+  images?: React.ReactNode[]
+  /**
+   * primary content rendered on top of the hero
    */
   children?: React.ReactNode
 }
 
-export function Hero(props: HeroProps): JSX.Element
+declare function Hero(props: HeroProps): JSX.Element

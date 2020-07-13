@@ -31,7 +31,7 @@ export default function propTypesFromTS() {
         const program = ttp.createProgram(definitionFiles, tsOptions)
 
         definitionFiles.forEach(async (testCase) => {
-          if (!testCase.includes("index")) {
+          if (!testCase.includes("index") && !testCase.includes("types")) {
             const outputPath = testCase.replace(".d.ts", ".js")
 
             const ast = ttp.parseFromProgram(testCase, program, {})

@@ -16,10 +16,6 @@ export const Link = ({
     if (!Child) return false // prevent wrapping empty elements
     const anchored = link.includes("#")
 
-    if (Array.isArray(anchored) === false) {
-      throw new TypeError("Array expected")
-    }
-
     const anchorProps = {
       spy: true,
       smooth: true,

@@ -1,5 +1,16 @@
 # Semantic Styled UI
 
+<p align="center">
+  <a href="https://twitter.com/acdlite/status/974390255393505280">
+    <img alt="Blazing Fast" src="https://img.shields.io/badge/speed-blazing%20%F0%9F%94%A5-brightgreen.svg?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/semantic-styled-ui">
+    <img alt="npm version" src="https://img.shields.io/npm/v/semantic-styled-ui.svg?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/semantic-styled-ui">
+    <img alt="weekly downloads from npm" src="https://img.shields.io/npm/dw/semantic-styled-ui.svg?style=flat-square"></a>
+  <a href="#">
+    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"></a>
+</p>
+
 Leveraging the power and style of Semantic UI and Styled Components to deploy custom components that
 abstract away complex library interactions.
 

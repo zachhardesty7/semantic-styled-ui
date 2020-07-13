@@ -31,8 +31,9 @@ module.exports = {
   ],
   plugins: [
     // add back missing source from `preset-react`
-    process.env.ENV_MODE === "local" &&
-      "@babel/plugin-transform-react-jsx-source",
+    process.env.ENV_MODE === "local"
+      ? "@babel/plugin-transform-react-jsx-source"
+      : {},
     [
       "@quickbaseoss/babel-plugin-styled-components-css-namespace",
       {

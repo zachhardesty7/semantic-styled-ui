@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"
+import { Container, Segment, Transition } from "semantic-ui-react"
 import styled, { css } from "styled-components"
 
-import { Container, Header, Segment, Transition } from "semantic-ui-react"
+import { defaultColors } from "../../utils"
+import { HeroTitle } from "../HeroTitle"
+import { HeroSubtitle } from "../HeroSubtitle"
+import { HeroLogo } from "../HeroLogo"
 import { HeroButton } from "../HeroButton"
-
-import { defaultColors, getColor, media } from "../../utils"
 
 const sizes = {
   small: {
@@ -48,47 +50,6 @@ S.Segment = styled(Segment)`
   }
 `
 
-S.BaseHeader = styled(Header)`
-  ${getColor("white")};
-  font-display: fallback;
-  font-weight: normal;
-`
-
-S.Title = styled(S.BaseHeader)`
-  ${({ $inlineLogo }) => $inlineLogo && "display: inline-block"};
-  ${({ $inlineLogo }) => $inlineLogo && "margin-bottom: 0"};
-  padding-right: 0.15em;
-  font-size: ${({ $secondary }) => ($secondary ? "3.3em" : "4.7em")};
-
-  @media ${media.laptop} {
-    font-size: 4em;
-  }
-  @media ${media.tablet} {
-    font-size: 3.8em;
-  }
-  @media ${media.phone} {
-    font-size: 12vw;
-    width: fit-content;
-  }
-`
-
-S.Subtitle = styled(S.BaseHeader)`
-  ${({ $inlineLogo }) => $inlineLogo && "margin-top: 0.75em"};
-  font-size: 1.7rem;
-
-  @media ${media.laptop} {
-    font-size: 1.45em;
-  }
-  @media ${media.tablet} {
-    font-size: 1.4em;
-  }
-  @media ${media.phone} {
-    width: min-content;
-    min-width: 11em;
-    font-size: 1.4em;
-  }
-`
-
 S.Chunk = styled.header`
   align-items: flex-start;
   display: flex;
@@ -122,29 +83,23 @@ S.BackgroundImage = styled.img`
   }
 `
 
-S.Logo = styled.img`
-  margin-right: 1em;
-`
-
 export const Hero = ({
   overlay = "dark",
   baseline = "bottom",
   underline = false,
   size = "base",
-  logo = null,
   inlineLogo = false,
   secondary = false,
   color = "",
-  title = null,
-  subtitle = null,
-  button = null,
+  images = [],
   children = null,
   ...rest
 }) => {
   const [curBackground, setCurBackground] = useState(0)
+
   useEffect(() => {
     const cycle = setTimeout(() => {
-      setCurBackground((curBackground + 1) % React.Children.count(children))
+      setCurBackground((curBackground + 1) % images.length)
     }, 6000)
 
     return () => clearTimeout(cycle)
@@ -158,7 +113,7 @@ export const Hero = ({
       overlay={overlay}
       {...rest}
     >
-      {React.Children.map(children, (Background, i) => (
+      {images.map((Background, i) => (
         <Transition
           key={Background.props.alt}
           visible={i === curBackground}
@@ -171,35 +126,14 @@ export const Hero = ({
 
       <Container>
         {/* nested inline chunk to facilitate underline */}
-        <S.Chunk $underline={underline}>
-          {logo && <S.Logo as={logo.type} {...logo.props} alt="logo" />}
-
-          {title && (
-            <S.Title
-              forwardedAs={secondary ? "h2" : "h1"}
-              $color={color}
-              $secondary={secondary}
-              $inlineLogo={inlineLogo}
-            >
-              {title}
-            </S.Title>
-          )}
-
-          {subtitle && (
-            <S.Subtitle
-              forwardedAs="h2"
-              $color={color}
-              $inlineLogo={inlineLogo}
-            >
-              {subtitle}
-            </S.Subtitle>
-          )}
-
-          {button}
-        </S.Chunk>
+        <S.Chunk $underline={underline}>{children}</S.Chunk>
       </Container>
     </S.Segment>
   )
 }
 
 Hero.Button = HeroButton
+Hero.Title = HeroTitle
+Hero.Subtitle = HeroSubtitle
+Hero.Button = HeroButton
+Hero.Logo = HeroLogo
