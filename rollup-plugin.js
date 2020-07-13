@@ -37,8 +37,15 @@ export default function propTypesFromTS() {
             const ast = ttp.parseFromProgram(testCase, program, {})
 
             let builtFiles = fs.readFileSync(outputPath, "utf8")
-
-            const result = ttp.generate(ast, {})
+            let result
+            try {
+              result = ttp.generate(ast, {})
+            } catch (error) {
+              console.error(error)
+              console.error("^FAILED TO GENERATE PROPTYPES FROM TS^")
+              console.error(`error in file: ${testCase}`)
+              return
+            }
 
             // append propTypes import after react import
             const ex = /(import .* from 'react';?)/
