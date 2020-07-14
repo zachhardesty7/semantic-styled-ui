@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { Header } from "semantic-ui-react"
-import { getColor } from "../utils/styled"
-import { media } from "../utils/media"
+import { getColor } from "../../utils/styled"
+import { media } from "../../utils/media"
 
 const S = {} // styled-components namespace
 

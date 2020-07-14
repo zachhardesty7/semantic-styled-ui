@@ -3,7 +3,7 @@ import styled, { css } from "styled-components"
 
 import { NavigationItem } from "./NavigationItem"
 
-import { logoSizes, logoSizesSVG, media } from "../utils"
+import { logoSizes, logoSizesSVG, media } from "../../utils"
 
 const S = {} // styled-components namespace
 

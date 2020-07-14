@@ -2,7 +2,7 @@ import React from "react"
 import styled, { css } from "styled-components"
 
 import { Container, Grid, Header, Segment } from "semantic-ui-react"
-import { Blurb } from "../Blurb"
+import { Blurb } from "./Blurb"
 
 import { media, paddingMap, withNewProps } from "../../utils"
 

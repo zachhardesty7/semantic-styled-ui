@@ -1,6 +1,6 @@
 import React from "react"
 import { Grid } from "semantic-ui-react"
-import { Title } from "../Title"
+import { Title } from "./Title"
 
 // TODO: test mobile, may need `container` on `Grid`
 export const Section404 = ({

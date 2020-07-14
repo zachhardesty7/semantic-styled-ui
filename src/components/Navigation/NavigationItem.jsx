@@ -3,9 +3,9 @@ import styled, { css } from "styled-components"
 
 import { Menu } from "semantic-ui-react"
 
-import { Link } from "./Link"
+import { Link } from "../Link"
 
-import { media } from "../utils"
+import { media } from "../../utils"
 
 const S = {} // styled-components namespace
 

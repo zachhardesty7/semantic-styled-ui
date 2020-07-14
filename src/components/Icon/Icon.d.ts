@@ -1,3 +1,5 @@
+import { IconGroup } from "./IconGroup"
+
 export type IconLabel = string | boolean
 
 export type IconAlign = "start" | "center" | "end"
@@ -65,4 +67,9 @@ export interface IconProps {
   inverted?: boolean
 }
 
-export function Icon(props: IconProps): JSX.Element
+declare function Icon(props: IconProps): JSX.Element
+
+// https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
+declare namespace Icon {
+  export const Group: typeof IconGroup
+}

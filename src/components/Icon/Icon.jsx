@@ -2,9 +2,11 @@ import React from "react"
 import styled, { css } from "styled-components"
 
 import { Icon as SUIIcon } from "semantic-ui-react"
-import { Link } from "./Link"
+import { Link } from "../Link"
 
-import { defaultColors, iconMap } from "../utils"
+import { defaultColors, iconMap } from "../../utils"
+
+import { IconGroup } from "./IconGroup"
 
 const S = {} // styled-components namespace
 
@@ -158,3 +160,5 @@ export const Icon = ({
     )}
   </S.Wrapper>
 )
+
+Icon.Group = IconGroup

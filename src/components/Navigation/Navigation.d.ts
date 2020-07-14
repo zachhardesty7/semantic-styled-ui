@@ -1,5 +1,8 @@
 import * as React from "react"
 
+import { NavigationItem } from "./NavigationItem"
+import { NavigationLogo } from "./NavigationLogo"
+
 export type NavigationSize =
   | "small"
   | "tiny"
@@ -70,4 +73,10 @@ export interface NavigationProps {
   children?: React.ReactNode
 }
 
-export function Navigation(props: NavigationProps): JSX.Element
+declare function Navigation(props: NavigationProps): JSX.Element
+
+// https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
+declare namespace Navigation {
+  export const Item: typeof NavigationItem
+  export const Logo: typeof NavigationLogo
+}

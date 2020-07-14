@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { Header } from "semantic-ui-react"
 
-import { paddingMap, withNewProps } from "../utils"
+import { paddingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 

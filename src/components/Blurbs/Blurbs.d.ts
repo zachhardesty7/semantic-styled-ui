@@ -1,5 +1,7 @@
 import * as React from "react"
 
+import { Blurb } from "./Blurb"
+
 export type BlurbsFullWidth = boolean | "gutter"
 
 export type BlurbsTextAlign = "left" | "center" | "right" | "justify"
@@ -47,4 +49,9 @@ export interface BlurbsProps {
   children?: React.ReactNode
 }
 
-export function Blurbs(props: BlurbsProps): JSX.Element
+declare function Blurbs(props: BlurbsProps): JSX.Element
+
+// https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
+declare namespace Blurbs {
+  export const Item: typeof Blurb
+}

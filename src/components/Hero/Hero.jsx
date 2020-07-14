@@ -3,10 +3,11 @@ import { Container, Segment, Transition } from "semantic-ui-react"
 import styled, { css } from "styled-components"
 
 import { defaultColors } from "../../utils"
-import { HeroTitle } from "../HeroTitle"
-import { HeroSubtitle } from "../HeroSubtitle"
-import { HeroLogo } from "../HeroLogo"
-import { HeroButton } from "../HeroButton"
+
+import { HeroTitle } from "./HeroTitle"
+import { HeroSubtitle } from "./HeroSubtitle"
+import { HeroLogo } from "./HeroLogo"
+import { HeroButton } from "./HeroButton"
 
 const sizes = {
   small: {
@@ -135,5 +136,4 @@ export const Hero = ({
 Hero.Button = HeroButton
 Hero.Title = HeroTitle
 Hero.Subtitle = HeroSubtitle
-Hero.Button = HeroButton
 Hero.Logo = HeroLogo

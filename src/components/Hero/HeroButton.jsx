@@ -3,10 +3,14 @@ import styled from "styled-components"
 
 import { Button } from "semantic-ui-react"
 
-import { Icon } from "./Icon"
-import { Link } from "./Link"
+import { Icon } from "../Icon"
+import { Link } from "../Link"
 
-import { getBackgroundColor, getColor, getHoverBackgroundColor } from "../utils"
+import {
+  getBackgroundColor,
+  getColor,
+  getHoverBackgroundColor,
+} from "../../utils"
 
 const S = {} // styled-components namespace
 

@@ -30,6 +30,9 @@ S.Link = styled.a`
   ${getHoverColor("white")};
 `
 
+const maybeLowerCase = (str = "", enabled = false) =>
+  enabled ? str.toLowerCase() : str
+
 export const Footer = ({
   color = "",
   backgroundColor = "",
@@ -41,6 +44,7 @@ export const Footer = ({
   separated = false,
   fullWidth = false,
   inverted = false,
+  lowerCased = false,
   icons = null,
   developerName = "",
   developerLink = "",
@@ -83,10 +87,13 @@ export const Footer = ({
             {separated ? (
               <>
                 <Grid.Column width={8}>
-                  {`copyright © ${copyright} ${date.getFullYear()}`}
+                  {maybeLowerCase(
+                    `Copyright © ${copyright} ${date.getFullYear()}`,
+                    lowerCased
+                  )}
                 </Grid.Column>
                 <Grid.Column width={8} textAlign="right">
-                  {"designed and developed by "}
+                  {maybeLowerCase("Designed and Developed by ", lowerCased)}
                   <S.Link href={developerLink}>{developerName}</S.Link>
                 </Grid.Column>
               </>
@@ -94,11 +101,14 @@ export const Footer = ({
               <>
                 <Grid.Column width={12}>
                   <div>
-                    {`copyright © ${copyright} ${date.getFullYear()}`}
+                    {maybeLowerCase(
+                      `Copyright © ${copyright} ${date.getFullYear()}`,
+                      lowerCased
+                    )}
                     {date.getFullYear() !== new Date().getFullYear() &&
                       ` - ${new Date().getFullYear()}`}
                     {stacked ? <br /> : " | "}
-                    {"designed and developed by "}
+                    {maybeLowerCase("Designed and Developed by ", lowerCased)}
                     <S.Link href={developerLink}>{developerName}</S.Link>
                   </div>
                 </Grid.Column>

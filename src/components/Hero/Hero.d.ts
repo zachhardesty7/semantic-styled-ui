@@ -1,4 +1,8 @@
 import * as React from "react"
+import { HeroTitle } from "./HeroTitle"
+import { HeroSubtitle } from "./HeroSubtitle"
+import { HeroLogo } from "./HeroLogo"
+import { HeroButton } from "./HeroButton"
 
 export type HeroOverlay = "dark" | "darker"
 
@@ -44,3 +48,11 @@ export interface HeroProps {
 }
 
 declare function Hero(props: HeroProps): JSX.Element
+
+// https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
+declare namespace Hero {
+  export const Title: typeof HeroTitle
+  export const Subtitle: typeof HeroSubtitle
+  export const Button: typeof HeroButton
+  export const Logo: typeof HeroLogo
+}

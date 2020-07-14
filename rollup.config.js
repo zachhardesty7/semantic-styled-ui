@@ -3,6 +3,7 @@ import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import { terser } from "rollup-plugin-terser"
 import copy from "rollup-plugin-copy"
+// import alias from "@rollup/plugin-alias"
 
 // https://github.com/rollup/rollup/issues/1089#issuecomment-402109607
 import path from "path"
@@ -90,6 +91,11 @@ const config = {
         },
   external: ["styled-components", "react", "react-dom"],
   plugins: [
+    // alias({
+    //   entries: [
+    //     { find: "utils", replacement: "../../utils" },
+    //   ],
+    // }),
     copy({
       copyOnce: true,
       flatten: false,

@@ -45,6 +45,10 @@ export interface FooterProps {
    */
   inverted?: boolean
   /**
+   * stylistically format text as lower case
+   */
+  lowerCased?: boolean
+  /**
    * attach footer to bottom of page when little content
    */
   sticky?: boolean

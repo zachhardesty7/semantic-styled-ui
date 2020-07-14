@@ -2,10 +2,11 @@ import React from "react"
 import styled, { css } from "styled-components"
 
 import { Container, Menu, Segment } from "semantic-ui-react"
-import { NavigationItem } from "../NavigationItem"
-import { NavigationLogo } from "../NavigationLogo"
 
 import { media, withNewProps } from "../../utils"
+
+import { NavigationItem } from "./NavigationItem"
+import { NavigationLogo } from "./NavigationLogo"
 
 const S = {} // styled-components namespace
 
