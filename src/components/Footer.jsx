@@ -8,7 +8,7 @@ import {
   getColor,
   getHoverColor,
   withNewProps,
-} from "../../utils"
+} from "../utils"
 
 const S = {} // styled-components namespace
 

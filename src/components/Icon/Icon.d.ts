@@ -2,8 +2,6 @@ import { IconGroup } from "./IconGroup"
 
 export type IconLabel = string | boolean
 
-export type IconAlign = "start" | "center" | "end"
-
 export type IconSize =
   | "mini"
   | "tiny"
@@ -44,7 +42,7 @@ export interface IconProps {
   /**
    * position / justification of all content
    */
-  align?: IconAlign
+  align?: JustifyProp
   /**
    * size based on "em" units
    */

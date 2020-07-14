@@ -4,10 +4,6 @@ import { Blurb } from "./Blurb"
 
 export type BlurbsFullWidth = boolean | "gutter"
 
-export type BlurbsTextAlign = "left" | "center" | "right" | "justify"
-
-export type BlurbsPadded = boolean | "top" | "bottom" | "both"
-
 export type BlurbsPadding = "compact" | "tight" | "base" | "relaxed" | "loose"
 
 export interface BlurbsProps {
@@ -26,7 +22,7 @@ export interface BlurbsProps {
   /**
    * center title and justify body content
    */
-  centered?: BlurbsTextAlign
+  centered?: TextAlignProp
   /**
    * apply css supported color string to all children, overrides theme / default
    */
@@ -38,7 +34,7 @@ export interface BlurbsProps {
   /**
    * if/where spacing around element exists
    */
-  padded?: BlurbsPadded
+  padded?: PaddedVerticalProp
   /**
    * control amount of spacing around element
    */

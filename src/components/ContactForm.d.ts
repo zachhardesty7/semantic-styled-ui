@@ -2,8 +2,6 @@ import * as React from "react"
 
 export type ContactFormTextArea = string | boolean
 
-export type ContactFormPadded = boolean | "top" | "bottom" | "both"
-
 export type ContactFormPadding =
   | "compact"
   | "tight"
@@ -32,7 +30,7 @@ export interface ContactFormProps {
   /**
    * if/where spacing around element exists
    */
-  padded?: ContactFormPadded
+  padded?: PaddedVerticalProp
   /**
    * amount of spacing around element
    */

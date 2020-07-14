@@ -1,11 +1,5 @@
 import * as React from "react"
 
-export type TitleTextAlign = "left" | "center" | "right" | "justify"
-
-export type TitleTextAlignSub = "left" | "center" | "right" | "justify"
-
-export type TitlePadded = boolean | "top" | "bottom" | "both"
-
 export interface TitleProps {
   /**
    * main title content
@@ -22,15 +16,15 @@ export interface TitleProps {
   /**
    * format title content
    */
-  textAlign?: TitleTextAlign
+  textAlign?: TextAlignProp
   /**
    * format body / subtitle content
    */
-  textAlignSub?: TitleTextAlignSub
+  textAlignSub?: TextAlignProp
   /**
    * if/where spacing around element exists
    */
-  padded?: TitlePadded
+  padded?: PaddedVerticalProp
 }
 
 export function Title(props: TitleProps): JSX.Element

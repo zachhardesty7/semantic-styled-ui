@@ -2,8 +2,6 @@ import * as React from "react"
 
 export type IconGroupJustify = "flex-start" | "center" | "flex-end"
 
-export type IconGroupPadded = boolean | "top" | "bottom" | "both"
-
 export type IconGroupPadding =
   | "compact"
   | "tight"
@@ -15,11 +13,11 @@ export interface IconGroupProps {
   /**
    * flex alignment of icon container
    */
-  justify?: IconGroupJustify
+  justify?: JustifyProp
   /**
    * spacing around element exists
    */
-  padded?: IconGroupPadded
+  padded?: PaddedVerticalProp
   /**
    * control amount of spacing around element
    */

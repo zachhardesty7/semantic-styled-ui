@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { paddingMap, withNewProps } from "../utils"
+import { paddingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 

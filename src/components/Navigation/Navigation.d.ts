@@ -11,8 +11,6 @@ export type NavigationSize =
   | "huge"
   | "massive"
 
-export type NavigationTextAlign = "left" | "center" | "right" | "justify"
-
 export interface NavigationProps {
   /**
    * element type to render as (string or function)
@@ -66,7 +64,7 @@ export interface NavigationProps {
   /**
    * horizontal position
    */
-  textAlign?: NavigationTextAlign
+  textAlign?: TextAlignProp
   /**
    * collection of items to render as menu
    */

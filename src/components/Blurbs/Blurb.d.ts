@@ -25,10 +25,10 @@ export type BlurbProps = {
    * {ReactComponent}
    * Card
    */
-  as?: string | JSX.Element
+  as?: AsProp
 
   /** position / justification of all content */
-  align?: "start" | "center" | "end"
+  align?: JustifyProp
 
   /** secondary content of body */
   // children: PropTypes.node,

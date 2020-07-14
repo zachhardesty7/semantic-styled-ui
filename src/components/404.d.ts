@@ -1,7 +1,5 @@
 import * as React from "react"
 
-export type Section404TextAlign = "left" | "center" | "right" | "justify"
-
 export interface Section404Props {
   /**
    * main message of the error section
@@ -14,7 +12,7 @@ export interface Section404Props {
   /**
    * format body content
    */
-  textAlign?: Section404TextAlign
+  textAlign?: TextAlignProp
 }
 
 export function Section404(props: Section404Props): JSX.Element
