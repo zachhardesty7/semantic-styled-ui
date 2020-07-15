@@ -1,7 +1,5 @@
 import * as React from "react"
 
-export type IconGroupJustify = "flex-start" | "center" | "flex-end"
-
 export type IconGroupPadding =
   | "compact"
   | "tight"

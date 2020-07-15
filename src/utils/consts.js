@@ -1,3 +1,9 @@
+export const justifyMap = {
+  start: "flex-start",
+  end: "flex-end",
+  center: "center",
+}
+
 export const paddingMap = {
   compact: "0.5em",
   tight: "1em",

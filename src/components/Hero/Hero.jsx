@@ -93,7 +93,7 @@ export const Hero = ({
   secondary = false,
   color = "",
   images = [],
-  children = null,
+  children,
   ...rest
 }) => {
   const [curBackground, setCurBackground] = useState(0)
