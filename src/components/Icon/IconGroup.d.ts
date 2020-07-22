@@ -30,4 +30,6 @@ export interface IconGroupProps {
   children: React.ReactNode
 }
 
-export function IconGroup(props: IconGroupProps): JSX.Element
+export const IconGroup: React.FC<IconGroupProps>
+
+// export function IconGroup(props: IconGroupProps): JSX.Element

@@ -65,9 +65,15 @@ export interface IconProps {
   inverted?: boolean
 }
 
-declare function Icon(props: IconProps): JSX.Element
-
-// https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
-declare namespace Icon {
-  export const Group: typeof IconGroup
+interface IconComponent extends React.FC<IconProps> {
+  Group: typeof IconGroup
 }
+
+export const Icon: IconComponent
+
+// export function Icon(props: IconProps): JSX.Element
+
+// // https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
+// export namespace Icon {
+//   export const Group: typeof IconGroup
+// }

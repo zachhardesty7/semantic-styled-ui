@@ -2,6 +2,27 @@ import { camelToKebab } from "./helpers"
 import { defaultColors } from "./colors"
 
 /**
+ *
+ * @param {"vertical" | "horizontal"} orientation - whether to apply top and bottom or left and right
+ * @returns {(val: string) => {}} curried function
+ */
+export const padding = (orientation) => (val) => {
+  if (orientation === "vertical")
+    return {
+      paddingTop: val,
+      paddingBottom: val,
+    }
+
+  if (orientation === "horizontal")
+    return {
+      paddingBlockStart: val,
+      paddingBlockEnd: val,
+    }
+
+  return {}
+}
+
+/**
  * Get a function to execute inside styled components that applies target
  * css property to styled-component with backup preset from theme.
  *
