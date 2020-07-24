@@ -19,4 +19,4 @@ export interface HeroTitleProps {
   children?: React.ReactNode
 }
 
-export function HeroTitle(props: HeroTitleProps): JSX.Element
+declare const HeroTitle: React.FC<HeroTitleProps>

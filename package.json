@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -39,7 +39,7 @@
     "clean:full": "rimraf dist/* node_modules yarn.lock && yarn",
     "babel": "ENV_MODE=local babel ./src --out-dir ./dist --copy-files",
     "build": "yarn clean && rollup --config --minifyInternalExports --compact --environment ENV_MODE:prod",
-    "build:dev": "yarn clean && rollup --config --environment ENV_MODE:local",
+    "build:dev": "rollup --config --environment ENV_MODE:local",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
     "pub:yarn": "yarn build && yarn publish",
@@ -63,6 +63,7 @@
     "@rollup/plugin-babel": "5.0.4",
     "@rollup/plugin-commonjs": "13.0.0",
     "@rollup/plugin-node-resolve": "8.1.0",
+    "@types/styled-components": "5.1.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",

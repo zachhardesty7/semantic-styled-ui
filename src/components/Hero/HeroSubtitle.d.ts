@@ -15,4 +15,4 @@ export interface HeroSubtitleProps {
   children?: React.ReactNode
 }
 
-export function HeroSubtitle(props: HeroSubtitleProps): JSX.Element
+declare const HeroSubtitle: React.FC<HeroSubtitleProps>

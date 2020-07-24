@@ -1,4 +1,5 @@
 import * as React from "react"
+import { JustifyProp, PaddedVerticalProp } from "../../types"
 
 export type IconGroupPadding =
   | "compact"
@@ -30,6 +31,6 @@ export interface IconGroupProps {
   children: React.ReactNode
 }
 
-export const IconGroup: React.FC<IconGroupProps>
+// export const IconGroup: React.FC<IconGroupProps>
 
-// export function IconGroup(props: IconGroupProps): JSX.Element
+// declare const IconGroup: React.FC<IconGroupProps>

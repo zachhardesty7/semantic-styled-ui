@@ -1,4 +1,5 @@
-import { IconGroup } from "./IconGroup"
+import { AsProp, JustifyProp } from "../../types"
+import { IconGroupProps } from "./IconGroup"
 
 export type IconLabel = string | boolean
 
@@ -65,15 +66,6 @@ export interface IconProps {
   inverted?: boolean
 }
 
-interface IconComponent extends React.FC<IconProps> {
-  Group: typeof IconGroup
+declare const Icon: React.FC<IconProps> & {
+  Group: React.FC<IconGroupProps>
 }
-
-export const Icon: IconComponent
-
-// export function Icon(props: IconProps): JSX.Element
-
-// // https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
-// export namespace Icon {
-//   export const Group: typeof IconGroup
-// }

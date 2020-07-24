@@ -34,7 +34,10 @@ export default function propTypesFromTS() {
           if (!testCase.includes("index") && !testCase.includes("types")) {
             const outputPath = testCase.replace(".d.ts", ".js")
 
-            const ast = ttp.parseFromProgram(testCase, program, {})
+            // https://github.com/merceyz/typescript-to-proptypes/blob/2f90fe845bd8f1e500aa16f36d5bf5184111b38d/src/parser.ts#L27-L32
+            const ast = ttp.parseFromProgram(testCase, program, {
+              checkDeclarations: true,
+            })
 
             let builtFiles = fs.readFileSync(outputPath, "utf8")
             let result

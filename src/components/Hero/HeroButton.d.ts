@@ -48,4 +48,4 @@ export interface HeroButtonProps {
   children?: React.ReactNode
 }
 
-export function HeroButton(props: HeroButtonProps): JSX.Element
+declare const HeroButton: React.FC<HeroButtonProps>

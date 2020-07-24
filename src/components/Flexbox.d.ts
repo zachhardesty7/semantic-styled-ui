@@ -1,4 +1,5 @@
 import * as React from "react"
+import { JustifyProp } from "../types"
 
 export interface FlexboxProps {
   /**
@@ -11,4 +12,4 @@ export interface FlexboxProps {
   children?: React.ReactNode
 }
 
-declare function Flexbox(props: FlexboxProps): JSX.Element
+declare const Flexbox: React.FC<FlexboxProps>

@@ -3,23 +3,45 @@ import { defaultColors } from "./colors"
 
 /**
  *
- * @param {"vertical" | "horizontal"} orientation - whether to apply top and bottom or left and right
+ * @param {SpacingSides | SpacingSides[]} sides - what sides to apply padding to, multiple sides supported
  * @returns {(val: string) => {}} curried function
  */
-export const padding = (orientation) => (val) => {
-  if (orientation === "vertical")
-    return {
-      paddingTop: val,
-      paddingBottom: val,
-    }
+export const padding = (sides) => (val) => {
+  const styles = {}
 
-  if (orientation === "horizontal")
-    return {
-      paddingBlockStart: val,
-      paddingBlockEnd: val,
-    }
+  if (sides.includes("left")) styles.paddingBlockStart = val
+  if (sides.includes("start")) styles.paddingBlockStart = val
+  if (sides.includes("right")) styles.paddingBlockEnd = val
+  if (sides.includes("end")) styles.paddingBlockEnd = val
 
-  return {}
+  if (sides.includes("top")) styles.paddingTop = val
+  if (sides.includes("bottom")) styles.paddingBottom = val
+
+  if (sides.includes("horizontal")) styles.paddingBlockStart = val
+  if (sides.includes("vertical")) styles.paddingTop = val
+
+  // if (sides.includes('all')) styles.no-padding-all'
+
+  return styles
+}
+
+export const margin = (sides) => (val) => {
+  const styles = {}
+
+  if (sides.includes("left")) styles.marginBlockStart = val
+  if (sides.includes("start")) styles.marginBlockStart = val
+  if (sides.includes("right")) styles.marginBlockEnd = val
+  if (sides.includes("end")) styles.marginBlockEnd = val
+
+  if (sides.includes("top")) styles.marginTop = val
+  if (sides.includes("bottom")) styles.marginBottom = val
+
+  if (sides.includes("horizontal")) styles.marginBlockStart = val
+  if (sides.includes("vertical")) styles.marginTop = val
+
+  // if (sides.includes('all')) styles.no-margin-all'
+
+  return styles
 }
 
 /**

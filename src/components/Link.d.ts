@@ -1,4 +1,5 @@
 import * as React from "react"
+import { AsProp } from "../types"
 
 export interface LinkProps {
   /**
@@ -37,4 +38,4 @@ export interface LinkProps {
   children: React.ReactNode
 }
 
-export function Link(props: LinkProps): JSX.Element
+declare const Link: React.FC<LinkProps>

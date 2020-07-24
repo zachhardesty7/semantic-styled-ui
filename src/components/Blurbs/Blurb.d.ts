@@ -1,4 +1,5 @@
 import * as React from "react"
+import { AsProp, JustifyProp } from "../../types"
 
 export type BlurbProps = {
   /** content above header */
@@ -34,4 +35,4 @@ export type BlurbProps = {
   // children: PropTypes.node,
 }
 
-export function Blurb(props: BlurbProps): JSX.Element
+declare const Blurb: React.FC<BlurbProps>

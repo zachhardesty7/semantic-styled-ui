@@ -29,4 +29,4 @@ export interface FooterContentProps {
   date?: Date
 }
 
-declare function FooterContent(props: FooterContentProps): JSX.Element
+declare const FooterContent: React.FC<FooterContentProps>

@@ -19,4 +19,4 @@ export interface PortfolioItemProps {
   children?: React.ReactNode
 }
 
-export function PortfolioItem(props: PortfolioItemProps): JSX.Element
+declare const PortfolioItem: React.FC<PortfolioItemProps>

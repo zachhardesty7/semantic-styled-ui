@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { FooterContent } from "./FooterContent"
+import { FooterContentProps } from "./FooterContent"
 
 export interface FooterProps {
   /**
@@ -31,9 +31,7 @@ export interface FooterProps {
   children?: React.ReactNode
 }
 
-declare function Footer(props: FooterProps): JSX.Element
-
 // https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-namespaces-with-classes-functions-and-enums
-declare namespace Footer {
-  export const Content: typeof FooterContent
+declare const Footer: React.FC<FooterProps> & {
+  Content: React.FC<FooterContentProps>
 }

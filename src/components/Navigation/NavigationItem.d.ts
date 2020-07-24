@@ -1,4 +1,5 @@
 import * as React from "react"
+import { AsProp } from "../../types"
 
 export interface NavigationItemProps {
   /**
@@ -30,4 +31,4 @@ export interface NavigationItemProps {
   children: React.ReactNode
 }
 
-export function NavigationItem(props: NavigationItemProps): JSX.Element
+declare const NavigationItem: React.FC<NavigationItemProps>

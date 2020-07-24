@@ -1,4 +1,5 @@
 import * as React from "react"
+import { AsProp } from "../../types"
 
 export type NavigationLogoLogoSize = "small" | "base" | "large"
 
@@ -36,4 +37,4 @@ export interface NavigationLogoProps {
   children: React.ReactNode
 }
 
-export function NavigationLogo(props: NavigationLogoProps): JSX.Element
+declare const NavigationLogo: React.FC<NavigationLogoProps>

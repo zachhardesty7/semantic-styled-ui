@@ -1,4 +1,5 @@
 import * as React from "react"
+import { TextAlignProp } from "../types"
 
 export interface Section404Props {
   /**
@@ -15,4 +16,4 @@ export interface Section404Props {
   textAlign?: TextAlignProp
 }
 
-export function Section404(props: Section404Props): JSX.Element
+declare const Section404: React.FC<Section404Props>

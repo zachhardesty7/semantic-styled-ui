@@ -7,4 +7,4 @@ export interface HeroLogoProps {
   children?: React.ReactNode
 }
 
-export function HeroLogo(props: HeroLogoProps): JSX.Element
+declare const HeroLogo: React.FC<HeroLogoProps>

@@ -1,6 +1,7 @@
 import * as React from "react"
+import { AsProp, TextAlignProp, PaddedVerticalProp } from "../types"
 
-export interface TitleProps {
+interface TitleProps {
   /**
    * main title content
    */
@@ -27,4 +28,4 @@ export interface TitleProps {
   padded?: PaddedVerticalProp
 }
 
-export function Title(props: TitleProps): JSX.Element
+declare const Title: React.FC<TitleProps>

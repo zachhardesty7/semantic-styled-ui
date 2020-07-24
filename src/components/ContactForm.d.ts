@@ -1,4 +1,5 @@
 import * as React from "react"
+import { PaddedVerticalProp } from "../types"
 
 export type ContactFormTextArea = string | boolean
 
@@ -45,4 +46,4 @@ export interface ContactFormProps {
   children?: React.ReactNode
 }
 
-export function ContactForm(props: ContactFormProps): JSX.Element
+declare const ContactForm: React.FC<ContactFormProps>
