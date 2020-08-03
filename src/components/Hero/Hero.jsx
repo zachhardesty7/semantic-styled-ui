@@ -15,6 +15,11 @@ const sizes = {
     base: "6em",
     compact: "4em",
   },
+  medium: {
+    relaxed: "16em",
+    base: "10em",
+    compact: "6em",
+  },
   large: {
     relaxed: "24em",
     base: "16em",
@@ -25,10 +30,16 @@ const sizes = {
 const S = {}
 
 S.Segment = styled(Segment)`
-  padding-top: ${({ baseline, $size }) =>
-    baseline === "top" ? sizes.small[$size] : sizes.large[$size]};
-  padding-bottom: ${({ baseline, $size }) =>
-    baseline === "top" ? sizes.large[$size] : sizes.small[$size]};
+  padding-top: ${({ baseline, $size }) => {
+    if (baseline === "top") return sizes.small[$size]
+    if (baseline === "center") return sizes.medium[$size]
+    return sizes.large[$size]
+  }};
+  padding-bottom: ${({ baseline, $size }) => {
+    if (baseline === "top") return sizes.large[$size]
+    if (baseline === "center") return sizes.medium[$size]
+    return sizes.small[$size]
+  }};
 
   /* background overlay to dim and saturate */
   &::before {

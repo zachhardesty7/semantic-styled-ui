@@ -6,7 +6,7 @@ import { HeroButtonProps } from "./HeroButton"
 
 export type HeroOverlay = "dark" | "darker"
 
-export type HeroBaseline = "top" | "bottom"
+export type HeroBaseline = "top" | "center" | "bottom"
 
 export type HeroUnderline = string | boolean
 
@@ -40,7 +40,7 @@ export interface HeroProps {
   /**
    * background images
    */
-  images?: React.ReactNode
+  images?: JSX.Element[]
   /**
    * primary content rendered on top of the hero
    */

@@ -104,7 +104,7 @@ export const Blurbs = ({
     {...rest}
   >
     {(title || content) && (
-      <S.Header text>
+      <S.Header>
         {title && (
           <S.Title textAlign={centered ? "center" : undefined}>{title}</S.Title>
         )}

@@ -5,6 +5,13 @@ import { terser } from "rollup-plugin-terser"
 import copy from "rollup-plugin-copy"
 // import alias from "@rollup/plugin-alias"
 
+// https://www.npmjs.com/package/rollup-plugin-visualizer
+// https://www.npmjs.com/package/rollup-plugin-sizes
+// https://www.npmjs.com/package/rollup-plugin-progress
+
+// https://webpack.js.org/configuration/resolve/
+// https://github.com/rollup/plugins/tree/master/packages/alias
+
 // https://github.com/rollup/rollup/issues/1089#issuecomment-402109607
 import path from "path"
 

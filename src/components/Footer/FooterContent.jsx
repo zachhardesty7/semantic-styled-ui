@@ -16,22 +16,24 @@ const maybeLowerCase = (str = "", enabled = false) =>
 
 export const FooterContent = ({
   copyright = "",
-  date = new Date(),
+  date = "",
   developerName = "",
   developerLink = "",
   stacked = false,
   lowerCased = false,
   ...rest
 }) => {
+  const dateObj = date ? new Date(date) : new Date()
+
   return (
     <div {...rest}>
       {copyright && (
         <>
           {maybeLowerCase(
-            `Copyright © ${copyright} ${date.getFullYear()}`,
+            `Copyright © ${copyright} ${dateObj.getFullYear()}`,
             lowerCased
           )}
-          {date.getFullYear() !== new Date().getFullYear() &&
+          {dateObj.getFullYear() !== new Date().getFullYear() &&
             ` - ${new Date().getFullYear()}`}
         </>
       )}

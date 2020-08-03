@@ -28,7 +28,7 @@ S.Subtitle = styled(Header.Subheader)`
 export const Title = ({
   as = "h2",
   subtitle = null,
-  textAlign = "center",
+  textAlign = "left",
   textAlignSub = "left",
   padded = false,
   children,

@@ -26,7 +26,7 @@ export interface FooterContentProps {
    *
    * expands to include range from provided date to current year when they don't match
    */
-  date?: Date
+  date?: string
 }
 
 declare const FooterContent: React.FC<FooterContentProps>

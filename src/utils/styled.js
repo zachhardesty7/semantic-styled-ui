@@ -4,9 +4,19 @@ import { defaultColors } from "./colors"
 /**
  *
  * @param {SpacingSides | SpacingSides[]} sides - what sides to apply padding to, multiple sides supported
- * @returns {(val: string) => {}} curried function
+ * @returns {(val: string) => {}} curried function that can be expanded in a styled
+ * template string
  */
 export const padding = (sides) => (val) => {
+  if (sides.includes("all")) {
+    return {
+      paddingBlockStart: val,
+      paddingBlockEnd: val,
+      paddingTop: val,
+      paddingBottom: val,
+    }
+  }
+
   const styles = {}
 
   if (sides.includes("left")) styles.paddingBlockStart = val
@@ -17,15 +27,34 @@ export const padding = (sides) => (val) => {
   if (sides.includes("top")) styles.paddingTop = val
   if (sides.includes("bottom")) styles.paddingBottom = val
 
-  if (sides.includes("horizontal")) styles.paddingBlockStart = val
-  if (sides.includes("vertical")) styles.paddingTop = val
-
-  // if (sides.includes('all')) styles.no-padding-all'
+  if (sides.includes("horizontal")) {
+    styles.paddingBlockStart = val
+    styles.paddingBlockEnd = val
+  }
+  if (sides.includes("vertical")) {
+    styles.paddingTop = val
+    styles.paddingBottom = val
+  }
 
   return styles
 }
 
+/**
+ *
+ * @param {SpacingSides | SpacingSides[]} sides - what sides to apply margin to, multiple sides supported
+ * @returns {(val: string) => {}} curried function that can be expanded in a styled
+ * template string
+ */
 export const margin = (sides) => (val) => {
+  if (sides.includes("all")) {
+    return {
+      marginBlockStart: val,
+      marginBlockEnd: val,
+      marginTop: val,
+      marginBottom: val,
+    }
+  }
+
   const styles = {}
 
   if (sides.includes("left")) styles.marginBlockStart = val
@@ -36,10 +65,14 @@ export const margin = (sides) => (val) => {
   if (sides.includes("top")) styles.marginTop = val
   if (sides.includes("bottom")) styles.marginBottom = val
 
-  if (sides.includes("horizontal")) styles.marginBlockStart = val
-  if (sides.includes("vertical")) styles.marginTop = val
-
-  // if (sides.includes('all')) styles.no-margin-all'
+  if (sides.includes("horizontal")) {
+    styles.marginBlockStart = val
+    styles.marginBlockEnd = val
+  }
+  if (sides.includes("vertical")) {
+    styles.marginTop = val
+    styles.marginBottom = val
+  }
 
   return styles
 }

@@ -33,4 +33,4 @@ export interface IconGroupProps {
 
 // export const IconGroup: React.FC<IconGroupProps>
 
-// declare const IconGroup: React.FC<IconGroupProps>
+declare const IconGroup: React.FC<IconGroupProps>
