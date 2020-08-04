@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { Button } from "semantic-ui-react"
 
-import { Icon } from "../Icon"
+import { IconLink } from "../IconLink"
 import { Link } from "../Link"
 
 import {
@@ -28,7 +28,7 @@ S.Button = styled(Button)`
   }
 `
 
-S.Icon = styled(Icon)`
+S.IconLink = styled(IconLink)`
   ${getColor("white")};
   ${({ $pointing }) => `margin-${$pointing}: .75em`};
   vertical-align: bottom;
@@ -55,9 +55,13 @@ export const HeroButton = ({
       $backgroundColor={color}
       $backgroundColorHover={colorHover}
     >
-      {pointing === "left" && <S.Icon $pointing="right" name="angle left" />}
+      {pointing === "left" && (
+        <S.IconLink $pointing="right" name="angle left" />
+      )}
       {children}
-      {pointing === "right" && <S.Icon $pointing="left" name="angle right" />}
+      {pointing === "right" && (
+        <S.IconLink $pointing="left" name="angle right" />
+      )}
     </S.Button>
   </Link>
 )
