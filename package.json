@@ -46,6 +46,11 @@
     "pub:yarn": "yarn build && yarn publish",
     "pub": "yarn build && npm publish"
   },
+  "husky": {
+    "hooks": {
+      "post-commit": "publish"
+    }
+  },
   "dependencies": {
     "@types/react": "^16.9.44",
     "prop-types": "^15.7.2",
@@ -71,6 +76,7 @@
     "eslint": "7.6.0",
     "eslint-config-hardesty": "^3.3.1",
     "glob": "^7.1.6",
+    "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "publish-me-maybe": "^1.0.6",
     "react": "^16.13.1",
