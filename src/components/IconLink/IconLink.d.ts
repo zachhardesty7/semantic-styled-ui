@@ -1,9 +1,9 @@
 import { AsProp, JustifyProp } from "../../types"
-import { IconGroupProps } from "./IconGroup"
+import { IconLinkGroupProps } from "./IconLinkGroup"
 
-export type IconLabel = string | boolean
+export type IconLinkLabel = string | boolean
 
-export type IconSize =
+export type IconLinkSize =
   | "mini"
   | "tiny"
   | "small"
@@ -14,7 +14,7 @@ export type IconSize =
   | "huge"
   | "massive"
 
-export interface IconProps {
+export interface IconLinkProps {
   /**
    * icon name as supported by Font Awesome 5.0.8
    *
@@ -24,7 +24,7 @@ export interface IconProps {
   /**
    * display a text string with the icon
    */
-  label?: IconLabel
+  label?: IconLinkLabel
   /**
    * element type to render as (string or function)
    * supports HTML tag as a string or React component definition
@@ -47,7 +47,7 @@ export interface IconProps {
   /**
    * size based on "em" units
    */
-  size?: IconSize
+  size?: IconLinkSize
   /**
    * apply css supported color string to Icon and text, overrides theme / default
    */
@@ -66,6 +66,6 @@ export interface IconProps {
   inverted?: boolean
 }
 
-declare const Icon: React.FC<IconProps> & {
-  Group: React.FC<IconGroupProps>
+declare const IconLink: React.FC<IconLinkProps> & {
+  Group: React.FC<IconLinkGroupProps>
 }

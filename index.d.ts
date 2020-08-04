@@ -55,5 +55,5 @@ export {
   TransitionablePortal,
   MountNode,
   Form,
-  Icon as SUIIcon,
+  Icon,
 } from "semantic-ui-react"

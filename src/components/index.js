@@ -1,6 +1,6 @@
 export { Blurb, Blurbs } from "./Blurbs"
 export { ContactForm } from "./ContactForm"
-export { Icon } from "./Icon"
+export { IconLink } from "./IconLink"
 export { Link } from "./Link"
 export { PortfolioItem } from "./PortfolioItem"
 export { Title } from "./Title"

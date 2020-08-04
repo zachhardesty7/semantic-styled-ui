@@ -1,16 +1,16 @@
 import React from "react"
 import styled, { css } from "styled-components"
 
-import { Icon as SUIIcon } from "semantic-ui-react"
+import { Icon } from "semantic-ui-react"
 import { Link } from "../Link"
 
 import { defaultColors, iconMap } from "../../utils"
 
-import { IconGroup } from "./IconGroup"
+import { IconLinkGroup } from "./IconLinkGroup"
 
 const S = {} // styled-components namespace
 
-S.Icon = styled(SUIIcon)`
+S.Icon = styled(Icon)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,7 +89,7 @@ S.Wrapper = styled.div`
     $align === "center" ? $align : `flex-${$align}`};
 `
 
-export const Icon = ({
+export const IconLink = ({
   as,
   name = "",
   label = "",
@@ -161,4 +161,4 @@ export const Icon = ({
   </S.Wrapper>
 )
 
-Icon.Group = IconGroup
+IconLink.Group = IconLinkGroup

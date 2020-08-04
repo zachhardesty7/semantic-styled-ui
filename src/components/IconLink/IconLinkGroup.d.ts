@@ -1,14 +1,14 @@
 import * as React from "react"
 import { JustifyProp, PaddedVerticalProp } from "../../types"
 
-export type IconGroupPadding =
+export type IconLinkGroupPadding =
   | "compact"
   | "tight"
   | "base"
   | "relaxed"
   | "loose"
 
-export interface IconGroupProps {
+export interface IconLinkGroupProps {
   /**
    * flex alignment of icon container
    */
@@ -20,7 +20,7 @@ export interface IconGroupProps {
   /**
    * control amount of spacing around element
    */
-  padding?: IconGroupPadding
+  padding?: IconLinkGroupPadding
   /**
    * additional or pass thru classes for composition
    */
@@ -33,4 +33,4 @@ export interface IconGroupProps {
 
 // export const IconGroup: React.FC<IconGroupProps>
 
-declare const IconGroup: React.FC<IconGroupProps>
+declare const IconLinkGroup: React.FC<IconLinkGroupProps>

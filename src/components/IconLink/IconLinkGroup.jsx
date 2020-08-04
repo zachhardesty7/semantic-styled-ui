@@ -29,7 +29,7 @@ S.Group = styled.div`
   }
 `
 
-export const IconGroup = ({
+export const IconLinkGroup = ({
   justify = "initial",
   padded = false,
   padding = "tight",

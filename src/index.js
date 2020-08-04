@@ -43,6 +43,7 @@ export {
   Dropdown,
   Embed,
   Modal,
+  Icon,
   Popup,
   Progress,
   Rating,
