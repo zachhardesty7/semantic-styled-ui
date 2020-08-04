@@ -35,7 +35,7 @@ export const Title = ({
   ...rest
 }) =>
   (children || subtitle) && (
-    <S.Header $padded={padded} text {...rest}>
+    <S.Header $padded={padded} {...rest}>
       {children && (
         <S.Title as={as} $textAlign={textAlign}>
           {children}

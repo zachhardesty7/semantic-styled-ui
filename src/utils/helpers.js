@@ -117,6 +117,26 @@ export const withNewProps = (element, props = {}) =>
   React.cloneElement(element, { ...removeUndef(props), ...element.props })
 
 /**
+ * **hard** merge new props into a React Component and overwrite the original props.
+ *
+ * @param {React.ReactElement<P>} [element] - instance target to receive new props
+ * @param {{}} [props] - object of new props
+ * @returns {false | React.ReactElement<Intersect<P, props>>} cloned React Element with shallowly merged props
+ * @requires `react`
+ * @template {{}} P - props obj
+ * @example
+ *
+ * withNewProps(<Container prop0='val0' />, { prop1: 'val1', prop2: 'val2' })
+ * // => <Container prop0='val0' prop1='val1' prop2='val2' />
+ * withNewProps(<Container prop3='important-value' />, { prop3: 'val3', prop4: 'val4' })
+ * // => <Container prop3='val3' prop4='val4' />
+ *
+ */
+export const withProps = (element, props = {}) =>
+  element &&
+  React.cloneElement(element, { ...element.props, ...removeUndef(props) })
+
+/**
  * helper function to find and return semantic name used for debugging components
  *
  * @param {object} target - usually a react element
