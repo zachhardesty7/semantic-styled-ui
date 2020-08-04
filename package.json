@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.29.2",
+  "version": "0.29.3",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -42,13 +42,12 @@
     "build:dev": "rollup --config --environment ENV_MODE:local",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
-    "postversion": "npm publish",
-    "pub:yarn": "yarn build && yarn publish",
-    "pub": "yarn build && npm publish"
+    "temp": "publish",
+    "pub": "yarn build && publish"
   },
   "husky": {
     "hooks": {
-      "post-commit": "publish"
+      "post-commit": "yarn build && publish"
     }
   },
   "dependencies": {

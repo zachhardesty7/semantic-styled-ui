@@ -1,11 +1,12 @@
 # Semantic Styled UI
 
-![npm](https://img.shields.io/npm/v/semantic-styled-ui)
-![npm](https://img.shields.io/npm/dw/semantic-styled-ui)
+[![npm](https://img.shields.io/npm/v/semantic-styled-ui)](https://www.npmjs.com/package/semantic-styled-ui)
+[![npm](https://img.shields.io/npm/dw/semantic-styled-ui)](https://www.npmjs.com/package/semantic-styled-ui)
 ![types](https://badgen.net/npm/types/semantic-styled-ui)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 [![time tracker](https://wakatime.com/badge/github/zachhardesty7/semantic-styled-ui.svg)](https://wakatime.com/badge/github/zachhardesty7/semantic-styled-ui)
 ![NPM](https://img.shields.io/npm/l/semantic-styled-ui)
+
 <!-- ![npm bundle size](https://img.shields.io/bundlephobia/min/semantic-styled-ui) -->
 
 Leveraging the power and style of Semantic UI and Styled Components to deploy custom components that

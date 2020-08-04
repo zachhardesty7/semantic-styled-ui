@@ -14,6 +14,7 @@ export const ObjectFromEntries = (iter) => {
   }
 
   arr.forEach((pair) => {
+    // eslint-disable-next-line no-new-object
     if (new Object(pair) !== pair) {
       throw new TypeError("iterable for fromEntries should yield objects")
     }
