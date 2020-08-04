@@ -13,10 +13,13 @@ export const Link = ({
 }) =>
   React.Children.map(children, (Child) => {
     if (!Child) return false // prevent wrapping empty elements
+    // const isExternal =
+    //   window &&
+    //   link.startsWith("http") &&
+    //   new URL(link)?.origin !== window.location.origin
     const isExternal =
-      window &&
       link.startsWith("http") &&
-      new URL(link)?.origin !== window.location.origin
+      new URL(link)?.origin !== window?.location.origin
     const isAnchor = !isExternal && link.includes("#")
 
     const anchorProps = {
@@ -25,7 +28,7 @@ export const Link = ({
       duration: calcDuration,
       // reset hash link identifier
       onClick: () =>
-        window.history.pushState("", document.title, window.location.pathname),
+        window?.history.pushState("", document.title, window.location.pathname),
     }
 
     const externalProps = {
@@ -36,11 +39,10 @@ export const Link = ({
     // clean url if user accidentally includes hostname
     const url =
       link.startsWith("http") &&
-      new URL(link)?.origin === window.location.origin
-        ? link.replace(window.location.origin, "")
+      new URL(link)?.origin === window?.location.origin
+        ? link.replace(window?.location.origin, "")
         : link
 
-    console.log("url", url)
     const props = {
       href: (!isAnchor && url) || undefined,
 

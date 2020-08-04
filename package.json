@@ -42,6 +42,7 @@
     "build:dev": "rollup --config --environment ENV_MODE:local",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
+    "postversion": "npm publish",
     "pub:yarn": "yarn build && yarn publish",
     "pub": "yarn build && npm publish"
   },
@@ -71,6 +72,7 @@
     "eslint-config-hardesty": "^3.3.1",
     "glob": "^7.1.6",
     "prettier": "^2.0.5",
+    "publish-me-maybe": "^1.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
