@@ -65,6 +65,7 @@ const prodBundles = [
     // preserveModules: true,
     // dir: "dist",
     // name: "SSUI",
+    exports: "named",
     file: pkg.main,
     format: "cjs",
   },
@@ -80,6 +81,7 @@ const prodBundles = [
     // preserveModules: true,
     // dir: "dist",
     // name: "SSUI",
+    exports: "named",
     file: pkg.module,
     format: "esm",
   },
@@ -94,7 +96,7 @@ const prodBundles = [
 ]
 
 const config = {
-  input: "index.js",
+  input: "src/index.js",
   output:
     process.env.ENV_MODE === "prod"
       ? prodBundles
