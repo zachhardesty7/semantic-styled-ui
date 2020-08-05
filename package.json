@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.30.0",
+  "version": "0.30.1",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -14,8 +14,8 @@
   ],
   "homepage": "https://github.com/zachhardesty7/semantic-styled-ui",
   "bugs": "https://github.com/zachhardesty7/semantic-styled-ui/issues",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "types": "index.d.ts",
   "license": "MIT",
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
@@ -37,13 +37,12 @@
     "styleguide:build": "styleguidist build",
     "clean": "rimraf dist/*",
     "clean:full": "rimraf dist/* node_modules yarn.lock && yarn",
-    "babel": "ENV_MODE=local babel ./src --out-dir ./dist --copy-files",
     "build": "yarn clean && rollup --config --minifyInternalExports --compact --environment ENV_MODE:prod",
     "build:dev": "rollup --config --environment ENV_MODE:local",
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
-    "temp": "publish",
-    "pub": "yarn build && publish"
+    "pub": "publish",
+    "release": "yarn build && npm run pub"
   },
   "husky": {
     "hooks": {

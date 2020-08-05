@@ -17,6 +17,8 @@ import path from "path"
 
 import propTypesFromTS from "./rollup-plugin"
 
+import pkg from "./package.json"
+
 const onwarn = (warning, rollupWarn) => {
   const ignoredWarnings = [
     {
@@ -46,41 +48,49 @@ const globals = {
 }
 
 const prodBundles = [
+  // {
+  //   file: "dist/bundle.umd.js",
+  //   format: "umd",
+  //   name: "SSUI",
+  //   globals,
+  // },
+  // {
+  //   file: "dist/bundle.min.umd.js",
+  //   format: "umd",
+  //   name: "SSUI",
+  //   globals,
+  //   plugins: [terser()],
+  // },
   {
-    file: "dist/bundle.umd.js",
-    format: "umd",
-    name: "SSUI",
-    globals,
-  },
-  {
-    file: "dist/bundle.min.umd.js",
-    format: "umd",
-    name: "SSUI",
-    globals,
-    plugins: [terser()],
-  },
-  {
-    // dir: 'dist',
-    file: "dist/bundle.cjs.js",
+    // preserveModules: true,
+    // dir: "dist",
+    // name: "SSUI",
+    file: pkg.main,
     format: "cjs",
   },
+  // {
+  //   preserveModules: true,
+  //   dir: "dist",
+  //   name: "SSUI",
+  //   // file: "dist/bundle.min.cjs.js",
+  //   format: "cjs",
+  //   plugins: [terser()],
+  // },
   {
-    // dir: 'dist',
-    file: "dist/bundle.min.cjs.js",
-    format: "cjs",
-    plugins: [terser()],
-  },
-  {
-    // dir: 'dist',
-    file: "dist/bundle.esm.js",
+    // preserveModules: true,
+    // dir: "dist",
+    // name: "SSUI",
+    file: pkg.module,
     format: "esm",
   },
-  {
-    // dir: 'dist',
-    file: "dist/bundle.min.esm.js",
-    format: "esm",
-    plugins: [terser()],
-  },
+  // {
+  //   preserveModules: true,
+  //   dir: "dist",
+  //   name: "SSUI",
+  //   // file: "dist/bundle.min.esm.js",
+  //   format: "esm",
+  //   plugins: [terser()],
+  // },
 ]
 
 const config = {
