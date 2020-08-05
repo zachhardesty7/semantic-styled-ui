@@ -36,9 +36,6 @@ jspm_packages/
 # typescript v1 declaration files
 typings/
 
-# vscode workspace settings
-.vscode
-
 #################
 #  rarely used  #
 #################
