@@ -4,8 +4,10 @@ import * as react from "react"
 export type AsProp = JSX.IntrinsicElements | React.ComponentType<Any>
 export type Any = any // eslint-disable-line @typescript-eslint/no-explicit-any
 
-export type JustifyProp = "start" | "center" | "end" | "initial"
-export type TextAlignProp = "left" | "center" | "right" | "justify"
+export type BoxAlignProp = "start" | "center" | "end" | "justify" | "initial"
+export type FlexAlignProp = BoxAlignProp
+export type JustifyProp = BoxAlignProp
+export type TextAlignProp = BoxAlignProp
 export type PaddedVerticalProp = boolean | "top" | "bottom" | "both"
 
 export type SpacingSides =

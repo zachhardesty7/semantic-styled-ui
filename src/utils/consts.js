@@ -1,7 +1,18 @@
-export const justifyMap = {
+export const flexAlignMap = {
   start: "flex-start",
   end: "flex-end",
   center: "center",
+  initial: "initial",
+  // value doesn't matter since really isn't used
+  justify: "normal",
+}
+
+export const textAlignMap = {
+  start: "left",
+  end: "right",
+  center: "center",
+  initial: "initial",
+  justify: "justify",
 }
 
 export const paddingMap = {

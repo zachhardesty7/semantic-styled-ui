@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react"
 import { Container, Segment, Transition } from "semantic-ui-react"
 import styled, { css } from "styled-components"
 
-import { defaultColors } from "../../utils"
+import {
+  defaultColors,
+  flexAlignMap,
+  margin,
+  padding,
+  textAlignMap,
+} from "../../utils"
 
 import { HeroTitle } from "./HeroTitle"
 import { HeroSubtitle } from "./HeroSubtitle"
@@ -62,14 +68,20 @@ S.Segment = styled(Segment)`
   }
 `
 
+S.Container = styled(Container)`
+  display: flex;
+  justify-content: ${({ $justify }) => flexAlignMap[$justify]};
+`
+
 S.Chunk = styled.header`
-  align-items: flex-start;
+  align-items: ${({ $textAlign }) => flexAlignMap[$textAlign]};
+  text-align: ${({ $textAlign }) => textAlignMap[$textAlign]};
   display: flex;
   flex-direction: column;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  max-width: 48em;
+
+  ${padding("horizontal")("1em")};
+  ${margin("horizontal")("1em")};
 
   border-bottom: ${({ $underline, theme }) =>
     ($underline === true &&
@@ -98,10 +110,12 @@ S.BackgroundImage = styled.img`
 export const Hero = ({
   overlay = "dark",
   baseline = "bottom",
+  justify = "start",
+  textAlign = "start",
   underline = false,
   size = "base",
   inlineLogo = false,
-  secondary = false,
+  boxed = false,
   color = "",
   images = [],
   children,
@@ -136,10 +150,12 @@ export const Hero = ({
         </Transition>
       ))}
 
-      <Container>
+      <S.Container $justify={justify}>
         {/* nested inline chunk to facilitate underline */}
-        <S.Chunk $underline={underline}>{children}</S.Chunk>
-      </Container>
+        <S.Chunk $boxed={boxed} $textAlign={textAlign} $underline={underline}>
+          {children}
+        </S.Chunk>
+      </S.Container>
     </S.Segment>
   )
 }

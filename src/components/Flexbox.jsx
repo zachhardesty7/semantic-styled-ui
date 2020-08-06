@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { justifyMap } from "../utils"
+import { flexAlignMap } from "../utils"
 
 const S = {} // styled-components namespace
 
 S.Flexbox = styled.div`
   display: flex;
-  justify-content: ${({ $justify }) => justifyMap[$justify]};
+  justify-content: ${({ $justify }) => flexAlignMap[$justify]};
 `
 
 export const Flexbox = ({ justify, children, ...rest }) => (

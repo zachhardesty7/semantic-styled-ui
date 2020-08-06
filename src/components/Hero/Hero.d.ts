@@ -3,6 +3,7 @@ import { HeroTitleProps } from "./HeroTitle"
 import { HeroSubtitleProps } from "./HeroSubtitle"
 import { HeroLogoProps } from "./HeroLogo"
 import { HeroButtonProps } from "./HeroButton"
+import { BoxAlignProp, JustifyProp } from "../../types"
 
 export type HeroOverlay = "dark" | "darker"
 
@@ -22,6 +23,14 @@ export interface HeroProps {
    */
   baseline?: HeroBaseline
   /**
+   * flex alignment of Hero content container
+   */
+  justify?: BoxAlignProp
+  /**
+   * flex alignment of Hero content container
+   */
+  textAlign?: BoxAlignProp
+  /**
    * apply css supported color string or use default if true
    */
   underline?: HeroUnderline
@@ -33,6 +42,10 @@ export interface HeroProps {
    * format logo left of content
    */
   inlineLogo?: boolean
+  /**
+   * limit the width of the content and draw border
+   */
+  boxed?: boolean
   /**
    * apply css supported color string to Icon and text, overrides theme / default
    */

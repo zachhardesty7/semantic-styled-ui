@@ -1,13 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 
-import { justifyMap, paddingMap, withNewProps } from "../../utils"
+import { flexAlignMap, paddingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
 S.Groups = styled.div`
   display: flex;
-  justify-content: ${({ $justify }) => justifyMap[$justify]};
+  justify-content: ${({ $justify }) => flexAlignMap[$justify]};
 
   ${({ $padded, $padding }) =>
     ($padded === "top" && `padding-top: ${paddingMap[$padding]}`) ||
