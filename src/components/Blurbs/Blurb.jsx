@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { Header } from "semantic-ui-react"
 
-import { paddingMap, withNewProps } from "../../utils"
+import { getColor, paddingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -38,6 +38,10 @@ S.BackgroundImage = styled.img`
   }
 `
 
+S.Icon = styled.span`
+  ${getColor("primary")};
+`
+
 export const Blurb = ({
   as = "h4",
   icon,
@@ -55,7 +59,7 @@ export const Blurb = ({
       </S.BackgroundImage>
     )}
 
-    {withNewProps(icon, { align })}
+    <S.Icon>{withNewProps(icon, { align })}</S.Icon>
     <S.Header forwardedAs={as} $color={color}>
       {header}
     </S.Header>

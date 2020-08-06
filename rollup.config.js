@@ -101,11 +101,12 @@ const config = {
     process.env.ENV_MODE === "prod"
       ? prodBundles
       : {
-          preserveModules: true, // REVIEW: cons: slow slow, pros: processing
-          dir: "dist",
+          // preserveModules: true, // REVIEW: cons: slow slow, pros: processing
+          // dir: "dist",
+          // name: "SSUI",
           exports: "named",
-          format: "es",
-          name: "SSUI",
+          file: pkg.module,
+          format: "esm",
           globals,
         },
   external: ["styled-components", "react", "react-dom"],
@@ -118,10 +119,7 @@ const config = {
     copy({
       copyOnce: true,
       flatten: false,
-      targets: [
-        { src: "index.d.ts", dest: "dist" },
-        { src: "src/**/*.d.ts", dest: "dist/src" },
-      ],
+      targets: [{ src: "src/**/*.d.ts", dest: "dist" }],
     }),
     babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
     resolve({ extensions: [".js", ".jsx"] }),
