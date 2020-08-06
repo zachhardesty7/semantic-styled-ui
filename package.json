@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.30.3",
+  "version": "0.30.4",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -31,8 +31,6 @@
     "semi": false
   },
   "scripts": {
-    "ls": "sh scripts/ls.sh",
-    "lsa": "sh scripts/lsa.sh",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "clean": "rimraf dist/*",
@@ -42,12 +40,7 @@
     "watch": "rollup --config --watch --sourcemap --environment ENV_MODE:local",
     "dev": "yarn watch",
     "pub": "publish",
-    "release": "yarn build && npm run pub"
-  },
-  "husky": {
-    "hooks": {
-      "post-commit": "yarn build && publish"
-    }
+    "release": "yarn build && yarn pub"
   },
   "dependencies": {
     "@types/react": "^16.9.44",
@@ -74,7 +67,6 @@
     "eslint": "7.6.0",
     "eslint-config-hardesty": "^3.3.1",
     "glob": "^7.1.6",
-    "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "publish-me-maybe": "^1.0.6",
     "react": "^16.13.1",
