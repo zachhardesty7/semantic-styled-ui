@@ -31,7 +31,7 @@ S.Segment = styled(Segment)`
 export const PageSegment = ({
   secondary = false,
   padded = "both",
-  padding = "relaxed",
+  padding = "base",
   children,
   ...rest
 }) => (
