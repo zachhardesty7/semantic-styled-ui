@@ -102,7 +102,6 @@ const config = (args) => ({
   external: ["styled-components", "react", "react-dom"],
   plugins: [
     args.configAnalyze && sizeSnapshot(),
-    progress(),
     copy({
       copyOnce: true,
       flatten: false,
@@ -113,6 +112,7 @@ const config = (args) => ({
     resolve({ extensions: [".js", ".jsx"] }),
     commonjs(),
     args.configDev && propTypesFromTS(),
+    args.configProgress && progress(),
     args.configAnalyze &&
       visualizer({
         open: true,

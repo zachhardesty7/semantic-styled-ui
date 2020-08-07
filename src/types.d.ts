@@ -10,6 +10,8 @@ export type JustifyProp = BoxAlignProp
 export type TextAlignProp = BoxAlignProp
 export type PaddedVerticalProp = boolean | "top" | "bottom" | "both"
 
+export type SpacingProp = "compact" | "tight" | "base" | "relaxed" | "loose"
+
 export type SpacingSides =
   | "left"
   | "start"
