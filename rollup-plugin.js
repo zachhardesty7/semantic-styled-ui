@@ -9,6 +9,7 @@ const path = require("path")
 // https://github.com/merceyz/typescript-to-proptypes/blob/master/test/index.test.ts
 // https://github.com/merceyz/typescript-to-proptypes/blob/66f228715a14dd5883d7c06a2b19e6439938973f/test/index.test.ts
 // https://github.com/mui-org/material-ui/blob/2231349c302a089cc556614ff562b02a729b1e77/scripts/generateProptypes.ts
+// https://www.npmjs.com/package/@rollup/pluginutils
 // eslint-disable-next-line jsdoc/require-returns
 /**
  * @returns {{}} rollup plugin

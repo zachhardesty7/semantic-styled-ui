@@ -41,6 +41,10 @@ typings/
 .eslintignore
 .gitignore
 
+# rollup analysis
+.size-snapshot.json
+stats.html
+
 #################
 #  rarely used  #
 #################

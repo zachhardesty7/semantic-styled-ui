@@ -3,11 +3,18 @@ import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import { terser } from "rollup-plugin-terser"
 import copy from "rollup-plugin-copy"
-// import alias from "@rollup/plugin-alias"
+import progress from "rollup-plugin-progress"
+import { sizeSnapshot } from "rollup-plugin-size-snapshot"
+import visualizer from "rollup-plugin-visualizer"
 
-// https://www.npmjs.com/package/rollup-plugin-visualizer
+// rollup plugins
+// https://www.npmjs.com/package/rollup-plugin-filesize
 // https://www.npmjs.com/package/rollup-plugin-sizes
-// https://www.npmjs.com/package/rollup-plugin-progress
+// https://github.com/rollup/plugins/tree/master/packages/alias#readme
+
+// public docs
+// https://www.npmjs.com/package/rollup-plugin-serve
+// https://www.npmjs.com/package/rollup-plugin-livereload
 
 // https://webpack.js.org/configuration/resolve/
 // https://github.com/rollup/plugins/tree/master/packages/alias
@@ -54,13 +61,13 @@ const prodBundles = [
   //   name: "SSUI",
   //   globals,
   // },
-  // {
-  //   file: "dist/bundle.min.umd.js",
-  //   format: "umd",
-  //   name: "SSUI",
-  //   globals,
-  //   plugins: [terser()],
-  // },
+  {
+    file: pkg.unpkg,
+    format: "umd",
+    name: "SSUI",
+    globals,
+    plugins: [terser()],
+  },
   {
     // preserveModules: true,
     // dir: "dist",
@@ -69,14 +76,6 @@ const prodBundles = [
     file: pkg.main,
     format: "cjs",
   },
-  // {
-  //   preserveModules: true,
-  //   dir: "dist",
-  //   name: "SSUI",
-  //   // file: "dist/bundle.min.cjs.js",
-  //   format: "cjs",
-  //   plugins: [terser()],
-  // },
   {
     // preserveModules: true,
     // dir: "dist",
@@ -85,48 +84,43 @@ const prodBundles = [
     file: pkg.module,
     format: "esm",
   },
-  // {
-  //   preserveModules: true,
-  //   dir: "dist",
-  //   name: "SSUI",
-  //   // file: "dist/bundle.min.esm.js",
-  //   format: "esm",
-  //   plugins: [terser()],
-  // },
 ]
 
-const config = {
+const config = (args) => ({
   input: "src/index.js",
-  output:
-    process.env.ENV_MODE === "prod"
-      ? prodBundles
-      : {
-          // preserveModules: true, // REVIEW: cons: slow slow, pros: processing
-          // dir: "dist",
-          // name: "SSUI",
-          exports: "named",
-          file: pkg.module,
-          format: "esm",
-          globals,
-        },
+  output: args.configDev
+    ? {
+        // preserveModules: true, // REVIEW: cons: slow slow, pros: processing
+        // dir: "dist",
+        // name: "SSUI",
+        exports: "named",
+        file: pkg.module,
+        format: "esm",
+        globals,
+      }
+    : prodBundles,
   external: ["styled-components", "react", "react-dom"],
   plugins: [
-    // alias({
-    //   entries: [
-    //     { find: "utils", replacement: "../../utils" },
-    //   ],
-    // }),
+    args.configAnalyze && sizeSnapshot(),
+    progress(),
     copy({
       copyOnce: true,
       flatten: false,
       targets: [{ src: "src/**/*.d.ts", dest: "dist" }],
     }),
+    // https://www.npmjs.com/package/rollup-plugin-sourcemaps
     babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
     resolve({ extensions: [".js", ".jsx"] }),
     commonjs(),
-    process.env.ENV_MODE === "local" && propTypesFromTS(),
+    args.configDev && propTypesFromTS(),
+    args.configAnalyze &&
+      visualizer({
+        open: true,
+        template: "sunburst",
+        gzipSize: true,
+      }),
   ],
   onwarn,
-}
+})
 
 export default config

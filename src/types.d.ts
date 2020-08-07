@@ -1,5 +1,5 @@
 import * as styled from "styled-components"
-import * as react from "react"
+import * as React from "react"
 
 export type AsProp = JSX.IntrinsicElements | React.ComponentType<Any>
 export type Any = any // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -30,7 +30,7 @@ export interface HTMLNode extends HTMLElement {
 /** property name of an object backup theme or any of defaultColors */
 // export type DefaultColor = keyof typeof import("./utils/colors").defaultColors
 
-export type FlattenSimpleInterpolation = import("styled-components").FlattenSimpleInterpolation
+export type FlattenSimpleInterpolation = styled.FlattenSimpleInterpolation
 
 /** define styled components supported theme props */
 export interface DefaultTheme {
