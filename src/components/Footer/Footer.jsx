@@ -39,8 +39,8 @@ export const Footer = ({
   /** @type {React.MutableRefObject<HTMLNode>} */
   const con = useRef()
 
-  // update parent containers to allow dynamic sized footer
-  // that stays at the bottom, even when there's little content
+  // update parent container to flex and apply grow to the prev sibling
+  // enable dynamic sized footer that stays at the bottom, even when there's little content
   useLayoutEffect(() => {
     if (sticky && con?.current) {
       let el = con.current.parentNode
@@ -49,10 +49,8 @@ export const Footer = ({
       el.style.display = "flex"
       el.style.flexDirection = "column"
 
-      while (el.parentNode) {
-        el.style.minHeight = "100vh"
-        el = el.parentNode
-      }
+      el.style.minHeight = "100vh"
+      el = el.parentNode
     }
   })
 

@@ -15,7 +15,7 @@ export const textAlignMap = {
   justify: "justify",
 }
 
-export const paddingMap = {
+export const spacingMap = {
   compact: "0.5em",
   tight: "1em",
   base: "2em",

@@ -4,7 +4,7 @@ import styled, { css } from "styled-components"
 import { Container, Grid, Header, Segment } from "semantic-ui-react"
 import { Blurb } from "./Blurb"
 
-import { media, paddingMap, withNewProps } from "../../utils"
+import { media, spacingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -14,9 +14,9 @@ const MAX_COLUMNS = 4
 /* use "!important" to override .ui.text.container */
 S.Blurbs = styled(Segment)`
   ${({ $padded, padding }) =>
-    ($padded === "top" && `padding-top: ${paddingMap[padding]}`) ||
-    ($padded === "bottom" && `padding-bottom: ${paddingMap[padding]}`) ||
-    ($padded && `padding: ${paddingMap[padding]} 0`)};
+    ($padded === "top" && `margin-top: ${spacingMap[padding]}`) ||
+    ($padded === "bottom" && `margin-bottom: ${spacingMap[padding]}`) ||
+    ($padded && `margin: ${spacingMap[padding]} 0`)};
 
   @media ${media.tablet} {
     .container:not(.fluid) {
