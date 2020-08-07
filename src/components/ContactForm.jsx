@@ -3,15 +3,15 @@ import styled from "styled-components"
 
 import { Form, Icon, Message, Transition } from "semantic-ui-react"
 
-import { encode, paddingMap, process } from "../utils"
+import { encode, process, spacingMap } from "../utils"
 
 const S = {} // styled-components namespace
 
 S.Form = styled(Form)`
   ${({ $padded, $padding }) =>
-    ($padded === "top" && `padding-top: ${paddingMap[$padding]}`) ||
-    ($padded === "bottom" && `padding-bottom: ${paddingMap[$padding]}`) ||
-    ($padded && `padding: ${paddingMap[$padding]} 0`)};
+    ($padded === "top" && `padding-top: ${spacingMap[$padding]}`) ||
+    ($padded === "bottom" && `padding-bottom: ${spacingMap[$padding]}`) ||
+    ($padded && `padding: ${spacingMap[$padding]} 0`)};
 `
 
 S.Message = styled(Message)`

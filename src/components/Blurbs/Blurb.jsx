@@ -3,13 +3,13 @@ import styled from "styled-components"
 
 import { Header } from "semantic-ui-react"
 
-import { getColor, paddingMap, withNewProps } from "../../utils"
+import { getColor, spacingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
 S.Section = styled.section`
   text-align: ${({ $align }) => $align};
-  padding-bottom: ${paddingMap.tight};
+  padding-bottom: ${spacingMap.tight};
 `
 
 S.Header = styled(Header)`

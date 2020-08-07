@@ -3,15 +3,15 @@ import styled from "styled-components"
 
 import { Header } from "semantic-ui-react"
 
-import { paddingMap } from "../utils"
+import { spacingMap } from "../utils"
 
 const S = {} // styled-components namespace
 
 S.Header = styled(Header)`
   ${({ $padded }) =>
-    ($padded === "top" && `padding-top: ${paddingMap.base}`) ||
-    ($padded === "bottom" && `padding-bottom: ${paddingMap.base}`) ||
-    ($padded && `padding: ${paddingMap.base} 0`)};
+    ($padded === "top" && `padding-top: ${spacingMap.base}`) ||
+    ($padded === "bottom" && `padding-bottom: ${spacingMap.base}`) ||
+    ($padded && `padding: ${spacingMap.base} 0`)};
 `
 
 S.Title = styled.div`
