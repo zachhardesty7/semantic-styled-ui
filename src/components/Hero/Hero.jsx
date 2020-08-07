@@ -5,6 +5,7 @@ import styled, { css } from "styled-components"
 import {
   defaultColors,
   flexAlignMap,
+  getBackgroundColor,
   margin,
   padding,
   textAlignMap,
@@ -73,15 +74,26 @@ S.Container = styled(Container)`
   justify-content: ${({ $justify }) => flexAlignMap[$justify]};
 `
 
+const getBackgroundColorOpacity = (...args) => {
+  const out = getBackgroundColor("secondary")(...args)
+  out.backgroundColor += "80"
+  return out
+}
+
 S.Chunk = styled.header`
   align-items: ${({ $textAlign }) => flexAlignMap[$textAlign]};
   text-align: ${({ $textAlign }) => textAlignMap[$textAlign]};
   display: flex;
   flex-direction: column;
-  max-width: 48em;
+  max-width: ${({ $boxed }) => ($boxed ? "45em" : undefined)};
 
   ${padding("horizontal")("1em")};
   ${margin("horizontal")("1em")};
+
+  ${({ $boxed }) => $boxed && getBackgroundColorOpacity};
+  ${({ $boxed }) => $boxed && padding("all")("3em")};
+  ${({ $boxed }) => $boxed && margin("start")("auto")};
+  ${({ $boxed }) => $boxed && margin("end")("5em")};
 
   border-bottom: ${({ $underline, theme }) =>
     ($underline === true &&
@@ -150,12 +162,18 @@ export const Hero = ({
         </Transition>
       ))}
 
-      <S.Container $justify={justify}>
-        {/* nested inline chunk to facilitate underline */}
+      {boxed ? (
         <S.Chunk $boxed={boxed} $textAlign={textAlign} $underline={underline}>
           {children}
         </S.Chunk>
-      </S.Container>
+      ) : (
+        <S.Container $justify={justify}>
+          {/* nested inline chunk to facilitate underline */}
+          <S.Chunk $boxed={boxed} $textAlign={textAlign} $underline={underline}>
+            {children}
+          </S.Chunk>
+        </S.Container>
+      )}
     </S.Segment>
   )
 }

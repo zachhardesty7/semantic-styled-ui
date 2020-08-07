@@ -12,28 +12,28 @@ export const padding = (sides) => (val) => {
     return {
       paddingBlockStart: val,
       paddingBlockEnd: val,
-      paddingTop: val,
-      paddingBottom: val,
+      paddingInlineStart: val,
+      paddingInlineEnd: val,
     }
   }
 
   const styles = {}
 
-  if (sides.includes("left")) styles.paddingBlockStart = val
-  if (sides.includes("start")) styles.paddingBlockStart = val
-  if (sides.includes("right")) styles.paddingBlockEnd = val
-  if (sides.includes("end")) styles.paddingBlockEnd = val
+  if (sides.includes("left")) styles.paddingInlineStart = val
+  if (sides.includes("start")) styles.paddingInlineStart = val
+  if (sides.includes("right")) styles.paddingInlineEnd = val
+  if (sides.includes("end")) styles.paddingInlineEnd = val
 
-  if (sides.includes("top")) styles.paddingTop = val
-  if (sides.includes("bottom")) styles.paddingBottom = val
+  if (sides.includes("top")) styles.paddingBlockStart = val
+  if (sides.includes("bottom")) styles.paddingBlockEnd = val
 
   if (sides.includes("horizontal")) {
-    styles.paddingBlockStart = val
-    styles.paddingBlockEnd = val
+    styles.paddingInlineStart = val
+    styles.paddingInlineEnd = val
   }
   if (sides.includes("vertical")) {
-    styles.paddingTop = val
-    styles.paddingBottom = val
+    styles.paddingBlockStart = val
+    styles.paddingBlockEnd = val
   }
 
   return styles
@@ -48,30 +48,30 @@ export const padding = (sides) => (val) => {
 export const margin = (sides) => (val) => {
   if (sides.includes("all")) {
     return {
+      marginInlineStart: val,
+      marginInlineEnd: val,
       marginBlockStart: val,
       marginBlockEnd: val,
-      marginTop: val,
-      marginBottom: val,
     }
   }
 
   const styles = {}
 
-  if (sides.includes("left")) styles.marginBlockStart = val
-  if (sides.includes("start")) styles.marginBlockStart = val
-  if (sides.includes("right")) styles.marginBlockEnd = val
-  if (sides.includes("end")) styles.marginBlockEnd = val
+  if (sides.includes("left")) styles.marginInlineStart = val
+  if (sides.includes("start")) styles.marginInlineStart = val
+  if (sides.includes("right")) styles.marginInlineEnd = val
+  if (sides.includes("end")) styles.marginInlineEnd = val
 
-  if (sides.includes("top")) styles.marginTop = val
-  if (sides.includes("bottom")) styles.marginBottom = val
+  if (sides.includes("top")) styles.marginBlockStart = val
+  if (sides.includes("bottom")) styles.marginBlockEnd = val
 
   if (sides.includes("horizontal")) {
-    styles.marginBlockStart = val
-    styles.marginBlockEnd = val
+    styles.marginInlineStart = val
+    styles.marginInlineEnd = val
   }
   if (sides.includes("vertical")) {
-    styles.marginTop = val
-    styles.marginBottom = val
+    styles.marginBlockStart = val
+    styles.marginBlockEnd = val
   }
 
   return styles
@@ -87,11 +87,11 @@ export const margin = (sides) => (val) => {
  * @requires `styled-components`
  * @example
  * const StyledElement = styled.div`
- *    ${getProperty('margin')('default')};
+ *    ${getProperty('$margin')('default')};
  * `
  *
  * const FC = () => (
- *    <StyledElement margin='2em' />
+ *    <StyledElement $margin='2em' />
  * )
  */
 export const getProperty = (property) => (preset) => (props) => ({
@@ -113,12 +113,11 @@ export const getProperty = (property) => (preset) => (props) => ({
  * @example
  *
  * const StyledElement = styled.div`
- *  ${getHoverProperty('marginHover')('default')};
+ *  ${getHoverProperty('$marginHover')('default')};
  * `
  *
- * <StyledElement marginHover='2em' />
+ * <StyledElement $marginHover='2em' />
  */
-/* eslint-disable max-len */
 export const getHoverProperty = (property) => (preset) => (props) => {
   const propKey = camelToKebab(property.slice(1, property.indexOf("Hover")))
   return {
@@ -128,7 +127,6 @@ export const getHoverProperty = (property) => (preset) => (props) => {
     },
   }
 }
-/* eslint-enable max-len */
 
 /**
  * Applies css property 'color' to styled-component with backup preset from theme.
@@ -142,7 +140,7 @@ export const getHoverProperty = (property) => (preset) => (props) => {
  *  ${getColor('white')};
  * `
  *
- * <StyledElement color='red' />
+ * <StyledElement $color='red' />
  */
 export const getColor = getProperty("$color")
 
@@ -158,7 +156,7 @@ export const getColor = getProperty("$color")
  *  ${getBackgroundColor('secondary')};
  * `
  *
- * <StyledElement backgroundColor='red' />
+ * <StyledElement $backgroundColor='red' />
  */
 export const getBackgroundColor = getProperty("$backgroundColor")
 
@@ -177,7 +175,7 @@ export const getBackgroundColor = getProperty("$backgroundColor")
  *  ${getHoverColor('primary')};
  * `
  *
- * <StyledElement colorHover='red' />
+ * <StyledElement $colorHover='red' />
  */
 export const getHoverColor = getHoverProperty("$colorHover")
 
@@ -196,6 +194,6 @@ export const getHoverColor = getHoverProperty("$colorHover")
  *  ${getHoverBackgroundColor('primary')};
  * `
  *
- * <StyledElement backgroundColorHover='red' />
+ * <StyledElement $backgroundColorHover='red' />
  */
 export const getHoverBackgroundColor = getHoverProperty("$backgroundColorHover")

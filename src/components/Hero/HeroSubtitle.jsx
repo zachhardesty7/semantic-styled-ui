@@ -29,9 +29,15 @@ S.Subtitle = styled(S.BaseHeader)`
   }
 `
 
-export const HeroSubtitle = ({ color, inlineLogo, children, ...rest }) => (
+export const HeroSubtitle = ({
+  as = "h2",
+  color,
+  inlineLogo,
+  children,
+  ...rest
+}) => (
   <S.Subtitle
-    forwardedAs="h2"
+    forwardedAs={as}
     $color={color}
     $inlineLogo={inlineLogo}
     {...rest}

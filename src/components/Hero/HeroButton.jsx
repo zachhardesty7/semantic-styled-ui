@@ -10,6 +10,7 @@ import {
   getBackgroundColor,
   getColor,
   getHoverBackgroundColor,
+  margin,
 } from "../../utils"
 
 const S = {} // styled-components namespace
@@ -21,6 +22,8 @@ S.Button = styled(Button)`
   ${getColor("white")};
   ${getBackgroundColor("secondary")};
   transition: ease-in-out 50ms;
+
+  ${margin("top")("0.5em")};
 
   ${getHoverBackgroundColor("primary")};
   &:hover {
