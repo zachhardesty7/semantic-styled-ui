@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
-import { Header, margin } from "semantic-ui-react"
+import { Header } from "semantic-ui-react"
 
-import { spacingMap } from "../utils"
+import { margin, spacingMap } from "../utils"
 
 const S = {} // styled-components namespace
 

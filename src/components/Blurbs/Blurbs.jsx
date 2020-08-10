@@ -134,14 +134,14 @@ export const Blurbs = ({
     {/* TODO: support remaining props */}
     {vertical ? (
       <Container>
-        <Item.Group column relaxed divided padded $fullWidth={fullWidth}>
+        <S.ItemGroup relaxed divided>
           {React.Children.map(children, (blurb) =>
             withNewProps(blurb, {
               color: color || undefined,
               vertical: vertical || undefined,
             })
           )}
-        </Item.Group>
+        </S.ItemGroup>
       </Container>
     ) : (
       <Container

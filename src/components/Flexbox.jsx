@@ -18,12 +18,8 @@ S.FlexItem = styled.div`
 export const Flexbox = ({ justify, align, column, children, ...rest }) => (
   <S.Flexbox $justify={justify} $align={align} $column={column} {...rest}>
     {React.Children.map(children, (Child) => (
-      <S.FlexItem
-        as={Child.type}
-        forwardedAs={Child.props.as}
-        {...withoutProps(Child.props, "as")}
-      >
-        {Child.children}
+      <S.FlexItem as={Child.type} {...Child.props}>
+        {Child.props.children}
       </S.FlexItem>
     ))}
   </S.Flexbox>

@@ -11,6 +11,10 @@ export interface FlexboxProps {
    */
   align?: SpacingProp
   /**
+   * direction of flex
+   */
+  column?: boolean
+  /**
    * primary content rendered inside the Flexbox
    */
   children?: React.ReactNode
