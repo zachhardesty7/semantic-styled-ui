@@ -19,6 +19,7 @@ export const Link = ({
         "SSUI Link component should not be passed primitive type children unless `wrap` is also passed.",
         "children will be wrapped automatically for now."
       )
+      // eslint-disable-next-line no-param-reassign
       wrap = true
     }
 
