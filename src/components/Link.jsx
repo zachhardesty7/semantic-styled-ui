@@ -27,7 +27,9 @@ export const Link = ({
     //   link.startsWith("http") &&
     //   new URL(link)?.origin !== window.location.origin
     const isExternal =
-      link.includes(":") && new URL(link)?.origin !== window?.location.origin
+      window &&
+      link.includes(":") &&
+      new URL(link)?.origin !== window?.location.origin
     const isAnchor = !isExternal && link.includes("#")
 
     const anchorProps = {
@@ -46,6 +48,7 @@ export const Link = ({
 
     // clean url if user accidentally includes hostname
     const url =
+      window &&
       link.startsWith("http") &&
       new URL(link)?.origin === window?.location.origin
         ? link.replace(window?.location.origin, "")
