@@ -3,6 +3,12 @@ import { Link as HashLink } from "react-scroll"
 
 import { calcDuration, withProps } from "../utils"
 
+const isBrowser = () => !!window
+
+const getWindow = () => {
+  return globalThis || window || {}
+}
+
 export const Link = ({
   as = "a",
   link = "",
@@ -28,9 +34,9 @@ export const Link = ({
     //   link.startsWith("http") &&
     //   new URL(link)?.origin !== window.location.origin
     const isExternal =
-      window &&
+      globalThis &&
       link.includes(":") &&
-      new URL(link)?.origin !== window?.location.origin
+      new URL(link)?.origin !== globalThis?.location.origin
     const isAnchor = !isExternal && link.includes("#")
 
     const anchorProps = {
@@ -39,7 +45,11 @@ export const Link = ({
       duration: calcDuration,
       // reset hash link identifier
       onClick: () =>
-        window?.history.pushState("", document.title, window.location.pathname),
+        globalThis?.history.pushState(
+          "",
+          document.title,
+          globalThis.location.pathname
+        ),
     }
 
     const externalProps = {
@@ -49,10 +59,10 @@ export const Link = ({
 
     // clean url if user accidentally includes hostname
     const url =
-      window &&
+      globalThis &&
       link.startsWith("http") &&
-      new URL(link)?.origin === window?.location.origin
-        ? link.replace(window?.location.origin, "")
+      new URL(link)?.origin === globalThis?.location.origin
+        ? link.replace(globalThis?.location.origin, "")
         : link
 
     const props = {
