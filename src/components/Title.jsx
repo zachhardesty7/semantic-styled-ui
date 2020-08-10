@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { Header } from "semantic-ui-react"
+import { Header, margin } from "semantic-ui-react"
 
 import { spacingMap } from "../utils"
 
@@ -17,6 +17,8 @@ S.Header = styled(Header)`
 S.Title = styled.div`
   font-size: 3rem;
   text-align: ${({ $textAlign }) => $textAlign};
+  ${margin("top")("fitted")};
+  ${margin("bottom")("compact")};
 `
 
 S.Subtitle = styled(Header.Subheader)`

@@ -1,8 +1,9 @@
 import React from "react"
 import styled, { css } from "styled-components"
 
-import { Container, Grid, Header, Segment } from "semantic-ui-react"
+import { Container, Grid, Header, Item, Segment } from "semantic-ui-react"
 import { Blurb } from "./Blurb"
+import { Flexbox } from "../Flexbox"
 
 import { media, spacingMap, withNewProps } from "../../utils"
 
@@ -82,6 +83,23 @@ S.GridCol = styled(Grid.Column)`
     `};
 `
 
+S.ItemGroup = styled(Item.Group)`
+  ${({ $fullWidth }) =>
+    !$fullWidth &&
+    css`
+      max-width: 700px !important;
+      @media ${media.laptop} {
+        flex-wrap: nowrap;
+      }
+      @media ${media.desktop} {
+        flex-wrap: nowrap;
+      }
+      @media ${media.widescreen} {
+        flex-wrap: nowrap;
+      }
+    `};
+`
+
 export const Blurbs = ({
   title,
   content,
@@ -91,6 +109,7 @@ export const Blurbs = ({
   secondary = false,
   padded = "both",
   padding = "relaxed",
+  vertical = false,
   children,
   ...rest
 }) => (
@@ -111,22 +130,43 @@ export const Blurbs = ({
         {content && <S.Content $centered={centered}>{content}</S.Content>}
       </S.Header>
     )}
-    <Container fluid={!!fullWidth} textAlign={centered ? "center" : undefined}>
-      <S.Grid
-        columns={Math.min(React.Children.count(children), MAX_COLUMNS)}
-        relaxed
-        stackable
-        divided={React.Children.count(children) <= MAX_COLUMNS || undefined}
-        padded
-        $fullWidth={fullWidth}
+
+    {/* TODO: support remaining props */}
+    {vertical ? (
+      <Container>
+        <Item.Group column relaxed divided padded $fullWidth={fullWidth}>
+          {React.Children.map(children, (blurb) =>
+            withNewProps(blurb, {
+              color: color || undefined,
+              vertical: vertical || undefined,
+            })
+          )}
+        </Item.Group>
+      </Container>
+    ) : (
+      <Container
+        fluid={!!fullWidth}
+        textAlign={centered ? "center" : undefined}
       >
-        {React.Children.map(children, (blurb) => (
-          <S.GridCol $fullWidth={fullWidth}>
-            {withNewProps(blurb, { color: color || undefined })}
-          </S.GridCol>
-        ))}
-      </S.Grid>
-    </Container>
+        <S.Grid
+          columns={Math.min(React.Children.count(children), MAX_COLUMNS)}
+          relaxed
+          stackable
+          divided={React.Children.count(children) <= MAX_COLUMNS || undefined}
+          padded
+          $fullWidth={fullWidth}
+        >
+          {React.Children.map(children, (blurb) => (
+            <S.GridCol $fullWidth={fullWidth}>
+              {withNewProps(blurb, {
+                color: color || undefined,
+                vertical: vertical || undefined,
+              })}
+            </S.GridCol>
+          ))}
+        </S.Grid>
+      </Container>
+    )}
   </S.Blurbs>
 )
 

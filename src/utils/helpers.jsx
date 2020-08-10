@@ -148,7 +148,7 @@ export const getComponentName = ({ displayName, name }) =>
   displayName || name || "Component"
 
 /**
- * **@deprecated** - replaced with transient props from styled-components
+ * @deprecated replaced with transient props from styled-components
  *
  * Dynamically prevent props from reaching DOM elements
  * by providing styled-components a prop blacklist. Most

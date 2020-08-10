@@ -1,13 +1,37 @@
 import { camelToKebab } from "./helpers"
 import { defaultColors } from "./colors"
+import { spacingMap } from "./consts"
 
 /**
+ * can be used as a styled components function that accepts props or by executing the
+ * curried func, to return a string in spacing units
  *
- * @param {SpacingSides | SpacingSides[]} sides - what sides to apply padding to, multiple sides supported
- * @returns {(val: string) => {}} curried function that can be expanded in a styled
- * template string
+ * @param {SpacingSides | SpacingSides[]} sides - what sides to apply padding to,
+ * multiple sides supported as array
+ * @returns {(val: string | { $padding: string } | { padding: string }) => {}} curried
+ * function that can be expanded in a styled template string or left to automatically
+ * execute using props from styled component
+ *
+ * @example
+ *
+ * const styledObj = padding("start")("1em") // =>> { paddingInlineStart: "1em" }
+ * const styledFunc = padding("bottom") // =>> (props) => { paddingBlockEnd: "2em" }
+ * const StyledComponent = styled.div`
+ *    ${styledObj};
+ *    ${styledFunc};
+ * `
+ *
+ * const FC = () => (
+ *    <StyledComponent $padding='2em' />
+ * )
  */
-export const padding = (sides) => (val) => {
+export const padding = (sides) => (raw) => {
+  let val = raw.$padding || raw.padding || raw // priority goes to a props object
+  // decode supported strings like "compact"
+  if (Object.keys(spacingMap).includes(val)) val = spacingMap[val]
+
+  // NOTE: guaranteed to have a spacing unit string here (e.g. "20px", "10em", "0")
+
   if (sides.includes("all")) {
     return {
       paddingBlockStart: val,
@@ -40,12 +64,35 @@ export const padding = (sides) => (val) => {
 }
 
 /**
+ * can be used as a styled components function that accepts props or by executing the
+ * curried func, to return a string in spacing units
  *
- * @param {SpacingSides | SpacingSides[]} sides - what sides to apply margin to, multiple sides supported
- * @returns {(val: string) => {}} curried function that can be expanded in a styled
- * template string
+ * @param {SpacingSides | SpacingSides[]} sides - what sides to apply margin to,
+ * multiple sides supported as array
+ * @returns {(val: string | { $margin: string } | { margin: string }) => {}} curried
+ * function that can be expanded in a styled template string or left to automatically
+ * execute using props from styled component
+ *
+ * @example
+ *
+ * const styledObj = margin("start")("1em") // =>> { marginInlineStart: "1em" }
+ * const styledFunc = margin("bottom") // =>> (props) => { marginBlockEnd: "2em" }
+ * const StyledComponent = styled.div`
+ *    ${styledObj};
+ *    ${styledFunc};
+ * `
+ *
+ * const FC = () => (
+ *    <StyledComponent $margin='2em' />
+ * )
  */
-export const margin = (sides) => (val) => {
+export const margin = (sides) => (raw = "0") => {
+  let val = raw.$margin || raw.margin || raw // priority goes to a props object
+  // decode supported strings like "compact"
+  if (Object.keys(spacingMap).includes(val)) val = spacingMap[val]
+
+  // NOTE: guaranteed to have a spacing unit string here (e.g. "20px", "10em", "0")
+
   if (sides.includes("all")) {
     return {
       marginInlineStart: val,

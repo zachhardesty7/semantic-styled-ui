@@ -13,13 +13,21 @@ export const Link = ({
 }) =>
   React.Children.map(children, (Child) => {
     if (!Child) return false // prevent wrapping empty elements
+
+    if (typeof Child !== "object" && !wrap) {
+      console.info(
+        "SSUI Link component should not be passed primitive type children unless `wrap` is also passed.",
+        "children will be wrapped automatically for now."
+      )
+      wrap = true
+    }
+
     // const isExternal =
     //   window &&
     //   link.startsWith("http") &&
     //   new URL(link)?.origin !== window.location.origin
     const isExternal =
-      link.startsWith("http") &&
-      new URL(link)?.origin !== window?.location.origin
+      link.includes(":") && new URL(link)?.origin !== window?.location.origin
     const isAnchor = !isExternal && link.includes("#")
 
     const anchorProps = {

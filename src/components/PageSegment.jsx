@@ -1,7 +1,7 @@
 import React from "react"
 import { Segment } from "semantic-ui-react"
 import styled from "styled-components"
-import { media, spacingMap } from "../utils"
+import { padding as getPadding, media, spacingMap } from "../utils"
 
 const S = {} // styled-components namespace
 
@@ -12,6 +12,10 @@ S.Segment = styled(Segment)`
     ($padded === "top" && `margin-top: ${spacingMap[padding]}`) ||
     ($padded === "bottom" && `margin-bottom: ${spacingMap[padding]}`) ||
     ($padded && `margin: ${spacingMap[padding]} 0`)};
+
+  &:first-child {
+    ${getPadding("top")("none")};
+  }
 
   @media ${media.tablet} {
     .container:not(.fluid) {

@@ -16,6 +16,8 @@ export const textAlignMap = {
 }
 
 export const spacingMap = {
+  none: "0",
+  fitted: "0.25em",
   compact: "0.5em",
   tight: "1em",
   base: "2em",

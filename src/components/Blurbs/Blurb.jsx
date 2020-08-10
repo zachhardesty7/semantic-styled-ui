@@ -1,9 +1,10 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-import { Header } from "semantic-ui-react"
+import { Header, Item } from "semantic-ui-react"
+import { Flexbox } from "../Flexbox"
 
-import { getColor, spacingMap, withNewProps } from "../../utils"
+import { getColor, margin, spacingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -42,6 +43,10 @@ S.Icon = styled.span`
   ${getColor("primary")};
 `
 
+S.FlexIcon = styled(Flexbox)`
+  ${margin("end")("base")};
+`
+
 export const Blurb = ({
   as = "h4",
   icon,
@@ -49,20 +54,46 @@ export const Blurb = ({
   align = "center",
   header,
   color = "",
+  vertical = false,
   children,
   ...rest
-}) => (
-  <S.Section $align={align} {...rest}>
-    {backgroundImage && (
-      <S.BackgroundImage as={backgroundImage.type} {...backgroundImage.props}>
-        {backgroundImage.children}
-      </S.BackgroundImage>
-    )}
+}) =>
+  vertical ? (
+    <>
+      <Item {...rest}>
+        {/* <ProcessDarkenedImage size="medium" rounded>
+          <ProcessLabel ribbon size="huge">{`#${i + 1}`}</ProcessLabel>
+          {item.image && (
+            <GImage
+              fixed={item.image.fixed}
+              $backgroundColor
+              alt={item.image.title}
+            />
+          )}
+        </ProcessDarkenedImage> */}
 
-    <S.Icon>{withNewProps(icon, { align })}</S.Icon>
-    <S.Header forwardedAs={as} $color={color}>
-      {header}
-    </S.Header>
-    <S.Content $centered={align}>{children}</S.Content>
-  </S.Section>
-)
+        <S.FlexIcon align="center">
+          <S.Icon>{withNewProps(icon, { align })}</S.Icon>
+        </S.FlexIcon>
+
+        <Flexbox as={Item.Content} column justify="center">
+          <Header as="h2">{header}</Header>
+          <Item.Description>{children}</Item.Description>
+        </Flexbox>
+      </Item>
+    </>
+  ) : (
+    <S.Section $align={align} {...rest}>
+      {backgroundImage && (
+        <S.BackgroundImage as={backgroundImage.type} {...backgroundImage.props}>
+          {backgroundImage.children}
+        </S.BackgroundImage>
+      )}
+
+      <S.Icon>{withNewProps(icon, { align })}</S.Icon>
+      <S.Header forwardedAs={as} $color={color}>
+        {header}
+      </S.Header>
+      <S.Content $centered={align}>{children}</S.Content>
+    </S.Section>
+  )
