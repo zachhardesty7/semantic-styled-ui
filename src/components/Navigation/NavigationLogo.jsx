@@ -27,12 +27,16 @@ S.Wrapper = styled.div`
 // use "!important" to override Gatsby-Image inline style
 S.Logo = styled.div`
   padding: 0 0.5em;
-  height: 100% !important;
-  width: 100% !important;
+  position: relative !important;
+  height: 3em !important;
+  width: auto !important;
+  /* height: 100% !important;
+  width: 100% !important; */
 
+  /* FIXME: does not work with Gatsby probably */
   /* reset weird behavior in gatsby */
   /* will work with regular img child or gatsby-image picture element */
-  img:last-child {
+  /* img:last-child {
     position: relative !important;
     width: ${({ $logoSize }) => logoSizes[$logoSize]}px !important;
 
@@ -49,7 +53,7 @@ S.Logo = styled.div`
     @media ${media.phone} {
       width: ${({ logoSize }) => logoSizesSVG[logoSize] * 0.8}em;
     }
-  }
+  } */
 `
 
 export const NavigationLogo = ({
@@ -62,13 +66,7 @@ export const NavigationLogo = ({
   ...rest
 }) => (
   <S.Wrapper $stacked={stacked} className={className}>
-    <NavigationItem
-      as={as}
-      link={link}
-      stacked={stacked}
-      pointing={false}
-      {...rest}
-    >
+    <NavigationItem as={as} link={link} stacked={stacked} {...rest}>
       <S.Logo as={children.type} {...children.props} $logoSize={logoSize} />
     </NavigationItem>
   </S.Wrapper>
