@@ -15,9 +15,9 @@ const MAX_COLUMNS = 4
 /* use "!important" to override .ui.text.container */
 S.Blurbs = styled(Segment)`
   ${({ $padded, padding }) =>
-    ($padded === "top" && `margin-top: ${spacingMap[padding]}`) ||
-    ($padded === "bottom" && `margin-bottom: ${spacingMap[padding]}`) ||
-    ($padded && `margin: ${spacingMap[padding]} 0`)};
+    ($padded === "top" && `padding-top: ${spacingMap[padding]}`) ||
+    ($padded === "bottom" && `padding-bottom: ${spacingMap[padding]}`) ||
+    ($padded && `padding: ${spacingMap[padding]} 0`)};
 
   @media ${media.tablet} {
     .container:not(.fluid) {
