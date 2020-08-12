@@ -3,7 +3,12 @@ import styled from "styled-components"
 
 import { Container, Grid, Ref, Segment } from "semantic-ui-react"
 
-import { getBackgroundColor, getColor, getHoverColor } from "../../utils"
+import {
+  getBackgroundColor,
+  getColor,
+  getHoverColor,
+  withNewProps,
+} from "../../utils"
 
 import { FooterContent } from "./FooterContent"
 
@@ -79,9 +84,15 @@ export const Footer = ({
             verticalAlign="middle"
             centered={childrenArr.length !== 2}
           >
-            {childrenArr[0] && <Grid.Column>{childrenArr[0]}</Grid.Column>}
+            {childrenArr[0] && (
+              <Grid.Column>
+                {withNewProps(childrenArr[0], { inverted })}
+              </Grid.Column>
+            )}
             {childrenArr[1] && (
-              <Grid.Column textAlign="right">{childrenArr[1]}</Grid.Column>
+              <Grid.Column textAlign="right">
+                {withNewProps(childrenArr[1], { inverted })}
+              </Grid.Column>
             )}
           </Grid>
         </Container>

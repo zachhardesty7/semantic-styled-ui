@@ -17,13 +17,29 @@ S.Header = styled(Header)`
   z-index: 10;
   position: relative;
   color: ${({ $color }) => $color};
-  font-size: 2em;
+  /*   font-size: 2em; */
 `
 
 S.Content = styled(Header.Content)`
   z-index: 10;
   text-align: ${({ $centered }) => $centered && "justify"};
   position: relative;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  hyphens: auto;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    text-align: ${({ $centered }) => $centered && "center"};
+  }
 `
 
 S.BackgroundImage = styled.img`
@@ -48,7 +64,7 @@ S.FlexIcon = styled(Flexbox)`
 `
 
 export const Blurb = ({
-  as = "h4",
+  as = "h3",
   icon,
   backgroundImage,
   align = "center",
@@ -77,7 +93,7 @@ export const Blurb = ({
         </S.FlexIcon>
 
         <Flexbox as={Item.Content} column justify="center">
-          <Header as="h2">{header}</Header>
+          <Header as={as}>{header}</Header>
           <Item.Description>{children}</Item.Description>
         </Flexbox>
       </Item>

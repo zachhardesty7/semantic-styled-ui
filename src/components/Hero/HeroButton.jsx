@@ -35,8 +35,8 @@ S.IconLink = styled(IconLink)`
   ${getColor("white")};
   ${({ $pointing }) => `margin-${$pointing}: .75em`};
   vertical-align: bottom;
-  width: 1em;
-  height: 1em;
+  /*   width: 1em; */
+  /*   height: 1em; */
 `
 
 export const HeroButton = ({

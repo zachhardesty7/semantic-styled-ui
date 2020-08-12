@@ -17,7 +17,7 @@ S.Form = styled(Form)`
 S.Message = styled(Message)`
   /* use "!important" to override Transition */
   display: flex !important;
-  margin-bottom: 1em;
+  /*   margin-bottom: 1em; */
 `
 
 /**

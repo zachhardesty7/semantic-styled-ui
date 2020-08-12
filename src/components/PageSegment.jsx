@@ -20,7 +20,7 @@ S.Segment = styled(Segment)`
   @media ${media.tablet} {
     .container:not(.fluid) {
       max-width: 397px !important;
-      padding: 0 1.5em;
+      /*       padding: 0 1.5em; */
       margin: 0 auto !important;
     }
   }

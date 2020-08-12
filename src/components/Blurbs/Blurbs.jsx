@@ -22,7 +22,7 @@ S.Blurbs = styled(Segment)`
   @media ${media.tablet} {
     .container:not(.fluid) {
       max-width: 397px !important;
-      padding: 0 1.5em;
+      /*       padding: 0 1.5em; */
       margin: 0 auto !important;
     }
   }
@@ -39,8 +39,8 @@ S.Header = styled(Container)`
   padding-bottom: 2.75em !important;
 `
 
-S.Title = styled(Header).attrs({ forwardedAs: "h3" })`
-  font-size: 3em;
+S.Title = styled(Header).attrs({ forwardedAs: "h2" })`
+  /*   font-size: 3em; */
 
   @media ${media.phone} {
     text-align: left;

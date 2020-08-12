@@ -26,7 +26,7 @@ S.Wrapper = styled.div`
 
 // use "!important" to override Gatsby-Image inline style
 S.Logo = styled.div`
-  padding: 0 0.5em;
+/*   padding: 0 0.5em; */
   position: relative !important;
   height: 3em !important;
   width: auto !important;

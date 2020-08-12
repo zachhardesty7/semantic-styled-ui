@@ -33,7 +33,7 @@ S.Item = styled(Menu.Item)`
   /* REVIEW: report bug when placing this block before the prev */
   @media ${media.phone} {
     a {
-      font-size: 0.97rem;
+      /*       font-size: 0.97rem; */
     }
   }
 `

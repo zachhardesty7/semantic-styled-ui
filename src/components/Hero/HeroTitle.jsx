@@ -15,14 +15,14 @@ S.BaseHeader = styled(Header)`
 S.Title = styled(S.BaseHeader)`
   ${({ $inlineLogo }) => $inlineLogo && "display: inline-block"};
   ${({ $inlineLogo }) => $inlineLogo && "margin-bottom: 0"};
-  padding-right: 0.15em;
+  /*   padding-right: 0.15em; */
   font-size: ${({ $secondary }) => ($secondary ? "3.3em" : "4.7em")};
 
   @media ${media.laptop} {
-    font-size: 4em;
+    /*     font-size: 4em; */
   }
   @media ${media.tablet} {
-    font-size: 3.8em;
+    /*     font-size: 3.8em; */
   }
   @media ${media.phone} {
     font-size: 12vw;

@@ -15,14 +15,14 @@ S.Header = styled(Header)`
 `
 
 S.Title = styled.div`
-  font-size: 3rem;
+  /*   font-size: 3rem; */
   text-align: ${({ $textAlign }) => $textAlign};
   ${margin("top")("fitted")};
   ${margin("bottom")("compact")};
 `
 
 S.Subtitle = styled(Header.Subheader)`
-  font-size: 1.25rem;
+  /*   font-size: 1.25rem; */
   text-align: ${({ $textAlign }) => $textAlign};
 `
 

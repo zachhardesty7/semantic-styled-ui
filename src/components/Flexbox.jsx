@@ -16,9 +16,9 @@ S.FlexItem = styled.div`
 `
 
 export const Flexbox = ({ justify, align, column, children, ...rest }) => (
-  <S.Flexbox $justify={justify} $align={align} $column={column} {...rest}>
+  <S.Flexbox $justify={justify} $align={align} $column={column}>
     {React.Children.map(children, (Child) => (
-      <S.FlexItem as={Child.type} {...Child.props}>
+      <S.FlexItem as={Child.type} {...rest} {...Child.props}>
         {Child.props.children}
       </S.FlexItem>
     ))}

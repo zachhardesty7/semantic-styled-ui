@@ -14,18 +14,18 @@ S.BaseHeader = styled(Header)`
 
 S.Subtitle = styled(S.BaseHeader)`
   ${({ $inlineLogo }) => $inlineLogo && "margin-top: 0.75em"};
-  font-size: 1.7rem;
+  /*   font-size: 1.7rem; */
 
   @media ${media.laptop} {
-    font-size: 1.45em;
+    /*     font-size: 1.45em; */
   }
   @media ${media.tablet} {
-    font-size: 1.4em;
+    /*     font-size: 1.4em; */
   }
   @media ${media.phone} {
     width: min-content;
-    min-width: 11em;
-    font-size: 1.4em;
+    /*     min-width: 11em; */
+    /*     font-size: 1.4em; */
   }
 `
 
