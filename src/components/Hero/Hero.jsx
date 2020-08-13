@@ -87,9 +87,6 @@ S.Chunk = styled.header`
   flex-direction: column;
   max-width: ${({ $boxed }) => ($boxed ? "45em" : undefined)};
 
-  ${padding("horizontal")("1em")};
-  ${margin("horizontal")("1em")};
-
   ${({ $boxed }) => $boxed && getBackgroundColorOpacity};
   ${({ $boxed }) => $boxed && padding("all")("3em")};
   ${({ $boxed }) => $boxed && margin("start")("auto")};

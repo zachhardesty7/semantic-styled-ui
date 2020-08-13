@@ -28,7 +28,7 @@ S.Subtitle = styled(Header.Subheader)`
 
 // TODO: test mobile, may need `container` on `Grid`
 export const Title = ({
-  as = "h2",
+  as = "h1",
   subtitle = null,
   textAlign = "left",
   textAlignSub = "left",

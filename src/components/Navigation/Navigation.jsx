@@ -10,6 +10,7 @@ import { NavigationLogo } from "./NavigationLogo"
 
 const S = {} // styled-components namespace
 
+// TODO: https://react.semantic-ui.com/collections/menu/#types-attached
 S.Segment = styled(Segment)`
   ${({ $pointing }) => $pointing && "padding-bottom: 0"};
   ${({ $floating, $relaxed }) =>
@@ -75,7 +76,7 @@ export const Navigation = ({
     vertical
     {...rest}
   >
-    {fullWidth ? (
+    {fullWidth || !split ? (
       <S.Menu
         forwardedAs="nav"
         size={size}

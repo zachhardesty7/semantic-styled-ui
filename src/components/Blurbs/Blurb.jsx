@@ -10,7 +10,7 @@ const S = {} // styled-components namespace
 
 S.Section = styled.section`
   text-align: ${({ $align }) => $align};
-  padding-bottom: ${spacingMap.tight};
+  /* padding-bottom: ${spacingMap.tight}; */
 `
 
 S.Header = styled(Header)`
@@ -106,10 +106,12 @@ export const Blurb = ({
         </S.BackgroundImage>
       )}
 
-      <S.Icon>{withNewProps(icon, { align })}</S.Icon>
-      <S.Header forwardedAs={as} $color={color}>
-        {header}
-      </S.Header>
-      <S.Content $centered={align}>{children}</S.Content>
+      {icon && <S.Icon>{withNewProps(icon, { align })}</S.Icon>}
+      {header && (
+        <S.Header forwardedAs={as} $color={color}>
+          {header}
+        </S.Header>
+      )}
+      {children && <S.Content $centered={align}>{children}</S.Content>}
     </S.Section>
   )

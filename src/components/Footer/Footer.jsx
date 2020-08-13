@@ -3,6 +3,8 @@ import styled from "styled-components"
 
 import { Container, Grid, Ref, Segment } from "semantic-ui-react"
 
+import { Flexbox } from "../Flexbox"
+
 import {
   getBackgroundColor,
   getColor,
@@ -21,15 +23,33 @@ const ForwardedSegment = React.forwardRef(({ children, ...rest }, ref) => (
 ))
 
 S.Segment = styled(ForwardedSegment)`
+  font-size: 0.85em;
   margin-top: 0px;
   ${getColor("light")};
   ${getBackgroundColor("primary")};
-`
 
-S.Link = styled.a`
-  text-decoration: underline;
-  ${getColor("light")};
-  ${getHoverColor("white")};
+  a:link,
+  a:visited {
+    text-decoration: underline;
+    ${getColor("light")};
+    ${getHoverColor("white")};
+  }
+
+  i {
+    text-decoration: none;
+  }
+
+  a i {
+    text-decoration: none;
+  }
+
+  a > i {
+    text-decoration: none;
+  }
+
+  a > * {
+    text-decoration: none;
+  }
 `
 
 export const Footer = ({
@@ -38,6 +58,7 @@ export const Footer = ({
   sticky = true,
   fullWidth = false,
   inverted = false,
+  light = false,
   children = [],
   ...rest
 }) => {
@@ -74,27 +95,17 @@ export const Footer = ({
     <Ref innerRef={con}>
       <S.Segment
         forwardedAs="footer"
-        $color={color}
+        $color={color || (light ? "grey" : undefined)}
         $backgroundColor={backgroundColor}
+        basic
+        vertical
         {...rest}
       >
         <Container fluid={fullWidth}>
-          <Grid
-            columns={Math.min(childrenArr.length, 2)}
-            verticalAlign="middle"
-            centered={childrenArr.length !== 2}
-          >
-            {childrenArr[0] && (
-              <Grid.Column>
-                {withNewProps(childrenArr[0], { inverted })}
-              </Grid.Column>
-            )}
-            {childrenArr[1] && (
-              <Grid.Column textAlign="right">
-                {withNewProps(childrenArr[1], { inverted })}
-              </Grid.Column>
-            )}
-          </Grid>
+          <Flexbox justify="split">
+            {childrenArr[0] && withNewProps(childrenArr[0], { light })}
+            {childrenArr[1] && withNewProps(childrenArr[1], { light })}
+          </Flexbox>
         </Container>
       </S.Segment>
     </Ref>

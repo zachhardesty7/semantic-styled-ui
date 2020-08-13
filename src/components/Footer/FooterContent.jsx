@@ -42,7 +42,8 @@ export const FooterContent = ({
 
       {developerName && (
         <>
-          {maybeLowerCase("Designed and Developed by ", lowerCased)}
+          {maybeLowerCase("Designed and Developed by", lowerCased)}
+          &nbsp;
           <S.Link href={developerLink}>{developerName}</S.Link>
         </>
       )}

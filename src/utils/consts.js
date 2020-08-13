@@ -1,7 +1,7 @@
 // REVIEW: this format provides the best format for hover intellisense without completely cluttering
 
 /**
- * @typedef {{ start: "flex-start", end: "flex-end", center: "center", initial: "initial", justify: "normal" }} flexAlignMap
+ * @typedef {{ start: "flex-start", end: "flex-end", center: "center", initial: "initial", split: "space-between", justify: "normal" }} flexAlignMap
  * @type {flexAlignMap}
  */
 export const flexAlignMap = {
@@ -9,6 +9,7 @@ export const flexAlignMap = {
   end: "flex-end",
   center: "center",
   initial: "initial",
+  split: "space-between", // only valid for justify (content?)
   // value doesn't matter since really isn't used
   justify: "normal",
 }

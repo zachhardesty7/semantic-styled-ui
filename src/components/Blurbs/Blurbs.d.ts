@@ -49,3 +49,13 @@ export interface BlurbsProps {
 declare const Blurbs: React.FC<BlurbsProps> & {
   Item: React.FC<BlurbProps>
 }
+
+export type test = {
+  none: "0"
+  fitted: "0.25em"
+  compact: "0.5em"
+  tight: "1em"
+  base: "2em"
+  relaxed: "4em"
+  loose: "6em"
+}

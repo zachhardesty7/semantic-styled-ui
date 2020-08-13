@@ -1,15 +1,15 @@
 import * as React from "react"
-import { SpacingProp } from "../types"
+import { BoxAlignProp, SpacingProp } from "../types"
 
 export interface FlexboxProps {
   /**
    * position / justification of all content
    */
-  justify?: SpacingProp
+  justify?: BoxAlignProp
   /**
    * position / justification of all content
    */
-  align?: SpacingProp
+  align?: BoxAlignProp
   /**
    * direction of flex
    */

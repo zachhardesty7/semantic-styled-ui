@@ -8,6 +8,7 @@ const baseColors = {
   warning: "#ffc107",
   danger: "#dc3545",
   light: "#d2d7db",
+  offWhite: "#f3f4f5",
   dark: "#343c42",
   black: "#070707",
   white: "#fff",

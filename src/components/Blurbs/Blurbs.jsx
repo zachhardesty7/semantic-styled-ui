@@ -153,7 +153,6 @@ export const Blurbs = ({
           relaxed
           stackable
           divided={React.Children.count(children) <= MAX_COLUMNS || undefined}
-          padded
           $fullWidth={fullWidth}
         >
           {React.Children.map(children, (blurb) => (
