@@ -107,7 +107,7 @@ export const Blurbs = ({
   centered = false,
   color = "",
   secondary = false,
-  padded = "both",
+  padded = false,
   padding = "relaxed",
   vertical = false,
   children,

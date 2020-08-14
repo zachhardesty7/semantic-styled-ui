@@ -16,7 +16,7 @@ S.Title = styled(S.BaseHeader)`
   ${({ $inlineLogo }) => $inlineLogo && "display: inline-block"};
   ${({ $inlineLogo }) => $inlineLogo && "margin-bottom: 0"};
   /*   padding-right: 0.15em; */
-  font-size: ${({ $secondary }) => ($secondary ? "2.5em" : "3em")};
+  font-size: ${({ $secondary }) => ($secondary ? "2.25em" : "3em")};
 
   @media ${media.laptop} {
     /*     font-size: 4em; */

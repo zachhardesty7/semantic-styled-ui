@@ -66,53 +66,42 @@ export const Navigation = ({
   floating = false,
   children = null,
   ...rest
-}) => (
-  <S.Segment
-    forwardedAs="header"
-    $pointing={!noPointing}
-    $floating={floating}
-    $relaxed={relaxed}
-    basic
-    vertical
-    {...rest}
-  >
-    {fullWidth || !split ? (
+}) =>
+  fullWidth || !split ? (
+    <S.Menu
+      forwardedAs="nav"
+      size={size}
+      text={text}
+      secondary={!primary}
+      pointing={!noPointing}
+      inverted={inverted}
+      $floating={floating}
+      $split={split}
+    >
+      {/* apply tag && pointing to all children */}
+      {React.Children.map(children, (Child) =>
+        withNewProps(Child, { forwardedAs: as, pointing: !noPointing })
+      )}
+    </S.Menu>
+  ) : (
+    <Container textAlign={textAlign}>
       <S.Menu
         forwardedAs="nav"
         size={size}
         text={text}
+        compact={!relaxed}
         secondary={!primary}
         pointing={!noPointing}
         inverted={inverted}
         $floating={floating}
-        $split={split}
       >
         {/* apply tag && pointing to all children */}
         {React.Children.map(children, (Child) =>
           withNewProps(Child, { forwardedAs: as, pointing: !noPointing })
         )}
       </S.Menu>
-    ) : (
-      <Container textAlign={textAlign}>
-        <S.Menu
-          forwardedAs="nav"
-          size={size}
-          text={text}
-          compact={!relaxed}
-          secondary={!primary}
-          pointing={!noPointing}
-          inverted={inverted}
-          $floating={floating}
-        >
-          {/* apply tag && pointing to all children */}
-          {React.Children.map(children, (Child) =>
-            withNewProps(Child, { forwardedAs: as, pointing: !noPointing })
-          )}
-        </S.Menu>
-      </Container>
-    )}
-  </S.Segment>
-)
+    </Container>
+  )
 
 Navigation.Left = ({ children, ...rest }) => (
   <S.SubMenu>

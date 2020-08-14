@@ -1,20 +1,19 @@
 import React from "react"
-import { Segment } from "semantic-ui-react"
+import { Container, Segment } from "semantic-ui-react"
 import styled from "styled-components"
-import { padding as getPadding, media, spacingMap } from "../utils"
+import { media, padding, spacingMap } from "../utils"
 
 const S = {} // styled-components namespace
 
-/* fix absurdly wide segments on tablet size */
-/* use "!important" to override .ui.text.container */
 S.Segment = styled(Segment)`
-  ${({ $padded, padding }) =>
-    ($padded === "top" && `margin-top: ${spacingMap[padding]}`) ||
-    ($padded === "bottom" && `margin-bottom: ${spacingMap[padding]}`) ||
-    ($padded && `margin: ${spacingMap[padding]} 0`)};
+  ${padding("vertical")("2em")};
 
   &:first-child {
-    ${getPadding("top")("none")};
+    ${padding("top")("2.5em")};
+  }
+
+  &:last-child {
+    ${padding("bottom")("4em")};
   }
 
   @media ${media.tablet} {
@@ -34,20 +33,18 @@ S.Segment = styled(Segment)`
 
 export const PageSegment = ({
   secondary = false,
-  padded = "both",
-  padding = "base",
+  // padding = "base",
   children,
   ...rest
 }) => (
   <S.Segment
-    $padded={padded}
-    padding={padding}
+    // padding={padding}
     forwardedAs="section"
     vertical
     basic
     secondary={secondary}
     {...rest}
   >
-    {children}
+    <Container>{children}</Container>
   </S.Segment>
 )

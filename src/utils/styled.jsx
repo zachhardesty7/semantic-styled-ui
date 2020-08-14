@@ -3,6 +3,10 @@ import { defaultColors } from "./colors"
 import { spacingMap } from "./consts"
 
 /**
+ * @typedef {import("../types").SpacingSides} SpacingSides
+ */
+
+/**
  * can be used as a styled components function that accepts props or by executing the
  * curried func, to return a string in spacing units
  *
@@ -17,6 +21,7 @@ import { spacingMap } from "./consts"
  * const styledObj = padding("start")("1em") // =>> { paddingInlineStart: "1em" }
  * const styledFunc = padding("bottom") // =>> (props) => { paddingBlockEnd: "2em" }
  * const StyledComponent = styled.div`
+ *    ${padding("all")("0")};
  *    ${styledObj};
  *    ${styledFunc};
  * `

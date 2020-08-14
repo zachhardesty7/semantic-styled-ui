@@ -17,8 +17,7 @@ S.Header = styled(Header)`
 S.Title = styled.div`
   /*   font-size: 3rem; */
   text-align: ${({ $textAlign }) => $textAlign};
-  ${margin("top")("fitted")};
-  ${margin("bottom")("compact")};
+  ${margin("bottom")("1em")};
 `
 
 S.Subtitle = styled(Header.Subheader)`

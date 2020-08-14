@@ -23,13 +23,13 @@ const sizes = {
     compact: "4em",
   },
   medium: {
-    relaxed: "16em",
-    base: "10em",
+    relaxed: "12em",
+    base: "9em",
     compact: "6em",
   },
   large: {
-    relaxed: "24em",
-    base: "16em",
+    relaxed: "16em",
+    base: "12em",
     compact: "8em",
   },
 }
@@ -57,7 +57,9 @@ S.Segment = styled(Segment)`
       (overlay === "dark" &&
         "linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))") ||
       (overlay === "darker" &&
-        "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))")};
+        "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))") ||
+      (overlay === "darkest" &&
+        "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.75))")};
     filter: saturate(2) sepia(0.4);
     background-repeat: no-repeat;
     background-size: cover;
@@ -85,12 +87,12 @@ S.Chunk = styled.header`
   text-align: ${({ $textAlign }) => textAlignMap[$textAlign]};
   display: flex;
   flex-direction: column;
-  max-width: ${({ $boxed }) => ($boxed ? "45em" : undefined)};
+  max-width: ${({ $boxed }) => ($boxed ? "40em" : undefined)};
 
   ${({ $boxed }) => $boxed && getBackgroundColorOpacity};
-  ${({ $boxed }) => $boxed && padding("all")("3em")};
+  ${({ $boxed }) => $boxed && padding("all")("2.5em")};
   ${({ $boxed }) => $boxed && margin("start")("auto")};
-  ${({ $boxed }) => $boxed && margin("end")("5em")};
+  ${({ $boxed }) => $boxed && margin("end")("4em")};
 
   border-bottom: ${({ $underline, theme }) =>
     ($underline === true &&
