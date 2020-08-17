@@ -7,6 +7,7 @@ import {
   flexAlignMap,
   getBackgroundColor,
   margin,
+  media,
   padding,
   textAlignMap,
 } from "../../utils"
@@ -93,6 +94,19 @@ S.Chunk = styled.header`
   ${({ $boxed }) => $boxed && padding("all")("2.5em")};
   ${({ $boxed }) => $boxed && margin("start")("auto")};
   ${({ $boxed }) => $boxed && margin("end")("4em")};
+
+  ${({ $boxed }) =>
+    $boxed &&
+    css`
+      @media ${media.laptop} {
+        ${margin("horizontal")("3em")};
+        max-width: unset;
+      }
+      @media ${media.mobile} {
+        ${margin("horizontal")("2em")};
+        max-width: unset;
+      }
+    `};
 
   border-bottom: ${({ $underline, theme }) =>
     ($underline === true &&

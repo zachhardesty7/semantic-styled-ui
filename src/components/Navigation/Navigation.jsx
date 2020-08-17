@@ -78,6 +78,7 @@ export const Navigation = ({
       inverted={inverted}
       $floating={floating}
       $split={split}
+      $justify={justify}
     >
       {/* apply tag && pointing to all children */}
       {React.Children.map(children, (Child) =>
