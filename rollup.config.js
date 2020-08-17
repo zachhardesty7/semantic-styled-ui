@@ -105,7 +105,10 @@ const config = (args) => ({
     copy({
       copyOnce: true,
       flatten: false,
-      targets: [{ src: "src/**/*.d.ts", dest: "dist" }],
+      targets: [
+        { src: "src/**/*.d.ts", dest: "dist" },
+        { src: "src/**/*.stories.jsx", dest: "dist" },
+      ],
     }),
     // https://www.npmjs.com/package/rollup-plugin-sourcemaps
     babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),

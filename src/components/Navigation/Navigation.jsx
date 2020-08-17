@@ -3,7 +3,7 @@ import styled, { css } from "styled-components"
 
 import { Container, Menu, Segment } from "semantic-ui-react"
 
-import { media, withNewProps } from "../../utils"
+import { flexAlignMap, media, withNewProps } from "../../utils"
 
 import { NavigationItem } from "./NavigationItem"
 import { NavigationLogo } from "./NavigationLogo"
@@ -25,7 +25,7 @@ S.Segment = styled(Segment)`
 `
 
 S.Menu = styled(Menu)`
-  justify-content: center;
+  justify-content: ${({ $justify }) => flexAlignMap[$justify]};
   flex-wrap: wrap;
 
   &:after {
@@ -60,6 +60,7 @@ export const Navigation = ({
   primary = false,
   noPointing = false,
   textAlign = "center",
+  justify = "center",
   inverted = false,
   fullWidth = false,
   split = false,

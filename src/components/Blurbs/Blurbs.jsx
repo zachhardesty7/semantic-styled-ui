@@ -81,6 +81,10 @@ S.GridCol = styled(Grid.Column)`
         margin-left: 20px;
       }
     `};
+
+  @media ${media.laptop} {
+    box-shadow: none;
+  }
 `
 
 S.ItemGroup = styled(Item.Group)`
@@ -151,6 +155,7 @@ export const Blurbs = ({
         <S.Grid
           columns={Math.min(React.Children.count(children), MAX_COLUMNS)}
           relaxed
+          doubling
           stackable
           divided={React.Children.count(children) <= MAX_COLUMNS || undefined}
           $fullWidth={fullWidth}
