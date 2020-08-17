@@ -3,6 +3,7 @@ import { AsProp, TextAlignProp } from "../../types"
 
 import { NavigationItemProps } from "./NavigationItem"
 import { NavigationLogoProps } from "./NavigationLogo"
+import { JustifyProp } from "../../../dist/types.d.ts"
 
 export type NavigationSize =
   | "small"
@@ -66,6 +67,10 @@ export interface NavigationProps {
    * horizontal position
    */
   textAlign?: TextAlignProp
+  /**
+   * horizontal position
+   */
+  justify?: JustifyProp
   /**
    * collection of items to render as menu
    */
