@@ -62,7 +62,7 @@ S.Segment = styled(Segment)`
         "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))") ||
       (overlay === "darkest" &&
         "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.75))")};
-    filter: saturate(2) sepia(0.4);
+    filter: saturate(1.8) sepia(0.4);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center + 45%;
@@ -102,13 +102,13 @@ S.Chunk = styled.header`
   text-align: ${({ $textAlign }) => textAlignMap[$textAlign]};
   display: flex;
   flex-direction: column;
-  max-width: ${({ $boxed }) => ($boxed ? "40em" : undefined)};
+  max-width: ${({ $boxed }) => ($boxed ? "36em" : undefined)};
 
   ${({ $boxed }) =>
     $boxed &&
     css`
       ${getBackgroundColorOpacity};
-      ${padding("all")("2.5em")};
+      ${padding("all")("2.3em")};
       ${margin("start")("auto")};
       ${margin("end")("4em")};
 

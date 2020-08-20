@@ -11,8 +11,7 @@ S.Title = styled(Header)`
   font-weight: normal;
   ${({ $inlineLogo }) => $inlineLogo && "display: inline-block"};
   ${({ $inlineLogo }) => $inlineLogo && "margin-bottom: 0"};
-  /*   padding-right: 0.15em; */
-  font-size: ${({ $secondary }) => ($secondary ? "2.25em" : "3em")};
+  font-size: ${({ $secondary }) => ($secondary ? "1.95em" : "2.4em")};
 `
 
 export const HeroTitle = ({

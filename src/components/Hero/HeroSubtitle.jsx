@@ -13,7 +13,7 @@ S.BaseHeader = styled(Header)`
 
 S.Subtitle = styled(S.BaseHeader)`
   ${({ $inlineLogo }) => $inlineLogo && "margin-top: 0.75em"};
-  font-size: 1.7em;
+  font-size: 1.4em;
 `
 
 export const HeroSubtitle = ({
