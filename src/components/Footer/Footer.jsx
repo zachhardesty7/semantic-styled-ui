@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react"
 import styled from "styled-components"
 
-import { Container, Grid, Ref, Segment } from "semantic-ui-react"
+import { Container, Ref, Segment } from "semantic-ui-react"
 
 import { Flexbox } from "../Flexbox"
 
@@ -9,7 +9,9 @@ import {
   getBackgroundColor,
   getColor,
   getHoverColor,
+  media,
   withNewProps,
+  withTag,
 } from "../../utils"
 
 import { FooterContent } from "./FooterContent"
@@ -49,6 +51,12 @@ S.Segment = styled(ForwardedSegment)`
 
   a > * {
     text-decoration: none;
+  }
+`
+
+S.Flexbox = styled(Flexbox)`
+  @media ${media.mobile} {
+    justify-content: center;
   }
 `
 
@@ -102,14 +110,14 @@ export const Footer = ({
         {...rest}
       >
         <Container fluid={fullWidth}>
-          <Flexbox justify="split">
+          <S.Flexbox justify="split" wrap>
             {childrenArr[0] && withNewProps(childrenArr[0], { light })}
             {childrenArr[1] && withNewProps(childrenArr[1], { light })}
-          </Flexbox>
+          </S.Flexbox>
         </Container>
       </S.Segment>
     </Ref>
   )
 }
 
-Footer.Content = FooterContent
+Footer.Content = withTag("SSUI", FooterContent)

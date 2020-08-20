@@ -79,6 +79,22 @@ export const encode = (data) =>
     .join("&")
 
 /**
+ * identical to `.includes()` on `String.prototype` or `Array.prototype` but accepts multiple terms
+ *
+ * @param {string | any[]} con - anything that has an `include()` method on its prototype
+ * @param {any[]} searchVals - targets to check for presence in `con`
+ * @returns {boolean} true if any of the `searchVals` are included in the `con`
+ * @example
+ *
+ * includesAny("paddingTop", ["padding", "margin"])
+ * // => true
+ * includesAny(["paddingTop"], ["padding", "margin"])
+ * // => false
+ */
+export const includesAny = (con, searchVals = []) =>
+  searchVals.some((searchVal) => con.includes(searchVal))
+
+/**
  * URL encodes the data of key, value pairs as submitted by a form.
  *
  * @param {any} obj - arbitrary object
@@ -140,12 +156,26 @@ export const withProps = (element, props = {}) =>
  * helper function to find and return semantic name used for debugging components
  *
  * @param {object} target - usually a react element
- * @param {string} [target.displayName] - manually defined name for debug
- * @param {string} [target.name] - generally assigned via React from var name
+ * @param {string=} target.displayName - manually defined name for debug
+ * @param {string=} target.name - generally assigned via React from var name
  * @returns {string} best "name" of element
  */
 export const getComponentName = ({ displayName, name }) =>
-  displayName || name || "Component"
+  displayName || name || "SSUIComponent"
+
+/**
+ * add a string tab label to React DevTools via displayName property
+ *
+ * @template T
+ * @param {string} tag - label to display
+ * @param {T} target - any component definition
+ * @returns {T & { displayName: string }} mutated input for convenience
+ */
+export const withTag = (tag, target) => {
+  // eslint-disable-next-line no-param-reassign
+  target.displayName = `${tag}(${getComponentName(target)})`
+  return target
+}
 
 /**
  * @deprecated replaced with transient props from styled-components

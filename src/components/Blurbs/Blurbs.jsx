@@ -3,9 +3,14 @@ import styled, { css } from "styled-components"
 
 import { Container, Grid, Header, Item, Segment } from "semantic-ui-react"
 import { Blurb } from "./Blurb"
-import { Flexbox } from "../Flexbox"
 
-import { media, spacingMap, withNewProps } from "../../utils"
+import {
+  padding as getPadding,
+  media,
+  spacingMap,
+  withNewProps,
+  withTag,
+} from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -18,20 +23,6 @@ S.Blurbs = styled(Segment)`
     ($padded === "top" && `padding-top: ${spacingMap[padding]}`) ||
     ($padded === "bottom" && `padding-bottom: ${spacingMap[padding]}`) ||
     ($padded && `padding: ${spacingMap[padding]} 0`)};
-
-  @media ${media.tablet} {
-    .container:not(.fluid) {
-      max-width: 397px !important;
-      /*       padding: 0 1.5em; */
-      margin: 0 auto !important;
-    }
-  }
-
-  @media ${media.phone} {
-    .container:not(.fluid) {
-      margin: 0 2em !important;
-    }
-  }
 `
 
 S.Header = styled(Container)`
@@ -85,6 +76,11 @@ S.GridCol = styled(Grid.Column)`
   @media ${media.laptop} {
     box-shadow: none;
   }
+  @media ${media.mobile} {
+    ${getPadding("horizontal")("0")};
+    ${getPadding("vertical")("2em", ["internal", "important"])};
+    ${getPadding("vertical")("0em", ["external", "important"])};
+  }
 `
 
 S.ItemGroup = styled(Item.Group)`
@@ -137,41 +133,34 @@ export const Blurbs = ({
 
     {/* TODO: support remaining props */}
     {vertical ? (
-      <Container>
-        <S.ItemGroup relaxed divided>
-          {React.Children.map(children, (blurb) =>
-            withNewProps(blurb, {
+      <S.ItemGroup relaxed divided>
+        {React.Children.map(children, (blurb) =>
+          withNewProps(blurb, {
+            color: color || undefined,
+            vertical: vertical || undefined,
+          })
+        )}
+      </S.ItemGroup>
+    ) : (
+      <S.Grid
+        columns={Math.min(React.Children.count(children), MAX_COLUMNS)}
+        relaxed
+        doubling
+        stackable
+        divided={React.Children.count(children) <= MAX_COLUMNS || undefined}
+        $fullWidth={fullWidth}
+      >
+        {React.Children.map(children, (blurb) => (
+          <S.GridCol $fullWidth={fullWidth}>
+            {withNewProps(blurb, {
               color: color || undefined,
               vertical: vertical || undefined,
-            })
-          )}
-        </S.ItemGroup>
-      </Container>
-    ) : (
-      <Container
-        fluid={!!fullWidth}
-        textAlign={centered ? "center" : undefined}
-      >
-        <S.Grid
-          columns={Math.min(React.Children.count(children), MAX_COLUMNS)}
-          relaxed
-          doubling
-          stackable
-          divided={React.Children.count(children) <= MAX_COLUMNS || undefined}
-          $fullWidth={fullWidth}
-        >
-          {React.Children.map(children, (blurb) => (
-            <S.GridCol $fullWidth={fullWidth}>
-              {withNewProps(blurb, {
-                color: color || undefined,
-                vertical: vertical || undefined,
-              })}
-            </S.GridCol>
-          ))}
-        </S.Grid>
-      </Container>
+            })}
+          </S.GridCol>
+        ))}
+      </S.Grid>
     )}
   </S.Blurbs>
 )
 
-Blurbs.Item = Blurb
+Blurbs.Item = withTag("SSUI", Blurb)

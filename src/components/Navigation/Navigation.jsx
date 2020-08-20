@@ -3,7 +3,7 @@ import styled, { css } from "styled-components"
 
 import { Container, Menu, Segment } from "semantic-ui-react"
 
-import { flexAlignMap, media, withNewProps } from "../../utils"
+import { flexAlignMap, media, withNewProps, withTag } from "../../utils"
 
 import { NavigationItem } from "./NavigationItem"
 import { NavigationLogo } from "./NavigationLogo"
@@ -79,6 +79,7 @@ export const Navigation = ({
       $justify={justify}
       $floating={floating}
       $split={split}
+      {...rest}
     >
       {/* apply tag && pointing to all children */}
       {React.Children.map(children, (Child) =>
@@ -105,16 +106,16 @@ export const Navigation = ({
     </Container>
   )
 
-Navigation.Left = ({ children, ...rest }) => (
+Navigation.Left = withTag("SSUI", ({ children, ...rest }) => (
   <S.SubMenu>
     {React.Children.map(children, (Child) => withNewProps(Child, rest))}
   </S.SubMenu>
-)
-Navigation.Right = ({ children, ...rest }) => (
+))
+Navigation.Right = withTag("SSUI", ({ children, ...rest }) => (
   <S.SubMenu>
     {React.Children.map(children, (Child) => withNewProps(Child, rest))}
   </S.SubMenu>
-)
+))
 
-Navigation.Item = NavigationItem
-Navigation.Logo = NavigationLogo
+Navigation.Item = withTag("SSUI", NavigationItem)
+Navigation.Logo = withTag("SSUI", NavigationLogo)

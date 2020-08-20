@@ -15,18 +15,20 @@ S.Segment = styled(Segment)`
   &:last-child {
     ${padding("bottom")("4em")};
   }
+`
 
+S.Container = styled(Container)`
   @media ${media.tablet} {
-    .container:not(.fluid) {
-      max-width: 397px !important;
-      /*       padding: 0 1.5em; */
+    &:not(.fluid) {
+      max-width: 425px !important;
+      padding: 0 1.5em !important;
       margin: 0 auto !important;
     }
   }
 
   @media ${media.phone} {
-    .container:not(.fluid) {
-      margin: 0 2em !important;
+    &:not(.fluid) {
+      padding: 0 0.5em !important;
     }
   }
 `
@@ -45,6 +47,6 @@ export const PageSegment = ({
     secondary={secondary}
     {...rest}
   >
-    <Container>{children}</Container>
+    <S.Container>{children}</S.Container>
   </S.Segment>
 )

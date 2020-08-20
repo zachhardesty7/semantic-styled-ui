@@ -11,6 +11,10 @@ S.Link = styled.a`
   ${getHoverColor("white")};
 `
 
+S.Div = styled.div`
+  text-align: center;
+`
+
 const maybeLowerCase = (str = "", enabled = false) =>
   enabled ? str.toLowerCase() : str
 
@@ -26,7 +30,7 @@ export const FooterContent = ({
   const dateObj = date ? new Date(date) : new Date()
 
   return (
-    <div {...rest}>
+    <S.Div {...rest}>
       {copyright && (
         <>
           {maybeLowerCase(
@@ -47,6 +51,6 @@ export const FooterContent = ({
           <S.Link href={developerLink}>{developerName}</S.Link>
         </>
       )}
-    </div>
+    </S.Div>
   )
 }

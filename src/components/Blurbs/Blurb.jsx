@@ -4,7 +4,7 @@ import styled, { css } from "styled-components"
 import { Header, Item } from "semantic-ui-react"
 import { Flexbox } from "../Flexbox"
 
-import { getColor, margin, spacingMap, withNewProps } from "../../utils"
+import { getColor, margin, media, spacingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -17,7 +17,9 @@ S.Header = styled(Header)`
   z-index: 10;
   position: relative;
   color: ${({ $color }) => $color};
-  /*   font-size: 2em; */
+  @media ${media.mobile} {
+    text-align: center;
+  }
 `
 
 S.Content = styled(Header.Content)`
@@ -25,6 +27,7 @@ S.Content = styled(Header.Content)`
   text-align: ${({ $centered }) => $centered && "justify"};
   position: relative;
 
+  /* break words at syllable in non-chrome browsers */
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -38,7 +41,7 @@ S.Content = styled(Header.Content)`
   hyphens: auto;
 
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    text-align: ${({ $centered }) => $centered && "center"};
+    text-align: ${({ $centered }) => $centered && "left"};
   }
 `
 
@@ -60,11 +63,17 @@ S.Icon = styled.span`
 `
 
 S.FlexIcon = styled(Flexbox)`
-  ${margin("end")("base")};
+  @media not ${media.mobile} {
+    ${margin("end")("base")};
+  }
+
+  @media ${media.mobile} {
+    ${margin("bottom")("1.5em")};
+  }
 `
 
 export const Blurb = ({
-  as = "h3",
+  as = "h2",
   icon,
   backgroundImage,
   align = "center",
@@ -88,12 +97,12 @@ export const Blurb = ({
           )}
         </ProcessDarkenedImage> */}
 
-        <S.FlexIcon align="center">
+        <S.FlexIcon align="center" justify="center">
           <S.Icon>{withNewProps(icon, { align })}</S.Icon>
         </S.FlexIcon>
 
         <Flexbox as={Item.Content} column justify="center">
-          <Header as={as}>{header}</Header>
+          <S.Header forwardedAs={as}>{header}</S.Header>
           <Item.Description>{children}</Item.Description>
         </Flexbox>
       </Item>

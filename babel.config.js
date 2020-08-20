@@ -40,15 +40,13 @@ module.exports = {
         cssNamespace: "&&&&&&",
       },
     ],
-    // [
-    //   'styled-components', {
-    //     // pure: true,
-    //     // fileName: false,
-    //     // displayName: false,
-    //     pure: false,
-    //     fileName: true,
-    //     displayName: true,
-    //   },
-    // ],
+    [
+      "styled-components",
+      {
+        pure: process.env.ENV_MODE !== "local",
+        fileName: process.env.ENV_MODE === "local",
+        displayName: process.env.ENV_MODE === "local",
+      },
+    ],
   ],
 }

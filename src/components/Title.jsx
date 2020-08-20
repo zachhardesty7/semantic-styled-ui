@@ -3,11 +3,12 @@ import styled from "styled-components"
 
 import { Header } from "semantic-ui-react"
 
-import { margin, spacingMap } from "../utils"
+import { margin, media, spacingMap } from "../utils"
 
 const S = {} // styled-components namespace
 
 S.Header = styled(Header)`
+  ${margin("bottom")("1.75em", ["internal"])};
   ${({ $padded }) =>
     ($padded === "top" && `padding-top: ${spacingMap.base}`) ||
     ($padded === "bottom" && `padding-bottom: ${spacingMap.base}`) ||
@@ -15,13 +16,13 @@ S.Header = styled(Header)`
 `
 
 S.Title = styled.div`
-  /*   font-size: 3rem; */
   text-align: ${({ $textAlign }) => $textAlign};
-  ${margin("bottom")("1em")};
+  @media ${media.mobile} {
+    text-align: center;
+  }
 `
 
 S.Subtitle = styled(Header.Subheader)`
-  /*   font-size: 1.25rem; */
   text-align: ${({ $textAlign }) => $textAlign};
 `
 

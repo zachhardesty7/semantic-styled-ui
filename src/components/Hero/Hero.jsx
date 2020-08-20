@@ -10,6 +10,7 @@ import {
   media,
   padding,
   textAlignMap,
+  withTag,
 } from "../../utils"
 
 import { HeroTitle } from "./HeroTitle"
@@ -70,6 +71,19 @@ S.Segment = styled(Segment)`
     position: absolute;
     z-index: 2;
   }
+
+  @media ${media.desktop} {
+    font-size: 0.9rem;
+  }
+  @media ${media.laptop} {
+    font-size: 0.8rem;
+  }
+  @media ${media.tablet} {
+    font-size: 0.8rem;
+  }
+  @media ${media.phone} {
+    font-size: 0.8rem;
+  }
 `
 
 S.Container = styled(Container)`
@@ -90,21 +104,25 @@ S.Chunk = styled.header`
   flex-direction: column;
   max-width: ${({ $boxed }) => ($boxed ? "40em" : undefined)};
 
-  ${({ $boxed }) => $boxed && getBackgroundColorOpacity};
-  ${({ $boxed }) => $boxed && padding("all")("2.5em")};
-  ${({ $boxed }) => $boxed && margin("start")("auto")};
-  ${({ $boxed }) => $boxed && margin("end")("4em")};
-
   ${({ $boxed }) =>
     $boxed &&
     css`
+      ${getBackgroundColorOpacity};
+      ${padding("all")("2.5em")};
+      ${margin("start")("auto")};
+      ${margin("end")("4em")};
+
       @media ${media.laptop} {
-        ${margin("horizontal")("3em")};
-        max-width: unset;
+        ${margin("end")("3em")};
       }
       @media ${media.mobile} {
         ${margin("horizontal")("2em")};
         max-width: unset;
+        align-items: center;
+        text-align: center;
+      }
+      @media ${media.phone} {
+        ${padding("all")("1.5em")};
       }
     `};
 
@@ -191,7 +209,7 @@ export const Hero = ({
   )
 }
 
-Hero.Button = HeroButton
-Hero.Title = HeroTitle
-Hero.Subtitle = HeroSubtitle
-Hero.Logo = HeroLogo
+Hero.Button = withTag("SSUI", HeroButton)
+Hero.Title = withTag("SSUI", HeroTitle)
+Hero.Subtitle = withTag("SSUI", HeroSubtitle)
+Hero.Logo = withTag("SSUI", HeroLogo)

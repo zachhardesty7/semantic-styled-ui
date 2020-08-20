@@ -18,7 +18,7 @@ export type PaddedVerticalProp = boolean | "top" | "bottom" | "both"
 
 export type SpacingProp = "compact" | "tight" | "base" | "relaxed" | "loose"
 
-export type SpacingSides =
+export type SpacingSide =
   | "left"
   | "start"
   | "right"
