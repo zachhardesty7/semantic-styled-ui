@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.37.0-rc7",
+  "version": "0.37.0-rc8",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -33,6 +33,7 @@
     "semi": false
   },
   "scripts": {
+    "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "clean": "rimraf dist/*",

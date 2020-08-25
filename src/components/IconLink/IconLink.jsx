@@ -104,6 +104,7 @@ export const IconLink = ({
     {link ? (
       <Link
         wrap
+        aria-label={!label ? `${name} icon link` : undefined}
         as={as}
         link={typeof link !== "boolean" ? link : undefined}
         {...rest}
