@@ -114,7 +114,7 @@ const config = (args) => ({
     babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
     resolve({ extensions: [".js", ".jsx"] }),
     commonjs(),
-    args.configDev && propTypesFromTS(),
+    propTypesFromTS(),
     args.configProgress && progress(),
     args.configAnalyze &&
       visualizer({

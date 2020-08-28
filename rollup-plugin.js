@@ -1,9 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
+// much inspiration from MUI -- https://github.com/mui-org/material-ui/blob/next/scripts/generateProptypes.ts
 const glob = require("glob")
 const fs = require("fs")
-const { ESLint } = require("eslint")
 const ttp = require("typescript-to-proptypes")
 const path = require("path")
+const prettier = require("prettier")
 
 // https://rollupjs.org/guide/en/#plugins-overview
 // https://github.com/merceyz/typescript-to-proptypes/blob/master/test/index.test.ts
@@ -23,7 +24,7 @@ export default function propTypesFromTS() {
           path.resolve(__dirname, "./tsconfig.json")
         )
 
-        const definitionFiles = glob.sync("./dist/src/**/*.d.ts", {
+        const definitionFiles = glob.sync("./src/**/*.d.ts", {
           absolute: true,
           cwd: __dirname,
         })
@@ -31,47 +32,87 @@ export default function propTypesFromTS() {
         // Create program for all files to speed up tests
         const program = ttp.createProgram(definitionFiles, tsOptions)
 
-        definitionFiles.forEach(async (testCase) => {
-          if (!testCase.includes("index") && !testCase.includes("types")) {
-            const outputPath = testCase.replace(".d.ts", ".js")
+        definitionFiles.forEach(async (definitionFile) => {
+          if (
+            !definitionFile.includes("index") &&
+            !definitionFile.includes("types")
+          ) {
+            // SRC FILES where we want to inject propTypes import
+            const outputPath = definitionFile.replace(".d.ts", ".jsx")
 
             // https://github.com/merceyz/typescript-to-proptypes/blob/2f90fe845bd8f1e500aa16f36d5bf5184111b38d/src/parser.ts#L27-L32
-            const ast = ttp.parseFromProgram(testCase, program, {
+            const proptypes = ttp.parseFromProgram(definitionFile, program, {
               checkDeclarations: true,
             })
 
-            let builtFiles = fs.readFileSync(outputPath, "utf8")
-            let result
-            try {
-              result = ttp.generate(ast, {})
-            } catch (error) {
-              console.error(error)
-              console.error("^FAILED TO GENERATE PROPTYPES FROM TS^")
-              console.error(`error in file: ${testCase}`)
-              return
-            }
+            // insert prop types in src files
+            const jsContent = fs.readFileSync(outputPath, "utf8")
+            const result = ttp.inject(proptypes, jsContent, {
+              removeExistingPropTypes: true,
+              babelOptions: {
+                filename: outputPath,
+              },
+              comment: [
+                "----------------------------- Warning --------------------------------",
+                "| These PropTypes are generated from the TypeScript type definitions |",
+                '|     To update them, edit the d.ts file and run any "yarn build"    |',
+                "----------------------------------------------------------------------",
+              ].join("\n"),
+              // getSortLiteralUnions,
+              reconcilePropTypes: (prop, previous, generated) => {
+                const usedCustomValidator =
+                  previous !== undefined && !previous.startsWith("PropTypes")
+                const ignoreGenerated =
+                  previous !== undefined &&
+                  previous.startsWith(
+                    "PropTypes /* @typescript-to-proptypes-ignore */"
+                  )
 
-            // append propTypes import after react import
-            const ex = /(import .* from 'react';?)/
-            builtFiles = builtFiles.replace(
-              ex,
-              `${builtFiles.match(ex)[0]}\nimport PropTypes from 'prop-types'`
-            )
+                if (
+                  ignoreGenerated &&
+                  // `ignoreGenerated` implies that `previous !== undefined`
+                  previous
+                    .replace(
+                      "PropTypes /* @typescript-to-proptypes-ignore */",
+                      "PropTypes"
+                    )
+                    .replace(/\s/g, "") === generated.replace(/\s/g, "")
+                ) {
+                  throw new Error(
+                    `Unused \`@typescript-to-proptypes-ignore\` directive for prop '${prop.name}'.`
+                  )
+                }
 
-            // 1. Create an instance with the `fix` option.
-            const eslint = new ESLint({
-              fix: true,
-              ignore: false,
-              overrideConfig: { rules: { "no-undef": "off" } },
+                if (usedCustomValidator || ignoreGenerated) {
+                  // `usedCustomValidator` and `ignoreGenerated` narrow `previous` to `string`
+                  return previous
+                }
+
+                return generated
+              },
+              shouldInclude: ({ component, prop }) => {
+                if (prop.name === "children") {
+                  return true
+                }
+                let shouldDocument
+
+                prop.filenames.forEach((filename) => {
+                  const isExternal = filename !== definitionFile
+                  if (!isExternal) {
+                    shouldDocument = true
+                  }
+                })
+
+                return shouldDocument
+              },
             })
 
-            // 2. Lint and modify text.
-            const lintResults = await eslint.lintText(result)
+            const formattedResult = prettier.format(result, {
+              semi: false,
+              parser: "babel",
+            })
 
-            fs.writeFileSync(
-              outputPath,
-              `${builtFiles}\n${lintResults[0].output}`
-            )
+            fs.writeFileSync(`${outputPath}`, formattedResult)
           }
         })
       })().catch((error) => {
