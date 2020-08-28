@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef } from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import { Container, Ref, Segment } from "semantic-ui-react"
@@ -61,7 +62,7 @@ S.Flexbox = styled(Flexbox)`
   }
 `
 
-export const Footer = ({
+const Footer = ({
   color = "",
   backgroundColor = "",
   sticky = true,
@@ -120,5 +121,40 @@ export const Footer = ({
     </Ref>
   )
 }
+
+Footer.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * apply css supported color string to background, overrides theme / default
+   */
+  backgroundColor: PropTypes.string,
+  /**
+   * primary content rendered inside the footer
+   *
+   * **NOTE: only supports 2 or less children**
+   */
+  children: PropTypes.node,
+  /**
+   * apply css supported color string to content, overrides theme / default
+   */
+  color: PropTypes.string,
+  /**
+   * allow footer to stretch to edges
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * set color to secondary, colorHover to primary
+   */
+  inverted: PropTypes.bool,
+  /**
+   * attach footer to bottom of page when little content
+   */
+  sticky: PropTypes.bool,
+}
+
+export { Footer }
 
 Footer.Content = withTag("SSUI", FooterContent)

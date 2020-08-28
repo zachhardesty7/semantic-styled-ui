@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import { Button } from "semantic-ui-react"
@@ -40,7 +41,7 @@ S.IconLink = styled(IconLink)`
   /*   height: 1em; */
 `
 
-export const HeroButton = ({
+const HeroButton = ({
   as = "a",
   link = "",
   pointing = "right",
@@ -62,6 +63,7 @@ export const HeroButton = ({
       {pointing === "left" && (
         <S.IconLink $pointing="right" name="angle left" />
       )}
+
       {children}
       {pointing === "right" && (
         <S.IconLink $pointing="left" name="angle right" />
@@ -69,3 +71,53 @@ export const HeroButton = ({
     </S.Button>
   </Link>
 )
+
+HeroButton.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.any,
+  /**
+   * text-based content
+   */
+  children: PropTypes.node,
+  /**
+   * apply css supported color string to background, overrides theme / default
+   * text defaults to `white` and background to `secondary` theme settings
+   */
+  color: PropTypes.string,
+  /**
+   * apply css supported color string to background on hover, overrides theme / default
+   * defaults to `primary` theme setting
+   */
+  colorHover: PropTypes.string,
+  /**
+   * reduce padding whitespace
+   */
+  compact: PropTypes.bool,
+  /**
+   * anchor link (prefixed with "#") or standard href
+   */
+  link: PropTypes.string,
+  /**
+   * formatted with active page indicator
+   */
+  pointing: PropTypes.oneOf(["left", "right"]),
+  /**
+   * size passed to SUI button
+   */
+  size: PropTypes.oneOf(["left", "right"]),
+}
+
+export { HeroButton }

@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 import { Container, Grid, Header, Item, Segment } from "semantic-ui-react"
@@ -97,7 +98,7 @@ S.ItemGroup = styled(Item.Group)`
     `};
 `
 
-export const Blurbs = ({
+const Blurbs = ({
   title,
   content,
   fullWidth = false,
@@ -124,6 +125,7 @@ export const Blurbs = ({
         {title && (
           <S.Title textAlign={centered ? "center" : undefined}>{title}</S.Title>
         )}
+
         {content && <S.Content $centered={centered}>{content}</S.Content>}
       </S.Header>
     )}
@@ -159,5 +161,60 @@ export const Blurbs = ({
     )}
   </S.Blurbs>
 )
+
+Blurbs.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * center title and justify body content
+   */
+  centered: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * primary content of Blurbs.Item
+   */
+  children: PropTypes.node,
+  /**
+   * apply css supported color string to all children, overrides theme / default
+   */
+  color: PropTypes.string,
+  /**
+   * body content proceeding blurbs
+   */
+  content: PropTypes.node,
+  /**
+   * do not restrict width of blurbs container
+   */
+  fullWidth: PropTypes.oneOfType([PropTypes.oneOf(["gutter"]), PropTypes.bool]),
+  /**
+   * if/where spacing around element exists
+   */
+  padded: PropTypes.oneOfType([
+    PropTypes.oneOf(["both", "bottom", "top"]),
+    PropTypes.bool,
+  ]),
+  /**
+   * control amount of spacing around element
+   */
+  padding: PropTypes.oneOf(["base", "compact", "loose", "relaxed", "tight"]),
+  /**
+   * format to appear less prominent (grey background)
+   */
+  secondary: PropTypes.bool,
+  /**
+   * header
+   */
+  title: PropTypes.node,
+}
+
+export { Blurbs }
 
 Blurbs.Item = withTag("SSUI", Blurb)

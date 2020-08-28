@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 import { Header, Item } from "semantic-ui-react"
@@ -7,6 +8,13 @@ import { Flexbox } from "../Flexbox"
 import { getColor, margin, media, spacingMap, withNewProps } from "../../utils"
 
 const S = {} // styled-components namespace
+
+/**
+ *
+ * @typedef {typeof import("./index").Blurb} BB
+ * @typedef {typeof import("../../../index").BlurbType} BB1
+ * @typedef {typeof import("../../types").BlurbType} BB2
+ */
 
 S.Section = styled.section`
   text-align: ${({ $align }) => $align};
@@ -70,8 +78,10 @@ S.FlexIcon = styled(Flexbox)`
     ${margin("bottom")("1.5em")};
   }
 `
-
-export const Blurb = ({
+/**
+ * @type {typeof import(".").Blurb}
+ */
+const Blurb = ({
   as = "h2",
   icon,
   backgroundImage,
@@ -94,7 +104,7 @@ export const Blurb = ({
               alt={item.image.title}
             />
           )}
-        </ProcessDarkenedImage> */}
+         </ProcessDarkenedImage> */}
 
         <S.FlexIcon align="center" justify="center">
           <S.Icon>{withNewProps(icon, { align })}</S.Icon>
@@ -120,6 +130,74 @@ export const Blurb = ({
           {header}
         </S.Header>
       )}
+
       {children && <S.Content $centered={align}>{children}</S.Content>}
     </S.Section>
   )
+
+Blurb.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * position / justification of all content
+   */
+  align: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * element type to render `header` as (string or function)
+   *
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   *
+   * 'div'
+   * 'section'
+   * {ReactComponent}
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      childContextTypes: PropTypes.object,
+      contextType: PropTypes.shape({
+        Consumer: PropTypes.func.isRequired,
+        displayName: PropTypes.string,
+        Provider: PropTypes.func.isRequired,
+      }),
+      contextTypes: PropTypes.object,
+      defaultProps: PropTypes.object,
+      displayName: PropTypes.string,
+      getDerivedStateFromError: PropTypes.func,
+      getDerivedStateFromProps: PropTypes.func,
+      propTypes: PropTypes.object,
+    }),
+  ]),
+  /**
+   * element representing image to cover background
+   */
+  backgroundImage: PropTypes.node,
+  children: PropTypes.node,
+  /**
+   * apply css supported color string to Header text, overrides theme / default
+   */
+  color: PropTypes.string,
+  /**
+   * primary content (styled as text)
+   */
+  header: PropTypes.node,
+  /**
+   * content above header
+   */
+  icon: PropTypes.node,
+}
+
+export { Blurb }

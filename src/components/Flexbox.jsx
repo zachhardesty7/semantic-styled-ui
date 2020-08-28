@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 import { flexAlignMap } from "../utils"
 
@@ -16,14 +17,7 @@ S.FlexItem = styled.div`
   /* display: flex; */
 `
 
-export const Flexbox = ({
-  justify,
-  align,
-  column,
-  wrap,
-  children,
-  ...rest
-}) => (
+const Flexbox = ({ justify, align, column, wrap, children, ...rest }) => (
   <S.Flexbox
     $wrap={wrap}
     $justify={justify}
@@ -38,3 +32,42 @@ export const Flexbox = ({
     ))}
   </S.Flexbox>
 )
+
+Flexbox.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * position / justification of all content
+   */
+  align: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * primary content rendered inside the Flexbox
+   */
+  children: PropTypes.node,
+  /**
+   * direction of flex
+   */
+  column: PropTypes.bool,
+  /**
+   * position / justification of all content
+   */
+  justify: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+}
+
+export { Flexbox }

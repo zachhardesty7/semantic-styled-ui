@@ -35,4 +35,7 @@ export type BlurbProps = {
   // children: PropTypes.node,
 }
 
+/**
+ * information about buttons
+ */
 declare const Blurb: React.FC<BlurbProps>

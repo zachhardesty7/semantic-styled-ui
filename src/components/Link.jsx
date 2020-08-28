@@ -1,9 +1,10 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { Link as HashLink } from "react-scroll"
 
 import { calcDuration, withProps } from "../utils"
 
-export const Link = ({
+const Link = ({
   as = "a",
   link = "",
   wrap = false,
@@ -19,6 +20,7 @@ export const Link = ({
         "SSUI Link component should not be passed primitive type children unless `wrap` is also passed.",
         "children will be wrapped automatically for now."
       )
+
       // eslint-disable-next-line no-param-reassign
       wrap = true
     }
@@ -83,3 +85,64 @@ export const Link = ({
     if (forwarded) return withProps(Child, { ...props, forwardedAs: Tag })
     return withProps(Child, { ...props, as: Tag })
   })
+
+Link.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * element type to render as (string or function) supports HTML tag as a string or
+   * React component definition
+   * NOTE: ignored if `link` contains a "#"
+   *
+   * @example
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      childContextTypes: PropTypes.object,
+      contextType: PropTypes.shape({
+        Consumer: PropTypes.func.isRequired,
+        displayName: PropTypes.string,
+        Provider: PropTypes.func.isRequired,
+      }),
+      contextTypes: PropTypes.object,
+      defaultProps: PropTypes.object,
+      displayName: PropTypes.string,
+      getDerivedStateFromError: PropTypes.func,
+      getDerivedStateFromProps: PropTypes.func,
+      propTypes: PropTypes.object,
+    }),
+  ]),
+  /**
+   * primary content, usually a string, but handles multiple items by linking each of them
+   */
+  children: PropTypes.node,
+  /**
+   * when not wrapping, will convert `as` tag to `forwardedAs` for passing the prop thru a
+   * `styled-components`
+   */
+  forwarded: PropTypes.bool,
+  /**
+   * hash link (prefixed with "#") or internal link applied via a new `to` field or can
+   * be used as a standard href if a full link is provided
+   *
+   * @example
+   * internal: "/blog/contact"
+   * anchor: "#contact-section"
+   * external: "https://example.com"
+   */
+  link: PropTypes.string,
+  /**
+   * creates a new element of the type of `as` tag and applies props newly created tag
+   */
+  wrap: PropTypes.bool,
+}
+
+export { Link }

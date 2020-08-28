@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import {
@@ -46,7 +47,7 @@ S.IconLinkItem = styled.div`
   }
 `
 
-export const IconLinkGroup = ({
+const IconLinkGroup = ({
   justify = "initial",
   padded = false,
   padding = "tight",
@@ -65,3 +66,42 @@ export const IconLinkGroup = ({
     ))}
   </S.Group>
 )
+
+IconLinkGroup.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * primary content of icon(s)
+   */
+  children: PropTypes.node,
+  /**
+   * additional or pass thru classes for composition
+   */
+  className: PropTypes.string,
+  /**
+   * flex alignment of icon container
+   */
+  justify: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * spacing around element exists
+   */
+  padded: PropTypes.oneOfType([
+    PropTypes.oneOf(["both", "bottom", "top"]),
+    PropTypes.bool,
+  ]),
+  /**
+   * control amount of spacing around element
+   */
+  padding: PropTypes.oneOf(["base", "compact", "loose", "relaxed", "tight"]),
+}
+
+export { IconLinkGroup }

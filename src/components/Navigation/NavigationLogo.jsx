@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 import { NavigationItem } from "./NavigationItem"
@@ -54,7 +55,7 @@ S.Logo = styled.div`
   } */
 `
 
-export const NavigationLogo = ({
+const NavigationLogo = ({
   as = "a",
   link = "/",
   stacked = false,
@@ -69,3 +70,60 @@ export const NavigationLogo = ({
     </NavigationItem>
   </S.Wrapper>
 )
+
+NavigationLogo.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      childContextTypes: PropTypes.object,
+      contextType: PropTypes.shape({
+        Consumer: PropTypes.func.isRequired,
+        displayName: PropTypes.string,
+        Provider: PropTypes.func.isRequired,
+      }),
+      contextTypes: PropTypes.object,
+      defaultProps: PropTypes.object,
+      displayName: PropTypes.string,
+      getDerivedStateFromError: PropTypes.func,
+      getDerivedStateFromProps: PropTypes.func,
+      propTypes: PropTypes.object,
+    }),
+  ]),
+  /**
+   * primary content, usually a string
+   */
+  children: PropTypes.node,
+  /**
+   * additional or pass thru classes for composition
+   */
+  className: PropTypes.string,
+  /**
+   * anchor link (prefixed with "#") or standard href
+   */
+  link: PropTypes.string,
+  /**
+   * simple em based size
+   */
+  logoSize: PropTypes.oneOf(["base", "large", "small"]),
+  /**
+   * required to support stacking logo
+   */
+  stacked: PropTypes.bool,
+}
+
+export { NavigationLogo }

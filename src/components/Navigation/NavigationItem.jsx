@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 import { Menu } from "semantic-ui-react"
@@ -38,7 +39,7 @@ S.Item = styled(Menu.Item)`
   }
 `
 
-export const NavigationItem = ({
+const NavigationItem = ({
   as = "a",
   link = "",
   stacked = false,
@@ -56,3 +57,56 @@ export const NavigationItem = ({
     <S.Item $pointing={pointing}>{children}</S.Item>
   </Link>
 )
+
+NavigationItem.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      childContextTypes: PropTypes.object,
+      contextType: PropTypes.shape({
+        Consumer: PropTypes.func.isRequired,
+        displayName: PropTypes.string,
+        Provider: PropTypes.func.isRequired,
+      }),
+      contextTypes: PropTypes.object,
+      defaultProps: PropTypes.object,
+      displayName: PropTypes.string,
+      getDerivedStateFromError: PropTypes.func,
+      getDerivedStateFromProps: PropTypes.func,
+      propTypes: PropTypes.object,
+    }),
+  ]),
+  /**
+   * primary content, usually string, used as link if link not provided
+   */
+  children: PropTypes.node,
+  /**
+   * anchor link (prefixed with "#") or standard href
+   */
+  link: PropTypes.string,
+  /**
+   * formatted with active indicator
+   */
+  pointing: PropTypes.bool,
+  /**
+   * required to support stacking logo
+   */
+  stacked: PropTypes.bool,
+}
+
+export { NavigationItem }

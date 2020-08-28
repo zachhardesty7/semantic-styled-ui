@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import { Form, Icon, Message, Transition } from "semantic-ui-react"
@@ -25,7 +26,7 @@ S.Message = styled(Message)`
  * for successful and failed submissions.
  */
 
-export const ContactForm = ({
+const ContactForm = ({
   name = "",
   fields = [],
   textArea = true,
@@ -129,7 +130,9 @@ export const ContactForm = ({
                 let options = field.slice(
                   field.indexOf("(") + 1,
                   field.indexOf(")")
-                ) // remove title
+                )
+
+                // remove title
                 options = options.split("; ")
                 options = options.map((op) => ({
                   text: op,
@@ -171,6 +174,7 @@ export const ContactForm = ({
             })}
           </Form.Group>
         ))}
+
       {textArea && (
         <Form.TextArea
           name="text-area"
@@ -196,6 +200,7 @@ export const ContactForm = ({
             </Message.Content>
           </S.Message>
         )}
+
         {error && (
           <S.Message icon error>
             <Icon name="exclamation" aria-label="failure" />
@@ -211,3 +216,47 @@ export const ContactForm = ({
     </S.Form>
   )
 }
+
+ContactForm.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * button text content
+   */
+  button: PropTypes.string,
+  /**
+   * additional form fields
+   */
+  children: PropTypes.node,
+  /**
+   * labels for fields
+   */
+  fields: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * enhances semantics
+   */
+  name: PropTypes.string,
+  /**
+   * called when form is successfully submitted
+   */
+  onSubmit: PropTypes.func,
+  /**
+   * if/where spacing around element exists
+   */
+  padded: PropTypes.oneOfType([
+    PropTypes.oneOf(["both", "bottom", "top"]),
+    PropTypes.bool,
+  ]),
+  /**
+   * amount of spacing around element
+   */
+  padding: PropTypes.oneOf(["base", "compact", "loose", "relaxed", "tight"]),
+  /**
+   * label or pass false to disable, defaults to "Enter Message Below:"
+   */
+  textArea: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+}
+
+export { ContactForm }

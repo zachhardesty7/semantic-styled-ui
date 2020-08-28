@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import { Header } from "semantic-ui-react"
@@ -27,7 +28,7 @@ S.Subtitle = styled(Header.Subheader)`
 `
 
 // TODO: test mobile, may need `container` on `Grid`
-export const Title = ({
+const Title = ({
   as = "h1",
   subtitle = null,
   textAlign = "left",
@@ -43,8 +44,76 @@ export const Title = ({
           {children}
         </S.Title>
       )}
+
       {subtitle && (
         <S.Subtitle $textAlign={textAlignSub}>{subtitle}</S.Subtitle>
       )}
     </S.Header>
   )
+
+Title.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * what the main content is rendered as
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      childContextTypes: PropTypes.object,
+      contextType: PropTypes.shape({
+        Consumer: PropTypes.func.isRequired,
+        displayName: PropTypes.string,
+        Provider: PropTypes.func.isRequired,
+      }),
+      contextTypes: PropTypes.object,
+      defaultProps: PropTypes.object,
+      displayName: PropTypes.string,
+      getDerivedStateFromError: PropTypes.func,
+      getDerivedStateFromProps: PropTypes.func,
+      propTypes: PropTypes.object,
+    }),
+  ]),
+  /**
+   * main title content
+   */
+  children: PropTypes.node,
+  /**
+   * if/where spacing around element exists
+   */
+  padded: PropTypes.oneOfType([
+    PropTypes.oneOf(["both", "bottom", "top"]),
+    PropTypes.bool,
+  ]),
+  /**
+   * subtitle content
+   */
+  subtitle: PropTypes.node,
+  /**
+   * format title content
+   */
+  textAlign: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * format body / subtitle content
+   */
+  textAlignSub: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+}
+
+export { Title }

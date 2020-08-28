@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
 import { Container, Segment, Transition } from "semantic-ui-react"
 import styled, { css } from "styled-components"
 
@@ -24,11 +25,13 @@ const sizes = {
     base: "6em",
     compact: "4em",
   },
+
   medium: {
     relaxed: "12em",
     base: "9em",
     compact: "6em",
   },
+
   large: {
     relaxed: "16em",
     base: "12em",
@@ -150,7 +153,7 @@ S.BackgroundImage = styled.img`
   }
 `
 
-export const Hero = ({
+const Hero = ({
   overlay = "dark",
   baseline = "bottom",
   justify = "start",
@@ -208,6 +211,73 @@ export const Hero = ({
     </S.Segment>
   )
 }
+
+Hero.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * align content to top or bottom
+   */
+  baseline: PropTypes.oneOf(["bottom", "center", "top"]),
+  /**
+   * limit the width of the content and draw border
+   */
+  boxed: PropTypes.bool,
+  /**
+   * primary content rendered on top of the hero
+   */
+  children: PropTypes.node,
+  /**
+   * apply css supported color string to Icon and text, overrides theme / default
+   */
+  color: PropTypes.string,
+  /**
+   * background images
+   */
+  images: PropTypes.arrayOf(PropTypes.element),
+  /**
+   * format logo left of content
+   */
+  inlineLogo: PropTypes.bool,
+  /**
+   * flex alignment of Hero content container
+   */
+  justify: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * darken background image to improve readability
+   */
+  overlay: PropTypes.oneOf(["dark", "darker"]),
+  /**
+   * size using "em" units
+   */
+  size: PropTypes.oneOf(["base", "compact", "relaxed"]),
+  /**
+   * flex alignment of Hero content container
+   */
+  textAlign: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * apply css supported color string or use default if true
+   */
+  underline: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+}
+
+export { Hero }
 
 Hero.Button = withTag("SSUI", HeroButton)
 Hero.Title = withTag("SSUI", HeroTitle)

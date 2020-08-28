@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 import { Container, Menu, Segment } from "semantic-ui-react"
@@ -59,7 +60,7 @@ S.SubMenu = styled(Menu.Menu)`
 `
 
 // TODO: add sticky header
-export const Navigation = ({
+const Navigation = ({
   as = "a",
   size,
   text = false,
@@ -113,11 +114,106 @@ export const Navigation = ({
     </Container>
   )
 
+Navigation.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      childContextTypes: PropTypes.object,
+      contextType: PropTypes.shape({
+        Consumer: PropTypes.func.isRequired,
+        displayName: PropTypes.string,
+        Provider: PropTypes.func.isRequired,
+      }),
+      contextTypes: PropTypes.object,
+      defaultProps: PropTypes.object,
+      displayName: PropTypes.string,
+      getDerivedStateFromError: PropTypes.func,
+      getDerivedStateFromProps: PropTypes.func,
+      propTypes: PropTypes.object,
+    }),
+  ]),
+  /**
+   * collection of items to render as menu
+   */
+  children: PropTypes.node,
+  /**
+   * elevate nav to sit on top of underlying container
+   */
+  floating: PropTypes.bool,
+  /**
+   * allow content to reach the edges of the parent
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * flip the colors for display on a light colored background
+   */
+  inverted: PropTypes.bool,
+  /**
+   * horizontal position
+   */
+  justify: PropTypes.any,
+  /**
+   * don't indicate active page
+   */
+  noPointing: PropTypes.bool,
+  /**
+   * increase prominence
+   */
+  primary: PropTypes.bool,
+  /**
+   * increase whitespace
+   */
+  relaxed: PropTypes.bool,
+  /**
+   * size using "em" units
+   */
+  size: PropTypes.oneOf(["huge", "large", "massive", "mini", "small", "tiny"]),
+  /**
+   * put all space between children
+   *
+   * **NOTE:** only works with 2 items
+   */
+  split: PropTypes.bool,
+  /**
+   * format to be used with text items
+   */
+  text: PropTypes.bool,
+  /**
+   * horizontal position
+   */
+  textAlign: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+}
+
+export { Navigation }
+
 Navigation.Left = withTag("SSUI", ({ children, ...rest }) => (
   <S.SubMenu>
     {React.Children.map(children, (Child) => withNewProps(Child, rest))}
   </S.SubMenu>
 ))
+
 Navigation.Right = withTag("SSUI", ({ children, ...rest }) => (
   <S.SubMenu>
     {React.Children.map(children, (Child) => withNewProps(Child, rest))}

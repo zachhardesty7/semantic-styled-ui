@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 import { Icon } from "semantic-ui-react"
 import { Link } from "../Link"
@@ -86,7 +87,7 @@ S.Wrapper = styled.div`
     $align === "center" ? $align : `flex-${$align}`};
 `
 
-export const IconLink = ({
+const IconLink = ({
   as,
   name = "",
   label = "",
@@ -119,6 +120,7 @@ export const IconLink = ({
           $color={color}
           $colorHover={colorHover}
         />
+
         {label && (
           <S.Label
             $link
@@ -144,6 +146,7 @@ export const IconLink = ({
           $colorHover={colorHover}
           {...rest}
         />
+
         {label && (
           <S.Label
             $inverted={inverted}
@@ -158,5 +161,98 @@ export const IconLink = ({
     )}
   </S.Wrapper>
 )
+
+IconLink.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * position / justification of all content
+   */
+  align: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
+  /**
+   * element type to render as (string or function)
+   * supports HTML tag as a string or React component definition
+   *
+   * @example
+   * 'div'
+   * 'section'
+   * ReactComponent
+   * Card
+   */
+  as: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.shape({
+      childContextTypes: PropTypes.object,
+      contextType: PropTypes.shape({
+        Consumer: PropTypes.func.isRequired,
+        displayName: PropTypes.string,
+        Provider: PropTypes.func.isRequired,
+      }),
+      contextTypes: PropTypes.object,
+      defaultProps: PropTypes.object,
+      displayName: PropTypes.string,
+      getDerivedStateFromError: PropTypes.func,
+      getDerivedStateFromProps: PropTypes.func,
+      propTypes: PropTypes.object,
+    }),
+  ]),
+  children: PropTypes.node,
+  /**
+   * apply css supported color string to Icon and text, overrides theme / default
+   */
+  color: PropTypes.string,
+  /**
+   * apply css supported color string to Icon and text on hover, overrides theme / default
+   */
+  colorHover: PropTypes.string,
+  /**
+   * set color to secondary, colorHover to primary
+   */
+  inverted: PropTypes.bool,
+  /**
+   * display a text string with the icon
+   */
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  /**
+   * set color to grey, colorHover to white
+   */
+  light: PropTypes.bool,
+  /**
+   * anchor link (prefixed with "#") or standard href
+   */
+  link: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  /**
+   * icon name as supported by Font Awesome 5.0.8
+   *
+   * @see - [Icon Name Reference Sheet](https://react.semantic-ui.com/elements/icon/)
+   */
+  name: PropTypes.string.isRequired,
+  /**
+   * size based on "em" units
+   */
+  size: PropTypes.oneOf([
+    "big",
+    "bigger",
+    "huge",
+    "large",
+    "massive",
+    "medium",
+    "mini",
+    "small",
+    "tiny",
+  ]),
+}
+
+export { IconLink }
 
 IconLink.Group = withTag("SSUI", IconLinkGroup)

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 import { Dimmer, Grid, Header } from "semantic-ui-react"
@@ -35,7 +36,7 @@ S.Image = styled.img`
         `};
 `
 
-export const PortfolioItem = ({
+const PortfolioItem = ({
   title = "",
   subtitle = "",
   fill = true,
@@ -53,13 +54,14 @@ export const PortfolioItem = ({
           onMouseLeave={() => setHovered(false)}
         >
           {/* REVIEW: consider a dimmable prop to use dimmer
-          conditionally or that wraps the image using a HOC */}
+           conditionally or that wraps the image using a HOC */}
           <S.Image
             $fill={fill}
             centered
             as={children.type}
             {...children.props}
           />
+
           {(title || subtitle) && (
             <S.Dimmer inverted simple $dimmed={hovered}>
               {title && <Header as="h2">{title}</Header>}
@@ -71,3 +73,28 @@ export const PortfolioItem = ({
     </Grid.Column>
   )
 }
+
+PortfolioItem.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them, edit the d.ts file and run any "yarn build"    |
+  // ----------------------------------------------------------------------
+  /**
+   * image-based content
+   */
+  children: PropTypes.node,
+  /**
+   * determine when to cover the entire space with hidden overflow
+   */
+  fill: PropTypes.bool,
+  /**
+   * secondary content
+   */
+  subtitle: PropTypes.node,
+  /**
+   * primary content
+   */
+  title: PropTypes.node,
+}
+
+export { PortfolioItem }
