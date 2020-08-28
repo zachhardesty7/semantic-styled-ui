@@ -1,7 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 
-import { flexAlignMap, margin, spacingMap, withNewProps } from "../../utils"
+import {
+  flexAlignMap,
+  padding as getPadding,
+  margin,
+  spacingMap,
+  withNewProps,
+} from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -13,30 +19,30 @@ S.Group = styled.div`
   /* TODO: add option to say (internal) where 1st nd last have no padding/margin */
 
   &:first-child {
-    margin-left: 0;
+    ${margin("left")("0")};
   }
 
   &:last-child {
-    margin-right: 0;
+    ${margin("right")("0")};
   }
 
   ${({ $padded, $padding }) =>
-    ($padded === "top" && `padding-top: ${spacingMap[$padding]}`) ||
-    ($padded === "bottom" && `padding-bottom: ${spacingMap[$padding]}`) ||
-    ($padded && `padding: ${spacingMap[$padding]} 0`)};
+    ($padded === "top" && getPadding("top")) ||
+    ($padded === "bottom" && getPadding("bottom")) ||
+    ($padded && getPadding("vertical"))};
 `
 
 S.IconLinkItem = styled.div`
   display: flex;
-  margin: 0;
-  padding: 0 ${spacingMap.compact};
+  ${margin("all")("0")};
+  ${getPadding("horizontal")(spacingMap.compact)};
 
   &:first-child {
-    padding-left: 0;
+    ${getPadding("left")("0")};
   }
 
   &:last-child {
-    padding-right: 0;
+    ${getPadding("right")("0")};
   }
 `
 

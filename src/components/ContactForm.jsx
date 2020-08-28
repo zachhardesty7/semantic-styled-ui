@@ -3,21 +3,20 @@ import styled from "styled-components"
 
 import { Form, Icon, Message, Transition } from "semantic-ui-react"
 
-import { encode, process, spacingMap } from "../utils"
+import { encode, padding as getPadding, process } from "../utils"
 
 const S = {} // styled-components namespace
 
 S.Form = styled(Form)`
-  ${({ $padded, $padding }) =>
-    ($padded === "top" && `padding-top: ${spacingMap[$padding]}`) ||
-    ($padded === "bottom" && `padding-bottom: ${spacingMap[$padding]}`) ||
-    ($padded && `padding: ${spacingMap[$padding]} 0`)};
+  ${({ $padded }) =>
+    ($padded === "top" && getPadding("top")) ||
+    ($padded === "bottom" && getPadding("bottom")) ||
+    ($padded && getPadding("vertical"))};
 `
 
 S.Message = styled(Message)`
   /* use "!important" to override Transition */
   display: flex !important;
-  /*   margin-bottom: 1em; */
 `
 
 /**

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Header } from "semantic-ui-react"
-import { getColor } from "../../utils"
+import { getColor, margin } from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -12,7 +12,7 @@ S.BaseHeader = styled(Header)`
 `
 
 S.Subtitle = styled(S.BaseHeader)`
-  ${({ $inlineLogo }) => $inlineLogo && "margin-top: 0.75em"};
+  ${({ $inlineLogo }) => $inlineLogo && margin("top")("0.75em")};
   font-size: 1.4em;
 `
 

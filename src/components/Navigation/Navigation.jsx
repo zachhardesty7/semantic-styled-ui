@@ -3,7 +3,14 @@ import styled, { css } from "styled-components"
 
 import { Container, Menu, Segment } from "semantic-ui-react"
 
-import { flexAlignMap, media, withNewProps, withTag } from "../../utils"
+import {
+  flexAlignMap,
+  margin,
+  media,
+  padding,
+  withNewProps,
+  withTag,
+} from "../../utils"
 
 import { NavigationItem } from "./NavigationItem"
 import { NavigationLogo } from "./NavigationLogo"
@@ -12,7 +19,7 @@ const S = {} // styled-components namespace
 
 // TODO: https://react.semantic-ui.com/collections/menu/#types-attached
 S.Segment = styled(Segment)`
-  ${({ $pointing }) => $pointing && "padding-bottom: 0"};
+  ${({ $pointing }) => $pointing && padding("bottom")("0")};
   ${({ $floating, $relaxed }) =>
     $floating &&
     css`
@@ -41,7 +48,7 @@ S.Menu = styled(Menu)`
   ${({ pointing }) => pointing && "& .item { border-radius: 0px }"};
 
   ${({ pointing }) => pointing && "border-bottom: none"};
-  ${({ pointing }) => pointing && "margin-bottom: 2px"};
+  ${({ pointing }) => pointing && margin("bottom")("2px")};
 
   ${({ pointing, $floating }) => pointing && $floating && "border: none"};
 `

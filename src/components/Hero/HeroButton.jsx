@@ -19,7 +19,7 @@ S.Button = styled(Button)`
   display: inline-flex;
   align-items: center;
   line-height: 1.2em;
-  margin-right: 0;
+  ${margin("right")("0")};
   ${getColor("white")};
   ${getBackgroundColor("secondary")};
   transition: ease-in-out 50ms;

@@ -9,6 +9,7 @@ import {
   getBackgroundColor,
   getColor,
   getHoverColor,
+  margin,
   media,
   withNewProps,
   withTag,
@@ -26,7 +27,7 @@ const ForwardedSegment = React.forwardRef(({ children, ...rest }, ref) => (
 
 S.Segment = styled(ForwardedSegment)`
   font-size: 0.85em;
-  margin-top: 0px;
+  ${margin("top")("0")};
   ${getColor("light")};
   ${getBackgroundColor("primary")};
 

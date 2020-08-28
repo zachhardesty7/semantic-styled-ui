@@ -2,7 +2,7 @@ import React from "react"
 import styled, { css } from "styled-components"
 import { Icon } from "semantic-ui-react"
 import { Link } from "../Link"
-import { defaultColors, iconMap, withTag } from "../../utils"
+import { defaultColors, iconMap, margin, withTag } from "../../utils"
 import { IconLinkGroup } from "./IconLinkGroup"
 
 const S = {} // styled-components namespace
@@ -13,7 +13,7 @@ S.Icon = styled(Icon)`
   align-items: center;
   font-size: ${({ $size }) => iconMap[$size]};
   padding: ${({ $group }) => ($group ? "0 0.5em" : "0")};
-  margin: 0;
+  ${margin("all")("0")};
   opacity: 1;
 
   /* if color not provided */

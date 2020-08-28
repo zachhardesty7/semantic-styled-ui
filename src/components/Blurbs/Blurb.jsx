@@ -10,7 +10,6 @@ const S = {} // styled-components namespace
 
 S.Section = styled.section`
   text-align: ${({ $align }) => $align};
-  /* padding-bottom: ${spacingMap.tight}; */
 `
 
 S.Header = styled(Header)`

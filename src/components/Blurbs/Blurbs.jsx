@@ -6,8 +6,8 @@ import { Blurb } from "./Blurb"
 
 import {
   padding as getPadding,
+  margin,
   media,
-  spacingMap,
   withNewProps,
   withTag,
 } from "../../utils"
@@ -19,20 +19,18 @@ const MAX_COLUMNS = 4
 /* fix absurdly wide blurb segments on tablet size */
 /* use "!important" to override .ui.text.container */
 S.Blurbs = styled(Segment)`
-  ${({ $padded, padding }) =>
-    ($padded === "top" && `padding-top: ${spacingMap[padding]}`) ||
-    ($padded === "bottom" && `padding-bottom: ${spacingMap[padding]}`) ||
-    ($padded && `padding: ${spacingMap[padding]} 0`)};
+  ${({ $padded }) =>
+    ($padded === "top" && getPadding("top")) ||
+    ($padded === "bottom" && getPadding("bottom")) ||
+    ($padded && getPadding("vertical"))};
 `
 
+/* pad between title/content and items */
 S.Header = styled(Container)`
-  /* pad between title/content and items */
-  padding-bottom: 2.75em !important;
+  ${getPadding("bottom")("2.75em", ["!"])};
 `
 
 S.Title = styled(Header).attrs({ forwardedAs: "h2" })`
-  /*   font-size: 3em; */
-
   @media ${media.phone} {
     text-align: left;
   }
@@ -62,14 +60,13 @@ S.GridCol = styled(Grid.Column)`
   ${({ $fullWidth }) =>
     $fullWidth === "gutter" &&
     css`
-      margin-left: 10px;
-      margin-right: 10px;
+      ${margin("horizontal")("10px")};
 
       &:last-of-type {
-        margin-right: 20px;
+        ${margin("right")("20px")};
       }
       &:first-of-type {
-        margin-left: 20px;
+        ${margin("left")("20px")};
       }
     `};
 
@@ -78,8 +75,8 @@ S.GridCol = styled(Grid.Column)`
   }
   @media ${media.mobile} {
     ${getPadding("horizontal")("0")};
-    ${getPadding("vertical")("2em", ["internal", "important"])};
-    ${getPadding("vertical")("0em", ["external", "important"])};
+    ${getPadding("vertical")("2em", ["internal", "!"])};
+    ${getPadding("vertical")("0", ["external", "!"])};
   }
 `
 

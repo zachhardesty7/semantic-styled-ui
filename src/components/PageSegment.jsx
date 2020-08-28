@@ -33,14 +33,8 @@ S.Container = styled(Container)`
   }
 `
 
-export const PageSegment = ({
-  secondary = false,
-  // padding = "base",
-  children,
-  ...rest
-}) => (
+export const PageSegment = ({ secondary = false, children, ...rest }) => (
   <S.Segment
-    // padding={padding}
     forwardedAs="section"
     vertical
     basic

@@ -3,7 +3,7 @@ import styled, { css } from "styled-components"
 
 import { NavigationItem } from "./NavigationItem"
 
-import { logoSizes, logoSizesSVG, media } from "../../utils"
+import { logoSizes, logoSizesSVG, margin, media } from "../../utils"
 
 const S = {} // styled-components namespace
 
@@ -15,8 +15,7 @@ S.Wrapper = styled.div`
   ${({ $stacked }) =>
     $stacked &&
     css`
-      margin-right: 50%;
-      margin-left: 50%;
+      ${margin("horizontal")("50%")};
 
       & > .item {
         border-bottom: none;
@@ -26,7 +25,6 @@ S.Wrapper = styled.div`
 
 // use "!important" to override Gatsby-Image inline style
 S.Logo = styled.div`
-/*   padding: 0 0.5em; */
   position: relative !important;
   height: 3em !important;
   width: auto !important;
