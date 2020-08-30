@@ -95,10 +95,10 @@ export const includesAny = (con, searchVals = []) =>
   searchVals.some((searchVal) => con.includes(searchVal))
 
 /**
- * URL encodes the data of key, value pairs as submitted by a form.
+ * creates a new obj without any keys that were declared as undefined on the input obj
  *
  * @param {any} obj - arbitrary object
- * @returns {string} input object without `undefined` properties
+ * @returns {string} input object without `undefined` property keys
  * @example
  *
  * removeUndef({ key1: 'val1', key2: undefined })
@@ -106,9 +106,7 @@ export const includesAny = (con, searchVals = []) =>
  */
 const removeUndef = (obj) =>
   Object.fromEntries(
-    Object.entries(obj)
-      .filter((kv) => kv[1] != null)
-      .map(([k, v]) => (typeof v === "object" ? [k, removeUndef(v)] : [k, v]))
+    Object.entries(obj).filter((kv) => kv[1] != null && kv[1] !== undefined)
   )
 
 /**
