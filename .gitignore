@@ -40,6 +40,9 @@ typings/
 .size-snapshot.json
 stats.html
 
+# storybook
+storybook-static
+
 #################
 #  rarely used  #
 #################
