@@ -68,10 +68,10 @@ const IconLinkGroup = ({
 )
 
 IconLinkGroup.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them, edit the d.ts file and run any "yarn build"    |
-  // ----------------------------------------------------------------------
+  // -------------------------------- Warning -----------------------------------
+  // |    These PropTypes are generated from the TypeScript type definitions    |
+  // | To update them, edit the .d.ts file and run any yarn dev / build command |
+  // ----------------------------------------------------------------------------
   /**
    * primary content of icon(s)
    */

@@ -115,10 +115,10 @@ const Navigation = ({
   )
 
 Navigation.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them, edit the d.ts file and run any "yarn build"    |
-  // ----------------------------------------------------------------------
+  // -------------------------------- Warning -----------------------------------
+  // |    These PropTypes are generated from the TypeScript type definitions    |
+  // | To update them, edit the .d.ts file and run any yarn dev / build command |
+  // ----------------------------------------------------------------------------
   /**
    * element type to render as (string or function)
    * supports HTML tag as a string or React component definition

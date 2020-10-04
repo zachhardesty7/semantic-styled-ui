@@ -20,10 +20,10 @@ const Section404 = ({
 )
 
 Section404.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them, edit the d.ts file and run any "yarn build"    |
-  // ----------------------------------------------------------------------
+  // -------------------------------- Warning -----------------------------------
+  // |    These PropTypes are generated from the TypeScript type definitions    |
+  // | To update them, edit the .d.ts file and run any yarn dev / build command |
+  // ----------------------------------------------------------------------------
   children: PropTypes.node,
   /**
    * subtitle of main message

@@ -123,10 +123,10 @@ const Footer = ({
 }
 
 Footer.propTypes = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them, edit the d.ts file and run any "yarn build"    |
-  // ----------------------------------------------------------------------
+  // -------------------------------- Warning -----------------------------------
+  // |    These PropTypes are generated from the TypeScript type definitions    |
+  // | To update them, edit the .d.ts file and run any yarn dev / build command |
+  // ----------------------------------------------------------------------------
   /**
    * apply css supported color string to background, overrides theme / default
    */
