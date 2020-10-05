@@ -53,7 +53,7 @@ HeroTitle.propTypes = {
   /**
    * de-emphasize the title content
    */
-  secondary: PropTypes.string,
+  secondary: PropTypes.bool,
 }
 
 export { HeroTitle }

@@ -13,7 +13,7 @@ const REACT_FILE_EXT = "@(js|jsx)"
 
 let hasRun = false
 
-const getFilename = (filePath) => filePath.slice(0, filePath.indexOf("."))
+const getFilename = (filePath) => filePath.slice(0, filePath.indexOf(".d.ts"))
 
 export const generatePropTypesFromGlob = (target) => {
   const tsOptions = ttp.loadConfig(path.resolve(__dirname, TSCONFIG_PATH))
@@ -31,10 +31,12 @@ export const generatePropTypesFromGlob = (target) => {
         0
     )
   ) {
+    // console.log("generating all proptypes")
     definitionFiles = glob.sync(ALL_TYPE_DEF_FILES_GLOB, {
       cwd: __dirname,
     })
   }
+  // console.log("definitionFiles", definitionFiles)
 
   // Create program for all files to speed up tests
   const program = ttp.createProgram(definitionFiles, tsOptions)
@@ -43,6 +45,9 @@ export const generatePropTypesFromGlob = (target) => {
     const possibleComponentPaths = glob.sync(
       `${getFilename(definitionFile)}.${REACT_FILE_EXT}`
     )
+    // console.log("definitionFile", definitionFile)
+    // console.log("getFilename(definitionFile)", getFilename(definitionFile))
+    // console.log("possibleComponentPaths", possibleComponentPaths)
 
     if (possibleComponentPaths.length === 0) return
 

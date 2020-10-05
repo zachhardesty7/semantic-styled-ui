@@ -27,11 +27,11 @@ const Flexbox = ({ justify, align, column, wrap, children, ...rest }) => (
   >
     {React.Children.map(children, (Child) =>
       Child?.type ? (
-        <S.FlexItem $wrap={wrap} as={Child.type} {...Child.props}>
+        <S.FlexItem as={Child.type} {...Child.props}>
           {Child.props.children}
         </S.FlexItem>
       ) : (
-        children
+        Child
       )
     )}
   </S.Flexbox>

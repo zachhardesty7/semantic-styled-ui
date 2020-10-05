@@ -1,10 +1,7 @@
 import babel from "@rollup/plugin-babel"
 import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
-import { terser } from "rollup-plugin-terser"
 import copy from "rollup-plugin-copy"
-import { sizeSnapshot } from "rollup-plugin-size-snapshot"
-import visualizer from "rollup-plugin-visualizer"
 import replace from "@rollup/plugin-replace"
 
 // rollup plugins
@@ -55,38 +52,6 @@ const globals = {
   "styled-components": "styled",
 }
 
-const prodBundles = [
-  // {
-  //   file: "dist/bundle.umd.js",
-  //   format: "umd",
-  //   name: "SSUI",
-  //   globals,
-  // },
-  {
-    file: pkg.unpkg,
-    format: "umd",
-    name: "SSUI",
-    globals,
-    plugins: [terser()],
-  },
-  {
-    // preserveModules: true,
-    // dir: "dist",
-    // name: "SSUI",
-    exports: "named",
-    file: pkg.main,
-    format: "cjs",
-  },
-  {
-    // preserveModules: true,
-    // dir: "dist",
-    // name: "SSUI",
-    exports: "named",
-    file: pkg.module,
-    format: "esm",
-  },
-]
-
 const config = async (args) => ({
   input: "src/index.js",
   output: args.configDev
@@ -99,14 +64,33 @@ const config = async (args) => ({
         format: "esm",
         globals,
       }
-    : prodBundles,
+    : [
+        {
+          file: pkg.unpkg,
+          format: "umd",
+          name: "SSUI",
+          globals,
+          plugins: [(await import("rollup-plugin-terser")).terser()],
+        },
+        {
+          exports: "named",
+          file: pkg.main,
+          format: "cjs",
+        },
+        {
+          exports: "named",
+          file: pkg.module,
+          format: "esm",
+        },
+      ],
   external: ["styled-components", "react", "react-dom"],
   plugins: [
     args.configPropTypes && propTypesFromTS(),
     replace({
       "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,
     }),
-    args.configAnalyze && sizeSnapshot(),
+    args.configAnalyze &&
+      (await import("rollup-plugin-size-snapshot")).sizeSnapshot(),
     copy({
       copyOnce: true,
       flatten: false,
@@ -120,7 +104,7 @@ const config = async (args) => ({
     resolve({ extensions: [".js", ".jsx"] }),
     commonjs(),
     args.configAnalyze &&
-      visualizer({
+      (await import("rollup-plugin-visualizer")).visualizer({
         open: true,
         template: "sunburst",
         gzipSize: true,

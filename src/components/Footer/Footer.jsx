@@ -104,7 +104,7 @@ const Footer = ({
     <Ref innerRef={con}>
       <S.Segment
         forwardedAs="footer"
-        $color={color || (inverted ? "grey" : undefined)}
+        $color={color || (inverted ? undefined : "grey")}
         $backgroundColor={backgroundColor}
         basic
         vertical

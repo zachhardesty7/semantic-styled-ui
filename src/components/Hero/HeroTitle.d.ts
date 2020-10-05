@@ -4,7 +4,7 @@ export interface HeroTitleProps {
   /**
    * de-emphasize the title content
    */
-  secondary?: string
+  secondary?: boolean
   /**
    * apply css supported color string to Icon and text, overrides theme / default
    */

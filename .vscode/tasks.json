@@ -4,10 +4,7 @@
     {
       "type": "shell",
       "command": "yarn watch",
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
+      "group": "test",
       "problemMatcher": [],
       "label": "yarn: watch",
       "detail": "rollup -c --watch"
@@ -20,6 +17,16 @@
         "isDefault": true
       },
       "label": "yarn build:dev"
+    },
+    {
+      "type": "shell",
+      "command": "yarn storybook",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "label": "yarn: storybook"
     }
   ]
 }

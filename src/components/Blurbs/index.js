@@ -1,2 +1,2 @@
-export { Blurb } from './Blurb';
-export { Blurbs } from './Blurbs';
+export { Blurb } from "./Blurb"
+export { Blurbs } from "./Blurbs"

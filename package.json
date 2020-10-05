@@ -1,6 +1,6 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.40.2",
+  "version": "0.40.3",
   "description": "Set of UI components based of Semantic UI with Styled Components",
   "keywords": [
     "semantic",
@@ -40,7 +40,7 @@
     "build:dev": "rollup --environment NODE_ENV:development --config --sourcemap --configDev --configPropTypes",
     "watch": "rollup --environment NODE_ENV:development --config --watch --sourcemap --configDev --configPropTypes",
     "pub:next": "yarn build && publish --tag next",
-    "pub": "build && publish",
+    "pub": "yarn build && publish",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "NODE_ENV=production build-storybook"
   },

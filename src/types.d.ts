@@ -9,7 +9,8 @@ declare global {
   }
 }
 
-export type AsProp = JSX.IntrinsicElements | React.ComponentType<Any>
+export type AsProp = keyof JSX.IntrinsicElements | React.ComponentType<Any>
+
 export type Any = any // eslint-disable-line @typescript-eslint/no-explicit-any
 
 export type BoxAlignProp =
