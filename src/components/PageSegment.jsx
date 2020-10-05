@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Container, Segment } from "semantic-ui-react"
 import styled from "styled-components"
-import { media, padding, spacingMap } from "../utils"
+import { media, padding } from "../utils"
 
 const S = {} // styled-components namespace
 
@@ -55,17 +55,6 @@ PageSegment.propTypes = {
    * primary content
    */
   children: PropTypes.node,
-  /**
-   * if/where spacing around element exists
-   */
-  padded: PropTypes.oneOfType([
-    PropTypes.oneOf(["both", "bottom", "top"]),
-    PropTypes.bool,
-  ]),
-  /**
-   * control amount of spacing around element
-   */
-  padding: PropTypes.oneOf(["base", "compact", "loose", "relaxed", "tight"]),
   /**
    * format to appear less prominent (grey background)
    */

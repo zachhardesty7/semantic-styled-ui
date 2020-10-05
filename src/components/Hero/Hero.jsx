@@ -255,7 +255,7 @@ Hero.propTypes = {
   /**
    * darken background image to improve readability
    */
-  overlay: PropTypes.oneOf(["dark", "darker"]),
+  overlay: PropTypes.oneOf(["dark", "darker", "darkest"]),
   /**
    * size using "em" units
    */

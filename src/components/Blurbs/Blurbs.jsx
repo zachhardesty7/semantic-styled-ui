@@ -126,7 +126,11 @@ const Blurbs = ({
           <S.Title textAlign={centered ? "center" : undefined}>{title}</S.Title>
         )}
 
-        {content && <S.Content $centered={centered}>{content}</S.Content>}
+        {content && (
+          <Container text>
+            <S.Content $centered={centered}>{content}</S.Content>
+          </Container>
+        )}
       </S.Header>
     )}
 

@@ -1,8 +1,15 @@
 import * as styled from "styled-components"
 import * as React from "react"
 
-// export type AsProp = JSX.IntrinsicElements | React.ComponentType<Any>
-export type AsProp = React.ReactNode
+declare global {
+  namespace JSX {
+    interface IntrinsicAttributes {
+      css?: styled.CSSProp
+    }
+  }
+}
+
+export type AsProp = JSX.IntrinsicElements | React.ComponentType<Any>
 export type Any = any // eslint-disable-line @typescript-eslint/no-explicit-any
 
 export type BoxAlignProp =

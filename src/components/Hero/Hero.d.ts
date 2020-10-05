@@ -5,7 +5,7 @@ import { HeroLogoProps } from "./HeroLogo"
 import { HeroButtonProps } from "./HeroButton"
 import { BoxAlignProp, JustifyProp } from "../../types"
 
-export type HeroOverlay = "dark" | "darker"
+export type HeroOverlay = "dark" | "darker" | "darkest"
 
 export type HeroBaseline = "top" | "center" | "bottom"
 

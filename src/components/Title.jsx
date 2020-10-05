@@ -9,7 +9,7 @@ import { margin, media, padding, spacingMap } from "../utils"
 const S = {} // styled-components namespace
 
 S.Header = styled(Header)`
-  ${margin("bottom")("1.75em", ["internal"])};
+  ${margin("bottom")("1.25em", ["internal"])};
   ${({ $padded }) =>
     ($padded === "top" && padding("top")(spacingMap.base)) ||
     ($padded === "bottom" && padding("bottom")(spacingMap.base)) ||

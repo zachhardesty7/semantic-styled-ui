@@ -25,11 +25,15 @@ const Flexbox = ({ justify, align, column, wrap, children, ...rest }) => (
     $column={column}
     {...rest}
   >
-    {React.Children.map(children, (Child) => (
-      <S.FlexItem $wrap={wrap} as={Child.type} {...Child.props}>
-        {Child.props.children}
-      </S.FlexItem>
-    ))}
+    {React.Children.map(children, (Child) =>
+      Child?.type ? (
+        <S.FlexItem $wrap={wrap} as={Child.type} {...Child.props}>
+          {Child.props.children}
+        </S.FlexItem>
+      ) : (
+        children
+      )
+    )}
   </S.Flexbox>
 )
 
@@ -68,6 +72,10 @@ Flexbox.propTypes = {
     "split",
     "start",
   ]),
+  /**
+   * should use a wrapper instead of applying flex styles directly to children
+   */
+  wrap: PropTypes.bool,
 }
 
 export { Flexbox }

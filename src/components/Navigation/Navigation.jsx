@@ -85,7 +85,7 @@ const Navigation = ({
       pointing={!noPointing}
       inverted={inverted}
       $justify={justify}
-      $floating={floating}
+      floating={floating}
       $split={split}
       {...rest}
     >
@@ -104,7 +104,7 @@ const Navigation = ({
         secondary={!primary}
         pointing={!noPointing}
         inverted={inverted}
-        $floating={floating}
+        floating={floating}
       >
         {/* apply tag && pointing to all children */}
         {React.Children.map(children, (Child) =>
@@ -166,7 +166,14 @@ Navigation.propTypes = {
   /**
    * horizontal position
    */
-  justify: PropTypes.any,
+  justify: PropTypes.oneOf([
+    "center",
+    "end",
+    "initial",
+    "justify",
+    "split",
+    "start",
+  ]),
   /**
    * don't indicate active page
    */

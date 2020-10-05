@@ -68,7 +68,6 @@ const Footer = ({
   sticky = true,
   fullWidth = false,
   inverted = false,
-  light = false,
   children = [],
   ...rest
 }) => {
@@ -84,8 +83,8 @@ const Footer = ({
       el.children[el.children.length - 2].style.flex = "1 0 auto"
       el.style.display = "flex"
       el.style.flexDirection = "column"
-
       el.style.minHeight = "100vh"
+
       el = el.parentNode
     }
   })
@@ -105,7 +104,7 @@ const Footer = ({
     <Ref innerRef={con}>
       <S.Segment
         forwardedAs="footer"
-        $color={color || (light ? "grey" : undefined)}
+        $color={color || (inverted ? "grey" : undefined)}
         $backgroundColor={backgroundColor}
         basic
         vertical
@@ -113,8 +112,8 @@ const Footer = ({
       >
         <Container fluid={fullWidth}>
           <S.Flexbox justify="split" wrap>
-            {childrenArr[0] && withNewProps(childrenArr[0], { light })}
-            {childrenArr[1] && withNewProps(childrenArr[1], { light })}
+            {childrenArr[0] && withNewProps(childrenArr[0], { inverted })}
+            {childrenArr[1] && withNewProps(childrenArr[1], { inverted })}
           </S.Flexbox>
         </Container>
       </S.Segment>

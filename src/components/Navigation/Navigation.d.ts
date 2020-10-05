@@ -1,9 +1,8 @@
 import * as React from "react"
-import { AsProp, TextAlignProp } from "../../types"
+import { AsProp, TextAlignProp, JustifyProp } from "../../types"
 
 import { NavigationItemProps } from "./NavigationItem"
 import { NavigationLogoProps } from "./NavigationLogo"
-import { JustifyProp } from "../../../dist/types.d.ts"
 
 export type NavigationSize =
   | "small"
