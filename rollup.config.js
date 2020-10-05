@@ -3,14 +3,15 @@ import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import { terser } from "rollup-plugin-terser"
 import copy from "rollup-plugin-copy"
-import progress from "rollup-plugin-progress"
 import { sizeSnapshot } from "rollup-plugin-size-snapshot"
 import visualizer from "rollup-plugin-visualizer"
+import replace from "@rollup/plugin-replace"
 
 // rollup plugins
-// https://www.npmjs.com/package/rollup-plugin-filesize
+// https://github.com/ritz078/rollup-plugin-filesize
 // https://www.npmjs.com/package/rollup-plugin-sizes
 // https://github.com/rollup/plugins/tree/master/packages/alias#readme
+// https://github.com/rollup/plugins/tree/master/packages/strip
 
 // public docs
 // https://www.npmjs.com/package/rollup-plugin-serve
@@ -86,7 +87,7 @@ const prodBundles = [
   },
 ]
 
-const config = (args) => ({
+const config = async (args) => ({
   input: "src/index.js",
   output: args.configDev
     ? {
@@ -101,6 +102,10 @@ const config = (args) => ({
     : prodBundles,
   external: ["styled-components", "react", "react-dom"],
   plugins: [
+    args.configPropTypes && propTypesFromTS(),
+    replace({
+      "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,
+    }),
     args.configAnalyze && sizeSnapshot(),
     copy({
       copyOnce: true,
@@ -114,8 +119,6 @@ const config = (args) => ({
     babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
     resolve({ extensions: [".js", ".jsx"] }),
     commonjs(),
-    propTypesFromTS(),
-    args.configProgress && progress(),
     args.configAnalyze &&
       visualizer({
         open: true,
