@@ -40,13 +40,23 @@ typings/
 .editorconfig
 .eslintignore
 .gitignore
+.stylelintrc.json
 
-# rollup analysis
+# rollup
 .size-snapshot.json
 stats.html
+rollup.config.js
+rollup-plugin.js
+
+# babel
+babel.config.js
 
 # storybook
 storybook-static
+.storybook
+
+# styleguide
+styleguide.config.js
 
 #################
 #  rarely used  #
