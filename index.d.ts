@@ -47,11 +47,9 @@ export {
   Portal,
   Radio,
   Ref,
-  Responsive,
   Select,
   TextArea,
   TransitionablePortal,
-  MountNode,
   Form,
   Icon,
 } from "semantic-ui-react"
