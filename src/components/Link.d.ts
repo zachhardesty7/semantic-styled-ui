@@ -1,5 +1,4 @@
 import * as React from "react"
-import { AsProp } from "../types"
 
 export interface LinkProps {
   /**
@@ -13,7 +12,7 @@ export interface LinkProps {
    * ReactComponent
    * Card
    */
-  as?: AsProp
+  as?: React.ElementType
   /**
    * hash link (prefixed with "#") or internal link applied via a new `to` field or can
    * be used as a standard href if a full link is provided

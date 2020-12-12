@@ -217,6 +217,10 @@ Blurbs.propTypes = {
    * header
    */
   title: PropTypes.node,
+  /**
+   * useful for rendering multiple blurbs in a column
+   */
+  vertical: PropTypes.bool,
 }
 
 export { Blurbs }

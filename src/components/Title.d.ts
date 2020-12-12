@@ -1,5 +1,5 @@
 import * as React from "react"
-import { AsProp, TextAlignProp, PaddedVerticalProp } from "../types"
+import { TextAlignProp, PaddedVerticalProp } from "../types"
 
 interface TitleProps {
   /**
@@ -9,7 +9,7 @@ interface TitleProps {
   /**
    * what the main content is rendered as
    */
-  as?: AsProp
+  as?: React.ElementType
   /**
    * subtitle content
    */

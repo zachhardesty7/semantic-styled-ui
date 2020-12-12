@@ -11,8 +11,8 @@ build
 dist
 
 # dependency directories
-node_modules/
-jspm_packages/
+node_modules
+jspm_packages
 
 # package manager files / optional directories
 .npm
@@ -34,7 +34,7 @@ jspm_packages/
 .contentful.json
 
 # typescript v1 declaration files
-typings/
+typings
 
 # rollup analysis
 .size-snapshot.json

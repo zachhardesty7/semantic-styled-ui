@@ -34,7 +34,7 @@ S.Container = styled(Container)`
   }
 `
 
-const PageSegment = ({ secondary = false, children, ...rest }) => (
+const PageSegment = ({ secondary = false, text, children, ...rest }) => (
   <S.Segment
     forwardedAs="section"
     vertical
@@ -42,7 +42,7 @@ const PageSegment = ({ secondary = false, children, ...rest }) => (
     secondary={secondary}
     {...rest}
   >
-    <S.Container>{children}</S.Container>
+    <S.Container text={text}>{children}</S.Container>
   </S.Segment>
 )
 
@@ -59,6 +59,10 @@ PageSegment.propTypes = {
    * format to appear less prominent (grey background)
    */
   secondary: PropTypes.bool,
+  /**
+   * pass to `Container` component to narrow the width of the segment
+   */
+  text: PropTypes.bool,
 }
 
 export { PageSegment }

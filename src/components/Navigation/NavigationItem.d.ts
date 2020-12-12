@@ -1,5 +1,4 @@
 import * as React from "react"
-import { AsProp } from "../../types"
 
 export interface NavigationItemProps {
   /**
@@ -12,7 +11,7 @@ export interface NavigationItemProps {
    * ReactComponent
    * Card
    */
-  as?: AsProp
+  as?: React.ElementType
   /**
    * anchor link (prefixed with "#") or standard href
    */

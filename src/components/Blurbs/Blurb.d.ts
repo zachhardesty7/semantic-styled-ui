@@ -1,5 +1,5 @@
 import * as React from "react"
-import { AsProp, JustifyProp } from "../../types"
+import { JustifyProp } from "../../types"
 
 export type BlurbProps = {
   /** content above header */
@@ -26,10 +26,13 @@ export type BlurbProps = {
    * {ReactComponent}
    * Card
    */
-  as?: AsProp
+  as?: React.ElementType
 
   /** position / justification of all content */
   align?: JustifyProp
+
+  /** useful for rendering multiple blurbs in a column */
+  vertical?: boolean
 
   /** secondary content of body */
   // children: PropTypes.node,

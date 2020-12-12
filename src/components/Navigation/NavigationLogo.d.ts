@@ -1,5 +1,4 @@
 import * as React from "react"
-import { AsProp } from "../../types"
 
 export type NavigationLogoLogoSize = "small" | "base" | "large"
 
@@ -14,7 +13,7 @@ export interface NavigationLogoProps {
    * ReactComponent
    * Card
    */
-  as?: AsProp
+  as?: React.ElementType
   /**
    * anchor link (prefixed with "#") or standard href
    */

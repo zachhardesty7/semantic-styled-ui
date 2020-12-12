@@ -1,5 +1,4 @@
 import * as styled from "styled-components"
-import * as React from "react"
 
 declare global {
   namespace JSX {
@@ -8,10 +7,6 @@ declare global {
     }
   }
 }
-
-export type AsProp = keyof JSX.IntrinsicElements | React.ComponentType<Any>
-
-export type Any = any // eslint-disable-line @typescript-eslint/no-explicit-any
 
 export type BoxAlignProp =
   | "start"

@@ -87,7 +87,7 @@ HeroButton.propTypes = {
    * ReactComponent
    * Card
    */
-  as: PropTypes.any,
+  as: PropTypes.elementType,
   /**
    * text-based content
    */

@@ -78,14 +78,12 @@ const Footer = ({
   // enable dynamic sized footer that stays at the bottom, even when there's little content
   useLayoutEffect(() => {
     if (sticky && con?.current) {
-      let el = con.current.parentNode
+      const el = con.current.parentNode
 
       el.children[el.children.length - 2].style.flex = "1 0 auto"
       el.style.display = "flex"
       el.style.flexDirection = "column"
       el.style.minHeight = "100vh"
-
-      el = el.parentNode
     }
   })
 

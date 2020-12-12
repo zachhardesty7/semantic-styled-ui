@@ -1,4 +1,4 @@
-import { AsProp, JustifyProp } from "../../types"
+import { JustifyProp } from "../../types"
 import { IconLinkGroupProps } from "./IconLinkGroup"
 
 export type IconLinkLabel = string | boolean
@@ -35,7 +35,7 @@ export interface IconLinkProps {
    * ReactComponent
    * Card
    */
-  as?: AsProp
+  as?: React.ElementType
   /**
    * anchor link (prefixed with "#") or standard href
    */
@@ -64,6 +64,10 @@ export interface IconLinkProps {
    * set color to secondary, colorHover to primary
    */
   inverted?: boolean
+  /**
+   * reduce padding
+   */
+  fitted?: boolean
 }
 
 declare const IconLink: React.FC<IconLinkProps> & {

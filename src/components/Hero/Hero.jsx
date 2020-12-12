@@ -132,8 +132,7 @@ S.Chunk = styled.header`
   border-bottom: ${({ $underline, theme }) =>
     ($underline === true &&
       css`5px solid ${theme.accent || defaultColors.accent}`) ||
-    ($underline &&
-      css`5px solid ${$underline || theme.accent || defaultColors.accent}`) ||
+    ($underline && css`5px solid ${$underline}`) ||
     "none"};
   z-index: 3;
   position: relative;

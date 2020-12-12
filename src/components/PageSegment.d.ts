@@ -14,6 +14,10 @@ export interface PageSegmentProps {
    * control amount of spacing around element
    */
   padding?: SpacingProp
+  /** 
+   * pass to `Container` component to narrow the width of the segment
+   */
+  text?: boolean
   /**
    * primary content
    */

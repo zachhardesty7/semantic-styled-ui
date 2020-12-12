@@ -6,7 +6,7 @@ import { spacingMap } from "./consts"
  * @typedef {import("../types").SpacingSide} SpacingSide
  */
 
-const testUsingLastParamAsDefault = (sides) => (
+export const testUsingLastParamAsDefault = (sides) => (
   fallback,
   { internal = false }
 ) => {

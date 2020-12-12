@@ -1,5 +1,5 @@
 import * as React from "react"
-import { AsProp, TextAlignProp, JustifyProp } from "../../types"
+import { TextAlignProp, JustifyProp } from "../../types"
 
 import { NavigationItemProps } from "./NavigationItem"
 import { NavigationLogoProps } from "./NavigationLogo"
@@ -23,7 +23,7 @@ export interface NavigationProps {
    * ReactComponent
    * Card
    */
-  as?: AsProp
+  as?: React.ElementType
   /**
    * size using "em" units
    */

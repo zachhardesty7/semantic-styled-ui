@@ -15,7 +15,7 @@ export interface HeroButtonProps {
    * ReactComponent
    * Card
    */
-  as?: AsProp
+  as?: React.ElementType
   /**
    * anchor link (prefixed with "#") or standard href
    */

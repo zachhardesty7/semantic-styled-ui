@@ -85,6 +85,7 @@ const config = async (args) => ({
       ],
   external: ["styled-components", "react", "react-dom"],
   plugins: [
+    // FIXME: don't think these are properly generated currently
     args.configPropTypes && propTypesFromTS(),
     replace({
       "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,

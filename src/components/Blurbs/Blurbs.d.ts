@@ -41,6 +41,10 @@ export interface BlurbsProps {
    */
   padding?: BlurbsPadding
   /**
+   * useful for rendering multiple blurbs in a column
+   * */
+  vertical?: boolean
+  /**
    * primary content of Blurbs.Item
    */
   children?: React.ReactNode
