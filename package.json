@@ -21,7 +21,10 @@
   "unpkg": "dist/index.umd.min.js",
   "license": "MIT",
   "author": "Zach Hardesty <hello@zachhardesty.com> (https://zachhardesty.com)",
-  "repository": "github:zachhardesty7/semantic-styled-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachhardesty7/semantic-styled-ui.git"
+  },
   "browserslist": [
     ">0.25%",
     "not dead"
