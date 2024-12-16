@@ -83,7 +83,7 @@
     "react-is": "^17.0.1",
     "react-styleguidist": "^11.1.5",
     "rimraf": "^3.0.2",
-    "rollup": "2.34.2",
+    "rollup": "2.79.2",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-size-snapshot": "^0.12.0",
