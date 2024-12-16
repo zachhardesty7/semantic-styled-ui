@@ -35,12 +35,12 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "clean:full": "rimraf dist/* node_modules yarn.lock && yarn",
-    "build": "yarn clean && rollup --environment NODE_ENV:production --config --minifyInternalExports --compact --sourcemap",
-    "build:analyze": "yarn clean && rollup --environment NODE_ENV:development --config --minifyInternalExports --compact --configAnalyze",
+    "build": "npx yarn clean && rollup --environment NODE_ENV:production --config --minifyInternalExports --compact --sourcemap",
+    "build:analyze": "npx yarn clean && rollup --environment NODE_ENV:development --config --minifyInternalExports --compact --configAnalyze",
     "build:dev": "rollup --environment NODE_ENV:development --config --sourcemap --configDev --configPropTypes",
     "watch": "rollup --environment NODE_ENV:development --config --watch --sourcemap --configDev --configPropTypes",
-    "pub:next": "yarn build && publish --tag next",
-    "pub": "yarn build && publish",
+    "pub:next": "npx yarn build && publish --tag next",
+    "pub": "npx yarn build && publish",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "NODE_ENV=production build-storybook"
   },
