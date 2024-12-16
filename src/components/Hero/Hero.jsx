@@ -42,14 +42,14 @@ const sizes = {
 const S = {}
 
 S.Segment = styled(Segment)`
-  padding-top: ${({ baseline, $size }) => {
-    if (baseline === "top") return sizes.small[$size]
-    if (baseline === "center") return sizes.medium[$size]
+  padding-top: ${({ $baseline, $size }) => {
+    if ($baseline === "top") return sizes.small[$size]
+    if ($baseline === "center") return sizes.medium[$size]
     return sizes.large[$size]
   }};
-  padding-bottom: ${({ baseline, $size }) => {
-    if (baseline === "top") return sizes.large[$size]
-    if (baseline === "center") return sizes.medium[$size]
+  padding-bottom: ${({ $baseline, $size }) => {
+    if ($baseline === "top") return sizes.large[$size]
+    if ($baseline === "center") return sizes.medium[$size]
     return sizes.small[$size]
   }};
 
@@ -179,9 +179,9 @@ const Hero = ({
   return (
     <S.Segment
       vertical
-      baseline={baseline}
+      $baseline={baseline}
       $size={size}
-      overlay={overlay}
+      $overlay={overlay}
       {...rest}
     >
       {React.Children.map(images, (Background, i) => (
