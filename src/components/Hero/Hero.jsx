@@ -42,14 +42,14 @@ const sizes = {
 const S = {}
 
 S.Segment = styled(Segment)`
-  padding-top: ${({ baseline, $size }) => {
-    if (baseline === "top") return sizes.small[$size]
-    if (baseline === "center") return sizes.medium[$size]
+  padding-top: ${({ $baseline, $size }) => {
+    if ($baseline === "top") return sizes.small[$size]
+    if ($baseline === "center") return sizes.medium[$size]
     return sizes.large[$size]
   }};
-  padding-bottom: ${({ baseline, $size }) => {
-    if (baseline === "top") return sizes.large[$size]
-    if (baseline === "center") return sizes.medium[$size]
+  padding-bottom: ${({ $baseline, $size }) => {
+    if ($baseline === "top") return sizes.large[$size]
+    if ($baseline === "center") return sizes.medium[$size]
     return sizes.small[$size]
   }};
 
@@ -58,12 +58,12 @@ S.Segment = styled(Segment)`
     content: "";
     height: 100%;
     width: 100.5%;
-    background: ${({ overlay }) =>
-      (overlay === "dark" &&
+    background: ${({ $overlay }) =>
+      ($overlay === "dark" &&
         "linear-gradient(0deg,rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5))") ||
-      (overlay === "darker" &&
+      ($overlay === "darker" &&
         "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.65))") ||
-      (overlay === "darkest" &&
+      ($overlay === "darkest" &&
         "linear-gradient(0deg,rgba(0, 0, 0, 0.65),rgba(0, 0, 0, 0.75))")};
     filter: saturate(1.8) sepia(0.4);
     background-repeat: no-repeat;
@@ -179,9 +179,9 @@ const Hero = ({
   return (
     <S.Segment
       vertical
-      baseline={baseline}
+      $baseline={baseline}
       $size={size}
-      overlay={overlay}
+      $overlay={overlay}
       {...rest}
     >
       {React.Children.map(images, (Background, i) => (
