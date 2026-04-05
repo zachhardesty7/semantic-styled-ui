@@ -1,7 +1,7 @@
 {
   "name": "semantic-styled-ui",
-  "version": "0.43.2",
-  "description": "Set of UI components based of Semantic UI with Styled Components",
+  "version": "0.43.3",
+  "description": "Set of UI components based off Semantic UI with Styled Components",
   "keywords": [
     "semantic",
     "semantic-ui",
